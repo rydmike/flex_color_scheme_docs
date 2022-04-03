@@ -1,0 +1,9 @@
+{
+    "name": "flex_color_scheme",
+    "zoomImages": "false",
+    "zoomImages-Comment": "turning off zoom site-wide to enable images w/ links",
+    "sidebar": [
+        ["Welcome","/"],
+        ["Installing", "/installing"]
+    ]
+}

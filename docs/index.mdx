@@ -1,0 +1,31 @@
+# FlexColorScheme Welcome
+
+Use **FlexColorScheme** to make beautiful color scheme based Flutter themes,
+with optional primary color surface blends. The themes are based on the same
+concept as Flutter's ColorScheme based themes, but with many
+additional features.
+
+[<img src="https://rydmike.com/assets_fcsv4/00-main-image.jpg?raw=true?" alt="main_image"/>](https://rydmike.com/assets_fcsv4/00-main-image.png?raw=true>)
+_FlexColorScheme theme examples (click image to open hires version)_
+
+When you color theme a Flutter application, all built in
+widgets use the colors of the `ColorScheme` in your theme. At least in theory,
+and it is almost so if you defined your Flutter ThemeData by using the
+`ThemeData.from` factory, but even it misses a few details.
+**FlexColorScheme** goes the extra mile to ensure that all Flutter SDK widgets gets
+themed completely by its built-in color schemes, or custom colors you provide.
+
+You can also opt in on using pre-made opinionated widget sub-themes.
+By opting in, you can for example adjust the border radius on all widgets
+with a single property to set the same themed border radius on all of them with
+one property. Current Flutter SDK widgets are based on the Material 2 guide
+and use 4 dp corner radius as default on most corners.
+
+When you opt in on using the sub themes, the border radius on widgets default
+to the new rounded corners as specified by the
+[Material 3 guide](https://m3.material.io/), where the
+rounding varies by widget type. You can stick with this, or set global
+radius to a value you prefer. You can also easily set the themed border
+radius per widget and override the shared radius value in just a few cases. Use
+simple property values per widget, no need for verbose custom sub theme
+Shape definitions.
