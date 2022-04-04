@@ -13,8 +13,8 @@ In your library file add the following import:
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 ```
 
-You can now start using `FlexColorScheme` V4 based color schemes and theming
-in your application. A quick way to do so is to try one of the 36 built-in
+You can now start using `FlexColorScheme` V5 based color schemes and theming
+in your application. A quick way to do so is to try one of the **40** built-in
 color schemes. The schemes have enums that you can use to refer to them with.
 
 Please study the default example for a thorough guide on how to use almost
@@ -65,26 +65,9 @@ demonstrate the results. This is why the included examples contain a lot of
 demo UI code, that is not really relevant to using FlexColorScheme and is only
 there to be able to properly demonstrate and show the results.
 
-> **New in version 4:**
-> The `FlexThemeData.light()` and `FlexThemeData.dark()` APIs used above are
-> new in version 4. They are extensions on `ThemeData` that create
-> `FlexColorScheme.light()` and `FlexColorScheme.dark()` objects and call their
-> `toTheme` method in one step. The new syntax is shorter and also look very
-> similar to Flutter SDK `ThemeData.light` and `ThemeData.dark` factories.
->
-> The original APIs `FlexColorScheme.light().toTheme` and
-> `FlexColorScheme.light().toTheme` do the same thing and still work.
-> They will not be deprecated, they implement
-> the actual functionality and are useful in more advanced theming use
-> cases. They can for example be useful and preferred when you add your own
-> custom widget sub-themes to FlexColorScheme themes. With FlexColorScheme
-> you can then extract the `ColorScheme` it will use for its ThemeData. You
-> often need the colors in this `ColorScheme` when you create widget sub-themes
-> that use matching colors.
-
 ## Default Example - Hot Reload Playground
 
-A quick and simple way to try FlexColorScheme V4 is to build the
+A quick and simple way to try FlexColorScheme V5 is to build the
 default example application. You can then use it as a hot reload playground to
 experiment with and test all the different theming and configuration options.
 

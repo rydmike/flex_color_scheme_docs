@@ -6,8 +6,8 @@
         ["Welcome","/"],
         ["Installing", "/installing"],
         ["Examples", "/examples"],
-        ["Theming guidance", "/flutter_theming"],
         ["All themes", "/all_schemes"],
+        ["Theming guidance", "/flutter_theming"],
         ["FAQ", "/faq"],
         ["Tutorial",
            [
@@ -19,8 +19,8 @@
            ]
         ],
         ["API Guide", "/api_guide"],
-        ["Features", "/features"],
+        ["Feature details", "/features"],
         ["Inside FlexColorScheme", "/inside"],
-        ["Scheme reference", "/scheme_reference"]
+        ["Schemes reference", "/scheme_reference"]
     ]
 }
