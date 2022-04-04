@@ -1,9 +1,18 @@
 {
-    "name": "flex_color_scheme",
+    "name": "FlexColorScheme",
     "zoomImages": "false",
     "zoomImages-Comment": "turning off zoom site-wide to enable images w/ links",
     "sidebar": [
         ["Welcome","/"],
-        ["Installing", "/installing"]
+        ["Installing", "/installing"],
+        ["Examples", "/examples"],
+        ["Theming guidance", "/flutter_theming"],
+        ["All themes", "/all_schemes"],
+        ["FAQ", "/faq"],
+        ["Tutorial", "/tutorial"],
+        ["API Guide", "/api_guide"],
+        ["Features", "/features"],
+        ["Inside FlexColorScheme", "/inside"],
+        ["Scheme reference", "/scheme_reference"]
     ]
 }

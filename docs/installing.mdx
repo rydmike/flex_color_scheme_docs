@@ -64,3 +64,128 @@ counter app uses very few features and widgets, therefore it cannot fully
 demonstrate the results. This is why the included examples contain a lot of
 demo UI code, that is not really relevant to using FlexColorScheme and is only
 there to be able to properly demonstrate and show the results.
+
+> **New in version 4:**
+> The `FlexThemeData.light()` and `FlexThemeData.dark()` APIs used above are
+> new in version 4. They are extensions on `ThemeData` that create
+> `FlexColorScheme.light()` and `FlexColorScheme.dark()` objects and call their
+> `toTheme` method in one step. The new syntax is shorter and also look very
+> similar to Flutter SDK `ThemeData.light` and `ThemeData.dark` factories.
+>
+> The original APIs `FlexColorScheme.light().toTheme` and
+> `FlexColorScheme.light().toTheme` do the same thing and still work.
+> They will not be deprecated, they implement
+> the actual functionality and are useful in more advanced theming use
+> cases. They can for example be useful and preferred when you add your own
+> custom widget sub-themes to FlexColorScheme themes. With FlexColorScheme
+> you can then extract the `ColorScheme` it will use for its ThemeData. You
+> often need the colors in this `ColorScheme` when you create widget sub-themes
+> that use matching colors.
+
+## Default Example - Hot Reload Playground
+
+A quick and simple way to try FlexColorScheme V4 is to build the
+default example application. You can then use it as a hot reload playground to
+experiment with and test all the different theming and configuration options.
+
+To try the default **example** on a device or simulator,
+clone the [repository](https://github.com/rydmike/flex_color_scheme) and
+run the example:
+
+```bash
+cd example/
+flutter run --release
+```
+
+The result is a demo app that uses a custom defined color scheme,
+has a theme mode switch, includes theme colors presentation
+and Material widget samples. With these you can see the active color scheme's
+colors and the created theme's impact on common Material UI widgets.
+
+The default sample app, the **Hot Reload Playground**, looks like this:
+
+[<img src="https://rydmike.com/assets_fcsv4/00_playground_default.jpg?raw=true" alt="playground_default"/>](
+https://rydmike.com/assets_fcsv4/00_playground_default.png?raw=true)
+_Hot Reload Playground the Default Example App (click image to open hires version)_
+
+It comes fully loaded with template settings and thorough
+comments that explain what to change to produce different results. You
+could for example change the `_useScheme` to `true`, as shown below and hot
+reload it, to then use the new `FlexScheme.blueWhale` theme instead.
+
+```dart
+// To use a pre-defined color scheme, don't assign any FlexSchemeColor to
+// `colors`, instead pick a FlexScheme and assign it to the `scheme` property.
+// Try eg the new "Blue Whale" color scheme.
+const FlexScheme _scheme = FlexScheme.blueWhale;
+
+// To make it easy to toggle between using the above custom colors, or the
+// selected predefined scheme in this example, set _useScheme to true to use the
+// selected predefined scheme above, change to false to use the custom colors.
+const bool _useScheme = true;
+```
+
+There are many settings you can play with in the default
+example application. The above selected **blue whale** theme is the first one
+shown in the image below.
+
+[<img src="https://rydmike.com/assets_fcsv4/01_playground_options.jpg?raw=true" alt="options"/>](
+https://rydmike.com/assets_fcsv4/01_playground_options.png?raw=true)
+_Hot Reload Playground (click image to open hires version)_
+
+The other results shown above were also produced by editing a few
+properties in this hot reload playground.
+
+In the hot reload playground the side menu has no real functionality, it is
+only there to present more surface area using the `theme.colorScheme`
+background color. The theme toggle in the menu does work though.
+
+## Themes Playground
+
+The side menu in the default example is actually made for and used
+in the last example in the tutorial. The final example
+doubles as an interactive **Themes Playground** application.
+
+The **Themes Playground** is useful as a tool to find themes and settings you
+prefer, or just use it to figure out what you can do with
+FlexColorScheme. The playground persists all its settings, and you can
+reset them back to their default values. It can even generate the Flutter
+FlxColorScheme setup code needed to produce the shown active theme.
+
+The **Themes Playground** can be used as a [web app
+here](https://rydmike.com/flexcolorschemeV4Tut5). Its source code
+is also available in the example sub folder in folder
+[/example5](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5).
+
+It is recommended to go through the tutorial further below to get introduced to
+all features step by step. However, feel free to go straight for example 5 if
+your really like to dive into the deep end. It is a bit more advanced example
+than those generally bundled with packages, but not that complicated.
+
+The **Themes Playground** web app is best experienced at as high resolution as
+possible, preferably even 4k. It is responsive and works splendidly down to
+phone sizes too. It is however easier to see and experience what each
+configuration option in FlexColorScheme does, when you use a large screen
+with high resolution, because then you can see the result of all settings at
+one glance.
+
+[<img src="https://rydmike.com/assets_fcsv4/05-web-demo-4k.jpg?raw=true" alt="playground-4k"/>](
+https://rydmike.com/assets_fcsv4/05-web-demo-4k.png?raw=true)
+_FlexColorScheme **Themes Playground** app at 4k resolution (click image to open hires version)_
+
+With the Themes Playground you can also copy any built-in color scheme to a
+customizable color scheme, that you can modify by clicking
+on the four main scheme colors in the custom scheme. The Themes Playground
+can also generate FlexColorScheme setup code that will create the same
+color scheme and theme that you are looking. All you have to do is copy the
+code and paste it into your app. You can find an example in this
+[tweet and referenced thread](https://twitter.com/RydMike/status/1461381878494150659)
+
+## Copy Playground Theme
+
+There is also a simple template example suitable for testing themes that you
+copy-paste from the **Themes Playground** example. It is intended to be used
+as a quick and simple app that you can use for experimenting with pasted in
+themes generated by the live web application. Its source code is available in
+the example sub folder in folder
+[/example_copy_paste](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example_copy_paste).
