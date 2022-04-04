@@ -9,7 +9,15 @@
         ["Theming guidance", "/flutter_theming"],
         ["All themes", "/all_schemes"],
         ["FAQ", "/faq"],
-        ["Tutorial", "/tutorial"],
+        ["Tutorial",
+           [
+                ["Example 1","/tutorial1"],
+                ["Example 2","/tutorial2"],
+                ["Example 3","/tutorial3"],
+                ["Example 4","/tutorial4"],
+                ["Example 5","/tutorial5"]
+           ]
+        ],
         ["API Guide", "/api_guide"],
         ["Features", "/features"],
         ["Inside FlexColorScheme", "/inside"],

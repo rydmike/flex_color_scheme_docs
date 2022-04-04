@@ -1,0 +1,197 @@
+# Example 2 - Custom Theme
+
+This example shows how you can define your own color schemes using
+`FlexSchemeColor` and `FlexSchemeData`, to create `FlexColorScheme` based
+application themes from them.
+
+> The full code is not shown below, only highlights.
+> Please find the complete example code
+> [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example2).
+
+## Based on Flutter skeleton template
+
+In this example, and the ones after it, we use a `ThemeService` and
+`ThemeController` to manage our theme settings. This follows the example
+architecture you get when you create a Flutter template application
+architecture with:
+
+```bash
+ > flutter create -t skeleton my_flutter_app
+```
+
+## Memory only ThemeService
+
+This example uses a theme service with only memory storage and no persistence.
+In later examples we use locally persisting theme services. In this example we
+use the theme controller to change the theme mode and to toggle opting in and
+out of FlexColorScheme's opinionated sub-themes.
+
+```dart
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // This used theme service.
+  final ThemeService themeService = ThemeServiceMem();
+  // Initialize the theme service.
+  await themeService.init();
+  // Create a ThemeController that uses the ThemeService.
+  final ThemeController themeController = ThemeController(themeService);
+  // Load all the preferred theme settings, while the app is loading, before
+  // MaterialApp is created. This prevents a sudden theme change when the app
+  // is first displayed.
+  await themeController.loadAll();
+  // Run the app and pass in the ThemeController. The app listens to the
+  // ThemeController for changes.
+  runApp(DemoApp(themeController: themeController));
+}
+```
+
+## Custom Colors
+
+To make a custom color scheme, we for simplicity define it as a local
+constant in this example. We make a `FlexSchemeData` object with a name,
+description and `FlexSchemeColor` scheme colors defined for the light and
+matching dark scheme.
+
+```dart
+const FlexSchemeData _myFlexScheme = FlexSchemeData(
+  name: 'Midnight blue',
+  description: 'Midnight blue theme, custom definition of all colors',
+  light: FlexSchemeColor(
+    primary: Color(0xFF00296B),
+    primaryContainer: Color(0xFF2F5C91),
+    secondary: Color(0xFFFF7B00),
+    secondaryContainer: Color(0xFFFDB100),
+  ),
+  dark: FlexSchemeColor(
+    primary: Color(0xFF6B8BC3),
+    primaryContainer: Color(0xFF4874AA),
+    secondary: Color(0xffff7155),
+    secondaryContainer: Color(0xFFF1CB9D),
+  ),
+);
+```
+
+We could also have stored the light and dark scheme only in their own
+`FlexSchemeColor` objects, and added them directly in their respective
+`colors` property in `FlexThemeData.light` and `FlexThemeData.dark`.
+However, we will also use this information on the `HomePage` for the
+theme switch widget and to display the scheme name and description.
+Putting them in a `FlexSchemeData` object that bundles the light and
+dark scheme color `FlexSchemeColor`, plus a name and description, is a
+convenient way to pass it along and re-use the information on the home page.
+
+We use the `FlexSchemeData` instance `_myFlexScheme` instance `light` and `dark`
+properties, as `colors` value for our `FlexThemeData.light` and
+`FlexThemeData.dark`, that we then assign to the `MaterialApp` light theme
+property `theme` and `darkTheme` property respectively.
+
+The setup is similar to how we used one of the built-in predefined
+`FlexSchemeData` objects in example 1 via its enum selection property,
+but in this case we defined our own custom `FlexSchemeData` in `_myFlexScheme`
+and used the `colors` property in `FlexSchemeData` to tell it to use those
+colors instead of a built-in scheme.
+
+## Using AnimatedBuilder
+
+We glue the `ThemeController` to the MaterialApp. The Flutter standard
+`AnimatedBuilder` Widget listens to the `ThemeController` for changes.
+
+The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here
+it serves the purpose of functioning as a "`ChangeNotifierBuilder`",
+that rebuilds its child when its `Listenable`, the `animation` changes.
+Which it does whenever our `ThemeController` calls `notifyListeners`.
+Which we do in the `ThemeController` class when we have new updated data
+that requires the theme to update.
+
+> The usage of the `AnimatedBuilder` does not have anything to do with the
+> fact that the theme changes animate from current ThemeData and colors in it,
+> to the new ones it changes to. This is a built-in feature in ThemeData and
+> its inherited Theme in Flutter SDK. You can change the Theme with
+> call-backs or other state management systems too, and still get the
+> nice theme change animation.
+>
+> The `AnimatedBuilder` is a poor name when it is used as
+> `ChangeNotifierBuilder`, that does not exist in Flutter SDK. It
+> should, just for a better and more logical name, but the `AnimatedBuilder`
+> serves the same purpose here as a `ChangeNotifierBuilder` would.
+
+This results in that whenever you update any theme settings managed by
+the `ThemeController`, the `MaterialApp` is rebuilt with the new setting
+becoming effective. It rebuilds the entire app UI when any value in
+the `ThemeController` trigger a change via a `notifyListeners` call.
+This is fine though, since all property changes in it are of the
+nature that the entire App UI needs to be redrawn anyway, so this approach
+works well for this use case.
+
+```dart
+class DemoApp extends StatelessWidget {
+  const DemoApp({Key? key, required this.themeController}) : super(key: key);
+  final ThemeController themeController;
+
+  @override
+  Widget build(BuildContext context) {
+
+    return AnimatedBuilder(
+      animation: themeController,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          scrollBehavior: AppScrollBehavior(),
+          title: 'Custom Theme',
+          // Define FlexThemeData.light() theme using above custom colors.
+          theme: FlexThemeData.light(
+            colors: _myFlexScheme.light,
+            // Opt in/out on FlexColorScheme sub-themes with theme controller.
+            useSubThemes: themeController.useSubThemes,
+            // Use  very low elevation light theme mode. On light colored
+            // AppBars this show up as a nice thin underline effect.
+            appBarElevation: 0.5,
+            // Here we want the large default visual density on all platforms.
+            visualDensity: VisualDensity.standard,
+            // Use a custom font, Noto Sans in this case.
+            fontFamily: GoogleFonts.notoSans().fontFamily,
+          ),
+          // Same setup for the dark theme, but using FlexThemeData.dark().
+          darkTheme: FlexThemeData.dark(
+            colors: _myFlexScheme.dark,
+            useSubThemes: themeController.useSubThemes,
+            appBarElevation: 1,
+            visualDensity: VisualDensity.standard,
+            fontFamily: GoogleFonts.notoSans().fontFamily,
+          ),
+          // Use the dark or light theme, based on theme controller setting.
+          themeMode: themeController.themeMode,
+          home: HomePage(
+            flexSchemeData: _myFlexScheme,
+            // Pass in the theme controller to the home page.
+            controller: themeController,
+          ),
+        );
+      });
+  }
+}
+```
+
+> As shown above, you can add a font via just a `fontFamily` from GoogleFonts.
+For better and more fine controlled results, prefer defining complete
+`TextThemes,` using a font and its different styles, you can then even use
+more than one font for your text theme. Then assign the `TextTheme` to
+the `textTheme` and `primaryTextTheme` properties in `FlexThemeData`.
+This is how you would use do it with standard `ThemeData` too.
+
+The `themeController` is also passed to the `HomePage` where we use it in UI
+widgets to change the theme mode, and to opt in and out of using the sub themes
+feature in FlexColorScheme.
+
+## The result
+
+When you build and run **example 2** you get a sample application that looks
+like this in light and dark mode:
+[<img src="https://rydmike.com/assets_fcsv4/22-example-2-a-small.jpg?raw=true" alt="ColorScheme example 2 light" />](https://rydmike.com/assets_fcsv4/22-example-2-a.png?raw=true)
+[<img src="https://rydmike.com/assets_fcsv4/22-example-2-b-small.jpg?raw=true" alt="ColorScheme example 2 dark" />](https://rydmike.com/assets_fcsv4/22-example-2-b.png?raw=true)
+_Example 2) Using custom colors with FlexColorScheme color scheme as
+application theme (click image to open hires version)_
+
+Scroll down in the app to see the theme showcase further below. It presents the
+theme with common Material UI widgets. You can try this example as a Flutter
+[web app here](https://rydmike.com/flexcolorschemeV4Tut2).

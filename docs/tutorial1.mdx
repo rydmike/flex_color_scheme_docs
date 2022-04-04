@@ -1,0 +1,97 @@
+## Tutorials
+
+In this tutorials we go through all the bundled examples and explain the
+used `FlexColorScheme` features in each example.
+
+The key part for each example is always in the used `MaterialApp`, where all the
+FlexColorScheme setup for the themes are made. The rest of the content in the
+examples is mainly there to make a visual presentation of the resulting theme from
+the used color scheme, and to allow you to control the theme settings.
+
+## Example 1 - Basic Theme Usage
+
+The first and simplest example shows how you can use a predefined color scheme
+in `FlexColorScheme` to define light and dark themes using the selected scheme.
+How to turn it into a theme used by your application, and then switch between
+its light and dark mode themes. A theme showcase widget shows the theme's effect
+on several common Material UI widgets.
+
+> The full code is not shown below, only highlights.
+> Please find the complete example code
+> [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1).
+
+ ```dart
+void main() => runApp(const DemoApp());
+
+class DemoApp extends StatefulWidget {
+  const DemoApp({Key? key}) : super(key: key);
+
+  @override
+  _DemoAppState createState() => _DemoAppState();
+}
+
+class _DemoAppState extends State<DemoApp> {
+  // Used to select if we use the dark or light theme, start with system mode.
+  ThemeMode themeMode = ThemeMode.system;
+
+  @override
+  Widget build(BuildContext context) {
+    // Select the predefined FlexScheme color scheme to use. Modify the
+    // used FlexScheme enum value below to try other pre-made color schemes.
+    const FlexScheme usedScheme = FlexScheme.mandyRed;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      scrollBehavior: AppScrollBehavior(),
+      title: 'Basic Theme Usage',
+      // Use a predefined FlexThemeData.light() theme for the light theme.
+      theme: FlexThemeData.light(
+        scheme: usedScheme,
+        // Use very subtly themed app bar elevation in light mode.
+        appBarElevation: 0.5,
+      ),
+      // Same definition for the dark theme, but using FlexThemeData.dark().
+      darkTheme: FlexThemeData.dark(
+        scheme: usedScheme,
+        // Use stronger themed app bar elevation in dark mode.
+        appBarElevation: 2,
+      ),
+      // Use the above dark or light theme based on active themeMode.
+      themeMode: themeMode,
+      home: HomePage(
+        // We pass it the current theme mode.
+        themeMode: themeMode,
+        // On the home page we can toggle theme mode between light and dark.
+        onThemeModeChanged: (ThemeMode mode) {
+          setState(() {
+            themeMode = mode;
+          });
+        },
+        // Pass in the FlexSchemeData we used for the active theme.
+        flexSchemeData: FlexColor.schemes[usedScheme]!,
+      ),
+    );
+  }
+}
+```
+
+To the `HomePage` we pass in the current value of the `themeMode` and use a
+callback to get back its changed value, we use it to update
+`themeMode` in a standard `setState` to make the app rebuild using
+the new value.
+
+We also pass in the `FlexSchemeData` we defined for our custom theme to the
+`HomePage`. Not really needed, but we use it on the home page to show the
+active theme's name, description and colors in a theme mode switch.
+
+When you build and run **example 1** you get an application that looks
+like this in light and dark mode:
+
+[<img src="https://rydmike.com/assets_fcsv4/21-example-1-a-small.jpg?raw=true" alt="ColorScheme example 1 light"/>](https://rydmike.com/assets_fcsv4/21-example-1-a.png?raw=true)
+[<img src="https://rydmike.com/assets_fcsv4/21-example-1-b-small.jpg?raw=true" alt="ColorScheme example 1 dark"/>](https://rydmike.com/assets_fcsv4/21-example-1-b.png?raw=true)
+_Example 1) Using a built-in FlexColorScheme color scheme as application
+theme. (click image to open hires version)_
+
+Scroll down in the app to see the theme showcase further below. It presents the
+theme with common Material UI widgets. You can try this example as a Flutter
+[web app here](https://rydmike.com/flexcolorschemeV4Tut1).

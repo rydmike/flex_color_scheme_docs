@@ -1,0 +1,189 @@
+# Example 5 - Themes Playground
+
+This example shows how you can use all the built-in color schemes in
+FlexColorScheme to define themes from them. How you can set up your own
+custom scheme colors, and use them together with the predefined ones. Like the
+previous example, this can give you an idea of how you can create your own
+complete custom list of color schemes if you do not want to use the predefined
+ones.
+
+This example also shows how you can use and vary the surface blend modes, change
+the blend strength. You can see how the quick custom AppBar theme and its companion
+TabBar theme works. The usage of the true black feature for dark
+themes is also demonstrated. Using the optional Windows desktop like tooltip
+theme is also shown.
+
+The example includes a responsive side menu, it gives a visual
+presentation of what applications that have larger visible surfaces using
+surface blends look like. The menu has working click commands that allow you to
+show and hide the contents of the cards holding settings and results. On
+smaller media this makes it quicker to find interesting parts. There is a choice
+that allows you the reset the persisted settings back to their default values.
+To make a light/dark mode quick toggle always accessible when you test options
+and themes, it is also available on the side menu as a toggle.
+
+In addition to allowing you to opt in and out of using the sub themes, this demo
+also allows you to control many sub theming parameters, like adjusting the border
+radius on all widgets to some other preferred value. To use the Material 3 (M3)
+inspired text theme, different theme options on TextField, among many other
+sub theming features.
+
+A subpage is also available that show that the same active theme is also
+applied when opening another page. This works because all built-in widgets use
+the same inherited theme and use the colors in the theme in predefined ways
+by default. This is a good example and explanation of why you should use
+the same theme colors for your custom re-usable widgets as their default color
+property values. Then theme your application to make it look the way you want
+it to look, rather than defining constant color values that you apply
+directly to widget color properties.
+
+If you tried the previous examples on an Android device, you might have noticed
+that the system navigation bar on Android devices does not change. It is
+not themed to have matching background or theme mode that matches the active
+application theme as it changes. This example shows how it can be fixed and
+that the used method remain in effect when opening a subpage.
+
+The same custom color schemes as in example 4, are also used in this example.
+They are not explained here again, please
+see [example 4](#example-4---all-themes) for details.
+
+> The full code is not shown below, only highlights.
+> Please find the complete example code
+> [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5).
+
+The `main` start function of the app is the same as in previous example.
+
+```dart
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Use a ThemeController, which glues our theme settings to Flutter Widgets.
+  //
+  // The controller uses an abstract ThemeService interface to get and save the
+  // settings. There are 3 implementations available to choose from:
+  //
+  // 0. ThemeService      - Abstract interface base class, contains defaults
+  //                        values and shared storage key value strings.
+  // 1. ThemeServiceMem   - Only keeps settings in memory.
+  // 2. ThemeServicePrefs - Persist settings locally using SharedPreferences.
+  // 3. ThemeServiceHive  - Persist settings locally using Hive.
+  //
+  // Here we use Hive. The examples are all built using same
+  // "example" app. If we use SharedPreferences in more than one of the apps
+  // they would use the same storage container and share the settings when you
+  // build them locally. By using Hive for most examples, we can change
+  // the storage container name for each example. In these demos the
+  // SharedPreferences service is only used for example 3, but you can swap in
+  // the Hive based one for it as well.
+
+  // The ThemeServiceHive constructor requires a box name, the others do not.
+  // The box name is just a file name for the file that stores the settings.
+  final ThemeService themeService = ThemeServiceHive('flex_scheme_box_5');
+  // Initialize the theme service.
+  await themeService.init();
+  // Create a ThemeController that uses the ThemeService.
+  final ThemeController themeController = ThemeController(themeService);
+  // Load all the preferred theme settings, while the app is loading, before
+  // MaterialApp is created. This prevents a sudden theme change when the app
+  // is first displayed.
+  await themeController.loadAll();
+  // Run the app and pass in the ThemeController. The app listens to the
+  // ThemeController for changes.
+  // The ThemeController controls all the myriad of Theme settings used
+  // in the demo application and also persists settings with injected
+  // ThemeService.
+  runApp(DemoApp(themeController: themeController));
+}
+```
+
+This example has a toggle that allows you to for all the schemes use `toDark`
+computed dark schemes, instead of the hand tuned built-in ones. You can then
+compare this result to hand-made dark themes. The `toDark` method does a
+pretty good job and can even be tuned with a level property.
+
+> If you use the `toDark` method on the last custom scheme, you will not see
+any difference, because we already created its dark scheme in this
+example with this method. Turning the toggle on for it, computes the same dark
+scheme from the same light scheme colors again. There is a slider that
+you can use to adjust the white blend level of the `toDark` method.
+From its default value of 35%, to be anything from 0...100 %, you can experiment
+with it and see what it does.
+
+Additionally, this example includes a toggle that allows you to instead of
+using the `FlexColorScheme.toTheme` method, use the standard Flutter
+`ThemeData.from` factory to create the theme from the same color scheme
+definition. We can use this toggle to see and study the differences
+that `FlexThemeData` brings to the standard theme with different settings.
+
+The code for the `MaterialApp` for this complex looking application is actually
+very similar and even identical regarding its core principle to example 4.
+It is just a large number of `ThemeController` values that we assign
+to properties in `FlexThemeData.light` and `FlexThemeData.dark`. Plus many more
+UI widgets used to set new values to the controller. The `ThemeService`
+persists all the values as we change them, same way as before too. The theme
+controller notifies its listeners about the change, still using the same setup
+as before in our `MaterialApp` since example 2. The app then just
+rebuilds the UI to reflect our new theme settings.
+
+It gets repetitive and rather long to show the details here. It is easier to
+read `main` and `MaterialApp` StatelessWidget code [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example5/main.dart).
+It is well commented and explains all its parts well. You can certainly
+examine the `HomePage` too, I recommend doing that with an IDE though.
+It is beyond the scope of this tutorial to explain all its details,
+but mostly it is just simple UI layout code.
+
+The concludes the walk through of example 5. When we build it,
+the example starts with the **blue whale** color scheme.
+
+[<img src="https://rydmike.com/assets_fcsv4/25-example-5-a-small.jpg?raw=true" alt="ColorScheme example 5 light" />](https://rydmike.com/assets_fcsv4/25-example-5-a.png?raw=true)
+[<img src="https://rydmike.com/assets_fcsv4/25-example-5-b-small.jpg?raw=true" alt="ColorScheme example 5 dark" />](https://rydmike.com/assets_fcsv4/25-example-5-b.png?raw=true)
+_Example 5) The Themes Playground (click image to open hires version)_
+
+You can try the **FlexColorScheme Themes Playground** example as a Flutter
+[web app here](https://rydmike.com/flexcolorschemeV4Tut5).
+
+## Custom Themes and Automatic Flutter Source Code
+
+After the first release of FlexColorScheme v4, example 5 was expanded with
+two new major features. This did not require any changes to FlexColorScheme
+itself, it was just useful new features in example 5 and the
+published live version of it. The new features make the **Themes Playground**
+a very useful companion app for FlexColorScheme. It is now possible to use it
+to make custom theme setups with totally custom colors, and get the colors and
+theme you see, in use in your app with just a few clicks and a bit of
+code copy/paste action.
+
+In the updated version of example 5, published as the
+[Themes Playground](https://rydmike.com/flexcolorschemeV4Tut5), these
+new features and tools are available:
+
+### Custom Color Scheme
+Copy an existing color scheme's colors to a custom scheme, that can then
+be modified by using a color picker. In this case by using
+[FlexColorPicker](https://pub.dev/packages/flex_color_picker).
+It has an interesting feature that names all colors, a practical copy/paste
+color values feature, and it also allows you to enter a color
+using its hex RGB color value.
+
+
+### Get Setup Source Code
+The Themes Playground can now also generate the code needed for you to
+make the same FlexColorScheme based theme you currently see, in your own app.
+
+Using the **Get the code for this theme** feature, you can just copy and
+paste the current seen `FlexColorScheme` configuration from it, to your own
+application. Then just use it without even knowing what all the properties do.
+You can just go by what looks OK to you in the **Themes Playground**, copy
+its setup code and use it as it is. All you have to do is copy the code and
+paste it into your app.
+
+You can find an example on how to do in this
+[tweet and referenced thread](https://twitter.com/RydMike/status/1461381878494150659).
+
+[<img src="https://rydmike.com/assets_fcsv4/09-ThemeMagic007.jpg?raw=true" alt="copy theme code" />](https://rydmike.com/assets_fcsv4/09-ThemeMagic007.png?raw=true)
+_Using Themes Playground to Copy Theme Setup Source Code (click image to open hires version)_
+
+This is the first version of this code copy/paste feature to get the
+configuration code for the shown FlexColorScheme based theme. A small bit
+of inception going on here, basically using FlexColorScheme to generate
+code for using FlexColorScheme. If you notice any issues with it,
+please open an issue in the repo.
