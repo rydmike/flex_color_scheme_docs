@@ -1,4 +1,8 @@
-# Migrating to version 5.0
+# Migration Guides
+
+This chapter contains guides for the minimum required chnages
+
+## Migrating to version 5.0
 
 FlexColorScheme version 5.0 is style wise a big breaking change since all the
 built `ColorScheme` have been revised to follow the new Material 3 style guide.
@@ -11,7 +15,7 @@ big breaking change. It is however needed since the new color properties
 in `ColorScheme` do not exist in stable version of Flutter before version 2.10.
 
 
-## What are the minimum required changes and how do I migrate?
+### What are the minimum required changes and how do I migrate?
 
 Just like `ColorScheme.primaryVariant` and `secondaryVariant` have been deprecated
 in Flutter 2.10 SDK, so have they in FlexColorScheme. In fact all past color constants
@@ -118,7 +122,7 @@ The migrate away from using Flutter SDK `ColorScheme` colors `primaryVariant`
 and `secondaryVariant` on anywhere in your application. Instead use the new
 `ColorScheme` color properties as fitting with your design.
 
-## Using built-in themes
+### Using built-in themes
 
 To use the built-in M3 based theme design, you don't have to migrate anything.
 All built-in schemes have been migrated to provide color values for all the 
@@ -149,7 +153,9 @@ color value from you light mode, and you will get a decent dark mode theme.
 
 
 
-# Migrating to version 4.0
+
+
+## Migrating to version 4.0
 
 The in FlexColorScheme version 3.0 deprecated member `accentColor` was
 completely removed, it had no function starting from version 3.0.
@@ -161,7 +167,9 @@ contains a minor breaking style change with previous styles.
  [changelog](https://pub.dev/packages/flex_color_scheme/versions/4.0.0/changelog).
 
 
-# Migrating to version 3.0
+
+
+## Migrating to version 3.0
 
 FlexColorScheme property `accentColor` was deprecated, it is still present
 but has no function, it will be completely removed in version 4 of FlexColorScheme.
@@ -173,7 +181,8 @@ The property was removed because it is going to be removed in Flutter SDK
  [changelog](https://pub.dev/packages/flex_color_scheme/versions/3.0.0/changelog).
 
 
-# Migrating to version 2.0
+
+## Migrating to version 2.0
 
 Version 2.0 is the first stable release of FlexColorScheme with null safety.
 To migrate to it, you should use Dart SDK version min 2.12 and
