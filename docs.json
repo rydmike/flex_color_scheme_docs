@@ -3,24 +3,44 @@
     "zoomImages": "false",
     "zoomImages-Comment": "turning off zoom site-wide to enable images w/ links",
     "sidebar": [
-        ["Welcome","/"],
-        ["Installing", "/installing"],
-        ["Examples", "/examples"],
-        ["All themes", "/all_schemes"],
-        ["Theming guidance", "/flutter_theming"],
-        ["FAQ", "/faq"],
+        ["Welcome",
+            [
+                ["Introduction","/"],
+                ["Built-in Schemes", "/all_schemes"],
+                ["Migration guides","migrating"],
+                ["Changelog","changelog"],
+                ["Known issues", "known_issues"]
+            ]
+        ],
+        ["Getting Started",
+            [
+                ["Installing", "/installing"],
+                ["Examples", "/examples"],
+                ["Using Themes Playground", "/playground"]
+            ]
+        ],
+        ["Theming Guide",
+            [
+                ["Theming guidance", "/flutter_theming"],
+                ["FAQ", "/faq"]
+            ]
+        ],
         ["Tutorial",
            [
-                ["Example 1","/tutorial1"],
-                ["Example 2","/tutorial2"],
-                ["Example 3","/tutorial3"],
-                ["Example 4","/tutorial4"],
-                ["Example 5","/tutorial5"]
+                ["1) Basic Theme","/tutorial1"],
+                ["2) Custom Theme","/tutorial2"],
+                ["3) Four Themes","/tutorial3"],
+                ["4) All Themes","/tutorial4"],
+                ["5) Themes Playground","/tutorial5"]
            ]
         ],
-        ["API Guide", "/api_guide"],
-        ["Feature details", "/features"],
-        ["Inside FlexColorScheme", "/inside"],
+        ["API Guide",
+            [
+                ["API Guide", "/api_guide"],
+                ["Feature details", "/features"],
+                ["Inside FlexColorScheme", "/inside"]
+            ]
+        ],
         ["Schemes reference", "/scheme_reference"]
     ]
 }

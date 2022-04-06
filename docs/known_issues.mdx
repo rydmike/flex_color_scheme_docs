@@ -1,0 +1,34 @@
+# Version 5 Known Issues
+
+* Due to Flutter SDK
+  [issue #100027](https://github.com/flutter/flutter/issues/100027)
+  "Using systemNavigationBarDividerColor changes statusBarIconBrightness and
+  systemNavigationBarIconBrightness on Android 11", two temporary
+  changes were made to `FlexColorScheme.themedSystemNavigationBar`
+  implementation:
+
+  * The divider feature is disabled until the issue has been resolved.
+  * There is a temporary workaround implemented, it attempts to keep system
+    icons from getting the wrong brightness on Android 11. It may not always work.
+
+  The temporary changes will be reverted when a fix for the Flutter issue
+  has reached the stable channel.
+
+
+ * ShapeBorder on input decorator `UnderlineInputBorder` has faulty equality
+   operator and hashCode in Flutter SDK, it is missing the borderRadius property.
+   Report not yet submitted to Flutter repo.
+   This can be seen in the **Themes Playground** app where changing the
+   controller value borderRadius on the used `UnderlineInputBorder` property
+   does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder,
+   since the value change is not observed because the property is not included
+   in the object equality. Equality remains true, even though one of its property
+   values has changed. Deeper issue analysis, reproduction sample and submission
+   as a Flutter bug still to be done.
+
+
+   ## Found an issue?
+
+   Please open it as new issue in the project GitHub repo
+   [here](https://github.com/rydmike/flex_color_scheme/issues).
+
