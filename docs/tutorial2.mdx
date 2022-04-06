@@ -6,9 +6,9 @@ This example shows how you can define your own color schemes using
 `FlexSchemeColor` and `FlexSchemeData`, to create `FlexColorScheme` based
 application themes from them.
 
-> The full code is not shown below, only highlights.
-> Please find the complete example code
-> [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example2).
+The full code is not shown below, only highlights.
+Please find the complete example code
+[here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example2).
 
 ## Based on Flutter skeleton template
 
@@ -24,9 +24,7 @@ architecture with:
 ## Memory only ThemeService
 
 This example uses a theme service with only memory storage and no persistence.
-In later examples we use locally persisting theme services. In this example we
-use the theme controller to change the theme mode and to toggle opting in and
-out of FlexColorScheme's opinionated sub-themes.
+In later examples we will use locally persisting theme services.
 
 ```dart
 Future<void> main() async {
@@ -47,11 +45,15 @@ Future<void> main() async {
 }
 ```
 
+In this example we
+use the theme controller to change the theme mode and to toggle opting in and
+out of FlexColorScheme's opinionated sub-themes.
+
 ## Custom Colors
 
 To make a custom color scheme, we for simplicity define it as a local
 constant in this example. We make a `FlexSchemeData` object with a name,
-description and `FlexSchemeColor` scheme colors defined for the light and
+description and `FlexSchemeColor` colors defined for light and
 matching dark scheme.
 
 ```dart
@@ -100,7 +102,7 @@ We glue the `ThemeController` to the MaterialApp. The Flutter standard
 
 The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here
 it serves the purpose of functioning as a "`ChangeNotifierBuilder`",
-that rebuilds its child when its `Listenable`, the `animation` changes.
+that rebuilds its child when its `Listenable` value, the `animation` changes.
 Which it does whenever our `ThemeController` calls `notifyListeners`.
 Which we do in the `ThemeController` class when we have new updated data
 that requires the theme to update.
