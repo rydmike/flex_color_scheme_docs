@@ -6,7 +6,7 @@
         ["Welcome",
             [
                 ["Introduction","/"],
-                ["Built-in Schemes", "/all_schemes"],
+                ["All themes", "/all_schemes"],
                 ["Migration guides","/migrating"],
                 ["Changelog","/changelog"],
                 ["Known issues", "/known_issues"]
@@ -16,8 +16,8 @@
             [
                 ["Installing", "/installing"],
                 ["Examples", "/examples"],
-                ["Using Themes Playground", "/playground"],
-                ["Using Copy Playground","/copy_playground_example"]
+                ["Themes Playground", "/playground"],
+                ["Copy Playground","/copy_playground_example"]
             ]
         ],
         ["Theming Guide",
@@ -35,13 +35,13 @@
                 ["5) Themes Playground","/tutorial5"]
            ]
         ],
-        ["API Guide",
+        ["API guide",
             [
-                ["API Guide", "/api_guide"],
+                ["API Basics", "/api_guide"],
                 ["Feature details", "/features"],
                 ["Inside FlexColorScheme", "/inside"]
             ]
         ],
-        ["Schemes reference", "/scheme_reference"]
+        ["Scheme reference", "/scheme_reference"]
     ]
 }
