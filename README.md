@@ -14,4 +14,17 @@ The documentation for FlexColorScheme is kept in a separate repository for incre
 of documentation maintenance, and in order to not pollute the code repository with a large
 amount of media files.
 
-[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-37.png?raw=true" alt="Dash light"/>]()[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-38.png?raw=true" alt="M3 baseline"/>]()[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-39.png?raw=true" alt="Verdun green"/>]()[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-40.png?raw=true" alt="Dell genoa"/>]()
+<table>
+  <tr>
+    <td>Flutter Dash</td>
+    <td>M3 Baseline</td>
+    <td>Verdun Green</td>
+    <td>Dell Genoa Green</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-37.png?raw=true" alt="Dash"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-38.png?raw=true" alt="M3 baseline"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-39.png?raw=true" alt="Verdun green"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-40.png?raw=true" alt="Dell genoa"/></td>
+  </tr>
+ </table>
