@@ -7,9 +7,9 @@
             [
                 ["Introduction","/"],
                 ["Built-in Schemes", "/all_schemes"],
-                ["Migration guides","migrating"],
-                ["Changelog","changelog"],
-                ["Known issues", "known_issues"]
+                ["Migration guides","/migrating"],
+                ["Changelog","/changelog"],
+                ["Known issues", "/known_issues"]
             ]
         ],
         ["Getting Started",
