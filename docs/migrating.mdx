@@ -1,6 +1,7 @@
 # Migration Guides
 
-This chapter contains guides for the minimum required chnages
+This chapter contains guides for the minimum required changes to move from lower
+minor version to the next step up.
 
 ## Migrating to version 5.0
 
@@ -14,9 +15,6 @@ Version 5 requires minimum Flutter version 2.10 to work, this in itself is a
 big breaking change. It is however needed since the new color properties
 in `ColorScheme` do not exist in stable version of Flutter before version 2.10.
 
-
-### What are the minimum required changes and how do I migrate?
-
 Just like `ColorScheme.primaryVariant` and `secondaryVariant` have been deprecated
 in Flutter 2.10 SDK, so have they in FlexColorScheme. In fact all past color constants
 for all color values and helper classes with the name "variant" in it, have been
@@ -24,8 +22,7 @@ deprecated in FlexColorScheme. The color values still exists, so if you have use
 any of them directly, they will still work. The old internal variant color values will
 remain at least until version 6.0, maybe even 7.0 if needed.
 
-
-### Breaking: Removed `surfaceStyle`
+### Removed `surfaceStyle`
 
 Removed in version 4.2.0 deprecated property `surfaceStyle`, including all
 its implementing classes, enums, helpers and tests:
@@ -39,7 +36,7 @@ its implementing classes, enums, helpers and tests:
 
 **Migration:** Use `surfaceMode` and `blendLevel` instead.
 
-### Breaking: No function `FlexColorScheme.useSubThemes`
+### No function `FlexColorScheme.useSubThemes`
 
 Deprecated property useSubThemes. This property has no function after 4.2.0
 stable and 5.0.0-dev.1. Previously setting this property to true activated
@@ -72,7 +69,7 @@ removed. It has a broader more general replacement called
 using individual properties to desired style matching Flutter defaults un-themed
 component designs.
 
-### Potentially breaking: enum SchemeColor, new values, new order
+### New values and order: `SchemeColor`
 
 The enum SchemeColor has new values and past values are in a new order.
 The order was changed to accommodate new color values and to keep them in
@@ -81,7 +78,7 @@ color values. The change of order is potentially breaking, but unlikely to
 break anything in major ways, other than possibly local storage of
 selected enum values.
 
-### Breaking style `primaryVariant` and `secondaryVariant`
+### Colors `primaryVariant` and `secondaryVariant`
 
 The colors `primaryVariant` and `secondaryVariant` in FlexColorScheme are
 deprecated and can no longer be used to set colors values that result in any
@@ -122,11 +119,11 @@ The migrate away from using Flutter SDK `ColorScheme` colors `primaryVariant`
 and `secondaryVariant` on anywhere in your application. Instead use the new
 `ColorScheme` color properties as fitting with your design.
 
-### Using built-in themes
+### Built-in schemes
 
-To use the built-in M3 based theme design, you don't have to migrate anything.
-All built-in schemes have been migrated to provide color values for all the 
-new Material 3 `ColorScheme` color properties.
+To use the updated built-in M3 based color schemes, you don't have to
+migrate anything. All built-in schemes have been migrated to provide
+color values for all the new Material 3 `ColorScheme` color properties.
 
 This migration was done as follows:
 
