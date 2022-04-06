@@ -1,6 +1,10 @@
 {
     "name": "FlexColorScheme",
-    "zoomImages": "true",
+    "favicon": "/images/favicon.png",
+    "logo": "/assets/logo.png",
+    "logoDark": "/assets/logo.png",
+    "twitter": "@rydmike",
+    "zoomImages": "false",
     "zoomImages-Comment": "turning off zoom site-wide to enable images w/ links",
     "sidebar": [
         ["Welcome",
