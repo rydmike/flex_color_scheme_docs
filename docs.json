@@ -1,6 +1,6 @@
 {
     "name": "FlexColorScheme",
-    "zoomImages": "false",
+    "zoomImages": "true",
     "zoomImages-Comment": "turning off zoom site-wide to enable images w/ links",
     "sidebar": [
         ["Welcome",
