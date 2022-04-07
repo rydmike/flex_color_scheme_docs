@@ -11,7 +11,8 @@
             [
                 ["Introduction","/"],
                 ["All themes", "/all_schemes"],
-                ["Migration guides","/migrating"],
+                ["What's new?", "/whats_new"],
+                ["Migration guide","/migrating"],
                 ["Changelog","/changelog"],
                 ["Known issues", "/known_issues"]
             ]

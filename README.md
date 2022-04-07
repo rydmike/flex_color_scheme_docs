@@ -14,6 +14,10 @@ The documentation for FlexColorScheme is kept in a separate repository for incre
 of documentation maintenance, and in order to not pollute the code repository with a large
 amount of media files.
 
+## Theme examples
+
+Here are some theme example made with Flutter FlexColorScheme version 5.
+
 <table>
   <tr>
     <td>Flutter Dash</td>

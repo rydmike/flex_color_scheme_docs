@@ -2,91 +2,14 @@
 
 The migration guide only contained topics that you must address in order
 to migrate from a lower major version, to the next higher version,
-for it to work at all.
+for it to work at all. The what is new chapter give an overview of new features.
 
 The changelog contains details and information about possible minor style changes,
-and lists all new features and fix in all major, minor and fix releases.
+and lists all new features and fixes, in all major, minor and fix releases.
 
-For a detailed changelog, please refer to the latest published package
+For a complete changelog, please refer to the latest published package
 [changelog](https://pub.dev/packages/flex_color_scheme/changelog),
-it is quite detailed.
+it is extremely detailed.
 
 
-## What is new in Version 5?
-
-**TODO: Add summary info on what is new in version**
-
-### New Color Schemes
-
-There are of course new built-in color schemes. Four of them is the de-facto
-norm for major new releases. The new color schemes in version 5 are:
-
-* **Flutter Dash** - A blu Flutter Dash wallpaper based theme
-* **M3 baseline** - Material guide 3 baseline based theme
-* **Verdun green** - Material guide 3 verdun and mineral green with hemlock
-* **Dell genoa green** - Material guide 3 theme with dell, axolotl and genoa greens
-
-<table>
-  <tr>
-    <td>Flutter Dash</td>
-    <td>M3 Baseline</td>
-    <td>Verdun Green</td>
-    <td>Dell Genoa Green</td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-37.png?raw=true" alt="Dash" "width=270"/></td>
-    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-38.png?raw=true" alt="M3 baseline"/></td>
-    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-39.png?raw=true" alt="Verdun green"/></td>
-    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-40.png?raw=true" alt="Dell genoa"/></td>
-  </tr>
- </table>
-
-
-## What is New in Version 4?
-
-For a detailed list of what is new in version 4, please refer to the
-[change log](https://pub.dev/packages/flex_color_scheme/changelog).
-
-There are two major new features. The first one is that FlexColorScheme
-now comes with **opinionated widget sub themes** that you can opt in on.
-By default, these Flutter UI widget sub themes follow the
-[Material 3 guide](https://m3.material.io/). This is done
-as far as reasonably possible while still using standard Material 2 theming features
-available in Flutter 2.8. There is a Material 3 style TextTheme as well, and by
-default this text theme is also slightly color tinted using the color
-scheme's primary color. You can turn these styles on and off, based on your
-your own preferences when you opt in on the sub themes.
-
-The second main new feature is that FlexColorScheme now offers **9 different surface
-color blend modes**, with **40 different blend levels** each. Version 3 only had one
-"blend style" with 5 levels, including the no blend option.
-The version 3 blend style API is still available and works, but is deprecated
-since version 4.2.0. Despite the major version bump from 3 to 4, all APIs from
-version 3 are fully compatible with version 4. The version was mostly bumped
-because it contains so many new features that it made sense.
-
-### New Color Schemes
-
-There are of course new built-in color schemes. Four of them seems to
-be the standard for major new releases. The new color schemes are:
-
-* **Blue whale** - Blue whale, jungle green and outrageous tango orange
-* **San Juan** - San Juan blue and pink salmon theme
-* **Rosewood** - Rosewood red, with horses neck and driftwood theme
-* **Blumine** - Blumine, easter blue and saffron mango theme
-
-[<img src="https://rydmike.com/assets_fcsv4/04-news-themes-gang.jpg?raw=true" alt="new_themes"/>](https://rydmike.com/assets_fcsv4/04-news-themes-gang.png?raw=true)
-_FlexColorScheme new V4 themes (click image to open hires version)_
-
-Total number of offered built-in color schemes is now **36 matched light
-and dark pairs**. By using the swap primary and secondary colors, you can double
-the amount of variations with just a boolean toggle. Not all the color
-schemes are so attractive when you swap the colors, but some were designed to
-support it and look well with the colors reversed too. You can for example use
-this to present the dark mode with primary and secondary colors swapped
-compared to the light mode.
-
-You can check out this Tweet and its thread
-[here](https://twitter.com/RydMike/status/1459984929631215618) to see a visual
-presentation of FlexColorScheme's features.
 
