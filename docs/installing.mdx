@@ -38,9 +38,10 @@ The three line modified `MaterialApp` of the Flutter default counter app
 becomes:
 
 ```dart
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       // The Mandy red, light theme.
@@ -49,8 +50,10 @@ becomes:
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
       // Use dark or light theme based on system setting.
       themeMode: ThemeMode.system,
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
+  }
+}
 ```
 The above additions to the Flutter default counter application, gives us the
 following look on the familiar counter app:

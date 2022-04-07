@@ -10,7 +10,7 @@
         ["Welcome",
             [
                 ["Introduction","/"],
-                ["All themes", "/all_schemes"],
+                ["All themes", "/all_themes"],
                 ["What's new?", "/whats_new"],
                 ["Migration guide","/migrating"],
                 ["Changelog","/changelog"],
@@ -48,5 +48,13 @@
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
+    ],
+    "navigation": [
+        ["Pub Package", "https://pub.dev/packages/flex_color_scheme"],
+        ["Basic Theme", "https://rydmike.com/flexcolorscheme/basictheme-v5"],
+        ["Custom Theme", "https://rydmike.com/flexcolorscheme/customtheme-v5"],
+        ["Four Themes", "https://rydmike.com/flexcolorscheme/fourthemes-v5"],
+        ["All Themes", "https://rydmike.com/flexcolorscheme/allthemes-v5"],
+        ["Themes Playground", "https://rydmike.com/flexcolorscheme/themesplayground-v5"]
     ]
 }
