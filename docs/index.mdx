@@ -31,13 +31,11 @@ but with many additional features and a large number of pre-made themes.
 | :----:  | :----: | :----:  | :----: |
 | <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-37.png?raw=true" alt="Dash light" width="220" zoom/> | <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-38.png?raw=true" alt="M3 baseline" width="220" zoom /> | <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-39.png?raw=true" alt="Verdun green" width="220" zoom /> | <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-l-40.png?raw=true" alt="Dell genoa" width="220" zoom /> |
 
-_Four new Material 3 themes in version 5_
-
 When you color theme a Flutter application, all built-in widgets use the colors of the
 `ColorScheme` in your theme. At least in theory, and it is almost so if you defined your
 Flutter ThemeData by using the `ThemeData.from` factory, but even that still misses a few details.
 
-**FlexColorScheme** ensured that all Flutter SDK widgets gets themed completely by its built-in
+**FlexColorScheme** ensures that all Flutter SDK widgets gets themed completely by its built-in
 color schemes, or custom colors you provide. It also applies all the `ColorScheme` based colors
 to all direct color properties in `ThemeData`, as long as they still exist, making sure the colors
 in `ThemeData` match your `ColorScheme`.
@@ -55,12 +53,13 @@ radius varies by widget type. You can stick with this, or set global
 radius to a value you prefer. You can also easily set the themed border
 radius per widget and override the shared radius value in just a few cases.
 
-Use simple property values per widget, no need for verbose custom sub theme
-Shape definitions for the radius. The component sub-themes provide a large amount
+With **FlexColorScheme** sub-themes you can use simple component property values,
+no need for verbose Flutter SDK component sub-themes with `ShapeBorder` definitions
+for the radius. The component sub-themes provide a large amount
 of easily configurable options via simple flat properties, instead of complicated
 nested ones or the very complicated `MaterialState` callback properties.
 
-FlexColorScheme also has many advanced coloring features, based on surface blends and
+**FlexColorScheme** also has many advanced coloring features, using surface blends and also
 fully supports Material 3 based color schemes, including seed key color generated color schemes.
-It has much more configuration options that you can use when you generate `ColorScheme` from
-key colors, than what is currently available in Flutter SDK directly.
+It has many configuration options that you can use when you generate `ColorScheme` from
+key colors, much more than what is currently available in Flutter SDK directly.

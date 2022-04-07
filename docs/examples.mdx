@@ -1,11 +1,7 @@
 # Example Applications
 
-**TODO: Review and update chapter and IMAGES to version 5! Links to WEB demos are updated.**
-
-FlexColorScheme comes bundled with six different examples. Earlier we
-saw how you can build the default example, and use it as a
-"Hot Reload Playground". You can use it to experiment and learn on your own
-about FlexColorScheme's features and how to use them.
+FlexColorScheme comes bundled with seven different examples. A default example that is built
+if you build `main.dart` in the example lib folder.
 
 The default example is a template that is heavily commented to guide
 you and encourage you to play around with different options in code, then use
@@ -14,6 +10,84 @@ Flutter's hot reload feature and see the results at once.
 The other five examples are a part of a tutorial path, with increasing
 complexity, that we walk through in the tutorial. It ends with the complete
 **Themes Playground** demo app included as example 5.
+
+The last example is a copy-paste template that you can use to try copy pasted theme setup code
+from the Themes Playground.
+
+## Default Example - Hot Reload Playground
+
+A quick and simple way to try FlexColorScheme V5 is to build the
+default example application. You can then use it as a hot reload playground to
+experiment with and test different theming and configuration options.
+
+To try the default **example** on a device or simulator,
+clone the [repository](https://github.com/rydmike/flex_color_scheme) and
+run the example:
+
+```bash
+cd example/
+flutter run
+```
+
+The result is a demo app that uses Dash color scheme,
+has a theme mode switch, includes theme colors presentation
+and Material widget samples. With these you can see the active color scheme's
+colors and the created theme's impact on common Material UI widgets.
+
+The default sample app, the **Hot Reload Playground**, looks like this:
+
+<table>
+  <tr>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-01R.png?raw=true" alt="Dash" width="250"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-02R.png?raw=true" alt="Dash" width="250"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-03R.png?raw=true" alt="Dash" width="250"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-04R.png?raw=true" alt="Dash" width="250"/></td>
+  </tr>
+ </table>
+
+
+[<img src="https://rydmike.com/assets_fcsv4/00_playground_default.jpg?raw=true" alt="playground_default"/>](
+https://rydmike.com/assets_fcsv4/00_playground_default.png?raw=true)
+_Hot Reload Playground the Default Example App (click image to open hires version)_
+
+It comes fully loaded with template settings and thorough
+comments that explain what to change to produce different results. You
+could for example change the `_useScheme` to `true`, as shown below and hot
+reload it, to then use the new `FlexScheme.blueWhale` theme instead.
+
+```dart
+// To use a pre-defined color scheme, don't assign any FlexSchemeColor to
+// `colors`, instead pick a FlexScheme and assign it to the `scheme` property.
+// Try eg the new "Blue Whale" color scheme.
+const FlexScheme _scheme = FlexScheme.blueWhale;
+
+// To make it easy to toggle between using the above custom colors, or the
+// selected predefined scheme in this example, set _useScheme to true to use the
+// selected predefined scheme above, change to false to use the custom colors.
+const bool _useScheme = true;
+```
+
+There are many settings you can play with in the default
+example application. The above selected **blue whale** theme is the first one
+shown in the image below.
+
+<table>
+  <tr>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-05R.png?raw=true" alt="Dash" width="250"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-06R.png?raw=true" alt="Dash" width="250"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-07R.png?raw=true" alt="Dash" width="250"/></td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-hot-reoad-08R.png?raw=true" alt="Dash" width="250"/></td>
+  </tr>
+ </table>
+
+
+[<img src="https://rydmike.com/assets_fcsv4/01_playground_options.jpg?raw=true" alt="options"/>](
+https://rydmike.com/assets_fcsv4/01_playground_options.png?raw=true)
+_Hot Reload Playground (click image to open hires version)_
+
+The other results shown above were also produced by editing a few
+properties in this hot reload playground.
+
 
 ## Building the Examples
 
@@ -38,7 +112,7 @@ _For VS-Code there is a launch.json that can be used to build and run the exampl
 
 ## Live WEB Demos of the Examples
 
-If you want to take a quick look at all the examples, you can try live web
+If you want to take a quick look at all the tutorial examples, you can try live web
 versions of them.
 
 ### Example 1 - Basic Theme
