@@ -11,8 +11,8 @@ changes were made to `FlexColorScheme.themedSystemNavigationBar`
 implementation:
 
 * The divider feature is disabled until the issue has been resolved.
-* There is a temporary workaround implemented, it attempts to keep system
-    icons from getting the wrong brightness on Android 11. It may not always work.
+* There is a temporary workaround implemented, it manages to keep system
+  icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
 
 The temporary changes will be reverted when a fix for the Flutter issue
 has reached the stable channel.

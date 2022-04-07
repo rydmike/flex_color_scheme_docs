@@ -36,8 +36,6 @@ its implementing classes, enums, helpers and tests:
 
 **Migration:** Use `surfaceMode` and `blendLevel` instead.
 
-Example
-
 ```dart
 theme: FlexThemeData.light(
   scheme: FlexScheme.flutterDash,
@@ -91,7 +89,7 @@ color values. The change of order is potentially breaking, but unlikely to
 break anything in major ways, other than possibly loading local storage of
 selected enum values.
 
-### Colors `primaryVariant` and `secondaryVariant`
+### Deprecated: `primaryVariant` and `secondaryVariant`
 
 The colors `primaryVariant` and `secondaryVariant` in FlexColorScheme are
 deprecated and can no longer be used to set colors values that result in any
@@ -131,7 +129,8 @@ used in the theme by default.
 tertiary color. Use them to make your custom `FlexColorScheme` instead.
 Then migrate away from using Flutter SDK `ColorScheme` colors `primaryVariant`
 and `secondaryVariant` anywhere in your application. Instead use the new
-`ColorScheme` color properties as fitting with your design.
+`ColorScheme` color properties as fitting with your design. This is something you have
+to do even if you are not using FlexColorScheme.
 
 ### Info: Built-in schemes
 
