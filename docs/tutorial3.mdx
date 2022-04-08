@@ -1,15 +1,14 @@
-# Example and Tutorial 3 - Four Themes
+# 3) Four Themes
 
-**TODO: Review and update chapter to version 5**
-
-This example shows how you can use three built-in color schemes, add a custom
-scheme, using the same colors as in example 2. We use these four color schemes
+The third tutorial example shows how we can use three built-in color schemes, add a custom
+scheme, using the same colors as in example 2. We then use these four color schemes
 as selectable `FlexColorScheme` based theme options. The example also uses surface
 colors with primary color blends.
 
-> The full code is not shown below, only highlights.
-> Please find the complete example code
-> [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3).
+Only code highlights might be shown below, the complete code for the example is
+[here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3).
+
+## ThemeServicePrefs
 
 The `main` start function of the app is very similar to example 2, but in this
 case we use another `ThemeService` implementation, the `ThemeServicePrefs`
@@ -18,27 +17,43 @@ version, that will locally persist the theme selection options we make.
 The `ThemeServicePrefs` persistence is based on the popular package
 [SharedPreferences](https://pub.dev/packages/shared_preferences).
 
+We also again use the same ThemeController, which glues our theme settings to
+Flutter Widgets. The controller uses an abstract ThemeService interface to get
+and save the settings. There are 3 concrete implementations available that we
+can use in these examples.
+
+  0. ThemeService      - Abstract interface base class.
+  1. ThemeServiceMem   - Only keeps settings in memory.
+  2. ThemeServicePrefs - Persist settings locally using SharedPreferences.
+  3. ThemeServiceHive  - Persist settings locally using Hive.
+
+  In this example chose the `ThemeServicePrefs` option. The examples are all
+  built using same "example" app. If we use SharedPreferences in more than one
+  of them, they would all use the same storage container and share the settings
+  when you build them locally. By using Hive for most examples, we can change
+  the storage container name for each example. In these demos the
+  SharedPreferences service is only used in this example. You can swap
+  in the Hive based one here as well, or SharedPreferences on the other ones,
+  if you want to try it.
+
+  These tuturials are not about how to setup the used Flutter skeleton style
+  controller, or how to make the abstract service with three different
+  implementations. Still they do demonstrate with these examples
+  how one can easily swap the used persistence implementation. You can take
+  a peek at the source code of examples 2 to 5, to learn more about how it
+  is done here.
+
 ```dart
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Here we can use Shared Preferences. The examples are all built using same
-  // "example" app. If we use SharedPreferences in more than one of the apps
-  // they would use the same storage container and share the settings when you
-  // build them locally. By using Hive for most examples, we can change
-  // the storage container name for each example. In these demos the
-  // SharedPreferences service is only used for this example, but you can swap
-  // in the Hive based one here as well if you want to try it.
-  // This also demonstrates how swap used persistence implementation.
+  // Here we use the Shared Preferences theme servcie.
   final ThemeService themeService = ThemeServicePrefs();
-  // To swap to Hive use this instead:
-  // final ThemeService themeService = ThemeServiceHive('flex_scheme_box_3');
   // Initialize the theme service.
   await themeService.init();
   // Create a ThemeController that uses the ThemeService.
   final ThemeController themeController = ThemeController(themeService);
-  // Load all the preferred theme settings, while the app is loading, before
-  // MaterialApp is created. This prevents a sudden theme change when the app
-  // is first displayed.
+  // Load preferred theme settings, while the app is loading, before MaterialApp
+  // is created, this prevents a theme change when the app is first displayed.
   await themeController.loadAll();
   // Run the app and pass in the ThemeController. The app listens to the
   // ThemeController for changes.
@@ -46,19 +61,54 @@ Future<void> main() async {
 }
 ```
 
-We set the surface mode to
-`FlexSurfaceMode.levelSurfacesLowScaffold` and `blendLevel` to 20. This
-gives us the same medium blend level primary color alpha blend, on the
-theme colorscheme background and surface colors, while
-scaffold uses a much lower blend.
+In this example we use the theme controller to change the `themeMode` and to
+toggle opting in and out of FlexColorScheme's opinionated component sub-themes.
+We also use it to chnage a number of other settings the theme
+controller provides.
 
-In dark mode we decided to use the inverted blend surface mode to this,
-`highScaffoldLowSurfaces`, where surface and background colors have lower
+## Custom Colors
+
+We use the same custom colors as in example 2.
+
+```dart
+const FlexSchemeData _myFlexScheme = FlexSchemeData(
+  name: 'Midnight blue',
+  description: 'Midnight blue theme, custom definition of all colors',
+  light: FlexSchemeColor(
+    primary: Color(0xFF00296B),
+    primaryContainer: Color(0xFFA0C2ED),
+    secondary: Color(0xFFD26900),
+    secondaryContainer: Color(0xFFFFD270),
+    tertiary: Color(0xFF5C5C95),
+    tertiaryContainer: Color(0xFFC8DBF8),
+  ),
+  dark: FlexSchemeColor(
+    primary: Color(0xFFB1CFF5),
+    primaryContainer: Color(0xFF3873BA),
+    secondary: Color(0xFFFFD270),
+    secondaryContainer: Color(0xFFD26900),
+    tertiary: Color(0xFFC9CBFC),
+    tertiaryContainer: Color(0xFF535393),
+  ),
+);
+```
+
+## Theme Setup
+
+The `AnimatedBuilder` and `MaterialApp` setup is as it was in the previous
+example. New in this example is that we set `surfaceMode` to
+`FlexSurfaceMode.highSurfaceLowScaffold`
+and `blendLevel` to 10. This gives us the same primary color alpha blend level,
+on the theme's `ColorScheme` background and surface colors, while scaffold
+background color uses a much lower blend.
+
+In dark mode we decided to use the inverted `surfaceMode` blend to this, the
+`highScaffoldLowSurfaces`, where surface and background colors have a lower
 primary color alpha blend, in relation the Scaffold background color. We also
-set the used blend level a btt lower, to 15 in dark mode.
+set the used blend level a bit higher, to 12 in dark mode.
 
- ```dart
- class DemoApp extends StatelessWidget {
+```dart
+class DemoApp extends StatelessWidget {
   const DemoApp({Key? key, required this.themeController}) : super(key: key);
   final ThemeController themeController;
 
@@ -69,48 +119,51 @@ set the used blend level a btt lower, to 15 in dark mode.
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          scrollBehavior: AppScrollBehavior(),
+          scrollBehavior: const AppScrollBehavior(),
           title: 'Four Themes',
           theme: FlexThemeData.light(
             colors: themeController.usedScheme == FlexScheme.custom
-                    ? _myFlexScheme.light
-                    : FlexColor.schemes[themeController.usedScheme]!.light,
-            // We use a surface color mode where all Material surfaces use
-            // the same primary color branding, but scaffold background
-            // uses much less.
-            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-            // We set the blend level strength to 20.
-            blendLevel: 20,
+                ? _myFlexScheme.light
+                : FlexColor.schemes[themeController.usedScheme]!.light,
+            surfaceMode: FlexSurfaceMode.highSurfaceLowScaffold,
+            blendLevel: 10,
             appBarElevation: 0.5,
-            useSubThemes: themeController.useSubThemes,
+            subThemesData:
+                themeController.useSubThemes ? const FlexSubThemesData() : null,
+            keyColors: FlexKeyColors(
+              useKeyColors: themeController.useKeyColors,
+              useSecondary: themeController.useSecondary,
+              useTertiary: themeController.useTertiary,
+            ),
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
             fontFamily: GoogleFonts.notoSans().fontFamily,
           ),
-          // We do the exact same definition for the dark theme.
+          // We make an equivalent definition for the dark theme, but using
+          // FlexThemeData.dark() and the dark FlexSchemeColors instead.
           darkTheme: FlexThemeData.dark(
             colors: themeController.usedScheme == FlexScheme.custom
-                    ? _myFlexScheme.dark
-                    : FlexColor.schemes[themeController.usedScheme]!.dark,
-            // We don't have to use the same surface mode in dark mode, for an
-            // interesting effect here we use a mode where scaffold background
-            // color gets a much higher blend value than surface and background.
+                ? _myFlexScheme.dark
+                : FlexColor.schemes[themeController.usedScheme]!.dark,
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,
-            // You don't have to use same blend level or mode in light
-            // and dark mode, here we use a lower value in dark mode, that
-            // goes better together with the highScaffoldLowSurfaces mode.
-            blendLevel: 15,
+            blendLevel: 12,
             appBarElevation: 1,
-            useSubThemes: themeController.useSubThemes,
+            subThemesData:
+                themeController.useSubThemes ? const FlexSubThemesData() : null,
+            keyColors: FlexKeyColors(
+              useKeyColors: themeController.useKeyColors,
+              useSecondary: themeController.useSecondary,
+              useTertiary: themeController.useTertiary,
+            ),
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
             fontFamily: GoogleFonts.notoSans().fontFamily,
           ),
+          // Use the dark or light theme, based on controller setting.
           themeMode: themeController.themeMode,
           // This simple example app has only one page.
           home: HomePage(
-            // Pass in the FlexSchemeData we use for the active theme.
             flexSchemeData: themeController.usedScheme == FlexScheme.custom
-                    ? _myFlexScheme
-                    : FlexColor.schemes[themeController.usedScheme]!,
+                ? _myFlexScheme
+                : FlexColor.schemes[themeController.usedScheme]!,
             // Pass in the theme controller to the home page.
             controller: themeController,
           ),
@@ -119,35 +172,192 @@ set the used blend level a btt lower, to 15 in dark mode.
     );
   }
 }
- ```
+```
 
-We select used theme for the app by using the theme controller's
+Below we go through the above theme setup in more detail.
+
+## Selecting theme
+
+We select the used active theme for the app by using the theme controller's
 `usedScheme` property, that contains the value of currently selected
 `FlexScheme` enum. If it is the `custom` value, we use our custom scheme
-`myFlexScheme` colors. If it is any other value, we get the corresponding
+`_myFlexScheme` colors. If it is any other value, we get the corresponding
 colors from the `FlexColor.schemes` map, using the enum value as key.
 
-On the `HomePage` we have a Flutter SDK `ToggleButtons` UI widget, that
-allows us the select 4 different `FlexScheme` enum values, it changes the
-`themeController` accordingly. The used enum values we can use are
+On the `HomePage` we have a Flutter SDK `ToggleButtons` based UI widget, that
+allows us the select one 4 different `FlexScheme` enum values, it changes the
+`ThemeController` accordingly. The used enum values we can use are
 `hippieBlue`, `mallardGreen`, `outerSpace` and the `custom` option.
 
-You can find the simple `ToggleButtons` based enum value selector
-[here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/widgets/app/theme_select_buttons.dart).
+```dart
+ListTile(
+  contentPadding: EdgeInsets.zero,
+  title: const Text('Select theme'),
+  trailing: ThemeSelectButtons(
+    scheme: controller.usedScheme,
+    onChanged: controller.setUsedScheme,
+  ),
+),
+```
 
-The `themeController` is also used to decide if we opt in or out on using
+The `ThemeSelectButtons` is just a simple stateless widget using Flutter
+`ToggleButtons` to make an enum value based toggle selector, you can find
+it [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example3/widgets/theme_select_buttons.dart).
+
+## Component Themes
+As in example 2 the `themeController` is also used to decide if we opt in or out on using
 the new sub theming via `useSubThemes`. A simple on/off switch on the `HomePage`
 allows us to toggle its state between true and false, thus turning on or off
 the usage of FlexColorScheme's sub theming feature.
 
+When the opt-in is true we pass in a default
+`FlexSubThemesData()` constructor, otherwise `null` to not use the
+sub themes at all. Later we will explore more options that we can configure with
+`FlexSubThemesData`
+
+```dart
+  // Opt in/out on using FlexColorScheme sub-themes.
+  subThemesData: themeController.useSubThemes
+      ? const FlexSubThemesData()
+      : null,
+```
+
+## VisualDensity
+
+In this example we also use `FlexColorScheme.comfortablePlatformDensity` as
+`visualDensity` for our `ThemeData` is a platform adaptive visual density
+setting for our theme. It is similar to the Flutter SDK
+`VisualDensity.adaptivePlatformDensity`.
+
+```dart
+  // Use FlexColorScheme static helper comfortablePlatformDensity.
+  visualDensity: FlexColorScheme.comfortablePlatformDensity,
+```
+
+With the difference that it returns comfortable density on desktops,
+instead of compact, like the `VisualDensity.adaptivePlatformDensity` does.
+This setting is a good compromise for desktop, especially if they have touch
+screens, since it keeps buttons and touch targets larger, but
+not as large as on small hand held devices.
+
+## Seeded ColorScheme
+
+Flutter 2.10 includes the option to use Material 3 based key color seed generated
+`ColorScheme`'s. Starting from FlexColorScheme version 5.0, it can do the same and
+much more. Flutter's seeded `ColorScheme`s are based on `ColorScheme.fromSeed`
+using a single "main" or primary input color as the seed color. With
+FlexColorScheme you can optionally use different key colors for the primary,
+secondary and tertiary generated `ColorScheme`'s tonal palettes.
+
+To learn more about the **Tonal Palette** concept please see the Material 3 color
+guide [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
+
+Passing in a default `FlexKeyColors()` constructor to `keyColors` activates
+Material 3 key color seed based schemes. The primary color in your active theme
+is always used as the main "primary" key for the generated color scheme when it
+is activated. This is the same as using the Flutter SDK `ColorScheme.fromSeed()`
+and giving it the primary color.
+
+```dart
+// Generate ColorScheme from active theme's primary color.
+keyColors: FlexKeyColors(),
+```
+
+Flutter SDK only makes seed `ColorScheme`s where the entire scheme is generated
+from only one input color. In FlexColorScheme, you can also use the secondary
+and tertiary colors, as input keys to seed their Tonal Palette colors.
+
+```dart
+// ColorScheme from active theme's primary, secondary and tertiary  colors.
+keyColors: FlexKeyColors(
+  useSecondary: true,
+  useTertiary: true,
+),
+```
+
+In the example app above we used this setup:
+
+```dart
+keyColors: FlexKeyColors(
+  useKeyColors: themeController.useKeyColors,
+  useSecondary: themeController.useSecondary,
+  useTertiary: themeController.useTertiary,
+),
+```
+
+Where the `themeController.useSecondary` and `themeController.useTertiary` are
+`bool` values controlled by our `ThemeController` and it is in this case
+used again in a `ToggleButtons` UI control where one can select multiple
+options, but always has to select the first choice before the other
+two become enable. The first choice toggles the `themeController.useKeyColors`
+boolean value that is tied the convenience property `useKeyColors` in the
+`FlexKeyColors`. If it is set to false the entire `FlexKeyColors` setup is
+ignored, we could also pass in null to `keyColor` when it is false and when
+true the `FlexKeyColors` with its `useSecondary` and `useTertiary` values.
+This just looks a bit prettier and is more convenient. The
+`FlexKeyColors.useKeyColors` property is intended as convenience property for
+making using `FlexKeyColors` changeable via user interfaces.
+
+The controller values are changed on the `HomeScreen` using a stateless
+widget called `ThemeSelectButtons` using Flutter `ToggleButtons`. In this case
+the `ToggleButtons` set the above three boolean controller values. The
+`ThemeSelectButtons` contains some logic for the inclusion/exclusion of
+valid choices. You can find the code for it
+[here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/widgets/app/use_key_colors_buttons.dart).
+
+
+Please note that the key color is used as seed to generate a Material 3 Tonal
+Palette, and the colors, or tones from the same palette, is used as input to
+colors in the `ColorScheme` in both dark and light color scheme.
+
+The key color itself is seldom included as a color in the generated ColorScheme.
+This can be problematic if you want to use that specific color in your
+custom scheme for branding purposes. The `FlexKeyColors` configuration data
+class contains additional properties where you can instruct it to keep a color
+defined in FlexColorScheme at its defined input value. Set e.g.
+`keepPrimary: true` to ensure that the actual primary color you used to
+seed your color scheme, is also used as the primary color in the otherwise seed
+generated ColorScheme from the used color. In the next example we will
+demonstrate this as well.
+
+The Tonal Palettes are discussed further in [theming guide]("/flutter_theming").
+
+## The result
+
+When we build this application, we get an application where we can switch between
+four different themes.
+
 Below are the four resulting themes with their light and dark modes, that we
 can select and use in this example.
 
-[<img src="https://rydmike.com/assets_fcsv4/23-example-3-a-small.jpg?raw=true" alt="ColorScheme example 3 light" />](https://rydmike.com/assets_fcsv4/23-example-3-a.png?raw=true)
-[<img src="https://rydmike.com/assets_fcsv4/23-example-3-b-small.jpg?raw=true" alt="ColorScheme example 3 dark" />](https://rydmike.com/assets_fcsv4/23-example-3-b.png?raw=true)
-_Example 3) Using three built-in schemes, plus a custom color scheme
-as application theme options. (click image to open hires version)_
+<table>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-01.png?raw=true" alt="Four1 light" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-01.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-02.png?raw=true" alt="Four2 light" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-02.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-03.png?raw=true" alt="Four3 light" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-03.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="5"> **_Using three built-in schemes, plus a custom color scheme as application light theme options_** </td>
+  </tr>
+ </table>
+
+ In dark theme mode it looks like this:
+
+ <table>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-01.png?raw=true" alt="Four1 dark" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-01.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-02.png?raw=true" alt="Four2 dark" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-02.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-03.png?raw=true" alt="Four3 dark" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-03.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="5"> **_Using three built-in schemes, plus a custom color scheme as application light theme options_** </td>
+  </tr>
+ </table>
 
 Scroll down in the app to see the theme showcase further below. It presents the
 theme with common Material UI widgets. You can try this example as a Flutter
-[web app here](https://rydmike.com/flexcolorschemeV4Tut3).
+[web app here](https://rydmike.com/flexcolorscheme/fourthemes-v5).

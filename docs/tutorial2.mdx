@@ -33,9 +33,8 @@ Future<void> main() async {
   await themeService.init();
   // Create a ThemeController that uses the ThemeService.
   final ThemeController themeController = ThemeController(themeService);
-  // Load all the preferred theme settings, while the app is loading, before
-  // MaterialApp is created. This prevents a sudden theme change when the app
-  // is first displayed.
+  // Load preferred theme settings, while the app is loading, before MaterialApp
+  // is created, this prevents a theme change when the app is first displayed.
   await themeController.loadAll();
   // Run the app and pass in the ThemeController. The app listens to the
   // ThemeController for changes.
@@ -43,7 +42,7 @@ Future<void> main() async {
 }
 ```
 
-In this example we use the theme controller to change the theme mode and to
+In this example we use the theme controller to change the `themeMode` and to
 toggle opting in and out of FlexColorScheme's opinionated component sub-themes.
 
 ## Custom Colors
@@ -96,26 +95,29 @@ but in this case we defined our own custom `FlexSchemeData` in `_myFlexScheme`
 and used the `colors` property in `FlexSchemeData` to tell it to use those
 colors instead of a built-in scheme.
 
-## Using AnimatedBuilder
+## Theme Setup
 
-We glue the `ThemeController` to the MaterialApp. The Flutter standard
-`AnimatedBuilder` Widget listens to the `ThemeController` for changes.
+Based on the Flutter Skeleton template architecture we glue the `ThemeController`
+to the MaterialApp. The Flutter standard `AnimatedBuilder` Widget listens to
+the `ThemeController` for changes.
 
 The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here
 it serves the purpose of functioning as kind of a "`ValueListenableBuilder`",
 that rebuilds its child when its `Listenable` value, the `animation` changes.
 Which it does whenever our `ThemeController` calls `notifyListeners`, when
 we update any of its properties. Which we do in the `ThemeController` class
-when we have new updated data that requires the theme to update.
+when we have new updated data that requires the theme to update. The
+`ThemeController` values are typically changed by user interface widgets on the
+`HomePage`.
 
 > The usage of the `AnimatedBuilder` does not have anything to do with the
 > fact that the theme changes animate from current ThemeData and colors in it,
 > to the new ones it changes to. This is a built-in feature in ThemeData and
-> its inherited Theme in Flutter SDK. You can change the Theme with
-> call-backs or other state management systems too, and still get the
+> its inherited Theme in Flutter SDK. You can change the `ThemeData` with
+> call-backs or other state management solutions too, and still get the
 > nice theme change animation.
 >
-> The `AnimatedBuilder` is a poor name when it is used as a kind of
+> The `AnimatedBuilder` is a poor name when it is used as a
 > `ValueListenableBuilder`, that does not exist in Flutter SDK. It
 > should, just for a better and more logical name, but the `AnimatedBuilder`
 > serves the exact same purpose here as a `ValueListenableBuilder` would.
@@ -127,7 +129,7 @@ is rebuilt when any value in the `ThemeController` trigger a change via a
 `notifyListeners` call. This is fine in this case, since all properties in it are
 of the nature that the entire application UI needs to be redrawn anyway when they
 change, since they modify our `ThemeData` for the entire application.
-Thus this approach works well for this use case.
+Thus this approach works well for this particular use case.
 
 ```dart
 class DemoApp extends StatelessWidget {
@@ -146,7 +148,7 @@ class DemoApp extends StatelessWidget {
             title: 'Custom Theme',
             theme: FlexThemeData.light(
               colors: _myFlexScheme.light,
-              // Opt in/out on FlexColorScheme sub-themes with theme controller.
+              // Opt in/out on using FlexColorScheme sub-themes.
               subThemesData: themeController.useSubThemes
                   ? const FlexSubThemesData()
                   : null,
@@ -176,21 +178,25 @@ class DemoApp extends StatelessWidget {
 }
 ```
 
-In this example we also use a boolean theme controller setting used as toggle
+## Component Themes
+
+In this example above, we also use a boolean theme controller setting used as toggle
 to decide if we opt in our out of using the FlexColorScheme opinionated
 component sub-themes. When the opt-in is true we pass in a default
 `FlexSubThemesData()` constructor, otherwise `null` to not use the
-sub themes at all. Later we will explore all the options we can configure in
+sub themes at all. Later we will explore more options that we can configure with
 `FlexSubThemesData`
 
 ```dart
-  // Opt in/out on FlexColorScheme sub-themes with theme controller.
+  // Opt in/out on using FlexColorScheme sub-themes.
   subThemesData: themeController.useSubThemes
       ? const FlexSubThemesData()
       : null,
 ```
 
-We alo added a custom font by assigning one to `fontFamily` from by using
+## GoogleFonts
+
+We also added a custom font by assigning one to `fontFamily` from by using
 `GoogleFonts.notoSans().fontFamily`. The Noto Sans font is nice alternative
 to the default `Roboto`font. For better and more fine controlled results over
 your custom `TextTheme`, prefer defining complete `TextThemes,` using a font
@@ -205,10 +211,10 @@ feature in FlexColorScheme.
 
 ## The result
 
-When we build this application we can see out custom colors being used
-on all widget. We also can also see that the widget components look a lot different.
-This is because we enabled using the FlexColorScheme opinionated widget sub themes,
-by default when we used the `themeController.useSubThemes` setting.
+When we build this application we can see our custom colors being used
+on all widget. We also notice that the widget components look a lot different
+compared to example 1. This is because we enabled using the FlexColorScheme
+opinionated widget sub themes, by default when we used the `themeController.useSubThemes` value.
 
 <table>
   <tr>
@@ -241,7 +247,7 @@ by default when we used the `themeController.useSubThemes` setting.
  We can compare the difference between using the FlexColorScheme opinionated widget
  component sub themes  and just default widget theming, by toggling the switch for it.
  The default settings for opinionated component themes use rounded corners on widgets that
- deault to the [Material 3 design guide](https://m3.material.io/) specified values.
+ default to the [Material 3 design guide](https://m3.material.io/) specified values.
  The border radius varies per widget type. In the Material 2 design it is 4 dp on
  most widget. Later we will se how can more easily customize the border radius.
 
@@ -275,4 +281,4 @@ by default when we used the `themeController.useSubThemes` setting.
 
 Scroll down in the app to see the theme showcase further below. It presents the
 theme with common Material UI widgets. You can try this example as a Flutter
-[web app here](https://rydmike.com/flexcolorscheme/basictheme-v5).
+[web app here](https://rydmike.com/flexcolorscheme/customtheme-v5).
