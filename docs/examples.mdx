@@ -53,8 +53,8 @@ The default sample app, the **Hot Reload Playground**, looks like this:
 
 It comes fully loaded with template settings and thorough
 comments that explain what to change to produce different results. You
-could for example change the `_useScheme` to `true`, as shown below and hot
-reload it, to then use the new `FlexScheme.blueWhale` theme instead.
+could for example change the `_scheme` to `FlexScheme.blueWhale`, as shown below and hot
+reload it, to use it as theme instead.
 
 ```dart
 // To use a pre-defined color scheme, don't assign any FlexSchemeColor to
@@ -62,15 +62,11 @@ reload it, to then use the new `FlexScheme.blueWhale` theme instead.
 // Try eg the new "Blue Whale" color scheme.
 const FlexScheme _scheme = FlexScheme.blueWhale;
 
-// To make it easy to toggle between using the above custom colors, or the
-// selected predefined scheme in this example, set _useScheme to true to use the
-// selected predefined scheme above, change to false to use the custom colors.
-const bool _useScheme = true;
 ```
 
-There are many settings you can play with in the default
-example application. The above selected **blue whale** theme is the first one
-shown in the image below.
+There are many settings you can easily modify in the default example application. They are
+excessively commented in order to provide guidance for those that don't read docs and want to
+jump right in and start using it.
 
 <table>
   <tr>
@@ -87,8 +83,8 @@ shown in the image below.
   </tr>
  </table>
 
-The other results shown above were also produced by editing a few
-properties in this hot reload playground.
+The results shown above were also produced by editing a few simple properties in the
+Hot Reload Playground.
 
 
 ## Building the Examples
@@ -126,9 +122,19 @@ use case. To use one of the built-in color schemes as your application theme.
 You can toggle between its light and dark variant, or allow device system theme
 mode setting to control if the dark or light theme is used.
 
-[<img src="https://rydmike.com/assets_fcsv4/21-example-1-a-small.jpg?raw=true" alt="ColorScheme example 1"/>](https://rydmike.com/assets_fcsv4/21-example-1-a.png?raw=true)
-_Example 1) Using a built-in FlexColorScheme color scheme as application
-theme (click image to open hires version)_
+<table>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-01.png?raw=true" alt="Basic1" width="250"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-01.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-02.png?raw=true" alt="Basic1" width="250"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-02.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-03.png?raw=true" alt="Basic1" width="250"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-03.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="5"> **_Example 1) Using a built-in FlexColorScheme color scheme as application theme (click image to open hires version)_** </td>
+  </tr>
+ </table>
+
 
 ### Example 2 - Custom Theme
 
