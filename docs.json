@@ -52,7 +52,7 @@
             [
                 ["API Basics", "/api_guide"],
                 ["Feature details", "/features"],
-                ["Inside FlexColorScheme", "/inside"]
+                ["Core defaults", "/core_defaults"]
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
