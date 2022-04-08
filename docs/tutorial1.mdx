@@ -1,9 +1,6 @@
 # Tutorials
 
-
-**TODO: Review and update chapter to version 5**
-
-In the tutorial we go through all the bundled examples and explain the
+In the tutorial we go through all the bundled examples and explain main
 used `FlexColorScheme` features in each example.
 
 The key part for each example is always in the used `MaterialApp`, where the
@@ -11,7 +8,7 @@ The key part for each example is always in the used `MaterialApp`, where the
 examples is mainly there to make a visual presentation of the resulting theme from
 the used color scheme, and to allow you to control the theme settings interactively.
 
-## Example and Tutorial 1 - Basic Theme
+## 1) Basic Theme
 
 The first and simplest example shows how you can use a predefined color scheme
 in `FlexColorScheme` to define light and dark themes using the selected scheme.
@@ -19,9 +16,8 @@ How to turn it into a theme used by your application, and then switch between
 its light and dark theme modes. A theme showcase widget shows the theme's effect
 on several common Material UI component widgets.
 
-The full code is not shown below, only highlights.
-Please find the complete example code
-[here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1).
+The only code highlights may be shown below, for the complete code for
+the example see [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1).
 
  ```dart
 void main() => runApp(const DemoApp());
@@ -45,7 +41,7 @@ class _DemoAppState extends State<DemoApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      scrollBehavior: AppScrollBehavior(),
+      scrollBehavior: const AppScrollBehavior(),
       title: 'Basic Theme Usage',
       // Use a predefined FlexThemeData.light() theme for the light theme.
       theme: FlexThemeData.light(
@@ -56,7 +52,7 @@ class _DemoAppState extends State<DemoApp> {
       // Same definition for the dark theme, but using FlexThemeData.dark().
       darkTheme: FlexThemeData.dark(
         scheme: usedScheme,
-        // Use stronger themed app bar elevation in dark mode.
+        // Use a bit more themed elevated app bar in dark mode.
         appBarElevation: 2,
       ),
       // Use the above dark or light theme based on active themeMode.
@@ -70,7 +66,6 @@ class _DemoAppState extends State<DemoApp> {
             themeMode = mode;
           });
         },
-        // Pass in the FlexSchemeData we used for the active theme.
         flexSchemeData: FlexColor.schemes[usedScheme]!,
       ),
     );
@@ -79,7 +74,7 @@ class _DemoAppState extends State<DemoApp> {
 ```
 
 To the `HomePage` we pass in the current value of the `themeMode` and use a
-callback to get back its changed value, we use it to update
+simple callback to get back its changed value. We then use it to update
 `themeMode` in a standard `setState` to make the app rebuild using
 the new value.
 
@@ -88,13 +83,36 @@ We also pass in the `FlexSchemeData` we defined for our custom theme to the
 active theme's name, description and colors in a theme mode switch.
 
 When you build and run **example 1** you get an application that looks
-like this in light and dark mode:
+like this in light mode:
 
-[<img src="https://rydmike.com/assets_fcsv4/21-example-1-a-small.jpg?raw=true" alt="ColorScheme example 1 light"/>](https://rydmike.com/assets_fcsv4/21-example-1-a.png?raw=true)
-[<img src="https://rydmike.com/assets_fcsv4/21-example-1-b-small.jpg?raw=true" alt="ColorScheme example 1 dark"/>](https://rydmike.com/assets_fcsv4/21-example-1-b.png?raw=true)
-_Example 1) Using a built-in FlexColorScheme color scheme as application
-theme. (click image to open hires version)_
+<table>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-01.png?raw=true" alt="Basic1" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-01.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-02.png?raw=true" alt="Basic2" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-02.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-03.png?raw=true" alt="Basic3" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-l-03.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="5"> **_Using a built-in FlexColorScheme color scheme as application light theme_** </td>
+  </tr>
+ </table>
+
+ In dark theme mode it looks like this:
+
+ <table>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-d-01.png?raw=true" alt="Basic1" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-d-01.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-d-02.png?raw=true" alt="Basic2" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-d-02.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-d-03.png?raw=true" alt="Basic3" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut1-d-03.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="5"> **_Using a built-in FlexColorScheme color scheme as application dark theme_** </td>
+  </tr>
+ </table>
 
 Scroll down in the app to see the theme showcase further below. It presents the
 theme with common Material UI widgets. You can try this example as a Flutter
-[web app here](https://rydmike.com/flexcolorschemeV4Tut1).
+[web app here]((https://rydmike.com/flexcolorscheme/basictheme-v5).
