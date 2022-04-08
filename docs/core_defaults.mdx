@@ -1,23 +1,20 @@
-# Inside FlexColorScheme
+# Core Defaults
 
 **TODO: Review and update chapter to version 5, with TOTALLY revised structure and content.**
 
 This document provides more details and explanations
-of the inner workings of FlexColorScheme V4. The reason for keeping it in
-a separate file from the package readme is that the package readme is
-already very long, and keeping it separate document allows it to be updated and
-complemented more freely without updating the package due to complementary
-documentation updates.
+of the inner workings of FlexColorScheme and its default theme when component sub-themes are not
+enabled, the baselin that you always get.
 
-**FlexColorScheme** does not actually use the `ThemeData.from` factory with a passed
+ **FlexColorScheme** does not actually use the `ThemeData.from` factory with a passed
 in `ColorScheme` to make its `ThemeData` object. It uses the `ThemeData` factory directly, with
-some additional custom theming.  It does of course define a `ColorScheme` that it uses in its `ThemeData`.
-FlexColorScheme uses color calculations for the primary color branded/blended surfaces, and
-for the lazy schemes that do not specify all colors in a color scheme.
+some additional custom theming.  It does of course define a `ColorScheme` that it uses in its
+`ThemeData`. FlexColorScheme uses color calculations for the primary color branded/blended
+surfaces, and for the lazy schemes that do not specify all colors in a color scheme.
 
 ## None Null Sub-Themes
 
-Flutter's default Theme and its ThemeData is moving towards a design where all the sub-theme's in the default
+Flutter's default Theme and its ThemeData use a design where all the sub-theme's in the default
 ThemeData are NULL. It is always the widget that defines the default behavior and look when its sub-theme and its
 properties are null and its properties for the same values are null. The widget colors for such cases are
 then defined by `ThemeData.of(context).colorScheme`.
@@ -26,16 +23,17 @@ This Flutter theming design goal is described in this
 [document](https://docs.google.com/document/d/1kzIOQN4QYfVsc5lMZgy_A-FWGXBAJBMySGqZqsJytcE). It is mostly implemented
 by now, but there might still be some sub-themes in Flutter SDK remaining that do not fully adhere to this design.
 
-FlexColorScheme sets `ThemeData.of(context).colorScheme` to ensure that its colors are applied to all widgets
-that adhere to this newer standard. It also sets all still existing legacy colors in
-`ThemeData.of(context)`, that some Flutter Widgets still use, to use scheme appropriate or scheme derived colors.
-Thanks to this there should not be any built-in Widgets in Flutter that do not get color scheme themed
-by FlexColorScheme.
+FlexColorScheme first sets in scheme on `ThemeData.colorScheme` to ensure that its
+colors are applied to all widgets that adhere to this newer standard.
+It also sets all still existing legacy direct colors in `ThemeData`, that some Flutter Widgets
+still use. These `ThemeData` color ar all set to use `ColorScheme` appropriate or from it
+derived colors. Thanks to this there should not be any built-in Widgets in Flutter that do not
+get color scheme themed by FlexColorScheme.
 
 The ThemeData created by `FlexColorScheme().toTheme` also tries to not create and modify sub-themes when it does not
-have to. However, to meet its design goals, FlexColorScheme has to create a number of sub-themes and set some
+have to. However, to meet its design goals, FlexColorScheme still has to create a number of sub-themes and set some
 of their properties. In some rare cases this is done to correct theming issues in Flutter SDK, and sometimes to
-reach its own design goals. Further below is a list of all the sub-themes it creates and properties that you can
+reach its own design goals. Below is a list of all the sub-themes it creates and properties that you can
 **currently** expect to have none null values in them. These sub-themes and their properties,
 would otherwise be null when just using default `ThemeData()` or `ThemeData.from()` factories, if they
 did not specify sub-themes.
@@ -55,7 +53,7 @@ Instead, do something similar to this:
 
 ```dart
 final Color fabColor = Theme.of(context)?.appBarTheme?.backgroundColor ??
-  Theme.of(context).colorScheme.primary ?? kMyDefaultAppBarColor;
+  Theme.of(context).colorScheme.primary;
 ```
 
 **FlexColorScheme** will try to not change past creation of its none null sub-themes. However, changes to these
@@ -65,19 +63,18 @@ past behavior.
 **Flutter SDK** may also change some of its implementation details of `ThemeData`. Take for example the broken
 Chip case, if it is modified to fix its dark theme bug, then FlexColorScheme would have no reason
 for its own fix. In cases where Flutter defaults moves in a direction that the same definition is no longer
-needed in FlexColorScheme, such sub-theme definitions may eventually be removed, **but not without due warning**.
+needed in FlexColorScheme, such default force built-in sub-theme definitions may eventually be
+removed, **but not without due warning**.
 
-One recent such case was the `floatingActionButtonTheme` sub-theme that FlexColorScheme created in earlier
+One past such case was the `floatingActionButtonTheme` sub-theme that FlexColorScheme created in earlier
 versions. The used sub-theme did not change Flutter's default behavior. However, in some older versions of
-Flutter there was a severe deprecation warning if the sub-theme was not defined. Later it was
+Flutter there was a deprecation warning if the sub-theme was not defined. Later it was
 observed that Flutter SDK default and FlexColorScheme sub-theme now agrees 100% on the design. There was
 no longer any deprecated warning if the sub-theme was totally removed from FlexColorScheme's theme definition.
 This sub-theme definition was thus no longer needed and was removed starting from FlexColorScheme
 version 2.0.0-nullsafety.2.
 
-Another similar change that has still not landed in Flutter 2.2.x stable channel, is the deprecation
-of `ThemeData.accentColor`. From version 3.0.0 **FlexColorScheme** is prepared for when this
-change lands in stable.
+Another similar change was the deprecation of `ThemeData.accentColor`.
 
 * **AppBarTheme** in `ThemeData.appBarTheme` is NOT null.
   The actual values are defined to match the offered convenience theming options for the AppBar.
