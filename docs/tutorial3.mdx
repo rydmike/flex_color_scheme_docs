@@ -243,18 +243,18 @@ not as large as on small hand held devices.
 ## Seeded ColorScheme
 
 Flutter 2.10 includes the option to use Material 3 based key color seed generated
-`ColorScheme`'s. Starting from FlexColorScheme version 5.0, it can do the same and
+`ColorScheme`'s. FlexColorScheme version 5.0 and later, can do the same and
 much more. Flutter's seeded `ColorScheme`s are based on `ColorScheme.fromSeed`
-using a single "main" or primary input color as the seed color. With
+using a single **"main"** or primary input color as the seed color. With
 FlexColorScheme you can optionally use different key colors for the primary,
 secondary and tertiary generated `ColorScheme`'s tonal palettes.
 
-To learn more about the **Tonal Palette** concept please see the Material 3 color
+To learn more about the **Tonal Palette** concept, please see the Material 3 color
 guide [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
 
-Passing in a default `FlexKeyColors()` constructor to `keyColors` activates
+Passing in a default `FlexKeyColors()` to `keyColors` activates
 Material 3 key color seed based schemes. The primary color in your active theme
-is always used as the main "primary" key for the generated color scheme when it
+is always used as the main "primary" key for the generated `ColorScheme` when it
 is activated. This is the same as using the Flutter SDK `ColorScheme.fromSeed()`
 and giving it the primary color.
 
@@ -268,7 +268,8 @@ from only one input color. In FlexColorScheme, you can also use the secondary
 and tertiary colors, as input keys to seed their Tonal Palette colors.
 
 ```dart
-// ColorScheme from active theme's primary, secondary and tertiary  colors.
+// Generate the ColorScheme from active theme's primary,
+// secondary and tertiary  colors.
 keyColors: FlexKeyColors(
   useSecondary: true,
   useTertiary: true,
@@ -286,39 +287,27 @@ keyColors: FlexKeyColors(
 ```
 
 Where the `themeController.useSecondary` and `themeController.useTertiary` are
-`bool` values controlled by our `ThemeController` and it is in this case
-used again in a `ToggleButtons` UI control where one can select multiple
-options, but always has to select the first choice before the other
-two become enable. The first choice toggles the `themeController.useKeyColors`
-boolean value that is tied the convenience property `useKeyColors` in the
-`FlexKeyColors`. If it is set to false the entire `FlexKeyColors` setup is
-ignored, we could also pass in null to `keyColor` when it is false and when
-true the `FlexKeyColors` with its `useSecondary` and `useTertiary` values.
-This just looks a bit prettier and is more convenient. The
-`FlexKeyColors.useKeyColors` property is intended as convenience property for
-making using `FlexKeyColors` changeable via user interfaces.
+`bool` values controlled by our `ThemeController`. The first value
+`themeController.useKeyColors` is also a boolean value that we use on the
+convenience property `useKeyColors` in the `FlexKeyColors`.
+If it is set to false the entire `FlexKeyColors` setup is ignored.
+Alternatively, we could also pass in null to `keyColors` when it is false and
+then when it is true, the `FlexKeyColors` with its `useSecondary` and
+`useTertiary` values.
+However, this looks a bit cleaner and is more convenient if you want to toggle the
+usage. The `FlexKeyColors.useKeyColors` property is intended and included as a
+convenience property for making `FlexKeyColors` easy to toggle via user a
+interfaces.
 
-The controller values are changed on the `HomeScreen` using a stateless
-widget called `ThemeSelectButtons` using Flutter `ToggleButtons`. In this case
-the `ToggleButtons` set the above three boolean controller values. The
-`ThemeSelectButtons` contains some logic for the inclusion/exclusion of
+All three `themeController`values above are also again used as choices in a
+`ToggleButtons` UI control, where we can select multiple
+options, but always has to select the first choice before the other
+two become enabled. The `ToggleButtons` UI control is on on the `HomeScreen`
+and built as a simple stateless widget called `ThemeSelectButtons`. In this case
+the `ToggleButtons` sets the above three boolean controller values. The
+`ThemeSelectButtons` contains some minor logic for the inclusion/exclusion of
 valid choices. You can find the code for it
 [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/widgets/app/use_key_colors_buttons.dart).
-
-
-Please note that the key color is used as seed to generate a Material 3 Tonal
-Palette, and the colors, or tones from the same palette, is used as input to
-colors in the `ColorScheme` in both dark and light color scheme.
-
-The key color itself is seldom included as a color in the generated ColorScheme.
-This can be problematic if you want to use that specific color in your
-custom scheme for branding purposes. The `FlexKeyColors` configuration data
-class contains additional properties where you can instruct it to keep a color
-defined in FlexColorScheme at its defined input value. Set e.g.
-`keepPrimary: true` to ensure that the actual primary color you used to
-seed your color scheme, is also used as the primary color in the otherwise seed
-generated ColorScheme from the used color. In the next example we will
-demonstrate this as well.
 
 The Tonal Palettes are discussed further in [theming guide](/flutter_theming).
 
@@ -332,32 +321,110 @@ can select and use in this example.
 
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-01.png?raw=true" alt="Four1 light" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-01.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-01.png?raw=true" alt="Four1 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-01.png?raw=true)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-02.png?raw=true" alt="Four2 light" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-02.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-02.png?raw=true" alt="Four2 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-02.png?raw=true)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-03.png?raw=true" alt="Four3 light" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-03.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-03.png?raw=true" alt="Four3 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-03.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-04.png?raw=true" alt="Four3 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-04.png?raw=true)</td>
   </tr>
   <tr>
-  <td colspan="5"> **_Using three built-in schemes, plus a custom color scheme as application light theme options_** </td>
+    <td colspan="7"> **_Using three built-in schemes, plus a custom color scheme as application light theme options_** </td>
   </tr>
  </table>
 
- In dark theme mode it looks like this:
+ In dark theme mode they look like this:
 
  <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-01.png?raw=true" alt="Four1 dark" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-01.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-01.png?raw=true" alt="Four1 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-01.png?raw=true)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-02.png?raw=true" alt="Four2 dark" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-02.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-02.png?raw=true" alt="Four2 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-02.png?raw=true)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-03.png?raw=true" alt="Four3 dark" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-03.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-03.png?raw=true" alt="Four3 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-03.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-04.png?raw=true" alt="Four3 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-04.png?raw=true)</td>
   </tr>
   <tr>
-  <td colspan="5"> **_Using three built-in schemes, plus a custom color scheme as application light theme options_** </td>
+    <td colspan="7"> **_Using three built-in schemes, plus a custom color scheme as application light theme options_** </td>
   </tr>
  </table>
 
 Scroll down in the app to see the theme showcase further below. It presents the
 theme with common Material UI widgets. You can try this example as a Flutter
 [web app here](https://rydmike.com/flexcolorscheme/fourthemes-v5).
+
+ ## Using Seeded ColorScheme
+
+When key colors are used to generate Material 3 Tonal
+Palettes, the same key color(s) should in Material 3 color system design be used
+to generate the Tonal Palettes for both the light and dark mode theme.
+
+The `ColorScheme` uses different Tones (shades) from the identical key color
+sourced Tonal Palettes to select appropriate tones for the light and dark mode
+from these palettes. In the [theming guide](/flutter_theming) we explore these
+basic concepts more.
+
+Below we compare the look of the Mallard green theme, using its theme as defined,
+versus using its colors as key colors to generate the ColorScheme from those
+colors. The result is usually very balanced and pleasing. However, if we look
+at the result when using only the primary color as key color, it is not at all the
+same ColorScheme as the original one. The result is the same result as creating
+the color scheme with `ColorScheme.fromSeed` and giving it the Mallard schemes
+primary light theme mode color as input.
+
+As we one by one turn on using also primary and tertiary colors as keys, we see
+that the result is keeping a bit more of the original design intent. Still the
+colors are quite a bit off. Also in this example when secondary and tertiary is
+used, it is using the chroma from these colors, but limited to same max values
+as the `ColorScheme.fromSeed` algorithm uses for its single color seed.
+The color math in the Material 3 Tonal Palette generation is very sophisticated,
+but in Flutter SDK very little of it is exposed. FlexColorScheme opens up much
+more of its capabilities via easy to use APIs, that let's you change these
+key color chroma limits and even which tone is what for color in the ColorScheme.
+This can make generated schemes more vivid or muted, we will look at this in the
+last tutorial example.
+
+<table>
+    <tr>
+    <td><b>&nbsp;Flutter Dash</b></td>
+    <td>&nbsp;</td>
+    <td><b>&nbsp;M3 Baseline</b></td>
+    <td>&nbsp;</td>
+    <td><b>&nbsp;Verdun Green</b></td>
+    <td>&nbsp;</td>
+    <td><b>&nbsp;Dell Genoa Green</b></td>
+  </tr>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-05.png?raw=true" alt="Four1 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-05.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-06.png?raw=true" alt="Four2 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-06.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-07.png?raw=true" alt="Four3 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-07.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-08.png?raw=true" alt="Four3 light" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-l-08.png?raw=true)</td>
+  </tr>
+    <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-05.png?raw=true" alt="Four1 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-05.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-06.png?raw=true" alt="Four2 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-06.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-07.png?raw=true" alt="Four3 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-07.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-08.png?raw=true" alt="Four3 dark" width="200"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut3-d-08.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="7"> **_Comparing Mallared green theme, and using its color values to generate a M3 ColorScheme_** </td>
+  </tr>
+ </table>
+
+The key color itself is seldom included as a color in the generated `ColorScheme`.
+This can be problematic if you want to use that specific color in your
+custom scheme for branding purposes. The `FlexKeyColors` configuration data
+class contains additional properties where you can instruct it to keep a color
+defined in FlexColorScheme at its defined input value. Set e.g.
+`keepPrimary: true` to ensure that the actual primary color you used to
+seed your color scheme, is also used as the primary color in the otherwise seed
+generated ColorScheme from the used color. In the next example we will
+demonstrate this as well.
