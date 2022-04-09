@@ -36,7 +36,7 @@ can use in these examples.
   in the Hive based one here as well, or SharedPreferences on the other ones,
   if you want to try it.
 
-  These tuturials are not about how to setup the used Flutter skeleton style
+  These tutorials are not about how to setup the used Flutter skeleton style
   controller, or how to make the abstract service with three different
   implementations. Still they do demonstrate with these examples
   how one can easily swap the used persistence implementation. You can take
@@ -46,7 +46,7 @@ can use in these examples.
 ```dart
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Here we use the Shared Preferences theme servcie.
+  // Here we use the Shared Preferences theme service.
   final ThemeService themeService = ThemeServicePrefs();
   // Initialize the theme service.
   await themeService.init();
@@ -176,7 +176,7 @@ class DemoApp extends StatelessWidget {
 
 Below we go through the above theme setup in more detail.
 
-## Selecting theme
+## Selecting Theme
 
 We select the used active theme for the app by using the theme controller's
 `usedScheme` property, that contains the value of currently selected
@@ -222,7 +222,7 @@ sub themes at all. Later we will explore more options that we can configure with
       : null,
 ```
 
-## VisualDensity
+## Visual Density
 
 In this example we also use `FlexColorScheme.comfortablePlatformDensity` as
 `visualDensity` for our `ThemeData` is a platform adaptive visual density
@@ -240,7 +240,7 @@ This setting is a good compromise for desktop, especially if they have touch
 screens, since it keeps buttons and touch targets larger, but
 not as large as on small hand held devices.
 
-## Seeded ColorScheme
+## Key Colors
 
 Flutter 2.10 includes the option to use Material 3 based key color seed generated
 `ColorScheme`'s. FlexColorScheme version 5.0 and later, can do the same and
@@ -276,9 +276,10 @@ keyColors: FlexKeyColors(
 ),
 ```
 
-In the example app above we used this setup:
+In the example app above we use this setup:
 
 ```dart
+ :
 keyColors: FlexKeyColors(
   useKeyColors: themeController.useKeyColors,
   useSecondary: themeController.useSecondary,
@@ -286,10 +287,9 @@ keyColors: FlexKeyColors(
 ),
 ```
 
-Where the `themeController.useSecondary` and `themeController.useTertiary` are
-`bool` values controlled by our `ThemeController`. The first value
-`themeController.useKeyColors` is also a boolean value that we use on the
-convenience property `useKeyColors` in the `FlexKeyColors`.
+Where `themeController.useKeyColors`, `themeController.useSecondary` and
+`themeController.useTertiary` are `bool` values controlled by our `ThemeController`.
+The first value is used on the convenience property `useKeyColors` in the `FlexKeyColors`.
 If it is set to false the entire `FlexKeyColors` setup is ignored.
 Alternatively, we could also pass in null to `keyColors` when it is false and
 then when it is true, the `FlexKeyColors` with its `useSecondary` and
