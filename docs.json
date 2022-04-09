@@ -3,9 +3,10 @@
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logoDark": "/images/logo.png",
-    "twitter": "@rydmike",
+    "twitter": "rydmike",
+    "theme": "#0000BA",
     "zoomImages": "false",
-    "zoomImages-Comment": "turning off zoom site-wide to enable images w/ links",
+    "noindex": "false",
     "navigation": [
         ["Pub Package", "https://pub.dev/packages/flex_color_scheme"],
         ["Themes Playground", "https://rydmike.com/flexcolorscheme/themesplayground-v5"]
