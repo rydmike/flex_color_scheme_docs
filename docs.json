@@ -31,7 +31,7 @@
         ],
         ["Theming Guide",
             [
-                ["Introduction", "/flutter_theming"],
+                ["Introduction", "/theming_guide"],
                 ["FAQ", "/faq"]
             ]
         ],
@@ -47,8 +47,8 @@
         ["API guide",
             [
                 ["API Basics", "/api_guide"],
-                ["Feature details", "/features"],
-                ["Core defaults", "/core_defaults"]
+                ["Core defaults", "/core_defaults"],
+                ["Extra Features", "/features"]
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
