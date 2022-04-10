@@ -5,6 +5,11 @@ scheme, using the same colors as in example 2. We then use these four color sche
 as selectable `FlexColorScheme` based theme options. The example also uses surface
 colors with primary color blends.
 
+Additionally we can activate an option that
+uses the selected scheme's colors, as input to generate a ColorScheme computed
+by the Material 3 ColorScheme generation tools. We can also turn the
+opinionated component widget themes ON or OFF.
+
 Only code highlights might be shown below, the complete code for the example is
 [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3).
 
@@ -17,7 +22,7 @@ version, that will locally persist the theme selection options we make.
 The `ThemeServicePrefs` persistence is based on the popular package
 [SharedPreferences](https://pub.dev/packages/shared_preferences).
 
-We also again use the same ThemeController, which glues our theme settings to
+We again use the `ThemeController`, which glues our theme settings to
 Flutter Widgets. The controller uses an abstract ThemeService interface to get
 and save the settings. There are 3 concrete implementations available that we
 can use in these examples.
@@ -63,7 +68,7 @@ Future<void> main() async {
 
 In this example we use the theme controller to change the `themeMode` and to
 toggle opting in and out of FlexColorScheme's opinionated component sub-themes.
-We also use it to chnage a number of other settings the theme
+We also use it to change a number of other settings the theme
 controller provides.
 
 ## Custom Colors
@@ -164,7 +169,8 @@ class DemoApp extends StatelessWidget {
             flexSchemeData: themeController.usedScheme == FlexScheme.custom
                 ? _myFlexScheme
                 : FlexColor.schemes[themeController.usedScheme]!,
-            // Pass in the theme controller to the home page.
+            // Pass in the theme controller to the home page where
+            // user can change its values with UI controls.
             controller: themeController,
           ),
         );
