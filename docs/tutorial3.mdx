@@ -386,13 +386,12 @@ colors are quite a bit off. In this example when secondary and tertiary are used
 as key colors, the Tonal Palette generation is using the chroma from these colors,
 but limited to same max values as the `ColorScheme.fromSeed` algorithm uses for
 its single seed color.
-The color math in the Material 3 Tonal Palette generation is very sophisticated,
-but in Flutter SDK very little of it is exposed. FlexColorScheme opens up
-more of its capabilities via easy to use APIs. This API also let's you change these
-key color chroma limits and even which tone is what for color in the resulting
-ColorScheme. This can make generated schemes more vivid or muted, the number of
-ways you can tune the Tonal Palette generation is almost limitless.
-We will look at this in the last tutorial example.
+
+The comparison below show the Mallard green theme in light and dark mode, when using:
+1. Scheme colors as defined by its color values, used to make the `ColorScheme`.
+2. Seeded ColorScheme, with only primary as input, like `ColorScheme.fromSeed`.
+3. Seeded ColorScheme, with primary and secondary colors as key color inputs.
+4. Seeded ColorScheme, with all main colors used as key color inputs.
 
 <table>
   <tr>
@@ -418,15 +417,22 @@ We will look at this in the last tutorial example.
   </tr>
  </table>
 
- This example keeps the primary color surface blend level at the same value for the
- seed generated ColorSchemes at the same level. Seed generated ColorSchemes already
- mix a bit of their primary color into the generate neutral tonal palettes, that is
- when when using surface blends wit them, they surface coloring gets a lot stronger
- at lower level, since the mixing starts with a hint of the primary in the
- base surface colors already. FlexColorScheme primary color surface mode works
- with seed generated ColorSchemes too, it is however often needed to reduce the
- blend strength. If you want the actual Material 3 default surface blends, then
- keep blend level at zero.
+The color math in the Material 3 Tonal Palette generation is very sophisticated,
+but in Flutter SDK very little of it is exposed. FlexColorScheme opens up
+more of its capabilities via easy to use APIs. This API also let's you change the
+key color chroma limits and even which tone is used for what for color in the resulting
+ColorScheme. This can make generated schemes more vivid or muted, the number of
+ways you can tune the Tonal Palette generation is almost limitless.
+
+This example keeps the primary color surface blend level at the same value for the
+seed generated ColorSchemes at the same level. Seed generated ColorSchemes already
+mix a bit of their primary color into the generate neutral tonal palettes, that is
+when when using surface blends wit them, they surface coloring gets a lot stronger
+at lower level, since the mixing starts with a hint of the primary in the
+base surface colors already. FlexColorScheme primary color surface mode works
+with seed generated ColorSchemes too, it is however often needed to reduce the
+blend strength. If you want the actual Material 3 default surface blends, then
+keep blend level at zero.
 
 The key color itself is seldom included as a color in the generated `ColorScheme`.
 This can be problematic if you want to use that specific color in your
