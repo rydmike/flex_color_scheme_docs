@@ -526,7 +526,16 @@ simplicity set:
 ```
 Below we can compare the difference or scheme at input values, or computed,
 using all main colors as key colors, and then one by one keeping the
-input value as given.
+input value as given. For this example comparison we used the
+"Blumine, ester blue and saffron mango" theme.
+
+The comparison below show the Blumine theme in light and dark mode, when using:
+1. Scheme colors as defined by its color values.
+2. Seeded ColorScheme, with only primary as input, like `ColorScheme.fromSeed`.
+2. Seeded ColorScheme, with all main colors only primary key color as input.
+4. Seeded ColorScheme, al colors key color input and locking primary, secondary
+   and tertiary to their input value, while letting other colors use their
+   generated values.
 
 <table>
   <tr>
