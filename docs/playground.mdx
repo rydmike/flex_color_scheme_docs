@@ -2,36 +2,68 @@
 
 **TODO: Add NEW guide on how to use Themes Playground V5**
 
-The side menu in the default example is actually made for and used
-in the last example in the tutorial. The final example
-doubles as an interactive **Themes Playground** application.
+This chapter goes through basics of how to use the Themes Playground. Generally
+it is simple enough and you probably not need a guide, but if you get stuck on some
+finer point, you might find answers here.
 
-The **Themes Playground** is useful as a tool to find themes and settings you
-prefer, or just use it to figure out what you can do with
-FlexColorScheme. The playground persists all its settings, and you can
-reset them back to their default values. It can even generate the Flutter
-FlxColorScheme setup code needed to produce the shown active theme.
+The [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5)
+is a useful tool to find **FlexColorScheme** themes and settings you
+like. You can also use it to see what you can do with FlexColorScheme.
+The playground persists all its settings, and you can reset them back to their
+default values so don't be afraid to experiment.
 
-The **Themes Playground** can be used as a [web app
-here](https://rydmike.com/flexcolorschemeV4Tut5). Its source code
-is also available in the example sub folder in folder
-[/example5](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5).
+The most important feature of the **Themes Playground**
+is that it can generate the Flutter FlexColorScheme setup code needed to
+produce the shown active theme configuration. It even shows and modifies the
+setup code, as you modify settings, and you can see it side-by-side with your
+settings. This is a fun way to get familiar with the API too.
 
-It is recommended to go through the tutorial further below to get introduced to
-all features step by step. However, feel free to go straight for example 5 if
-your really like to dive into the deep end. It is a bit more advanced example
-than those generally bundled with packages, but not that complicated.
+The **Themes Playground** can be used as a
+[web app here](https://rydmike.com/flexcolorscheme/themesplayground-v5).
 
-The **Themes Playground** web app is best experienced at as high resolution as
-possible, preferably even 4k. It is responsive and works splendidly down to
-phone sizes too. It is however easier to see and experience what each
-configuration option in FlexColorScheme does, when you use a large screen
-with high resolution, because then you can see the result of all settings at
-one glance.
+## OpenSource
 
-[<img src="https://rydmike.com/assets_fcsv4/05-web-demo-4k.jpg?raw=true" alt="playground-4k"/>](
-https://rydmike.com/assets_fcsv4/05-web-demo-4k.png?raw=true)
-_FlexColorScheme **Themes Playground** app at 4k resolution (click image to open hires version)_
+The **Themes Playground** application is open source and it is available and bundled
+in the `FlexColorScheme` package example sub-folder in
+[/example/lib/example5](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5).
+
+The playground is actually the last step in the tutorial series. The tutorial goes
+through its main used features, that are relevant to using `FlexColorScheme`
+and that differ from the other examples. It does not go through all the details
+of the application. You are welcome to study its source code for more details,
+it is on purposes a bit excessively commented. The tutorial also talks about
+it's background, design choices and limitations.
+
+All the example live web apps are built from the example folder source code
+included with the package. The web builds and deployments are automated using
+GitHub actions, included in the GitHub repository as well.
+
+## Two Layouts
+
+The Themes Playground application offers two view modes.
+
+1. Topic based page view.
+2. Topic based panels in a large masonry style grid view.
+
+Both views have their pros and cons. On smaller screens and phone
+devices the topic based page view is more practical to use.
+
+The masonry grid view is best experienced at as high resolution as
+possible, preferably even 4k.
+
+Both views are very responsive and work very well down to small phone media
+sizes, also in their landscape mode. Still they both benefit a lot from larger
+media sizes. Mostly because when you use a large screen with high resolution,
+then you can see the result of all settings at one glance.
+
+The page view becomes more useful at typical landscape tablet sizes, since
+at that size you can see the generated setup code in a side by side view, on each
+configuration topic screen.
+
+With the masonry grid, you can open and close multiple panels, including the
+code view, and change settings across multiple panels and see the impact on
+all of them.
+
 
 With the Themes Playground you can also copy any built-in color scheme to a
 customizable color scheme, that you can modify by clicking
@@ -40,4 +72,3 @@ can also generate FlexColorScheme setup code that will create the same
 color scheme and theme that you are looking. All you have to do is copy the
 code and paste it into your app. You can find an example in this
 [tweet and referenced thread](https://twitter.com/RydMike/status/1461381878494150659)
-
