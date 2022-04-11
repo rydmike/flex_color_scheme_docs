@@ -125,19 +125,19 @@ completely OFF to ON and then turn on using component sub-themes, and last as
 we manipulate the `defaultBorder` radius for all widgets. Observe that it changes
 buttons, cards and other elements used by the application itself.
 
-## The Code View
+## Code Generation
 
 When you open the page view on a large enough screen you will see the generated
 setup code, side-by-side with the settings you are changing. Not only is the
-entire theme of application changing as you are changing settings interactively,
-the code generated that you need to setup the same theme is changing as you
+entire theme of the application changing as you modify settings interactively,
+the code generated that you need to setup the same theme, is changing as you
 change settings too.
 
-In the above screen recoding you can se this, pay attention
-to the `defaultRadius` value above as the slider is dragged around.
+In the above screen recoding you can se this, pay for example attention
+to the `defaultRadius` value above, as the slider is dragged around.
 
-The produced code excludes code when default values can be used, and also
-settings that may become redundant or covered by some other setting.
+The generated code aims to exclude code when default values can be used, and
+to also exclude settings that become redundant or covered by some other value.
 
 ## Copy Setup Code
 
@@ -216,23 +216,23 @@ have its own default border radius and show that value when an individual widget
 border radius has not been specified with its slider.
 
 <Tabs
-  defaultValue="given"
+  defaultValue="no-component"
   values={[
-    {label: 'Colors as given', value: 'given'},
-    {label: 'Swap & M3 Error colors', value: 'swap'},
-    {label: 'Reduce colors', value: 'reduce'},
+    {label: 'No Component Themes - Default M2 radius', value: 'no-component'},
+    {label: 'Component Themes - Default M3 radius', value: 'component-defaults'},
+    {label: 'Custom default - Global default', value: 'global-default'},
   ]}>
-  <TabItem value="No Component Themes - Default M2 radius">
+  <TabItem value="no-component">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true"
     caption="Border radius defaults with no components themes, typically results in Flutter SDK defaults."
     alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true)
   </TabItem>
-  <TabItem value="Component Themes - Default M3 radius ">
+  <TabItem value="component-defaults">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true"
     caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
     alt="Smart controls 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true)
   </TabItem>
-  <TabItem value="Custom default - Global default">
+  <TabItem value="global-default">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true"
     caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
     alt="Smart controls 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true)
