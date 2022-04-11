@@ -113,6 +113,11 @@ every rapid slider value change. This can be seen as a slight delay in the
 manifestation of the latest values, as the theme is animating to the last
 slider value.
 
+
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true"
+caption="ThemeData animated change continues a bit after slider change stops, plus realtime code update"
+alt="border change radius demo" zoom />
+
 <table>
   <tr>
     <td><Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true" alt="border change radius demo" zoom /></td>
@@ -155,8 +160,9 @@ theme setup code with a copy icon as well. This action button and dialog
 view can be useful on smaller sized media where you cannot see the code side
 by side, like phones and tablet in vertical view.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true" alt="Copy code" zoom />
-
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true"
+caption="Copy theme setup code, via side action or COPY button in code view"
+alt="Copy code" zoom />
 
 Once you have copied the code for the setup you configured, you can paste as is
 into you application, or use it as base for further modifications. You can
@@ -175,7 +181,9 @@ in any conflicting setup. When you turn OFF FlexColorScheme there is
 not many controls that can be operated, with opinionated component sub-themes
 OFF most controls are still disabled.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true" alt="Unavailable controls" zoom />
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true"
+caption="Controls that have no function in a given configuration are disabled"
+alt="Unavailable controls" zoom />
 _Controls that have no function in a given configuration are disabled_
 
 When you enable component sub-themes, most controls are available. However there
@@ -183,7 +191,9 @@ are a few that are disabled in certain combination or only appear under given
 conditions. Like using computed dark theme, or which color input to use on custom
 dark theme as keep color for the seeded ColorSchemes, to mention a few.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true" alt="Available controls" zoom />
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true"
+caption="Most controls are available when component themes are enabled"
+alt="Available controls" zoom />
 _Most controls are available when component themes are enabled_
 
 Controls also know and show different default values depending on your settings.
@@ -196,7 +206,9 @@ component will use when any give property is undefined.
 When you turn OFF using component themes, ot FlexColorscheme entirely, it again
 shows its default in that mode, and radius widget also become disabled.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true" alt="Defaults 1" zoom />
+[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true"
+caption="Border radius defaults with no components themes, typically results in Flutter SDK defaults"
+alt="Defaults 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true)
 _Border radius defaults with no components themes, often results in Flutter SDK defaults, but not always_
 
 This is different if FlexColorScheme is not used at all, then you are looking at
@@ -209,7 +221,9 @@ If you in it keep `defaultRadius` undefined, then each widget will
 have its own default border radius and show that value when an individual widget
 border radius has not been specified with its slider.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02?raw=true" alt="Defaults 2" zoom />
+[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02?raw=true"
+caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification"
+alt="Defaults 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02?raw=true)
 _Border radius defaults with component themes, defaults per widget to its M3 radius specification_
 
 If you set a global default radius, component themes will show that values as their
@@ -225,8 +239,29 @@ the resulting theme.
 
 ## Input Colors
 
-The 
+The input colors is you viw into the details of what your actual input colors
+are. There ar also some tools you can use to manipulate the input color.
+Like swapping primary and secondary colors. Reducing the amount os used colors,
+and in dark mode using computed dark theme. Which is useful if you have only
+defined colors for your light time.
+
+**TODO: Add images**
 
 ## Seeded ColorScheme
 
-**TODO: Show usage of seeded scheme and tones**
+Using seeded ColorScheme is a way to use the Material 3 color scheme generation
+tool, that generates complete and well balanced `ColorScheme`s for both
+light and dark mode, from input key colors.
+
+Flutter only directly offers using a single color a main, or primary color, as
+seed color for the generated ColorScheme. With FlexColorScheme, you can use
+the same setup, but you can also go further and use secondary and tertiary input
+key colors to generate the ColorScheme.
+
+These key colors could also be extracted and sourced from images, like e.g.
+the device wall-paper, or even from image used in an app or seen in a flow
+of images.
+
+
+
+**TODO: Add images**
