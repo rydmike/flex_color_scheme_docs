@@ -227,13 +227,13 @@ been specified with its slider.
 <Tabs
   defaultValue="no-component"
   values={[
-    {label: 'No Component Themes - Default M2 radius', value: 'no-component'},
-    {label: 'Component Themes - Default M3 radius', value: 'component-defaults'},
-    {label: 'Custom default - Global default', value: 'global-default'},
+    {label: 'Flutter SDK M2 defaults', value: 'no-component'},
+    {label: 'Component M3 defaults', value: 'component-defaults'},
+    {label: 'Custom default value', value: 'global-default'},
   ]}>
   <TabItem value="no-component">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true"
-    caption="Border radius defaults with no components themes, typically results in Flutter SDK defaults."
+    caption="Defaults with no component themes, typically results in Flutter SDK M2 defaults, as here with border radius."
     alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true)
   </TabItem>
   <TabItem value="component-defaults">
@@ -243,30 +243,34 @@ been specified with its slider.
   </TabItem>
   <TabItem value="global-default">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true"
-    caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
+    caption="Border radius using a given global default value."
     alt="Smart controls 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true)
   </TabItem>
 </Tabs>
 
-When you set a global default radius, component themes will show that values as their
-default border radius when not defined and also state it comes from the global
-border radius default. If a component widget has specified its own border radius
+When you set a global default radius, component themes will show and use that
+values as their default border radius when not defined and also state it comes
+from the global border radius default. If a component widget has specified its own border radius
 it shows that value. If you then turn OFF component sub-themes, it will get
-disabled and show Flutter SDK material 2 default border radius.
+disabled and show Flutter SDK Material 2 default border radius (4 dp) again.
 
-This type of logic applies so far to border radius and various differences in
-default colors and elevation when FlexColorScheme is not used at all, is used,
-but component themes are not enabled, and when enabled.
+This type of logic applies so far to border radius, various differences in
+default colors and elevations, when FlexColorScheme is not used at all, is used,
+but component themes are not enabled, and when they are enabled.
 
 Small details like this, helps you keep on top of what default values are used
-when, and controls are only available when they actually have an impact on
-the resulting theme.
+when. Controls that are only available when they actually have an impact on
+the resulting theme, means they can only be operated when they do can impact
+the theme.
 
 ## Input Colors
 
 The input colors is your view into your scheme's raw input colors. There are
-some options you can use to manipulate the input colors with.
-Like swapping primary and secondary colors. Reducing the amount of used colors,
+settings you can use to manipulate the input colors with before they are
+used to create the effective `ColorScheme` for the theme.
+
+You can swap primary and secondary colors, including their container colors.
+Reduce the amount of used colors,
 and in dark mode using computed dark theme. Computed dark theme is useful if
 you have only defined colors for your light time.
 
@@ -276,41 +280,234 @@ you have only defined colors for your light time.
     {label: 'Colors as given', value: 'given'},
     {label: 'Swap & M3 Error colors', value: 'swap'},
     {label: 'Reduce colors', value: 'reduce'},
+    {label: 'Compute dark colors', value: 'compute-dark'},
   ]}>
   <TabItem value="given">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true"
     caption="Input colors used as given and defined."
-    alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true)
+    alt="Input colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true)
   </TabItem>
   <TabItem value="swap">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true"
     caption="Input colors with primary and secondary swapped and using Material 3 error colors instead of Material 2"
-    alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true)
+    alt="Input colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true)
   </TabItem>
   <TabItem value="reduce">
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true"
     caption="Theme defining input colors reduced from 6 to 4, and undefined ones computed."
-    alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true)
+    alt="Input colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true)
+  </TabItem>
+    <TabItem value="compute-dark">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-13-input-04.png?raw=true"
+    caption="Theme defining input colors reduced from 6 to 4, and undefined ones computed."
+    alt="Input colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-13-input-04.png?raw=true)
   </TabItem>
 </Tabs>
+
+In the above case, using the masonry grid view on a large screen is helpful, since
+we can open and close panels to configure the view like above, ans see the
+input colors and the detailed full effective `ColorScheme` at the same time.
 
 ## Seeded ColorScheme
 
 Using seeded ColorScheme is a way to use the Material 3 color scheme generation
 tool, that generates complete and well balanced `ColorScheme`s for both
-light and dark mode, from input key colors.
+light and dark mode, from only one or a few input key color values.
 
-Flutter only directly offers using a single color a main, or primary color, as
+Flutter only directly offers using a single color, a main or primary color, as
 seed color for the generated ColorScheme. With FlexColorScheme, you can use
 the same setup, but you can also go further and use secondary and tertiary input
-key colors to generate the ColorScheme.
+colors as keys to generate the ColorScheme.
 
-These key colors could also be extracted and sourced from images, like e.g.
+These input key colors could also be extracted and sourced from images, like e.g.
 the device wall-paper, or even from image used in an app or seen in a flow
-of images.
+of images and then used in FlexColorScheme to generate the `ColorScheme` from
+them.
 
-**TODO: Add images**
+Using a Seeded ColorScheme is also a form of input color modifier, since it takes
+the color values defined for the light theme's primary, secondary and tertiary
+colors, and computes an entirely new derived `ColorScheme` from them.
+
+Below we can see the theme as defined, with no seed `ColorScheme`. With a
+single primary color seeded ColorScheme. Using three color keys, a separate
+one for each main generated Tonal Palette. And the last version
+we lock the main colors, primary, secondary and tertiary to continue to
+use their defined Flutter Dash "brand" colors, but keep all the other
+computed colors for the ColorScheme, since they look balanced and nice and will
+make an app using Material 3 Color System even better.
+
+<Tabs
+  defaultValue="base"
+  values={[
+    {label: 'Dash base theme', value: 'base'},
+    {label: 'Seeded from primary', value: 'seeded-primary'},
+    {label: 'Seeded from main colors', value: 'seeded-all'},
+    {label: 'Keeping main colors', value: 'keep-main'},
+  ]}>
+  <TabItem value="base">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-14-seeded-01.png?raw=true"
+    caption="The Dash theme as defined and used as input for the seeded ColorScheme."
+    alt="Seed colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-14-seeded-01.png?raw=true)
+  </TabItem>
+  <TabItem value="seeded-primary">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-15-seeded-02.png?raw=true"
+    caption="ColorScheme seeded from Dash light theme primary color"
+    alt="Seed colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-15-seeded-02.png?raw=true)
+  </TabItem>
+  <TabItem value="seeded-all">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-16-seeded-03.png?raw=true"
+    caption="ColorScheme seeded from Dash light theme primary, secondary and tertiary colors"
+    alt="Seed colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-16-seeded-03.png?raw=true)
+  </TabItem>
+    <TabItem value="keep-main">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-17-seeded-04.png?raw=true"
+    caption="Keeping primary, secondary and tertiary as defined by input, but use seeded results for all other colors."
+    alt="Seed colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-17-seeded-04.png?raw=true)
+  </TabItem>
+</Tabs>
+
+## Tonal Palettes
+
+What are the tonal palettes? They are described in detail in the Material
+guide 3 new color system [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
+
+The short version, a Material 3 ColorScheme uses six different Tonal Palettes,
+with 13 colors tones (shades) each:
+
+- Primary palette
+- Secondary palette
+- Tertiary palette
+- Error palette
+- Neutral palette
+- Neutral variant palette
+
+The ColorScheme uses colors from these palettes for its colors, by using a
+predefined tone for each color from given palettes. The light and matching
+dark mode ColorScheme use the same tonal palettes, they just use different
+tones from the same palette for corresponding colors.
+
+The Material 3 color system calculation algorithm produces the above tonal
+palettes, based on given input colors and then colors from the palettes
+are assigned to the ColorScheme.
+
+In the Themes Playground, when you use seed generated ColorSchemes, you can see
+all the generated Tonal Palettes.
+
+Below we can see the tonal palettes when using the Flutter SDK default Material
+3 ColorScheme tonal palette generation algorithm, based on a single input
+key color, it is shown in both light and dark theme. We can see that the
+tonal palettes for both light and dark theme are identical, what varies is
+which tones are used for each color in light and dark theme mode.
+
+We can for example see that tone 40, from primary tonal palette is being
+used for the `ColorScheme` primary color in light theme mode, while tone 80 is
+being used in dark theme mode. On the web and desktop app, if you hover with the
+mouse over seeded `ColorScheme` color, its source color will be highlighted in the
+computed Tonal Palette.
+
+<Tabs
+  defaultValue="tonal-light"
+  values={[
+    {label: 'Tonal Light Primary', value: 'tonal-light'},
+    {label: 'Tonal Dark Primary', value: 'tonal-dark'},
+    {label: 'All keys Light Tertiary Container', value: 'tonal-all-light'},
+    {label: 'All keys Dark Tertiary Container', value: 'tonal-all-dark'},
+  ]}>
+  <TabItem value="tonal-light">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-18-tonal-light.png?raw=true"
+    caption="Flutter SDK one key color Tonal Palette and primary light color tone mapping"
+    alt="Seed colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-18-tonal-light.png?raw=true)
+  </TabItem>
+  <TabItem value="tonal-dark">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-19-tonal-dark.png?raw=true"
+    caption="Flutter SDK one key color Tonal Palette and primary dark color tone mapping"
+    alt="Seed colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-19-tonal-dark.png?raw=true)
+  </TabItem>
+  <TabItem value="tonal-all-light">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-20-tonal-light.png?raw=true"
+    caption="All key colors Tonal Palette and tertiary container light color tone mapping"
+    alt="Seed colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-20-tonal-light.png?raw=true)
+  </TabItem>
+    <TabItem value="tonal-all-dark">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-21-tonal-dark.png?raw=true"
+    caption="All key colors Tonal Palette and tertiary container dark color tone mapping"
+    alt="Seed colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-21-tonal-dark.png?raw=true)
+  </TabItem>
+</Tabs>
+
+
+For comparison we above also see the same Flutter Dash theme based tonal palette
+generation when using primary,
+secondary and tertiary colors as seed key input colors, instead of only primary color.
+This time as an example showing the tone mapping of the tertiary container color
+in light and dark theme mode.
+
+## Flex Tones
+
+Above we saw that even when we use three input color as keys, we do no get so much
+of the chroma in the used input color in the resulting Tonal Palettes for the
+secondary and tertiary colors. This is because the default Material 3 Tonal Palette
+calculation algorithm locks chroma for secondary tonal palette generation to 16,
+and it is actually the chroma value from the used key color.
+
+The primary tonal palette also uses the chroma from the key color, but only if
+it is higher than 48, if it is lower, 48 is used.
+
+For the tertiary tonal palette chroma is locked to 24, so a bit more colorful
+than secondary, which can also be seen in the palettes. Additionally hue is
+rotated +60 from th input key color hue, effectively generating a new hue based
+on the single input key color.
+
+The neutral palettes are also using the key color as input, with very low chroma,
+4 for the neutral palette and 8 for the neutral variant palette. This will
+create neutral surface colors that contain a hint of te key (primary) color
+in the surfaces as well. This is similar in concept to the primary color surface
+blends that FlexColorScheme has supported since version 1.0. In the Surface blends
+chapter we will se that surface blends can optionally also be used even when
+using seed generated ColorSchemes, many of the example above already did do that.
+
+When we used key colors also for the secondary and tertiary tonal palette
+generation it above mean we substituted the chroma from primary and secondary as
+chroma inputs to their palettes, and no longer relied on the values derived
+from the single input primary color.
+
+We did however not do anything the the chroma limits used bay the default Material 3
+design Tonal Palette color generation algorithm.
+
+FlexColorScheme, would not be "flex" if it would not let us modify that that too.
+We can set custom parameters for the values, that will use the input color chroma
+as base, but always lock it to a given value, or we can let it use whatever chroma
+it has, or we can say it can use whatever chroma it has, as long as it is over
+a certain limit. This is useful because if the chroma is very low in the input color
+we basically get a greyscale tonal palette.
+
+With the FlexTones API you can define these limits as desired for the tonal palette
+generation. We can do even more than that, we can also modify the mapping of which
+tone is used for what color from the generated Tonal Palettes, as long as it is from
+the correct source palette. Not all tones are great, but for some cases you can very
+well go up or down a tone for a given color in ColorScheme for stronger more contrasty
+look or an even more muted one.
+
+The Theme Playground in this version only let's you change FlexTone settings between 5
+prebuilt configurations. It is however very simple to make custom ones with the API.
+In fact the pre-made ones are mainly intended as examples. You can read more about
+`FlexTones` and its usage in the package API reference
+[here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones-class.html).
+
+Maybe in some future version of the Theme Playground custom interactive configuration
+of FlexTones will be added. For now let's compare the built-in ones we can swap
+between in the current version. When you select a pre-made `FlexTones` configuration,
+the Theme Playground app show a brief summary of its configuration.
+
+
+
+
+**TODO: Add info and images about flex tones**
 
 ## Surface blends
 
-**TODO: Add info and images of surface blends**
+**TODO: Add info and images about surface blends**
+
+## Custom Colors
+
+**TODO: Add info and images on how to use custom colors**
