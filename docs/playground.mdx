@@ -62,10 +62,10 @@ you can see the result of more settings at one glance.
 
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true" alt="page view demo"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true)</td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true" alt="page view demo"/></td>
   </tr>
   <tr>
-    <td> **_Themes Playground - Topic based page view, responsiveness demo (click to open in full size)_** </td>
+    <td> **_Themes Playground - Topic based page view, responsiveness demo_** </td>
   </tr>
 </table>
 
@@ -75,10 +75,10 @@ on each page's configuration topic.
 
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true" alt="masonry view demo"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true)</td>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true" alt="masonry view demo"/></td>
   </tr>
   <tr>
-    <td> **_Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo (click to open in full size)_** </td>
+    <td> **_Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo_** </td>
   </tr>
 </table>
 
@@ -115,12 +115,14 @@ slider value.
 
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true" alt="border change radius demo"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true)</td>
+    <td><Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true" alt="border change radius demo" zoom /></td>
   </tr>
   <tr>
-    <td> **_ThemeData animated change continues a bit after slider change stops, plus realtime code update (click to open in full size)_** </td>
+    <td> **_ThemeData animated change continues a bit after slider change stops, plus realtime code update_** </td>
   </tr>
 </table>
+
+**TODO: GIF links opened as download GIF, not in full screen view! Other option to view in full screen mode?**
 
 In the above recording you can see how the application's look and all
 widgets in it, change as we turn on FlexColorScheme theming from being
@@ -153,6 +155,8 @@ theme setup code with a copy icon as well. This action button and dialog
 view can be useful on smaller sized media where you cannot see the code side
 by side, like phones and tablet in vertical view.
 
+**TODO: Add image examples of copy code**
+
 Once you have copied the code for the setup you configured, you can paste as is
 into you application, or use it as base for further modifications. You can
 also paint and select only parts of the code.
@@ -163,3 +167,31 @@ The user interface also disables controls and settings that are not available
 in any conflicting setup. When you turn OFF FlexColorScheme there is
 not many controls that can be operated, with opinionated component sub-themes
 OFF most controls are still disabled.
+
+**TODO: Add image examples of disabled controls**
+
+Controls also know and show different default values depending on your settings.
+If you turn OFF using FlexColorScheme, toggle using component sub-themes, and
+even change using the default radius to a fixed value. Widgets know and tell you
+what their default value is in each situation.
+
+The default value in each situation, means the default style and behavior a
+component will use when any give property is undefined.
+This is different if FlexColorScheme is not used at all, then you are looking at
+Flutter SDK default behavior for the widget. If you turn ON FlexColorScheme,
+but keep component sub-themes OFF, then you are looking at the FlexColorScheme
+[core defaults](/core_defaults). With sub-themes on, you again get different
+defaults.
+
+**TODO: Add image examples of border radius default values **
+
+If you in it keep `defaultRadius` undefined, then each widget will
+have its own default border radius and show that value when an individual widget
+border radius has not been specified with its slider. If you set a global
+default radius, they will show that values as their default border radius,
+and also state it comes from the global border radius default.
+
+When you turn OFF using component themes, ot FlexColorscheme entirely, it again
+shows its default in that mode, and radius widget also become disabled.
+
+This little details helps you keep on on top of what the
