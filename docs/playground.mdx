@@ -1,74 +1,157 @@
 # Using Themes Playground
 
-**TODO: Add NEW guide on how to use Themes Playground V5**
+**TODO: Complete the NEW guide on how to use Themes Playground V5**
 
-This chapter goes through basics of how to use the Themes Playground. Generally
-it is simple enough and you probably not need a guide, but if you get stuck on some
+This chapter goes through the basics of how to use the Themes Playground. Generally
+it is simple and you probably don't need a guide, but if you get stuck on some
 finer point, you might find answers here.
 
 The [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5)
 is a useful tool to find **FlexColorScheme** themes and settings you
-like. You can also use it to see what you can do with FlexColorScheme.
+like. You can also use it to learn what you can do with FlexColorScheme.
 The playground persists all its settings, and you can reset them back to their
-default values so don't be afraid to experiment.
+default values, so don't be afraid to experiment.
 
-The most important feature of the **Themes Playground**
-is that it can generate the Flutter FlexColorScheme setup code needed to
+The most useful feature of the **Themes Playground** is that it can
+generate the Dart and Flutter FlexColorScheme setup code needed to
 produce the shown active theme configuration. It even shows and modifies the
-setup code, as you modify settings, and you can see it side-by-side with your
-settings. This is a fun way to get familiar with the API too.
+setup code as you change settings, and you can see the code side-by-side as
+you change settings. This is also a fun way to get familiar with the API too,
+additionally fiddling with the different themes and settings can be quite
+addictive.
 
 The **Themes Playground** can be used as a
 [web app here](https://rydmike.com/flexcolorscheme/themesplayground-v5).
 
-## OpenSource
+## Open Source
 
-The **Themes Playground** application is open source and it is available and bundled
-in the `FlexColorScheme` package example sub-folder in
+The **Themes Playground** application is open source and is bundled with
+in the `FlexColorScheme` package example sub-folder. In its GitHub repository
+you can find it here
 [/example/lib/example5](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5).
 
-The playground is actually the last step in the tutorial series. The tutorial goes
-through its main used features, that are relevant to using `FlexColorScheme`
-and that differ from the other examples. It does not go through all the details
-of the application. You are welcome to study its source code for more details,
-it is on purposes a bit excessively commented. The tutorial also talks about
-it's background, design choices and limitations.
+The playground is also the last step in the package tutorial series. The tutorial goes
+through its main used features that are relevant to using `FlexColorScheme`,
+and features that differ from the previous examples. It does not go through all
+the details of the application. You are welcome to study its source code for
+more insights if it is of interest. It is on purposes a bit excessively
+commented. The tutorial also talks about it's background, design choices
+and limitations.
 
-All the example live web apps are built from the example folder source code
+All the example apps are built from the example folder source code
 included with the package. The web builds and deployments are automated using
-GitHub actions, included in the GitHub repository as well.
+GitHub actions, that are included in the GitHub repository as well.
 
 ## Two Layouts
 
 The Themes Playground application offers two view modes.
 
-1. Topic based page view.
-2. Topic based panels in a large masonry style grid view.
+1. Topic based page views.
+2. Topic based collapsible panels, in a large masonry style grid view.
 
 Both views have their pros and cons. On smaller screens and phone
-devices the topic based page view is more practical to use.
+devices, the topic based page view is more practical to use.
 
-The masonry grid view is best experienced at as high resolution as
+The masonry based grid view is best experienced at as high resolution as
 possible, preferably even 4k.
 
 Both views are very responsive and work very well down to small phone media
-sizes, also in their landscape mode. Still they both benefit a lot from larger
-media sizes. Mostly because when you use a large screen with high resolution,
-then you can see the result of all settings at one glance.
+sizes, even in landscape mode. Still they both benefit a lot from larger
+media sizes. Mostly because when you use a larger screen with high resolution,
+you can see the result of more settings at one glance.
 
-The page view becomes more useful at typical landscape tablet sizes, since
-at that size you can see the generated setup code in a side by side view, on each
-configuration topic screen.
+<table>
+  <tr>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true" alt="page view demo"/></td>
+  </tr>
+  <tr>
+    <td> **_Themes Playground - Topic based page view, responsiveness demo_** </td>
+  </tr>
+</table>
+
+The page view becomes more useful at typical landscape tablet sizes or larger.
+At those sizes you can see the generated setup code in a side-by-side view,
+on each page's configuration topic.
+
+<table>
+  <tr>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true" alt="masonry view demo"/></td>
+  </tr>
+  <tr>
+    <td> **_Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo_** </td>
+  </tr>
+</table>
 
 With the masonry grid, you can open and close multiple panels, including the
 code view, and change settings across multiple panels and see the impact on
-all of them.
+all of them. Sometimes having the right combination of panels with different
+topics open at the same time, is useful in order to see and understand the
+impact of different theme settings. While some settings are by their nature
+limited to only affecting the components shown on the same topic page. We will
+explore some examples of both cases.
+
+## Interactive Theme
+
+When you change settings in this application, be it colors, border radius and
+other styles, it is important to recognize that there is **no** code
+in this application, or the other examples, that sets color and style on any of
+the displayed components being modified.
+
+What is happening is that you are manipulating the global theme
+for the application, and the application is being rebuilt with a new theme
+interactively and in real time, every time as you modify settings that
+create a new `ThemeData`. This is not something you would do in a typical
+application, not to the extent this application does it anyway.
+
+Some of the theme changes can be a bit taxing calculation
+wise. Additionally some changes that appear to be lagging behind, are so for
+a reason. The `MaterialApp` always lerp animates a theme change from
+previous `ThemeData` value, to the new one. For example, when you drag sliders
+to change border radius, this triggers an animation from a complete
+`ThemeData` based on the previous slider value to the next one value, for
+every rapid slider value change. This can be seen as a slight delay in the
+manifestation of the latest values, as the theme is animating to the last
+slider value.
+
+<table>
+  <tr>
+    <td><img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true" alt="border change radius demo"/></td>
+  </tr>
+  <tr>
+    <td> **_ThemeData animated change continues a bit after slider change stops, plus realtime code update_** </td>
+  </tr>
+</table>
+
+In the above recording you can see how the application's look and all
+widgets in it, change as we turn on FlexColorScheme theming from being
+completely OFF to ON and then turn on using component sub-themes, and last as
+we manipulate the `defaultBorder` radius for all widgets. Observe that it changes
+buttons, cards and other elements used by the application itself.
+
+## The Code view
+
+When you open the page view on a large enough screen you will see the generated
+setup code, side-by-side with the settings you are changing. Not only is the
+entire theme of application changing as you are changing settings interactively,
+the code generated that you need to setup the same theme is changing as you
+change settings too.
+
+In the above screen recoding you can se this, pay attention
+to the `defaultRadius` value above as the slider is dragged around.
+
+## Copy Setup Code
+
+Whenever you want the code you can copy it to the clipboard with the copy
+button and paste it into you IDE to use.
+
+You can also at any time in any view, use the drawer, side rail or side menu
+action item "Copy theme code". This will open a dialog that shows the current
+theme setup code with a copy icon as well. This action button and dialog
+view can be useful on smaller sized media where you cannot see the code side
+by side, like phones and tablet in vertical view.
+
+Once you have copied the code for the setup you configured, you can paste as is
+into you application, or use it as base for further modifications. You can
+also paint and select only parts of the code.
 
 
-With the Themes Playground you can also copy any built-in color scheme to a
-customizable color scheme, that you can modify by clicking
-on the four main scheme colors in the custom scheme. The Themes Playground
-can also generate FlexColorScheme setup code that will create the same
-color scheme and theme that you are looking. All you have to do is copy the
-code and paste it into your app. You can find an example in this
-[tweet and referenced thread](https://twitter.com/RydMike/status/1461381878494150659)
