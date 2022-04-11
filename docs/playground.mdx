@@ -60,17 +60,29 @@ sizes, even in landscape mode. Still they both benefit a lot from larger
 media sizes. Mostly because when you use a larger screen with high resolution,
 you can see the result of more settings at one glance.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true"
-caption="Themes Playground - Topic based page view, responsiveness demo."
-alt="page view demo"/>
+
 
 The page view becomes more useful at typical landscape tablet sizes or larger.
 At those sizes you can see the generated setup code in a side-by-side view,
 on each page's configuration topic.
 
-<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
-caption="Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo."
-alt="masonry view demo" zoom />
+<Tabs
+  defaultValue="page"
+  values={[
+    {label: 'Page View', value: 'page'},
+    {label: 'Masonry Grid View', value: 'masonry'},
+  ]}>
+  <TabItem value="page">
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true"
+    caption="Themes Playground - Topic based page view, responsiveness demo."
+    alt="page view demo"/>
+  </TabItem>
+  <TabItem value="masonry">
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
+    caption="Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo."
+    alt="masonry view demo" zoom />
+  </TabItem>
+</Tabs>
 
 With the masonry grid, you can open and close multiple panels, including the
 code view, and change settings across multiple panels and see the impact on
@@ -102,7 +114,6 @@ to change border radius, this triggers an animation from a complete
 every rapid slider value change. This can be seen as a slight delay in the
 manifestation of the latest values, as the theme is animating to the last
 slider value.
-
 
 <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true"
 caption="ThemeData animated change continues a bit after slider change stops, plus realtime code update."
@@ -160,20 +171,29 @@ in any conflicting setup. When you turn OFF FlexColorScheme there is
 not many controls that can be operated, with opinionated component sub-themes
 OFF most controls are still disabled.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true"
-caption="Controls that have no function in a given configuration are disabled."
-alt="Unavailable controls" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true)
-
-
 When you enable component sub-themes, most controls are available. However there
 are a few that are disabled in certain combination or only appear under given
 conditions. Like using computed dark theme, or which color input to use on custom
 dark theme as keep color for the seeded ColorSchemes, to mention a few.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true"
-caption="Most controls are available when component themes are enabled."
-alt="Available controls" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true)
 
+<Tabs
+  defaultValue="disabled"
+  values={[
+    {label: 'None relevant disabled', value: 'disabled'},
+    {label: 'Enabled when available', value: 'enabled'},
+  ]}>
+  <TabItem value="disabled">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true"
+    caption="Controls that have no function in a given configuration are disabled."
+    alt="Unavailable controls" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true)
+  </TabItem>
+  <TabItem value="enabled">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true"
+    caption="Most controls are available when component themes are enabled."
+    alt="Available controls" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true)
+  </TabItem>
+</Tabs>
 
 Controls also know and show different default values depending on your settings.
 If you turn OFF using FlexColorScheme, toggle using component sub-themes, and
@@ -185,10 +205,6 @@ component will use when any give property is undefined.
 When you turn OFF using component themes, ot FlexColorscheme entirely, it again
 shows its default in that mode, and radius widget also become disabled.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true"
-caption="Border radius defaults with no components themes, typically results in Flutter SDK defaults."
-alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true)
-
 This is different if FlexColorScheme is not used at all, then you are looking at
 Flutter SDK default behavior for the widget. If you turn ON FlexColorScheme,
 but keep component sub-themes OFF, then you are looking at the FlexColorScheme
@@ -199,18 +215,33 @@ If you in it keep `defaultRadius` undefined, then each widget will
 have its own default border radius and show that value when an individual widget
 border radius has not been specified with its slider.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02?raw=true"
-caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
-alt="Smart controls 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02?raw=true)
+<Tabs
+  defaultValue="given"
+  values={[
+    {label: 'Colors as given', value: 'given'},
+    {label: 'Swap & M3 Error colors', value: 'swap'},
+    {label: 'Reduce colors', value: 'reduce'},
+  ]}>
+  <TabItem value="No Component Themes - Default M2 radius">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true"
+    caption="Border radius defaults with no components themes, typically results in Flutter SDK defaults."
+    alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true)
+  </TabItem>
+  <TabItem value="Component Themes - Default M3 radius ">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true"
+    caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
+    alt="Smart controls 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true)
+  </TabItem>
+  <TabItem value="Custom default - Global default">
+    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true"
+    caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
+    alt="Smart controls 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true)
+  </TabItem>
+</Tabs>
 
 If you set a global default radius, component themes will show that values as their
 default border radius when not defined and also state it comes from the global
 border radius default.
-
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03?raw=true"
-caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
-alt="Smart controls 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03?raw=true)
-
 
 Small details like this, helps you keep on top of what default values are used
 when, and controls are only available when they actually have an impact on
@@ -232,29 +263,19 @@ you have only defined colors for your light time.
     {label: 'Reduce colors', value: 'reduce'},
   ]}>
   <TabItem value="given">
-    This is given colors.
-
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true"
     caption="Input colors used as given and defined."
     alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true)
-
   </TabItem>
   <TabItem value="swap">
-    This is swapped colors.
-
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true"
     caption="Input colors with primary and secondary swapped and using Material 3 error colors instead of Material 2"
     alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true)
-
   </TabItem>
   <TabItem value="reduce">
-    This reduced colors.
-
     [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true"
     caption="Theme defining input colors reduced from 6 to 4, and undefined ones computed."
     alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true)
-
-
   </TabItem>
 </Tabs>
 
