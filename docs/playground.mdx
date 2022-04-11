@@ -106,24 +106,26 @@ create a new `ThemeData`. This is not something you would do in a typical
 application, not to the extent this application does it anyway.
 
 Some of the theme changes can be a bit taxing calculation
-wise. Additionally some changes that appear to be lagging behind, are so for
-a reason. The `MaterialApp` always lerp animates a theme change from
-previous `ThemeData` value, to the new one. For example, when you drag sliders
+wise. Some changes that appear to be lagging behind, are so due to the theme
+change animation. The `MaterialApp` always lerp animates a theme change from
+previous `ThemeData` value, to the new `ThemeData`. For example, when you drag sliders
 to change border radius, this triggers an animation from a complete
-`ThemeData` based on the previous slider value to the next one value, for
-every rapid slider value change. This can be seen as a slight delay in the
-manifestation of the latest values, as the theme is animating to the last
-slider value.
+`ThemeData` based on the previous slider value to the next one, based on the new
+slider value, for every rapid slider value change. This can be seen as a slight
+delay in the manifestation of the latest values, as the theme is animating to the
+last slider value. This can certainly be avoided by not triggering a theme change
+until slider change is complete, but in this case we preferred to see the change
+as the slider is being adjusted.
 
 <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-03-radius-change-1.gif?raw=true"
 caption="ThemeData animated change continues a bit after slider change stops, plus realtime code update."
 alt="border change radius demo" zoom />
 
-In the above recording you can see how the application's look and all
-widgets in it, change as we turn on FlexColorScheme theming from being
-completely OFF to ON and then turn on using component sub-themes, and last as
-we manipulate the `defaultBorder` radius for all widgets. Observe that it changes
-buttons, cards and other elements used by the application itself.
+In the above recording you can see how the application's look, and all
+widgets in it, change as we switch FlexColorScheme theming from being
+completely OFF to ON, and then turn on using component sub-themes, and lastly as
+we manipulate the `defaultBorder` radius for all widgets. Observe that it also
+changes all buttons, cards and other elements used by the application itself.
 
 ## Code Generation
 
@@ -133,49 +135,48 @@ entire theme of the application changing as you modify settings interactively,
 the code generated that you need to setup the same theme, is changing as you
 change settings too.
 
-In the above screen recoding you can se this, pay for example attention
+In the above screen recoding you can see this. Pay for example attention
 to the `defaultRadius` value above, as the slider is dragged around.
 
 The generated code aims to exclude code when default values can be used, and
-to also exclude settings that become redundant or covered by some other value.
+to also exclude settings that become redundant if covered by some other value.
 
 ## Copy Setup Code
 
-Whenever you want the code you can copy it to the clipboard with the copy
-button and paste it into you IDE to use.
+Whenever you want the code, you can copy it to the clipboard with the copy
+button and paste it into your IDE into your project to use it.
 
-You can also at any time in any view, use the drawer, side rail or side menu
+You can also at any time, in any view, use the drawer, side rail or side menu
 action item "Copy theme code". This will open a dialog that shows the current
 theme setup code with a copy icon as well. This action button and dialog
 view can be useful on smaller sized media where you cannot see the code side
-by side, like phones and tablet in vertical view.
+by side.
 
 [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true"
 caption="Copy theme setup code, via side action or COPY button in code view."
 alt="Copy code" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true)
 
-Once you have copied the code for the setup you configured, you can paste as is
-into you application, or use it as base for further modifications. You can
-also paint and select only parts of the code.
+Once you have copied the code for the setup you configured, you can paste it
+as is into your application, or use it as base for further modifications. You can
+also paint and select only parts of the code, and copy just a few lines, which
+might be useful if you only modified a few settings from previous configuration.
 
 If you want to quickly test out themes on a pre-made template app, you
 can use the [Copy Playground Theme](/copy_playground), it is useful since it
-includes presentation of all colors and common Flutter Material UI widgets,
-so you can see and verify that the theme looks as intended.
-
+includes presentation of all colors and common Flutter Material UI widgets.
+You can use them to verify that the theme looks as intended.
 
 ## Smart Controls
 
-The user interface also disables controls and settings that are not available
-in any conflicting setup. When you turn OFF FlexColorScheme there is
+The user interface disables controls and settings that are not available
+in a given configuration. When you turn OFF FlexColorScheme, there are
 not many controls that can be operated, with opinionated component sub-themes
 OFF most controls are still disabled.
 
-When you enable component sub-themes, most controls are available. However there
+When you enable component sub-themes, most controls are available. However, there
 are a few that are disabled in certain combination or only appear under given
 conditions. Like using computed dark theme, or which color input to use on custom
 dark theme as keep color for the seeded ColorSchemes, to mention a few.
-
 
 <Tabs
   defaultValue="disabled"
@@ -202,18 +203,26 @@ what their default value is in each situation.
 
 The default value in each situation, means the default style and behavior a
 component will use when any give property is undefined.
-When you turn OFF using component themes, ot FlexColorscheme entirely, it again
-shows its default in that mode, and radius widget also become disabled.
+When you turn OFF using component themes, or FlexColorscheme entirely, it shows
+the default in that mode. In the above example the radius widget also becomes
+disabled.
 
 This is different if FlexColorScheme is not used at all, then you are looking at
 Flutter SDK default behavior for the widget. If you turn ON FlexColorScheme,
 but keep component sub-themes OFF, then you are looking at the FlexColorScheme
-[core defaults](/core_defaults). With sub-themes on, you again get different
-defaults.
+[core defaults](/core_defaults). Mostly they are the same as when not using
+FlexColorScheme at all, but for certain colors and elevations that they too
+differ. The the FlexColorScheme [core defaults](/core_defaults) explains, how,
+when and why FlexColorScheme differs from Flutter SDK.
 
-If you in it keep `defaultRadius` undefined, then each widget will
-have its own default border radius and show that value when an individual widget
-border radius has not been specified with its slider.
+With component sub-themes on, you again get different defaults, especially for
+border radius that default to Material 3 specifications where border radius
+varies a lot per component type.
+
+If you when using component sub-themes keep `defaultRadius` undefined,
+then each component widget will use its Material 3 default border radius value
+and show that value when an individual widget border radius has not
+been specified with its slider.
 
 <Tabs
   defaultValue="no-component"
@@ -239,9 +248,15 @@ border radius has not been specified with its slider.
   </TabItem>
 </Tabs>
 
-If you set a global default radius, component themes will show that values as their
+When you set a global default radius, component themes will show that values as their
 default border radius when not defined and also state it comes from the global
-border radius default.
+border radius default. If a component widget has specified its own border radius
+it shows that value. If you then turn OFF component sub-themes, it will get
+disabled and show Flutter SDK material 2 default border radius.
+
+This type of logic applies so far to border radius and various differences in
+default colors and elevation when FlexColorScheme is not used at all, is used,
+but component themes are not enabled, and when enabled.
 
 Small details like this, helps you keep on top of what default values are used
 when, and controls are only available when they actually have an impact on

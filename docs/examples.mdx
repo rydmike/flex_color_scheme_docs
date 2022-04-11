@@ -95,16 +95,25 @@ When you have cloned the package repo and opened the
 project in VS-Code or Android Studio/IntelliJ, the configurations below should be
 available. With them you can easily build all the examples.
 
-In IntelliJ and Android Studio you can use:
-<img src="https://rydmike.com/assets_fcsv4/intelliJ-run-file.png?raw=true" alt="intellij-run"/>
-
-_For IntelliJ and Studio there is a .run config that can be used to build and run all the examples_
-
-In VS-Code you can use:
-<img src="https://rydmike.com/assets_fcsv4/vscode-run-file.png?raw=true" alt="vscode-run"/>
-
-_For VS-Code there is a launch.json that can be used to build and run all the examples_
-
+<Tabs
+  defaultValue="intellij"
+  values={[
+    {label: 'IntelliJ/Android Studio', value: 'intellij'},
+    {label: 'Enabled when available', value: 'vscode'},
+  ]}>
+  <TabItem value="intellij">
+    In IntelliJ and Android Studio you can use:
+    [<Image src="https://rydmike.com/assets_fcsv4/intelliJ-run-file.png?raw=true" alt="intellij-run"
+    caption="For IntelliJ and Studio there is a .run config that can be used to build and run all the examples."
+    zoom />](https://rydmike.com/assets_fcsv4/intelliJ-run-file.png?raw=true)
+  </TabItem>
+  <TabItem value="vscode">
+    In VS-Code you can use:
+    [<Image src="https://rydmike.com/assets_fcsv4/vscode-run-file.png?raw=true" alt="vscode-run"
+    caption="For VS-Code there is a launch.json that can be used to build and run all the examples."
+    zoom />](https://rydmike.com/assets_fcsv4/vscode-run-file.png?raw=true)
+  </TabItem>
+</Tabs>
 
 ## Live WEB Demos of the Examples
 
