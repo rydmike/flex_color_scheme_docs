@@ -27,7 +27,7 @@
                 ["Installing and using", "/installing"],
                 ["Examples", "/examples"],
                 ["Themes Playground", "/playground"],
-                ["Copy Playground","/copy_playground_example"]
+                ["Copy Playground","/copy_playground"]
             ]
         ],
         ["Theming Guide",

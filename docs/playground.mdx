@@ -155,11 +155,18 @@ theme setup code with a copy icon as well. This action button and dialog
 view can be useful on smaller sized media where you cannot see the code side
 by side, like phones and tablet in vertical view.
 
-**TODO: Add image examples of copy code**
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true" alt="Copy code" zoom />
+
 
 Once you have copied the code for the setup you configured, you can paste as is
 into you application, or use it as base for further modifications. You can
 also paint and select only parts of the code.
+
+If you want to quickly test out themes on a pre-made template app, you
+can use the [Copy Playground Theme](/copy_playground), it is useful since it
+includes presentation of all colors and common Flutter Material UI widgets,
+so you can see and verify that the theme looks as intended.
+
 
 ## Smart Controls
 
@@ -168,7 +175,16 @@ in any conflicting setup. When you turn OFF FlexColorScheme there is
 not many controls that can be operated, with opinionated component sub-themes
 OFF most controls are still disabled.
 
-**TODO: Add image examples of disabled controls**
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true" alt="Unavailable controls" zoom />
+_Controls that have no function in a given configuration are disabled_
+
+When you enable component sub-themes, most controls are available. However there
+are a few that are disabled in certain combination or only appear under given
+conditions. Like using computed dark theme, or which color input to use on custom
+dark theme as keep color for the seeded ColorSchemes, to mention a few.
+
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true" alt="Available controls" zoom />
+_Most controls are available when component themes are enabled_
 
 Controls also know and show different default values depending on your settings.
 If you turn OFF using FlexColorScheme, toggle using component sub-themes, and
@@ -177,30 +193,39 @@ what their default value is in each situation.
 
 The default value in each situation, means the default style and behavior a
 component will use when any give property is undefined.
+When you turn OFF using component themes, ot FlexColorscheme entirely, it again
+shows its default in that mode, and radius widget also become disabled.
+
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true" alt="Defaults 1" zoom />
+_Border radius defaults with no components themes, often results in Flutter SDK defaults, but not always_
+
 This is different if FlexColorScheme is not used at all, then you are looking at
 Flutter SDK default behavior for the widget. If you turn ON FlexColorScheme,
 but keep component sub-themes OFF, then you are looking at the FlexColorScheme
 [core defaults](/core_defaults). With sub-themes on, you again get different
 defaults.
 
-**TODO: Add image examples of border radius default values **
-
 If you in it keep `defaultRadius` undefined, then each widget will
 have its own default border radius and show that value when an individual widget
-border radius has not been specified with its slider. If you set a global
-default radius, they will show that values as their default border radius,
-and also state it comes from the global border radius default.
+border radius has not been specified with its slider.
 
-When you turn OFF using component themes, ot FlexColorscheme entirely, it again
-shows its default in that mode, and radius widget also become disabled.
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02?raw=true" alt="Defaults 2" zoom />
+_Border radius defaults with component themes, defaults per widget to its M3 radius specification_
 
-Small details like this, helps you keep on on top of what default values are
-when and controls are only available when they actually have an impact on
+If you set a global default radius, component themes will show that values as their
+default border radius when not defined and also state it comes from the global
+border radius default.
+
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03?raw=true" alt="Defaults 3" zoom />
+_Border radius using defined global default radius and with a component theme override_
+
+Small details like this, helps you keep on top of what default values are used
+when, and controls are only available when they actually have an impact on
 the resulting theme.
 
 ## Input Colors
 
-**TODO: Explain and show the input color concept**
+The 
 
 ## Seeded ColorScheme
 
