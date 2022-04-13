@@ -450,10 +450,10 @@ be highlighted in the computed Tonal Palette.
 </Tabs>
 
 
-For comparison, we above also see the same Flutter Dash theme based Tonal Palette
-generation when using primary, secondary and tertiary colors as seed key input
-colors, instead of only primary color. This time as an example showing the
-tone mapping of the tertiary container color in light and dark theme mode.
+For comparison, we above see the same Flutter Dash theme based generated
+Tonal Palettes when using primary, secondary and tertiary colors as seed key
+input colors, instead of only primary color. This time we in the example showing
+the tone mapping of the tertiary container color in light and dark theme mode.
 
 ## Flex Tones
 
@@ -461,11 +461,11 @@ Above we saw that even when we used three input color as keys, we did not get so
 of the chroma in the used input color in the resulting Tonal Palettes for the
 secondary and tertiary colors. This is because the default Material 3 tonal palette
 calculation algorithm locks chroma for secondary tonal palette generation to 16,
-and it is using the hue from the used key color.
+and it is using the hue from the same used key color.
 
 The primary tonal palette uses the chroma and hue from the key color, but chroma
-is only used if it is higher than 48, if it is lower, 48 is used. This keeps
-ensures that is always of minimum and suitable color saturation.
+is only used if it is higher than 48, if it is lower, 48 is used. This ensures
+that is always has a suitable color saturation.
 
 For the tertiary tonal palette, chroma is locked to 24, so a bit more colorful
 than secondary, which can also be seen in the produced palettes. Additionally
@@ -485,29 +485,33 @@ Lastly the error tonal palette is simply made from a fixed color value,
 having hue 25 and chroma 84.
 
 When we used key colors also for the secondary and tertiary tonal palette
-generation, it above meant we substituted the hue for secondary and tertiary
-tonal palettes to use the hue in their own input key colors to generate palettes,
-and no longer rely on the values derived from the single input primary color.
+generation, it substituted the hue used for secondary and tertiary
+tonal palettes, to use the hue in their own input key colors,
+and no longer relies on the values derived from the single input primary color.
 
 We did however not do anything to the chroma limits used by the default Material 3
-design based Tonal Palette color generation algorithm parameters.
+design specification Tonal Palette color generation algorithm parameters.
 
 FlexColorScheme, would not be "flex" if it would not let us modify this too.
-We can set custom parameters for the keys, that define the chroma limits we will
-use as limits for the input colors when we generate their tonal palettes. We
-can lock it to a given value, or we can let it use whatever chroma it has, or
+We can set custom parameters for the key colors, that define the chroma limits
+we will use as limits for the input colors when we generate their tonal palettes.
+We can lock it to a given value, or we can let it use whatever chroma it has, or
 we can say it can use whatever chroma it has, as long as it is over a
-certain limit. This is useful because if the chroma is very low in the input color,
-we basically get an almost greyscale tonal palette, like the neutral tonal palette
-colors. With the `FlexTones` API you can define these limits as desired for the
-tonal palette generation.
+certain limit. This is useful because if the chroma is very low in the input key
+color, we basically get an almost greyscale tonal palette, like the neutral tonal
+palette colors. With the `FlexTones` API you can define these limits as desired
+for the tonal palette generation. We don't have to limit the design to the default
+parameters used by `ColorScheme.fromSeed`. We can tweak them, but still use the
+same algorithm and principles, but tuned to fit our design goals, while still
+benefitting from these marvelous color generation algorithms.
 
 We can do even more than this, we can also modify the mapping of which
 tone is used for what color in the `ColorScheme` from the generated Tonal
-Palettes, as long as it is from the source palette intended for
-color in the `ColorScheme`. Not all tones are useful, but for some cases you
-can very well go up or down a tone for a given color in the ColorScheme mapping,
-for a stronger more contrasty look or an even more muted one.
+Palettes, as long as it is from the source palette intended for the target
+color in the `ColorScheme`. Not all tones are useful, but for some use cases
+and design goals, you can very well go up or down a tone, for some colors in
+the ColorScheme mapping. This can give you a stronger more contrasty look or
+an even more muted one than the Material 3 default design.
 
 Current version of Themes Playground only lets you change `FlexTone` settings between
 five pre-made configurations. It is however very simple to make custom configurations
@@ -558,8 +562,8 @@ the Theme Playground app shows a brief summary of its configuration.
 
 The "Vivid" colors may actually not always be more "vivid" than the Material 3
 FlexTones configuration. What they actually are, is closer in color intent to
-the used input key color, for each generated main tonal palette, than what
-the default Material 3 configuration is. This means you will get a generated
+the used input key color, for each generated main tonal palette, compared to
+the default Material 3 configuration. This means you will get a generated
 `ColorScheme` that looks a bit more like the input colors you used.
 
 ## Surface Blends
@@ -591,45 +595,46 @@ were `surface` and `background`. However, FlexColorScheme also treats the
 Scaffold background and in some modes, even dialog backgrounds as
 their own themed surface colors.
 
-In addition to being able to blend in primary color in surfaces, starting in
-version 5, the "color" of a container, can be blended into its own onColor,
-to give the onColor a tint of the color itself. This blending is done more
+In addition to being able to blend in primary color into surfaces, starting in
+version 5, the color of a container, can be blended into its own onColor using
+a blend level as well. This gives the the onColor itself a hint of the color it is
+on, instead of being plain white or black/dark grey. This blending is done more
 subtly than the surface colors. For onPrimary, onSecondary, onTertiary
-and onError it can be even turned OFF completely, while still being used on
-the other onColors.
+and onError, it can be even turned OFF completely, while still being used by
+other onColors.
 
-This feature was added because Material 3 design keeps the onColors for
+This was added because Material 3 design keeps the onColors for
 the main colors white in light theme mode, however in dark theme mode that is
-not the case. With the available settings you can decide if you follow this
-principle or not when not using Material 3 seed generate ColorSchemes.
-
+not the case. With this setting you can decide if you follow this
+principle or not, when not using Material 3 seed generate ColorSchemes.
 When using the seed generated ColorScheme, this depends on the tone mapping
 in used FlexTones.
 
 Seed generated ColorSchemes can also used surface blends, since Material 3 style
 generated `ColorScheme`s already includes a hint of primary color in all neutral
 tones, it means that they start with some primary color baked in. When you
-add surface blends to them, you can further strength the effect. Since they
+add surface blends to them, you further strength the effect. Since they
 don't start at white and and almost black, like pure Material 2 surfaces, it
-means the get much stronger primary color blends at same blend levels compared
-to when generated `ColorsScheme` is not being used. For a pure Material 3 guide
-design intent, keep blend level at zero.
+means they get much stronger primary color surface blends at same blend level
+when comparing to none seed generated `ColorsScheme`. If you want a pure
+Material 3 guide design intent, keep blend level at zero with seed generated
+`ColorScheme`s.
 
-Generated `ColorScheme`s can not use onColor blending. This is because such
+Generated `ColorScheme`s do not use onColor blending. This is because such
 themes already covers this design aspect by using tones from the Tonal Palettes
-the effectively accomplishes the same thing and often with a better, or let's
-call it a more balanced looking result.
+that effectively accomplishes the same thing and often with a better, or let's
+call it, a more balanced looking result.
 
-However, when you "keep" e.g. primary color in a seed generated ColorSchemes,
-its onPrimary color can then use onColor blending.
+However, when you "keep" e.g. `primary` color in a seed generated `ColorScheme`,
+its `onPrimary` color can then use onColor blending.
 Therefore this setting is not disabled when using Seeded ColorScheme, but it
 will only impact onColors belonging to main or container colors being kept at
 their original input color.
 
-The above may sound complicated, but using it is not, you can just fiddle with
+The above may sound complicated, but using it is not. You can just fiddle with
 settings until you find something you like. The screen recording below
 show the surface blend modes at same mid level, and then one of the surface
-modes from no blend level to maximum blend level.
+modes, from no blend to maximum blend level.
 
 <Tabs
   defaultValue="blend-surface"
@@ -649,12 +654,13 @@ modes from no blend level to maximum blend level.
   </TabItem>
 </Tabs>
 
-The other screen recording shows the onColor blending options and levels.
-The onColor impacts the color you should use for text on container surfaces
-when you use and place them on its none "on" color container. The impact of
-this not so visible above. Generally in the application, they still create a
-remarkable subtle toned difference. Most notice it, but might not be able to
-immediately explain what the causes the difference.
+The second screen recording above shows the onColor blending options and levels.
+The onColor impacts the color you should use for text and icons on container
+surfaces when you use and place them on its none "on" colored container.
+The impact of this not so visible above. Generally in the application, they
+still create a remarkable subtle toned difference. Most notice it, but might
+not be able to immediately explain what the causes the difference in how the
+design is perceived.
 
 This is especially true for the Material 3 generated ColorSchemes, that use
 the matching lighter/darker tones for their onColors, which are often brighter
@@ -669,15 +675,16 @@ visually changes as blends are varied.
 
 Pretty much any color in a box and color code you see in the Themes
 Playground can be tapped and its color value is then copied to the
-Clipboard in Dart format. This is handy if you want to snipe any cool color
-you see. This works from the individual generated Tonal Palette colors too.
+Clipboard in Dart format. This is handy if you want to snipe any color
+you see in the playground. This works with the individual generated Tonal
+Palette colors too.
 
 You can copy any pre-made color scheme to the last scheme in the
-Themes Playground app, and use its colors as a base for a completely custom
-colored. You can select and edit colors with the
+Themes Playground, and use its colors as a base for a completely custom
+colored theme. You can select and edit colors with the
 [FlexColorPicker](https://pub.dev/packages/flex_color_picker). The color picker
-also allows you to enter or paste in color values to it to define the custom
-colors for each color in the custom input colors.
+also allows you to enter or paste in color values to it, to define the custom
+colors for each input color in the customizable theme.
 
 [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-30-custom-colors-02.gif?raw=true"
 caption="Copying color values and making a custom theme."
@@ -685,14 +692,14 @@ alt="custom colors" zoom />](https://github.com/rydmike/flex_color_scheme_docs/b
 
 ## Copy ColorScheme
 
-Only want the complete `ColorScheme` of the color scheme for the theme mode
-you are looking at? No problem, you can copy it too and get a ready
-made standard Flutter `ColorScheme` class for it.
+Only want the raw `ColorScheme` of the active theme you are looking at?
+No problem, you can copy it too and get a ready
+made standard Flutter `ColorScheme` class definition for it.
 
 [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-31-copy-scheme.png?raw=true"
 caption="Copy active ColorScheme."
 alt="Copy active ColorScheme" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-31-copy-scheme.png?raw=true)
 
 You can use this feature if you prefer to not use any of FlexColorScheme's
-theming features. Maybe you prefer to build your custom theme from scratch, but
-still find creating `ColorScheme` objects with the Themes Playground helpful.
+theming features. Maybe you would like to build your custom theme from scratch,
+but still find creating `ColorScheme` objects with the Themes Playground helpful.
