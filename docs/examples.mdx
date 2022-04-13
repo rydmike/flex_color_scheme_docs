@@ -11,12 +11,12 @@ The other five examples are a part of a tutorial path, with increasing
 complexity, that we walk through in the tutorial. It ends with the complete
 **Themes Playground** demo app included as example 5.
 
-The last example is a copy-paste template that you can use to try copy pasted theme setup code
-from the Themes Playground.
+The last example is a copy-paste template that you can use to try copy-pasted
+theme setup code from the Themes Playground.
 
 ## Default Example - Hot Reload Playground
 
-A quick and simple way to try FlexColorScheme V5 is to build the
+A quick and simple way to try FlexColorScheme is to build the
 default example application. You can then use it as a hot reload playground to
 experiment with and test different theming and configuration options.
 
@@ -49,10 +49,10 @@ colors and the created theme's impact on common Material UI widgets.
     </tr>
  </table>
 
-It is a fully loaded template with settings and thorough
-comments that explain what to change to produce different results. You
-could for example change the `_scheme` to `FlexScheme.blueWhale`, as shown below and hot
-reload it, to use it as theme instead.
+It is a fully loaded template, use a large number of available API options
+and thorough comments that explain what to change to produce different results. You
+could for example change the `_scheme` to `FlexScheme.blueWhale`, as shown below
+and hot reload it, to use it as theme instead.
 
 ```dart
 // To use a pre-defined color scheme, don't assign any FlexSchemeColor to
@@ -62,7 +62,7 @@ const FlexScheme _scheme = FlexScheme.blueWhale;
 
 ```
 
-There are many settings you can easily modify in the default example application. They are
+There are many properties you can easily modify in the default example application. They are
 excessively commented in order to provide guidance for those that want to jump right
 in and start trying it out.
 
@@ -118,7 +118,8 @@ available. With them you can easily build all the examples.
 ## Live WEB Demos of the Examples
 
 If you want to take a quick look at all these tutorial example applications, you can see them as
-phone builds below. Even better, try their live web versions by clicking on respective example link.
+phone builds below. Even better, try their live web versions by clicking on their
+respective example links below.
 
 ### 1) Basic Theme
 
@@ -159,7 +160,7 @@ theme service.
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut2-l-03.png?raw=true" alt="Custom3" width="280"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut2-l-03.png?raw=true)</td>
   </tr>
   <tr>
-  <td colspan="5">_Example 2) Using custom colors with FlexColorScheme color scheme as application theme_</td>
+  <td colspan="5">_Example 2) Using custom colors with FlexColorScheme as application theme_</td>
   </tr>
  </table>
 
@@ -168,7 +169,8 @@ theme service.
 
 [**In example 3**](https://rydmike.com/flexcolorscheme/fourthemes-v5) we can toggle the
 active theme between 3 different predefined color schemes, plus the custom one
-we defined in example 2. We can also opt in and out of using the new sub theming.
+we defined in example 2. We can also opt in and out of using FlexColorScheme's
+opinionated component sub-theming.
 
 All the settings are persisted locally, using a theme service
 called `ThemeServicePrefs`. This service uses the package
@@ -221,23 +223,27 @@ and parameter in the app. This is done using the same theme service
 `ThemeServiceHive` that was used in example 4. The settings can also be reset
 back to their default values.
 
-This example is best seen and tested on a tablet, desktop or desktop web browser,
-rather than on a phone. The app certainly works well on a phone sized
+This example is best seen and tested on a tablet, desktop native or desktop
+web browser, rather than on a phone. The app certainly works well on a phone sized
 canvas too, it is using two different **very** responsive designs.
-It is however a bit challenging to get a good overview of all the settings,
-theming possibilities and their impact on different
+It is however a bit challenging to get a good overview of all the theming
+possibilities and their impact on different
 widgets, while changing the settings on a phone. You can just not see
-so many different widgets the same time when you change theming property values. However,
-in version 5, the new topic based swipe enabled page view is very nice on phones too and mostly
-gets around this issue. If used on a tablet in landscape it can even show you the code configuration
-in a side-by-side view on each settings page. You can then see how the setup and config
-code changes and updates, as you modify settings. A very convenient way to study the API.
+so many different widgets the same time when you change theming property values.
+
+However, starting from version 5, the topic based swipe enabled page view is very
+nice on phones too and mostly gets around this issue. When used on a canvas about
+the size of a tablet in landscape it can even show you the code configuration
+in a side-by-side view on each topic page. You can then see how the setup and config
+code changes and updates, as you modify settings. This is quite fascinating and
+a very convenient way to study the API.
 
 Originally this application was supposed to be only a slightly more complex example than example 4.
 However, it has since then grown into a complete companion application for FlexColorScheme.
-You can use the web version to play with Theme Configurations as much as you like, with
+
+You can use the live web version to play with theme configurations as much as you like, with
 complete customization possibilities of almost every API FlexColorScheme offers. When you
-are done you can copy-paste the configuration setup code for it and paste it into
+are done, you can copy the configuration setup code for it, and paste it into
 your application and start using the exact same theme that you configured in the Themes Playground.
 
 See the the separate chapter with more info and [how to use](/playground) the Themes Playground.
@@ -265,14 +271,15 @@ web [**Flexfold demo app**](https://rydmike.com/demoflexfold).
 
 <img src="https://rydmike.com/assets/FoldTheme1.gif?raw=true" alt="Flexfold demo"/>
 
-The live version of the Flexfold demo is still using FlexColorScheme version 3, as can be seen it
-was very capable already back then. Example 5, the **Themes Playground**, now has much more options,
-and considerably more advanced theming features than the Flexfold demo ever did.
+The live version of the Flexfold demo is still using FlexColorScheme version 3.
+As can be seen it was very capable already back then. Example 5, the
+**Themes Playground** app, now has many more options and offers considerably
+more advanced theming features than the Flexfold demo ever did.
 
 ---
 
-I would love to feature a few select apps using FlexColorScheme here. If you have one and would
-like to include a mention and screenshot of it here. Drop some screen shots first in the
-FlexColorScheme GitHub discussions
+I would love to feature a few select apps using FlexColorScheme here. If you
+have one and would like to include a mention and screenshot of it here. Then
+please drop me some screen shots first in the FlexColorScheme GitHub discussions
 [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell)
 section, and we can take it from there. Maybe it could be featured here too.

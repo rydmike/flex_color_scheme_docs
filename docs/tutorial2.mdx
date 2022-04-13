@@ -4,8 +4,8 @@ This example shows how you can define your own color schemes using
 `FlexSchemeColor` and `FlexSchemeData`, to create `FlexColorScheme` based
 application themes from them.
 
-Only code highlights might be shown below, the complete code for the example is
-[here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example2).
+Only code highlights might be shown below, the complete code for the example can
+be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example2).
 
 
 ## Skeleton Template
@@ -18,6 +18,12 @@ architecture with:
 ```bash
  > flutter create -t skeleton my_flutter_app
 ```
+
+You can find a good article on GSkinner site blogs, doing a deep dive into the
+Flutter skeleton template architecture [here](https://blog.gskinner.com/archives/2021/11/flutter-deep-dive-into-the-new-skeleton-app-template.html).
+
+These examples do not use all parts of the skeleton architecture, only the
+theme service part and using the `AnimatedBuilder` as a listenable builder.
 
 ## ThemeServiceMem
 
@@ -42,14 +48,15 @@ Future<void> main() async {
 }
 ```
 
-In this example we use the theme controller to change the `themeMode` and to
-toggle opting in and out of FlexColorScheme's opinionated component sub-themes.
+Above we use the theme controller to change the `themeMode` and to
+toggle opting in and out of using FlexColorScheme's opinionated
+component sub-themes.
 
 ## Custom Colors
 
 To make a custom color scheme, we for simplicity define it as a local
 constant in this example. We make a `FlexSchemeData` object with a name,
-description and `FlexSchemeColor` colors defined for light and
+description and all required `FlexSchemeColor` colors defined for light and
 matching dark scheme.
 
 ```dart
@@ -82,7 +89,7 @@ However, we will also use this information on the `HomePage` for the
 theme switch widget and to display the scheme name and description.
 Putting them in a `FlexSchemeData` object that bundles the light and
 dark scheme color `FlexSchemeColor`, plus a name and description, is a
-convenient way to pass it along and re-use the information on the home page.
+convenient way to pass it along and re-use the information on the `HomePage`.
 
 We use the `FlexSchemeData` instance `_myFlexScheme` instance `light` and `dark`
 properties, as `colors` value for our `FlexThemeData.light` and
@@ -102,34 +109,53 @@ to the MaterialApp. The Flutter standard `AnimatedBuilder` Widget listens to
 the `ThemeController` for changes.
 
 The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here
-it serves the purpose of functioning as kind of a "`ValueListenableBuilder`",
-that rebuilds its child when its `Listenable` value, the `animation` changes.
+it serves the purpose of functioning as kind of a "`ListenableBuilder`",
+that rebuilds its child once when its `Listenable` value, the `animation` changes.
 Which it does whenever our `ThemeController` calls `notifyListeners`, when
 we update any of its properties. Which we do in the `ThemeController` class
 when we have new updated data that requires the theme to update. The
 `ThemeController` values are typically changed by user interface widgets on the
 `HomePage`.
 
-> The usage of the `AnimatedBuilder` does not have anything to do with the
-> fact that the theme changes animate from current ThemeData and colors in it,
-> to the new ones it changes to. This is a built-in feature in ThemeData and
-> its inherited Theme in Flutter SDK. You can change the `ThemeData` with
-> call-backs or other state management solutions too, and still get the
-> nice theme change animation.
->
-> The `AnimatedBuilder` is a poor name when it is used as a
-> `ValueListenableBuilder`, that does not exist in Flutter SDK. It
-> should, just for a better and more logical name, but the `AnimatedBuilder`
-> serves the exact same purpose here as a `ValueListenableBuilder` would.
+## AnimatedBuilder
+
+The usage of the `AnimatedBuilder` does not have anything to do with the
+fact that the theme changes animate from current `ThemeData` and colors in it,
+to the new values and colors it changes to. This is a built-in feature in
+`ThemeData` and its inherited `Theme` in Flutter SDK. You can change
+the `ThemeData` with call-backs or other state management solutions too, and
+still get the nice theme change lerp animation from previous property values
+to new ones.
+
+The `AnimatedBuilder` is a poor name when it is used here as a
+`ListenableBuilder`, that does not exist in Flutter SDK with that name. It
+should, just for a better and more logical name, but the `AnimatedBuilder`
+ serves the exact same purpose here as a `ListenableBuilder` would.
 
 The result of this setup is that whenever you update any theme settings managed by
 the `ThemeController`, the `MaterialApp` is rebuilt with the new ThemeData that
-depends on the `ThemeController`'s property values. In fact the entire app UI
-is rebuilt when any value in the `ThemeController` trigger a change via a
-`notifyListeners` call. This is fine in this case, since all properties in it are
-of the nature that the entire application UI needs to be redrawn anyway when they
-change, since they modify our `ThemeData` for the entire application.
-Thus this approach works well for this particular use case.
+depends on the `ThemeController`'s property values.
+
+The entire application tree is actually rebuilt when any value in the
+`ThemeController` trigger a change via a `notifyListeners` call.
+This is reasonably fine in this use case, since all properties we use in
+the `ThemeController` are of the nature that the entire application UI
+needs to be redrawn anyway when they change, since they modify our
+`ThemeData` for the entire application.
+
+This approach works well for this particular use case, but may not work as well
+for some use cases as it is a bit sub-optimal to always rebuild the entire
+sub-tree whenever anything bound to the same `ChangeNotifier`
+controller changes. You could of course use the same idea to add more/other
+controllers and in `StatefulWidget`s at right levels in the widget tree use e.g.
+`otherController.addListener(() => setState((){}))`. Then you do not need
+an `AnimatedBuilder` and you get a basic MVC like state management,
+where you bind a ChangeNotifier to the tree and trigger rebuilds in a simple way.
+
+## Theming Code
+
+This was a lot of explanations, no need to worry about most it for your theme
+definition, as shown below it is very simple.
 
 ```dart
 class DemoApp extends StatelessWidget {
@@ -182,10 +208,10 @@ class DemoApp extends StatelessWidget {
 
 In this example above, we also use a boolean theme controller setting used as toggle
 to decide if we opt in our out of using the FlexColorScheme opinionated
-component sub-themes. When the opt-in is true we pass in a default
-`FlexSubThemesData()` constructor, otherwise `null` to not use the
-sub themes at all. Later we will explore more options that we can configure with
-`FlexSubThemesData`
+component sub-themes. When the opt-in is true via `themeController.useSubThemes`
+we pass in a default `FlexSubThemesData()` constructor, otherwise `null`, to
+not use the sub-themes at all. Later we will explore sub-theme options that we
+can configure with `FlexSubThemesData()`.
 
 ```dart
   // Opt in/out on using FlexColorScheme sub-themes.
@@ -196,25 +222,28 @@ sub themes at all. Later we will explore more options that we can configure with
 
 ## Google Fonts
 
-We also added a custom font by assigning one to `fontFamily` from by using
-`GoogleFonts.notoSans().fontFamily`. The Noto Sans font is nice alternative
-to the default `Roboto`font. For better and more fine controlled results over
+We also added a custom font by assigning one to `fontFamily` from Google fonts
+by using `GoogleFonts.notoSans().fontFamily`. The Noto Sans font is nice alternative
+to the default Roboto font.
+
+For better and more fine controlled results over
 your custom `TextTheme`, prefer defining complete `TextThemes,` using a font
 and its different styles. You can then use more than one font for your text theme.
 Then assign the `TextTheme` to the `textTheme` and `primaryTextTheme`
-properties in `FlexThemeData`. Both options work how you would use do it
-with standard `ThemeData` too.
+properties in `FlexThemeData`. Both options work just as you would use them
+with `ThemeData`.
 
 The `themeController` is also passed to the `HomePage` where we use it in UI
-widgets to change the theme mode, and to opt in and out of using the sub themes
-feature in FlexColorScheme.
+widgets to change the theme mode, and to opt in and out of using the
+opinionated component theming features also offered by FlexColorScheme.
 
 ## Result
 
-When we build this application we can see our custom colors being used
-on all widget. We also notice that the widget components look a lot different
+When we build this example we can see our custom colors being used
+on all widgets. We also notice that the widget components look a lot different
 compared to example 1. This is because we enabled using the FlexColorScheme
-opinionated widget sub themes, by default when we used the `themeController.useSubThemes` value.
+opinionated component sub-themes by default when we used
+the `themeController.useSubThemes` value.
 
 <table>
   <tr>
@@ -244,12 +273,15 @@ opinionated widget sub themes, by default when we used the `themeController.useS
   </tr>
  </table>
 
- We can compare the difference between using the FlexColorScheme opinionated widget
- component sub themes  and just default widget theming, by toggling the switch for it.
+ We can compare the difference between using the FlexColorScheme opinionated
+ component sub-themes and just default widget theming by toggling the switch for it.
+
  The default settings for opinionated component themes use rounded corners on widgets that
  default to the [Material 3 design guide](https://m3.material.io/) specified values.
- The border radius varies per widget type. In the Material 2 design it is 4 dp on
- most widget. Later we will se how can more easily customize the border radius.
+ In Material 3 design, the border radius varies per widget type. In the Flutter's
+ current Material 2 design defaults, it is 4 dp on almost all widgets, this per
+ the Material 2 design specification. Later we will se how we can easily customize
+ the border radius on all components, as well as by component.
 
 <table>
   <tr>

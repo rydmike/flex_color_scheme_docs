@@ -1,32 +1,36 @@
 # Migration Guide
 
 This chapter contains guides for the minimum required changes to move from a lower
-major version to the next one.
+major version to the next higher major one.
 
 ## Migrating to Version 5.0
 
 FlexColorScheme version 5.0 is style wise a big breaking change since all the
-built `ColorScheme` have been revised to follow the new Material 3 style guide.
-The color changes have however been kept minimal compared to previous style. Mostly
-new color values were added to provide support for all the new colors
-in the Flutter Material 3 `ColorScheme` update, included in Flutter 2.10. The new
-colors are in style sync with past styles as far possible, while also keeping them
-inline with the M3 design intent.
+built-in produced `ColorScheme`s the the theme use, have been revised to follow
+the new Material 3 based `ColorScheme`. The color changes to the built-in schemes
+have been kept minimal compared to previous styles. Mostly new color values were
+added to provide support for all the new colors in the Flutter
+Material 3 `ColorScheme` update, that landed in Flutter 2.10.
+The new colors are in style sync with past styles as far possible, while also
+keeping them inline with the Material 3 ColorScheme design intent.
 
-Version 5 requires minimum Flutter version 2.10 to work. This in itself is a
-big breaking change. It is however needed since the new color properties
-in `ColorScheme` do not exist in stable version of Flutter before version 2.10.
-
-Just like `ColorScheme.primaryVariant` and `secondaryVariant` have been deprecated
-in Flutter 2.10 SDK, so have they in FlexColorScheme. In fact all past color constants
+As `ColorScheme.primaryVariant` and `secondaryVariant` have been deprecated
+in Flutter 2.10 SDK, so have they in FlexColorScheme. All past color constants
 for all color values and helper classes with the name "variant" in them, have been
-deprecated in FlexColorScheme. The variant color values still exists, so if you have used
-any of them directly, they will still work. The old internal variant color values will
-remain at least until version 6.0, maybe even 7.0 if needed.
+self deprecated in FlexColorScheme. The variant color values still exists,
+if you have used any of them directly, they still work. The old built-in
+variant color values will remain available at least until version 6.0,
+maybe even 7.0 if so requested by users.
+
+### Breaking: Requires at least Flutter 2.10.0
+
+Version 5.0.0 requires at least Flutter version 2.10.0 to work. This breaking
+change is required since the new color properties in `ColorScheme` do not exist
+in any stable version of Flutter before version 2.10.
 
 ### Breaking: `surfaceStyle` removed
 
-In version 5 the in version 4.2.0 deprecated property `surfaceStyle`, including all
+In version 5, the in version 4.2.0 deprecated property `surfaceStyle`, including all
 its implementing classes, enums, helpers and tests have been removed.
 
 * Removed property: surfaceStyle in FlexColorScheme.light and FlexSchemeData.light.
@@ -36,8 +40,8 @@ its implementing classes, enums, helpers and tests have been removed.
   surface using the FlexSurface. The factory FlexSchemeSurfaceColors.blend
   replaced it in version 4.0.0 already, when using surfaceMode and blendLevel.
 
-**Migration:** Use `surfaceMode` and `blendLevel` instead, it has more blend styles and finer
-granularity than the removed `surfaceStyle`.
+**Migration:** Use `surfaceMode` and `blendLevel` instead, it has more blend
+styles and finer granularity than the removed `surfaceStyle`.
 
 ```dart
 theme: FlexThemeData.light(
@@ -50,7 +54,7 @@ theme: FlexThemeData.light(
 ### Breaking: `FlexSubThemesData.navigationBarIsStyled` removed
 
 The property `navigationBarIsStyled` in `FlexSubThemesData` has been
-removed. It has a broader more general replacement called
+removed. If you have used it, it has a broader more general replacement called
 `FlexSubThemesData.useFlutterDefaults`.
 
 **Migration:** Consider using `useFlutterDefaults` instead, or set style manually
@@ -61,35 +65,38 @@ component designs.
 
 Deprecated property `useSubThemes`. This property has no function after 4.2.0
 stable and 5.0.0-dev.1. Previously setting this property to true activated
-the default set and configuration of the optional opinionated component sub-themes.
-It actually did so internally by creating and using a default constructor
-`FlexSubThemesData()` and using it internally, if one was not defined and ignored
-any assigned one if the flag was set to false.
+the default set and configuration of the optional opinionated component sub-themes,
+even if you did not pass any `FlexSubThemesData()` configuration data to
+`subThemesData`. Before when `useSubThemes` was true and no `subThemesData`
+defined, it created one internally using the default constructor
+`FlexSubThemesData()` and used it. It also ignored any defined and to
+`subThemesData` assigned one, if the flag was set to false.
 
-The default component sub-theme are now instead activated and created by
-explicitly assigning a default constructor `FlexSubThemesData()` to
+The default component sub-themes are now instead always activated and created by
+explicitly assigning at least a default constructor `FlexSubThemesData()` to
 `FlexColorScheme.subThemesData`.
 
 **Migration:** If you previously had only set `FlexColorScheme.useSubThemes` to true and not
 specified any `subThemesData` properties, you must now add the default constructor. Likewise,
 if you had set `FlexColorScheme.useSubThemes` to false, and had a `FlexColorScheme.subThemesData`
 defined, you must remove it disable using it. If you need to toggle it ON and OFF, use a bool
-to enabled/disable, pass in the `FlexSubThemesData` when enabled, and null when not using it.
+to enabled/disable it, then pass in the `FlexSubThemesData` when enabled,
+and null when not using it.
 
 Why was this change made? Deprecating this property makes the API more consistent. It now
-follows the same design that is used for the new `keyColors` with `FlexKeyColors`, and
-`tones` with `FlexTones`. Setting the property useSubThemes will not cause an
+follows the same design that is used for the new `keyColors` when using `FlexKeyColors`, and
+`tones` with `FlexTones`. Setting the property `useSubThemes` will not cause an
 error, it just has no effect. You can safely remove it.
-The property `useSubThemes` will be removed completely in release 6.0.
+The property `useSubThemes` will be completely removed in release 6.0.
 
 
 ### Beware: `SchemeColor` values and order
 
 The enum `SchemeColor` has new values and past values are in a new order.
-The order was changed to accommodate new color values, and to keep them in
-the same order as their corresponding color properties in Flutter Material 3 `ColorScheme`
-color values. The change of order is potentially breaking, but unlikely to
-break anything in major ways.
+The order was changed to accommodate all the new color values, and to keep them in
+the same order as their corresponding color properties in Flutter Material 3
+`ColorScheme` color values. The change of order is potentially breaking,
+but highly unlikely to break anything in major ways in normal usage.
 
 ### Deprecated: `primaryVariant` and `secondaryVariant`
 
@@ -114,12 +121,12 @@ If you use a `FlexColorScheme` setup made for a version before version 5.0,
 with version 5.0, and
 - if you have used custom color schemes where you defined the
    `FlexColorScheme` properties `primaryVariant` and `secondaryVariant`
-- or defined and used them via a custom `FlexSchemeColors`, in the `colors` property in
+- or defined and used them via custom `FlexSchemeColors`, in the `colors` property in
 `FlexColorScheme`.
 
 **Then**, in those cases the **variant** color properties will function as fallback
-input for color properties `primaryContainer` and `secondaryContainer` respectively, unless own
-color values for these properties is provided.
+input for color properties `primaryContainer` and `secondaryContainer` respectively,
+unless own color values for these properties are provided.
 
 Thus when you upgrade package version to 5.0.0 and have used custom color schemes,
 you will find your custom variant colors on the corresponding new
@@ -130,7 +137,7 @@ your past custom colors used in the new theme by default.
 **Migration:** Define new custom colors values for all container colors and
 tertiary color. Use them to make your custom `FlexColorScheme` instead.
 Then migrate away from using Flutter SDK `ColorScheme` colors `primaryVariant`
-and `secondaryVariant` anywhere in your application. Instead use the new
+and `secondaryVariant` anywhere in your application. Instead use any of its new
 `ColorScheme` color properties as fitting with your design. This is something you have
 to do after Flutter 2.10, even if you are not using FlexColorScheme. Sure, not immediately, but
 eventually when the Flutter SDK `ColorScheme` colors `primaryVariant` and `secondaryVariant`
@@ -151,27 +158,34 @@ This migration was done as follows:
  - tertiary, this is the same color value as past `secondaryVariant` color.
  - tertiaryContainer, this is a new color value added to all built-in schemes.
 
-The new color values follow the same design intent the built-in scheme had before, but due to
-all the new colors in Material 3 ColorScheme, new values had to be added. The color values used for
-past `primaryVariant` did not really fit anywhere in the new M3 design. However, past
-color value for `secondaryVariant` was reused as the color value for new `tertiary` color.
+The new color values follow the same design intent the built-in scheme had before,
+but due to all the new colors in Material 3 ColorScheme, new values had to be added
+as listed above. The color values used for past `primaryVariant` did not really fit
+anywhere in the new M3 design. However, past color value for `secondaryVariant` was
+reused as the color value for the new `tertiary` color.
 
-In M2 design, the variant color was typically a darker color of its primary or secondary counterpart.
-In M3 design in light theme mode, the container color is intended to be a lighter version of its
-non container color. In dark mode it is the reverse, container is a darker version of its none
-container version. If you are lazy when you make custom light and dark themes, you can actually get
-away with defining all the primary, secondary, tertiary and their container colors for your light
-theme mode, and then if you followed the container's design intent to be a lighter version of its
-none container version, you can often for dark mode just swap light mode none container and container
-color value from you light mode, and you will get a fairly decent dark mode theme.
+In Material 2 color design, the variant color was typically a darker color of its
+primary or secondary counterpart. In M3 design in light theme mode, the container
+color is intended to be a lighter version of its none container color.
+In dark mode it is the reverse, container is a darker version of its none
+container version. If you are lazy when you make custom light and dark themes,
+you can actually get away with defining all the primary, secondary, tertiary and
+their container colors for your light theme mode, and then if you followed
+the container's design intent to be a lighter version of its
+none container version, you can often for dark mode just swap light mode none
+container and container color values from your light mode, and you will
+get a fairly decent dark mode theme.
 
 Depending on your settings, FlexColorScheme computes different colors and shades for all the
-surface and on colors. You can also choose weather you use the new Material 3 error colors,
-instead of the Material 2 based error colors, even if you are not using seed generated M3
-color schemes. The past M2 error colors have received some new for FlexColorScheme chosen color
+surface, background and onColors. You can also choose weather you use the new Material 3 error colors,
+instead of the Material 2 based error colors, even if you are not using seed generated Material 3
+color schemes.
+
+The past Material 2 error colors have received some new for FlexColorScheme chosen color
 values to fill the gaps in the ColorScheme error colors when using their Material 2 version.
-So even it has proper color shades for all container and on colors for both light and dark mode,
-they ar slightly different from their Material 3 version and more inline with the Material 2 style.
+So even it has proper color shades for all container and onColors for both light and dark mode,
+they are slightly different from their Material 3 version and more inline with
+the Material 2 style.
 
 
 ## Migrating to Version 4.0
@@ -180,8 +194,8 @@ The in FlexColorScheme version 3.0 deprecated member `accentColor` was
 completely removed, it had no function starting from version 3.0.
 
 There are no other broken properties, however the property `darkIsTrueBlack`
-contains a minor breaking style change with previous styles, it now makes surface color 8%
-darker instead of 6%.
+contains a minor breaking style change with previous styles, it now makes surface
+color 8% darker instead of 6%.
 
 For more information on this and on all the new features, see
 [changelog](https://pub.dev/packages/flex_color_scheme/versions/4.0.0/changelog).
@@ -190,7 +204,7 @@ For more information on this and on all the new features, see
 ## Migrating to Version 3.0
 
 FlexColorScheme property `accentColor` was deprecated, it is still present
-but has no function. Tt will be completely removed in version 4 of FlexColorScheme.
+but has no function. It will be completely removed in version 4 of FlexColorScheme.
 The property was removed because it is going to be removed in Flutter SDK
 `ThemeData` from Flutter version v2.3.0-0.1.pre. Use property `secondaryColor`
 in FlexColorScheme instead.

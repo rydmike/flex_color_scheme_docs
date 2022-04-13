@@ -14,12 +14,12 @@ implementation:
 * There is a temporary workaround implemented, it manages to keep system
   icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
 
-The temporary changes will be reverted when a fix for the Flutter issue
+The temporary changes will be reverted when the fix for the Flutter issue
 has reached the stable channel.
 
 ## Flutter SDK: UnderlineInputBorder
 
-ShapeBorder on input decorator `UnderlineInputBorder` has faulty equality
+ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality
 operator and hashCode in Flutter SDK, it is missing the borderRadius property.
 Report not yet submitted to Flutter repo.
 
@@ -31,9 +31,7 @@ in the object equality. Equality remains true, even though one of its property
 values has changed. Deeper issue analysis, reproduction sample and submission
 as a Flutter bug still to be done.
 
-
 ## Found an issue?
 
 Please open it as new issue in the project GitHub repo
 [here](https://github.com/rydmike/flex_color_scheme/issues).
-
