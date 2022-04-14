@@ -7,22 +7,23 @@ object and look at the differences we get in effective **colors** in the theme-
 We will look at using these options:
 
 1. ThemeData.light()
-2. ThemeData(primarySwatch: Colors.blue)
-3. ThemeData(colorScheme: ColorScheme.fromSwatch())
-4. ThemeData(colorScheme: ColorScheme())
-5. ThemeData.from(colorScheme: ColorScheme())
-6. ThemeData(colorSchemeSeed: Color()),
-7. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-8. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-9. FlexThemeData.light(colorScheme)
-10. FlexThemeData.light(colorScheme, keyColors)
-11. FlexThemeData.light(colorScheme, keyColors, subThemesData)
+2. ThemeData(brightness: Brightness.light)
+3. ThemeData(primarySwatch: Colors.blue)
+4. ThemeData(colorScheme: ColorScheme.fromSwatch())
+5. ThemeData(colorScheme: ColorScheme())
+6. ThemeData.from(colorScheme: ColorScheme())
+7. ThemeData(colorSchemeSeed: Color()),
+8. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+10. FlexThemeData.light(colorScheme)
+11. FlexThemeData.light(colorScheme, keyColors)
+12. FlexThemeData.light(colorScheme, keyColors, subThemesData)
 
 Then compare the results. Yes that's a lot of methods to make a `ThemeData`
 object, last three ones are FlexColorScheme ways with some different parameters.
 Recommendations on what to use when will also be given.
 
-## Comparison ColorScheme
+## ColorScheme Reference
 
 To make it interesting we will when possible use
 the `ColorScheme` M3 Guide Baseline as input for a full qualified
@@ -40,6 +41,8 @@ the colors end up in the produced `ThemeData`
 
 For reference, used M3 baseline light theme mode `ColorScheme` without
 M3 colorful onColors.
+
+**TODO: Consider adding this code as image from iDE so the colors can be seen.**
 
 ```dart
 const ColorScheme flexSchemeLight = ColorScheme(
@@ -110,7 +113,7 @@ const ColorScheme flexSchemeDark = ColorScheme(
 );
 ```
 
-### ThemeData ColorSwatch
+### ColorSwatch ThemeData
 
 Let's call this group ThemeData ColorSwatch based, since they all either
 directly or under the hood via defaults use the old Material 2 ColorSwatch
@@ -137,6 +140,7 @@ small convenience factories made with this code:
   factory ThemeData.dark() => ThemeData(brightness: Brightness.dark);
 ```
 
+### Option 1
 These shortcuts are in fact only marginally shorter then using the syntax used
 for what they return, unclear why they exits, but they do. They mostly
 inconvenient when you make a `ThemeData` object, since you cannot define any
@@ -147,6 +151,7 @@ other properties for them directly, you would have to apply all of them with
 theme: ThemeData.light(),
 darkTheme: ThemeData.dark(),
 ```
+### Option 2
 
 We can conclude that it is identical to this:
 ```dart
@@ -160,6 +165,8 @@ We could e.g. have specified a swatch. Let's do that, but OK let's use the well
 known blue swatch. Which is also identical to the above, since the default
 old Material 2 primarySwatch is the blue one:
 
+### Option 3
+
 ```dart
 theme: ThemeData(
   brightness: Brightness.light,
@@ -170,6 +177,8 @@ darkTheme: ThemeData(
   primarySwatch: Colors.blue,
 ),
 ```
+
+### Option 4
 
 You can also create a ThemeData from a `ColorScheme` that is created from
 a Material 2 ColorSwatch. Let's do it with the blue swatch and see if we can
@@ -194,13 +203,13 @@ Let's check out what the colors for these looks like:
 
 <table>
   <tr>
-    <td>ThemeData.light()/dark()</td>
+    <td>Option 1</td>
     <td>&nbsp;</td>
-    <td>ThemeData(brightness: light/dark)</td>
+    <td>Option 2</td>
     <td>&nbsp;</td>
-    <td>ThemeData(primarySwatch)</td>
+    <td>Option 3</td>
     <td>&nbsp;</td>
-    <td>ThemeData(ColorScheme.fromSwatch)</td>
+    <td>Option 4</td>
   </tr>
   <tr>
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true" alt="Mallard1 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true)</td>
@@ -212,13 +221,13 @@ Let's check out what the colors for these looks like:
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png?raw=true" alt="Mallard4 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png?raw=true)</td>
   </tr>
     <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark?raw=true" alt="Mallard1 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark.png?raw=true" alt="Mallard1 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark.png?raw=true)</td>
     <td>&nbsp;</td>
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true" alt="Mallard2 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true)</td>
     <td>&nbsp;</td>
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png?raw=true" alt="Mallard3 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png?raw=true)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch?raw=true" alt="Mallard4 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png?raw=true)</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.pnng?raw=true" alt="Mallard4 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png?raw=true)</td>
   </tr>
   <tr>
   <td colspan="7">_Comparing obsolete ThemeData ColorSWatch based ways to make `ThemeData` objects_</td>
@@ -226,11 +235,13 @@ Let's check out what the colors for these looks like:
  </table>
 
 
-## ThemeData ColorScheme
+## ColorScheme ThemeData
 
 Making `ThemeData` colors by defining a `ColorScheme` is the recommend way today.
 But there are many wat to make `ThemeData` with `ColorScheme` as well.
 What are their differences? Let's take a look at that.
+
+### Option 5
 
 We can just use `ThemeData` with a fully specified `ColorScheme`, like so:
 
@@ -239,6 +250,8 @@ theme: ThemeData(colorScheme: flexSchemeLight),
 darkTheme: ThemeData(colorScheme: flexSchemeDark),
 ```
 
+### Option 6
+
 Or does it matter if we use the `ThemeData.from` a `ColorScheme` factory like so:
 
 ```dart
@@ -246,6 +259,7 @@ theme: ThemeData.from(colorScheme: flexSchemeLight),
 darkTheme: ThemeData.from(colorScheme: flexSchemeDark),
 ```
 
+### Option 7
 If we want to make a seeded `ColorScheme` and use `ThemeData` property
 `colorSchemeSeed`, this is one way:
 
@@ -260,6 +274,7 @@ darkTheme: ThemeData(
 ),
 ```
 
+### Option 8
 Again, how is this different from using:
 
 ```dart
@@ -276,6 +291,8 @@ darkTheme: ThemeData(
   ),
 ),
 ```
+
+### Option 9
 
 Or a `ThemeData.from` with a `ColorScheme.fromSeed`, like so:
 
@@ -316,15 +333,18 @@ colors it will make its own version of a fully specified `ColorScheme` when
 it produces its `ThemeData`. Using key colors for the seed generated `ColorScheme`
 is another computational `ColorScheme` generation method.
 
-However, in this case we want to use the exact same input `ColorScheme`, so
+### Option 10
+
+In this case we want to use the exact same input `ColorScheme`, so
 we can compare the result by using the same input `ColorScheme` like so:
 
 ```dart
 theme: FlexThemeData.light(colorScheme: flexSchemeLight),
 darkTheme: FlexThemeData.dark(colorScheme: flexSchemeDark),
 ```
+### Option 11
 
-Next, we add the identical seed generated `ColorScheme` as above where we
+Next, we use the identical seed generated `ColorScheme` as above where we
 used `ColorScheme.fromSeed`, by turning on using keyColors, we just pass in
 the default setup, which uses the primary color and the same algorithm that
 the `ColorScheme.fromSeed` used when we used it with the `primary` color
@@ -340,6 +360,7 @@ darkTheme: FlexThemeData.dark(
   keyColors: const FlexKeyColors(),
 ),
 ```
+### Option 12
 
 Lastly we will enable the opinionated component sub-themes, however to not
 get stuck on the differences in border radius and shape of the FAB, let's make
