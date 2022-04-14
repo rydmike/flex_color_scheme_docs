@@ -23,7 +23,7 @@ Then compare the results. Yes that's a lot of methods to make a `ThemeData`
 object, last three ones are FlexColorScheme ways with some different parameters.
 Recommendations on what to use when will also be given.
 
-## ColorScheme Reference
+## ColorScheme Ref
 
 To make it interesting we will when possible use
 the `ColorScheme` M3 Guide Baseline as input for a full qualified
@@ -113,7 +113,7 @@ const ColorScheme flexSchemeDark = ColorScheme(
 );
 ```
 
-### ColorSwatch ThemeData
+### ColorSwatch Based
 
 Let's call this group ThemeData ColorSwatch based, since they all either
 directly or under the hood via defaults use the old Material 2 ColorSwatch
@@ -237,7 +237,7 @@ Let's check out what the colors for these looks like:
  The result above are all identical.
 
 
-## ColorScheme ThemeData
+## ColorScheme Based
 
 Making `ThemeData` colors by defining a `ColorScheme` is the recommend way today.
 But there are many wat to make `ThemeData` with `ColorScheme` as well.
@@ -355,7 +355,7 @@ next group of comparisons.
 **TODO: Explain cause of differences**
 
 
-## ThemeData FlexColorScheme
+## FlexColorScheme Based
 
 Next we will compare all the above to what FlexColoScheme produces with same
 setup. We can use a fully specified `ColorScheme` as input to `FlexColorScheme`
@@ -460,8 +460,8 @@ darkTheme: FlexThemeData.dark(
 **TODO: Review and explain cause of differences - recommendations**
 
 
-### Comparing widgets
+### Compare Components
 
-Let's compare the look of some widget sub-themes as well.
+Let's compare the look of some components and the themes impact on them too.
 
 **TODO: Add this chapter for V5**
