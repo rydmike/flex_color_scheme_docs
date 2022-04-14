@@ -1,0 +1,369 @@
+# Ways to ThemeData
+
+**TODO: Complete this chapter for version 5, it is sill WIP, but progressing!**
+
+In this chapter we compare different ways to define and create a `ThemeData`
+object and look at the differences we get in effective **colors** in the theme-
+We will look at using these options:
+
+1. ThemeData.light()
+2. ThemeData(primarySwatch: Colors.blue)
+3. ThemeData(colorScheme: ColorScheme.fromSwatch())
+4. ThemeData(colorScheme: ColorScheme())
+5. ThemeData.from(colorScheme: ColorScheme())
+6. ThemeData(colorSchemeSeed: Color()),
+7. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+8. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+9. FlexThemeData.light(colorScheme)
+10. FlexThemeData.light(colorScheme, keyColors)
+11. FlexThemeData.light(colorScheme, keyColors, subThemesData)
+
+Then compare the results. Yes that's a lot of methods to make a `ThemeData`
+object, last three ones are FlexColorScheme ways with some different parameters.
+Recommendations on what to use when will also be given.
+
+## Comparison ColorScheme
+
+To make it interesting we will when possible use
+the `ColorScheme` M3 Guide Baseline as input for a full qualified
+`ColorScheme`, but a bit neutered since it is as a more Material 2 variant with
+less colorful onColors. When we use seeded ColorSchemes with it
+we get also the more colorful colors as specified in the M3 guide.
+
+The scheme is useful also because when we use its main color, as seed
+color, the algorithm actually produces the same `ColorScheme`, this happens
+because colors in M3 Guide Baseline `ColorScheme` has been produced using
+the same input Color. This helps us spot differences in the result since we
+will not be focused on the color generation differences, but rather on where
+the colors end up in the produced `ThemeData`
+
+
+For reference, used M3 baseline light theme mode `ColorScheme` without
+M3 colorful onColors.
+
+```dart
+const ColorScheme flexSchemeLight = ColorScheme(
+  brightness: Brightness.light,
+  primary: Color(0xff6750a4),
+  onPrimary: Color(0xffffffff),
+  primaryContainer: Color(0xffeaddff),
+  onPrimaryContainer: Color(0xff000000),
+  secondary: Color(0xff625b71),
+  onSecondary: Color(0xffffffff),
+  secondaryContainer: Color(0xffe8def8),
+  onSecondaryContainer: Color(0xff000000),
+  tertiary: Color(0xff7d5260),
+  onTertiary: Color(0xffffffff),
+  tertiaryContainer: Color(0xffffd8e4),
+  onTertiaryContainer: Color(0xff000000),
+  error: Color(0xffb00020),
+  onError: Color(0xffffffff),
+  errorContainer: Color(0xfffcd8df),
+  onErrorContainer: Color(0xff000000),
+  outline: Color(0xff4d4d4d),
+  background: Color(0xffffffff),
+  onBackground: Color(0xff000000),
+  surface: Color(0xffffffff),
+  onSurface: Color(0xff000000),
+  surfaceVariant: Color(0xffffffff),
+  onSurfaceVariant: Color(0xff000000),
+  inverseSurface: Color(0xff121212),
+  onInverseSurface: Color(0xffffffff),
+  inversePrimary: Color(0xfff0e9ff),
+  shadow: Color(0xff000000),
+);
+```
+
+For reference used M3 baseline dark theme mode `ColorScheme` without
+M3 colorful onColors
+
+```dart
+const ColorScheme flexSchemeDark = ColorScheme(
+  brightness: Brightness.dark,
+  primary: Color(0xffd0bcff),
+  onPrimary: Color(0xff000000),
+  primaryContainer: Color(0xff4f378b),
+  onPrimaryContainer: Color(0xffffffff),
+  secondary: Color(0xffccc2dc),
+  onSecondary: Color(0xff000000),
+  secondaryContainer: Color(0xff4a4458),
+  onSecondaryContainer: Color(0xffffffff),
+  tertiary: Color(0xffefb8c8),
+  onTertiary: Color(0xff000000),
+  tertiaryContainer: Color(0xff633b48),
+  onTertiaryContainer: Color(0xffffffff),
+  error: Color(0xffcf6679),
+  onError: Color(0xff000000),
+  errorContainer: Color(0xffb1384e),
+  onErrorContainer: Color(0xffffffff),
+  outline: Color(0xffb3b3b3),
+  background: Color(0xff121212),
+  onBackground: Color(0xffffffff),
+  surface: Color(0xff121212),
+  onSurface: Color(0xffffffff),
+  surfaceVariant: Color(0xff121212),
+  onSurfaceVariant: Color(0xffffffff),
+  inverseSurface: Color(0xffffffff),
+  onInverseSurface: Color(0xff000000),
+  inversePrimary: Color(0xff635b70),
+  shadow: Color(0xff000000),
+);
+```
+
+### ThemeData ColorSwatch
+
+Let's call this group ThemeData ColorSwatch based, since they all either
+directly or under the hood via defaults use the old Material 2 ColorSwatch
+to create `ThemeData` and its colors.
+
+These methods can be considered obsolete when it comes to producing
+`ColorScheme` using `ThemeData`. Some of them don't even accept a
+`ColorScheme` as input nor do they produce a very usable `ColorScheme`.
+The methods are no deprecated, but it is stated in source code comments that
+these are not the preferred way to make color correct ThemeData. further
+below we will see why.
+
+Since the methods do not accept a `ColorScheme` as input, we will use the
+old classic Material swatch as input, and we will use `Colors.blue`, which
+is also the default one many of the use if one is not provided.
+
+We start with `ThemeData.light()` and `ThemeData.dark()`. These are just
+small convenience factories made with this code:
+
+```dart
+  /// A default light blue theme.
+  factory ThemeData.light() => ThemeData(brightness: Brightness.light);
+  /// A default dark theme with a teal secondary [ColorScheme] color.
+  factory ThemeData.dark() => ThemeData(brightness: Brightness.dark);
+```
+
+These shortcuts are in fact only marginally shorter then using the syntax used
+for what they return, unclear why they exits, but they do. They mostly
+inconvenient when you make a `ThemeData` object, since you cannot define any
+other properties for them directly, you would have to apply all of them with
+`copyWith`. Still If we create our `ThemeData` like this:
+
+```dart
+theme: ThemeData.light(),
+darkTheme: ThemeData.dark(),
+```
+
+We can conclude that it is identical to this:
+```dart
+theme: ThemeData(brightness: Brightness.light),
+darkTheme: ThemeData(brightness: Brightness.dark),
+```
+Except with the above syntax we could have specified any of `ThemeData`'s myriad
+of other properties to actually make a useable `ThemeData`object.
+
+We could e.g. have specified a swatch. Let's do that, but OK let's use the well
+known blue swatch. Which is also identical to the above, since the default
+old Material 2 primarySwatch is the blue one:
+
+```dart
+theme: ThemeData(
+  brightness: Brightness.light,
+  primarySwatch: Colors.blue,
+),
+darkTheme: ThemeData(
+  brightness: Brightness.dark,
+  primarySwatch: Colors.blue,
+),
+```
+
+You can also create a ThemeData from a `ColorScheme` that is created from
+a Material 2 ColorSwatch. Let's do it with the blue swatch and see if we can
+spot any differences:
+
+```dart
+theme: ThemeData(
+  colorScheme: ColorScheme.fromSwatch(
+    brightness: Brightness.light,
+    primarySwatch: Colors.blue,
+  ),
+),
+darkTheme: ThemeData(
+  colorScheme: ColorScheme.fromSwatch(
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blue,
+  ),
+),
+```
+
+Let's check out what the colors for these looks like:
+
+<table>
+  <tr>
+    <td>ThemeData.light()/dark()</td>
+    <td>&nbsp;</td>
+    <td>ThemeData(brightness: light/dark)</td>
+    <td>&nbsp;</td>
+    <td>ThemeData(primarySwatch)</td>
+    <td>&nbsp;</td>
+    <td>ThemeData(ColorScheme.fromSwatch)</td>
+  </tr>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true" alt="Mallard1 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light.png?raw=true" alt="Mallard2 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch.png?raw=true" alt="Mallard3 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png?raw=true" alt="Mallard4 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png?raw=true)</td>
+  </tr>
+    <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark?raw=true" alt="Mallard1 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true" alt="Mallard2 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png?raw=true" alt="Mallard3 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch?raw=true" alt="Mallard4 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="7">_Comparing obsolete ThemeData ColorSWatch based ways to make `ThemeData` objects_</td>
+  </tr>
+ </table>
+
+
+## ThemeData ColorScheme
+
+Making `ThemeData` colors by defining a `ColorScheme` is the recommend way today.
+But there are many wat to make `ThemeData` with `ColorScheme` as well.
+What are their differences? Let's take a look at that.
+
+We can just use `ThemeData` with a fully specified `ColorScheme`, like so:
+
+```dart
+theme: ThemeData(colorScheme: flexSchemeLight),
+darkTheme: ThemeData(colorScheme: flexSchemeDark),
+```
+
+Or does it matter if we use the `ThemeData.from` a `ColorScheme` factory like so:
+
+```dart
+theme: ThemeData.from(colorScheme: flexSchemeLight),
+darkTheme: ThemeData.from(colorScheme: flexSchemeDark),
+```
+
+If we want to make a seeded `ColorScheme` and use `ThemeData` property
+`colorSchemeSeed`, this is one way:
+
+```dart
+theme: ThemeData(
+  brightness: Brightness.light,
+  colorSchemeSeed: const Color(0xff6750a4),
+),
+darkTheme: ThemeData(
+  brightness: Brightness.dark,
+  colorSchemeSeed: const Color(0xff6750a4),
+),
+```
+
+Again, how is this different from using:
+
+```dart
+theme: ThemeData(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xff6750a4),
+    brightness: Brightness.light,
+  ),
+),
+darkTheme: ThemeData(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xff6750a4),
+    brightness: Brightness.dark,
+  ),
+),
+```
+
+Or a `ThemeData.from` with a `ColorScheme.fromSeed`, like so:
+
+```dart
+theme: ThemeData.from(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xff6750a4),
+    brightness: Brightness.light,
+  ),
+),
+darkTheme: ThemeData.from(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xff6750a4),
+    brightness: Brightness.dark,
+  ),
+),
+```
+
+If all these options are confusing, it is because it that is so.
+
+Let's look at the results:
+
+**TODO: Add comparison images and explain cause of differences**
+
+
+## ThemeData FlexColorScheme
+
+Next we will compare all the above to what FlexColoScheme produces with same
+setup. We can use a fully specified `ColorScheme` as input to `FlexColorScheme`
+to create custom themes with it too.
+
+This can be used instead a the `colors` property. The `colors` property is
+convenient, since we do not have to
+specify all the colors in a `ColorScheme`. FlexColorScheme wil instead handle
+the nuances of making one, based on other properties we specify in the
+factory, like blends, app bar setup, etc, plus using defaults and computational
+colors it will make its own version of a fully specified `ColorScheme` when
+it produces its `ThemeData`. Using key colors for the seed generated `ColorScheme`
+is another computational `ColorScheme` generation method.
+
+However, in this case we want to use the exact same input `ColorScheme`, so
+we can compare the result by using the same input `ColorScheme` like so:
+
+```dart
+theme: FlexThemeData.light(colorScheme: flexSchemeLight),
+darkTheme: FlexThemeData.dark(colorScheme: flexSchemeDark),
+```
+
+Next, we add the identical seed generated `ColorScheme` as above where we
+used `ColorScheme.fromSeed`, by turning on using keyColors, we just pass in
+the default setup, which uses the primary color and the same algorithm that
+the `ColorScheme.fromSeed` used when we used it with the `primary` color
+from our `ColorScheme`.
+
+```dart
+theme: FlexThemeData.light(
+  colorScheme: flexSchemeLight,
+  keyColors: const FlexKeyColors(),
+),
+darkTheme: FlexThemeData.dark(
+  colorScheme: flexSchemeDark,
+  keyColors: const FlexKeyColors(),
+),
+```
+
+Lastly we will enable the opinionated component sub-themes, however to not
+get stuck on the differences in border radius and shape of the FAB, let's make
+it look like Material 2 for this comparison.
+
+```dart
+theme: FlexThemeData.light(
+  colorScheme: flexSchemeLight,
+  keyColors: const FlexKeyColors(),
+  subThemesData: const FlexSubThemesData(
+    defaultRadius: 4,
+    fabUseShape: false,
+  ),
+  fontFamily: GoogleFonts.roboto().fontFamily,
+),
+darkTheme: FlexThemeData.dark(
+  colorScheme: flexSchemeDark,
+  keyColors: const FlexKeyColors(),
+  subThemesData: const FlexSubThemesData(
+    defaultRadius: 4,
+    fabUseShape: false,
+  ),
+  fontFamily: GoogleFonts.roboto().fontFamily,
+),
+```
+
+**TODO: Add comparison images and explain cause of differences**

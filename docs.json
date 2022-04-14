@@ -32,7 +32,8 @@
         ],
         ["Theming Guide",
             [
-                ["Introduction", "/theming_guide"],
+                ["Overview", "/theming_guide"],
+                ["Ways to theme", "/theming_ways"],
                 ["FAQ", "/faq"]
             ]
         ],
