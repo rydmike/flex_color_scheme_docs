@@ -33,7 +33,7 @@
         ["Theming Guide",
             [
                 ["Overview", "/theming_guide"],
-                ["Ways to theme", "/theming_ways"],
+                ["Ways to ThemeData", "/theming_ways"],
                 ["FAQ", "/faq"]
             ]
         ],
