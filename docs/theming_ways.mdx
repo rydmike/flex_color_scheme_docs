@@ -813,7 +813,7 @@ the `ColorScheme` are quite pretty, although the dull and grey like secondary
 color is not so good on switches, but tat is just this particular scheme.
 
 
-## FlexColorScheme Based (FTD)
+## Flex Based
 
 Next we will compare all the above to what FlexColoScheme produces with same
 setup. We can use a fully specified `ColorScheme` as input to `FlexColorScheme`
@@ -913,6 +913,11 @@ darkTheme: FlexThemeData.dark(
 ),
 ```
 
+### Compare 9 to 12
+
+Lastly we will compare the Flutter SDK option 9)
+ThemeData.from(colorScheme: ColorScheme.fromSeed(...)) method to
+the above three `FleXColorScheme` based ones.
 
 <table>
   <tr>
@@ -947,10 +952,14 @@ darkTheme: FlexThemeData.dark(
   </tr>
  </table>
 
-**TODO: Review and explain differences - recommendations**
 
+**TODO: Review and explain differences**
 
-### Compare Components
+### Recommendations
+
+**TODO: Add conclusion and recommendations**
+
+### Component Themes
 
 Let's compare the look of some components and the themes impact on them too.
 
