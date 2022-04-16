@@ -7,19 +7,18 @@ object and look at the differences we get in effective **colors** in the theme-
 We will look at using these options, in both light and dark mode, dark is just
 not mentioned below, it go too long:
 
-1. ThemeData.light()
-2. ThemeData(brightness: Brightness.light)
-3. ThemeData(primarySwatch: Colors.blue)
-4. ThemeData(colorScheme: ColorScheme.fromSwatch())
-5. ThemeData.from(colorScheme: ColorScheme.fromSwatch())
-6. ThemeData(colorScheme: ColorScheme())
-7. ThemeData.from(colorScheme: ColorScheme())
-8. ThemeData(colorSchemeSeed: Color()),
-9. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-10. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-11. FlexThemeData.light(colorScheme)
-12. FlexThemeData.light(colorScheme, keyColors)
-13. FlexThemeData.light(colorScheme, keyColors, subThemesData)
+1. ThemeData.light() and ThemeData(brightness: Brightness.light)
+2. ThemeData(primarySwatch: Colors.blue)
+3. ThemeData(colorScheme: ColorScheme.fromSwatch())
+4. ThemeData.from(colorScheme: ColorScheme.fromSwatch())
+5. ThemeData(colorScheme: ColorScheme())
+6. ThemeData.from(colorScheme: ColorScheme())
+7. ThemeData(colorSchemeSeed: Color()),
+8. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+10. FlexThemeData.light(colorScheme)
+11. FlexThemeData.light(colorScheme, keyColors)
+12. FlexThemeData.light(colorScheme, keyColors, subThemesData)
 
 Then compare the results. Yes that's a lot of methods to make a `ThemeData`
 object, last three ones are FlexColorScheme ways with some different parameters.
@@ -195,26 +194,25 @@ These shortcuts are in fact only marginally shorter than using the syntax used
 for what they return. It is a bit unclear why they even exits, but they do.
 They are not very practical when you make a `ThemeData` object, since you
 cannot define any other properties for them directly. You would have to apply
-all of them with `copyWith`. Still if we create our `ThemeData` like this:
+all of them with `copyWith`, if we create our `ThemeData` like this:
 
 ```dart
-// 1) TD.light - ThemeData.light() / .dark()
-title: '1) TD.light',
+// 1b) TD.light
+//     ThemeData.light() / ThemeData.light().dark()
+title: '1a) TD.light',
 theme: ThemeData.light(),
 darkTheme: ThemeData.dark(),
 ```
 
-All we can get with the above one is the default `Colors.blue` `MaterialColor`
-swatch based `ThemeData`.
-
-### 2) TD brightness
-
-We can conclude that it is identical to this:
+All we can get with the above is the default `Colors.blue` `MaterialColor`
+swatch based `ThemeData`, not very practical. This is of course going to
+be identical to:
 
 ```dart
-// 2) TD brightness - ThemeData(brightness: ...)
-//
-title: '2) TD brightness',
+// 1a) TD brightness
+//     ThemeData(brightness: Brightness.light)
+//     ThemeData(brightness: Brightness.dark)
+title: '1b) TD brightness',
 theme: ThemeData(brightness: Brightness.light),
 darkTheme: ThemeData(brightness: Brightness.dark),
 ```
@@ -222,13 +220,14 @@ darkTheme: ThemeData(brightness: Brightness.dark),
 Except with the above syntax we could have specified any of `ThemeData`'s myriad
 other properties to actually make a useable `ThemeData`object.
 
-### 3) TD primarySwatch
+### 2) TD primarySwatch
 
 We could e.g. have specified a swatch. Let's do that, using both the above blue
 and our custom `flexSwatch` and see what that gives us.
 
 ```dart
-// 3 blue) TD primarySwatch - ThemeData(brightness: ...)
+// 2) TD primarySwatch
+//    ThemeData(brightness: ..., primarySwatch: Colors.blue)
 title: '3) TD primarySwatch',
 theme: ThemeData(
   brightness: Brightness.light,
@@ -241,12 +240,13 @@ darkTheme: ThemeData(
 ```
 
 If we use the `Colors.blue` as input it will still be identical to 1 and 2.
-All using our `flexSwatch` as input will give us, is just a variation with a
-different color, but let's do it too so we can compare it later to its
+All using our `flexSwatch` as input will give us, is a variation with a
+different color, but let's do it anyway so we can compare it later to its
 `ColorScheme` based versions.
 
 ```dart
-// 3 M3 base) TD primarySwatch - ThemeData(brightness: ...)
+// 2) TD primarySwatch
+//    ThemeData(brightness: ..., primarySwatch: flexSwatch)
 title: '3) TD primarySwatch',
 theme: ThemeData(
   brightness: Brightness.light,
@@ -258,26 +258,52 @@ darkTheme: ThemeData(
 ),
 ```
 
-### 4) TD colorScheme.fromSwatch
+### 3) TD colorScheme.fromSwatch
 
-We can also create a `ThemeDat` a from a `ColorScheme` that is created from
+We can also make a `ThemeData` with a `ColorScheme` that is created from
 a `MaterialColor` swatch. Let's try this with `Colors.blue` and our
 `flexSwatch` as well, and see if we can spot any differences in the result.
 
 ```dart
-// 4) TD colorScheme.fromSwatch
+// 3) TD colorScheme.fromSwatch
 //    ThemeData(colorScheme: ColorScheme.fromSwatch())
 //
-title: '4) TD colorScheme.fromSwatch',
+title: '3) TD colorScheme.fromSwatch',
+theme: ThemeData(
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.blue // or flexSwatch
+    brightness: Brightness.light,
+  ),
+),
+darkTheme: ThemeData(
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.blue // or flexSwatch
+    brightness: Brightness.dark,
+  ),
+),
+```
+
+### 4) TD colorScheme.fromSwatch
+
+Here is a complex combo, let's use factory `ThemeData.from` a `ColorScheme`
+that is created from a `MaterialColor` swatch with `ColorScheme.fromSwatch`.
+Let's see this with `Colors.blue` and our `flexSwatch` as well, and see if
+we can now spot any differences in the result.
+
+```dart
+// 4) TD.from scheme.fromSwatch
+//    ThemeData.from(colorScheme: ColorScheme.fromSwatch())
+//
+title: '4) TD.from fromSwatch',
 theme: ThemeData.from(
   colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: flexSwatch, // or Colors.blue
+    primarySwatch: Colors.blue, // flexSwatch
     brightness: Brightness.light,
   ),
 ),
 darkTheme: ThemeData.from(
   colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: flexSwatch, // or Colors.blue
+    primarySwatch: Colors.blue, // flexSwatch
     brightness: Brightness.dark,
   ),
 ),
@@ -326,77 +352,90 @@ Let's now compare and analyze these results:
  * ColorScheme colors in light mode all have same blue 500 color.
  * In dark mode we get a default magic teal color, that we did not specify,
    because it is the default. We are going to see this teal color stick around
-   a lot in all themes later too.
+   a lot in dark themes later too.
  * The dark mode does not look very good, it is grey, not really dark.
  * ColorScheme background in light theme mode color has the wrong contrasting
-   onColor. This is very bad, and probably a bug, or at least an oversight.
+   onColor. This is bad, and probably a bug, or at least an oversight.
    Why does it get this color?
 
-We can track that from `ThemeData` and see that if we have not passed `colorScheme`
-to it, it will be created with `colorScheme ??= ColorScheme.fromSwatch`, in it
-we will find:
+We can track that from `ThemeData` and see that if we have not passed a `colorScheme`
+to it, it will be created with `colorScheme ??= ColorScheme.fromSwatch` and in it
+we find this. Cause of issue os explained in the commented Flutter SDK code below.
 
 ```dart
-  /// Create a color scheme from a [MaterialColor] swatch.
-  ///
-  /// This constructor is used by [ThemeData] to create its default
-  /// color scheme.
-  factory ColorScheme.fromSwatch({
-    MaterialColor primarySwatch = Colors.blue,
-    Color? primaryColorDark,
-    Color? accentColor,
-    Color? cardColor,
-    Color? backgroundColor,
-    Color? errorColor,
-    Brightness brightness = Brightness.light,
-  }) {
-    assert(primarySwatch != null);
-    assert(brightness != null);
-
-    final bool isDark = brightness == Brightness.dark;
-
-    // This is key for the issue, checking if primary needs white or black
-    // onColor here is fine for index 500 and the actual primary color:
-    final bool primaryIsDark = _brightnessFor(primarySwatch) == Brightness.dark;
-    final Color secondary = accentColor ?? (isDark ? Colors.tealAccent[200]! : primarySwatch);
-    final bool secondaryIsDark = _brightnessFor(secondary) == Brightness.dark;
-
-    return ColorScheme(
-      primary: primarySwatch,
-      primaryVariant: primaryColorDark ?? (isDark ? Colors.black : primarySwatch[700]!),
-      secondary: secondary,
-      secondaryVariant: isDark ? Colors.tealAccent[700]! : primarySwatch[700]!,
-      surface: cardColor ?? (isDark ? Colors.grey[800]! : Colors.white),
-      // However, here primary swatch 200 is assigned to ColorScheme background.
-      background: backgroundColor ?? (isDark ? Colors.grey[700]! : primarySwatch[200]!),
-      error: errorColor ?? Colors.red[700]!,
-      onPrimary: primaryIsDark ? Colors.white : Colors.black,
-      onSecondary: secondaryIsDark ? Colors.white : Colors.black,
-      onSurface: isDark ? Colors.white : Colors.black,
-      // Here the onBackground gets white or black color, but that does not work
-      // because the same primaryIsDark boolean is used. That check was for
-      // swatch color 500, the swatch color 200 that was used in light mode for
-      // background typically does not have the same brightness as the 500 index,
-      // so for most swatches we get the wrong on onColor contrasting color for
-      // onBackground with all these theme creation methods. You would have to
-      // know this and correct with a copyWith.
-      onBackground: primaryIsDark ? Colors.white : Colors.black,
-      onError: isDark ? Colors.black : Colors.white,
-      brightness: brightness,
-    );
-  }
+// Create a color scheme from a [MaterialColor] swatch.
+//
+// This constructor is used by [ThemeData] to create its default
+// color scheme.
+factory ColorScheme.fromSwatch({
+  MaterialColor primarySwatch = Colors.blue,
+  Color? primaryColorDark,
+  Color? accentColor,
+  Color? cardColor,
+  Color? backgroundColor,
+  Color? errorColor,
+  Brightness brightness = Brightness.light,
+}) {
+  assert(primarySwatch != null);
+  assert(brightness != null);
+  final bool isDark = brightness == Brightness.dark;
+  // This is key for the issue, checking if primary needs white or black
+  // onColor here is fine for index 500 and the actual primary color:
+  final bool primaryIsDark = _brightnessFor(primarySwatch) == Brightness.dark;
+  final Color secondary = accentColor ?? (isDark ? Colors.tealAccent[200]! : primarySwatch);
+  final bool secondaryIsDark = _brightnessFor(secondary) == Brightness.dark;
+  return ColorScheme(
+    primary: primarySwatch,
+    primaryVariant: primaryColorDark ?? (isDark ? Colors.black : primarySwatch[700]!),
+    secondary: secondary,
+    secondaryVariant: isDark ? Colors.tealAccent[700]! : primarySwatch[700]!,
+    surface: cardColor ?? (isDark ? Colors.grey[800]! : Colors.white),
+    // However, here primary swatch 200 is assigned to ColorScheme background.
+    background: backgroundColor ?? (isDark ? Colors.grey[700]! : primarySwatch[200]!),
+    error: errorColor ?? Colors.red[700]!,
+    onPrimary: primaryIsDark ? Colors.white : Colors.black,
+    onSecondary: secondaryIsDark ? Colors.white : Colors.black,
+    onSurface: isDark ? Colors.white : Colors.black,
+    // Here the onBackground gets white or black color, but that does not work
+    // because the primaryIsDark boolean is used. That check was for
+    // swatch color 500, the swatch color 200 that was used in light mode for
+    // background typically does not have the same brightness as the 500 index,
+    // so for most swatches we get the wrong contrasting color for onBackground
+    // with all these .fromSwatch based ColorScheme creation methods. You would
+    // have to know this and correct with a copyWith.
+    //
+    // Also the swatch does have a lot of nice shades that could be used to
+    // set better colors for all the other ColorScheme container colors too
+    // but it is chose not too, for backwards compatibility presumably.
+    onBackground: primaryIsDark ? Colors.white : Colors.black,
+    onError: isDark ? Colors.black : Colors.white,
+    brightness: brightness,
+  );
+}
 ```
 
-So what about the 4th option, we are using ...
+What about the 4th option, in it we are using the recommended way of creating
+a `ThemeData`, by using `ThemeData.from` a `ColorScheme`.
 
-**TODO: continue the analysis**
+This sounds good in theory, but since we are making
+the `ColorScheme` using the broken or at least fidelity wise very poor
+`ColorScheme.fromSwatch` factory, we will have the same issue with the background's
+`onBackground` color in light mode. However, now it gets even funkier.
+Since `ThemeData.from` will assign many colors from the `ColorScheme` to
+theme colors in `ThemeData`, that are the ones still used on actual surfaces
+and background we get "interesting" result. In it `ColorScheme.surface` is
+assigned to `ThemeData.cardColor` and both `ThemeData.CanvasColor` and
+`scaffoldBackgroundColor` get the `ColorScheme.background`, which is
+primarySwatch index 200 shade, it looks a bit like too much color on those
+surfaces if you ask me, not even M3 puts this much color on background surfaces.
 
-
+Let's move on to using `ColorScheme` to make `ColorScheme` based themes as we
+should. Then all will be great, right?
 
 ## Scheme Based
 
 Making `ThemeData` colors by defining a `ColorScheme` is the recommend way today.
-But there are many wat to make `ThemeData` with `ColorScheme` as well.
+But there are many way to make `ThemeData` with `ColorScheme` as well.
 What are their differences? Let's take a look at that.
 
 ### 5) TD colorscheme
