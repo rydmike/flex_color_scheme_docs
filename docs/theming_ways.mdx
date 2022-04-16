@@ -266,7 +266,7 @@ a `MaterialColor` swatch. Let's try this with `Colors.blue` and our
 
 ```dart
 // 3) TD colorScheme.fromSwatch
-//    ThemeData(colorScheme: ColorScheme.fromSwatch())
+//    ThemeData(colorScheme: ColorScheme.fromSwatch(...))
 //
 title: '3) TD colorScheme.fromSwatch',
 theme: ThemeData(
@@ -292,24 +292,24 @@ we can now spot any differences in the result.
 
 ```dart
 // 4) TD.from scheme.fromSwatch
-//    ThemeData.from(colorScheme: ColorScheme.fromSwatch())
+//    ThemeData.from(colorScheme: ColorScheme.fromSwatch(...))
 //
 title: '4) TD.from fromSwatch',
 theme: ThemeData.from(
   colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: Colors.blue, // flexSwatch
+    primarySwatch: Colors.blue, // or flexSwatch
     brightness: Brightness.light,
   ),
 ),
 darkTheme: ThemeData.from(
   colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: Colors.blue, // flexSwatch
+    primarySwatch: Colors.blue, // or flexSwatch
     brightness: Brightness.dark,
   ),
 ),
 ```
 
-## Compare 1 to 4
+## Comparing 1 to 4
 
 Let's now compare and analyze the different results.
 
@@ -319,7 +319,7 @@ Let's now compare and analyze the different results.
     <td>&nbsp;</td>
     <td><b>2) TD primarySwatch</b></td>
     <td>&nbsp;</td>
-    <td><b>3) TD scheme.fromSwatch</b></td>
+    <td><b>3) TD fromSwatch</b></td>
     <td>&nbsp;</td>
     <td><b>4) TD.from fromSwatch</b></td>
   </tr>
@@ -436,35 +436,52 @@ should. Then all will be great, right?
 
 Making `ThemeData` colors by defining a `ColorScheme` is the recommend way today.
 But there are many way to make `ThemeData` with `ColorScheme` as well.
-What are their differences? Let's take a look at that.
+What are their differences? Let's take a look at that. Now we switch from
+using the `MaterialColor` swatch as input to the `flexSchemeLight` light and
+`flexSchemeDark` dark `ColorScheme` we defined based on the M3 baseline.
 
 ### 5) TD colorscheme
 
-We can  use `ThemeData` with a fully specified `ColorScheme`, like so:
+Te simplest is to just `ThemeData` with a fully specified `ColorScheme`,
+like so:
 
 ```dart
 // 5) TD colorScheme
-//    ThemeData(colorScheme: ColorScheme())
+//    ThemeData(colorScheme: ColorScheme(...))
 //
 title: '5) TD colorscheme',
 theme: ThemeData(colorScheme: flexSchemeLight),
 darkTheme: ThemeData.from(colorScheme: flexSchemeDark),
 ```
 
-### Option 6
+### 6) TD.from colorScheme
 
-Or does it matter if we use the `ThemeData.from` a `ColorScheme` factory like so:
+Does it matter if we use the `ThemeData.from` a `ColorScheme` factory like so:
 
 ```dart
+// 6) TD.from colorScheme
+//    ThemeData.from(colorScheme: ColorScheme(...))
+//
+title: '6) TD.from colorScheme',
 theme: ThemeData.from(colorScheme: flexSchemeLight),
 darkTheme: ThemeData.from(colorScheme: flexSchemeDark),
 ```
 
-### Option 7
-If we want to make a seeded `ColorScheme` and use `ThemeData` property
-`colorSchemeSeed`, this is one way:
+### 7) TD colorSchemeSeed
+
+If we want to make a seeded `ColorScheme`, we can use the `ThemeData` property
+`colorSchemeSeed` to do so. Here we are using the `ColorScheme.primary` color
+value from the `flexSchemeLight` scheme, as seed color for both the seed
+generated light and dart `ColorScheme`. You should use the same seed color
+for your light and dark theme, if you want the light and dark `ColorScheme`
+to use the identical generated tonal palettes, but with the appropriate tones
+for light and dark themes mapped to the generated `ColorScheme.
 
 ```dart
+// 7) TD colorSchemeSeed
+//    ThemeData(colorSchemeSeed: Color(...))
+//
+title: '7) TD colorSchemeSeed',
 theme: ThemeData(
   brightness: Brightness.light,
   colorSchemeSeed: const Color(0xff6750a4),
@@ -475,10 +492,16 @@ darkTheme: ThemeData(
 ),
 ```
 
-### Option 8
-Again, how is this different from using:
+### 8) TD scheme.fromSeed
+
+Is the above any different from using creating your `ThemeData` using
+a `ColorScheme.fromSeed`?
 
 ```dart
+// 8) TD scheme.fromSeed
+//    ThemeData(colorScheme: ColorScheme.fromSeed(...))
+//
+title: '8) TD scheme.fromSeed',
 theme: ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xff6750a4),
@@ -493,11 +516,15 @@ darkTheme: ThemeData(
 ),
 ```
 
-### Option 9
+### 9) TD.from fromSeed
 
-Or a `ThemeData.from` with a `ColorScheme.fromSeed`, like so:
+Or what about `ThemeData.from` with a `ColorScheme.fromSeed`, like so:
 
 ```dart
+// 9) TD.from scheme.fromSeed
+//    ThemeData(colorScheme: ColorScheme.fromSeed(...))
+//
+title: '9) TD.from fromSeed',
 theme: ThemeData.from(
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xff6750a4),
@@ -512,22 +539,23 @@ darkTheme: ThemeData.from(
 ),
 ```
 
-If all these options are confusing, it is because it that is so.
-
-Let's look at the results, excluding option 9, we will add to
+If all these options feel confusing, it is because because they are.
+Let's now look at all the results, excluding option 9, we will add to
 next group of comparisons.
 
-**TODO: Add updated images**
+## Comparing 5 to 8
+
+Lot's of differences here, let's look at them one by one.
 
 <table>
   <tr>
-    <td><b>Option 5</b></td>
+    <td><b>5) TD colorscheme</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 6</b></td>
+    <td><b>6) TD.from colorScheme</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 7</b></td>
+    <td><b>7) TD colorSchemeSeed</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 8</b></td>
+    <td><b>8) TD scheme.fromSeed</b></td>
   </tr>
   <tr>
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png?raw=true" alt="TD Scheme5 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png?raw=true)</td>
@@ -553,10 +581,239 @@ next group of comparisons.
  </table>
 
 
-**TODO: Explain cause of differences**
+### 5) Analysis - ThemeData made with a ColorScheme
+
+**Option 5** with a `ThemeData` from a full `ColorScheme`, looks as can be expected
+we have our `ColorScheme` in the scheme as given. However, none of the scheme
+colors have been assigned to any of the direct colors in our `ThemeData`, and since
+those colors are still used by a number UI elements it is a bit problematic.
+
+### 6) Analysis - ThemeData.from a ColorScheme
+
+**Option 6** with the `ThemeData.from` using our full `ColorScheme`, things are
+as good as they will get in Flutter SDK when it comes to getting reasonable
+colors assigned to legacy colors in `ThemeData`. We can in light mode
+`primaryColor` got the `ColorScheme.primary` color and `ToggleableColor` got
+the ``ColorScheme.secondary` color (not a very nice color in this particular
+scheme, but the assignment is correct). We also see the error color got moved
+over to THemeData. In fact this applies to canvas, scaffold, card and many
+other colors too. We can take a peek at the `ThemeData.from` factory to get
+the full scoop here:
+
+```dart
+factory ThemeData.from({
+  required ColorScheme colorScheme,
+  TextTheme? textTheme,
+}) {
+  final bool isDark = colorScheme.brightness == Brightness.dark;
+  // For surfaces that use primary color in light themes and surface color in dark
+  final Color primarySurfaceColor = isDark ? colorScheme.surface : colorScheme.primary;
+  final Color onPrimarySurfaceColor = isDark ? colorScheme.onSurface : colorScheme.onPrimary;
+  return ThemeData(
+    colorScheme: colorScheme,
+    brightness: colorScheme.brightness,
+    primaryColor: primarySurfaceColor,
+    primaryColorBrightness: ThemeData.estimateBrightnessForColor(primarySurfaceColor),
+    canvasColor: colorScheme.background,
+    accentColor: colorScheme.secondary,
+    accentColorBrightness: ThemeData.estimateBrightnessForColor(colorScheme.secondary),
+    scaffoldBackgroundColor: colorScheme.background,
+    bottomAppBarColor: colorScheme.surface,
+    cardColor: colorScheme.surface,
+    dividerColor: colorScheme.onSurface.withOpacity(0.12),
+    backgroundColor: colorScheme.background,
+    dialogBackgroundColor: colorScheme.background,
+    indicatorColor: onPrimarySurfaceColor,
+    errorColor: colorScheme.error,
+    textTheme: textTheme,
+    applyElevationOverlayColor: isDark,
+  );
+}
+```
+
+The `accentColor` that `ThemeData.from` still sets is actually deprecated, but
+still being used for legacy reasons. If we look closely we see that in
+light theme mode, we get got `colorScheme.secondary` on the
+`ThemeData.toggleableActiveColor`, but not in dark mode. Does this matter?
+Yes it does, because the `toggleableActiveColor` is still used as default color
+by on/off switches, and in dark theme mode that is now still "teal" colored,
+so they will get a teal color that has nothing with our `ColorScheme`, unless
+we apply it to it separately. But why did it get the `secondary` in light
+theme mode and not in dark theme mode, after all it is not even assigned any
+value in `ThemeData.from`. That is because `ThemeData` itself does thin thing_
+
+```dart
+toggleableActiveColor ??= isDark ? Colors.tealAccent[200]!
+                                 : (accentColor ?? primarySwatch[600]!);
+```
+
+It is understandable that logic was kept for all the swatch based themes backwards
+compatibility, but why could `ThemeData.from` not just have also
+included a line that set._All
+
+```dart
+toggleableActiveColor: colorScheme.secondary,
+```
+
+Along with accent color, back when it was introduced it would have been fine,
+and we would have had a slightly less confusing `ThemeData` from a `ColorScheme`
+result.
+
+Next we have to wonder about three color that `ThemeData.from` happily ignores
+in light theme mode and in dark theme mode make into something completely
+different. As can be seen `primaryColorLight`, `primaryColorDark` and
+`secondaryHeaderColor` are still the same blue as when we used swatch colors.
+That is because in ThemeData they get colors from the swatch, that has not
+been assigned any value, so it has defaulted `Colors.blue`.
+
+```dart
+  primaryColorLight ??= isDark ? Colors.grey[500]! : primarySwatch[100]!;
+  primaryColorDark ??= isDark ? Colors.black : primarySwatch[700]!;
+  secondaryHeaderColor ??= isDark ? Colors.grey[700]! : primarySwatch[50]!;
+```
+
+There are still some UI elements that use these colors as their default colors
+in Flutter, so this means they like the switches in dark mode now use colors
+that has nothing to do with the `ColorScheme` we wanted our application to
+have.
+
+In dark mode we can see that all these colors are grey and even the
+`ThemeData.primaryColor` is grey. This might be a bit confusing, since these
+colors are not grey in our dark mode `ColorScheme`. Would it not be more
+consistent if these colors were different shades of the primary color in dark
+mode too? Like they are in light mode, well if you happened to use swatch based
+these, which you should not.
+
+Why are they grey? My theory, in earlier version of Flutter's AppBar, the
+only way to get the correct dark/grey color on it in dark theme mode, was if this
+oddity was added to the factory:
+
+```dart
+// For surfaces that use primary color in light themes and surface color in dark
+final Color primarySurfaceColor = isDark ? colorScheme.surface : colorScheme.primary;
+final Color onPrimarySurfaceColor = isDark ? colorScheme.onSurface : colorScheme.onPrimary;
+```
+
+Today this is not needed, at least not for that reason anymore, newer
+version of the `AppBar` has this behavior
+built-in without depending on `ThemeData.primaryColor`. But it has not been
+changed so the colors would make more logical sense in relation the
+`ColorScheme`, again due to "legacy" compatibility.
+
+I wrote a long analysis and review about these inconsistences already back in
+2020 and then they had already existed for at least year. The curious one can read
+about it in [issue 65782](https://github.com/flutter/flutter/issues/65782).
+Some of the reported observations in it have since been addressed by the still
+on going `ThemeData` redesign work. While some parts, like the
+`primaryColorLight` and `primaryColorDark` are not yet even on a deprecation
+path, even though all other direct colors in `ThemeData`are, as
+mentioned and seen here in [issue 91772](https://github.com/flutter/flutter/issues/91772).
+
+In any case, the road forward is clear and things will get more consistent out
+of the box once all the tasks in [issue 91772](https://github.com/flutter/flutter/issues/91772)
+are done and have landed in stable channel. As an example `toggleableActiveColor`
+has been deprecated, see [PR 95870](https://github.com/flutter/flutter/pull/95870)
+channel, there is a migration document prepared
+[here](https://docs.flutter.dev/release/breaking-changes/toggleable-active-color#migration-guide.).
+This is not yet in stable channel 2.10, but maybe in next stable release already.
+
+Looking forward to the day when the entire `ThemeData` color confusion is cleaned up.
+Until then, we will see further below that **FlexColorScheme** can help you with
+the inconsistences and give you a coherent color theme now.
+
+On a related note, if you are interested in how the support for Material 3 is
+coming along in Flutter, then the umbrella
+[issue 91605](https://github.com/flutter/flutter/issues/91605)
+is the one to track for that.
+
+### ElevationOverlayColor
+
+One thing the `ThemeData.from` factory has going for it in dark theme mode is
+that it correctly uses the ElevationOverlayColor in dark mode by setting,
+when the theme brightness is dark:
+
+```dart
+applyElevationOverlayColor: true,
+```
+
+For dark theme's, this is really something one should do in Material 2 design.
+No other `ThemeData` factory turns this on by default, so if you are using them
+you should make sure to set it to true for your dark theme.
+
+Material 3 color system uses a new elevation color overlay algorithm that is
+not yet available in Flutter 2.10 stable channel, see
+[issue 91607](https://github.com/flutter/flutter/issues/91607). In Material 3 an elevation
+color overlay is used in both light and dark theme mode. We will return
+to looking at it when in lands in stable channel. In this
+[PR 100036](https://github.com/flutter/flutter/pull/100036) you can learn and
+see what it does. Surfaces get more colored tinted when they are elevated, and you
+can do elevation with tint, shadow or both.
+
+When working with elevation overlays in Material 2 it is important to know
+that it should be applied to Material surfaces that might get elevated. These
+surfaces might actually be using the `ColorScheme.surface` color, which may even
+be in the form of `ThemeData.cardColor` on the surface or
+`ColorScheme.background`, which again might be in the form of
+`ThemeData.canvasColor` this all depends on the actual material surface UI
+elements implemented default color, and they vary. However, the surfaces will
+only get an elevation overlay color if the color value is equal to
+`ColorScheme.surface`, an implementation oversight perhaps.
+
+When you are working with blended surfaces where `surface` and `background`
+may differ, this matters. Typically with default Flutter SDK values, these colors
+all share the same color value, so the issue won't be noticed. In
+**FlexColorScheme** they may be different. FlexColorScheme addresses this issue
+by mostly using `ColorScheme.surface` as the themed color, for surfaces that
+will typically be elevated, like Card and Dialogs (that default to background).
+Additionally if this is not enough, it offers blend modes where surface and
+background always get the same blend strength, keeping their color values
+identical. You can read more about this design and implementation
+oversight here in [issue #90353](https://github.com/flutter/flutter/issues/90353)
+that analyzed and suggested a solution that would remedy it.
+It is unlikely to ever be addressed, so the best thing to do is to
+be aware if it and design around it when so needed for the dark theme design.
+
+### 7 Analysis - ThemeData made with colorSchemeSeed color
+
+This one is surprising when it comes to the outline color. The new
+`ColorScheme.outline` color is intended to be used on UI elements having a
+design that calls for an outline. This is used e.g. on the new
+[Chips design](https://m3.material.io/components/chips/overview), the
+[Outlined button](https://m3.material.io/components/buttons/overview) even
+[Card](https://m3.material.io/components/cards/overview) comes with a new
+outlined option.
+
+However, it is doubtful if this color should be applied directly as is
+to the current `ThemeData.dividerColor`. Most likely it should indeed be
+this color, but with same or similar opacity as before. Which we get
+when we use options 8 and 9. The reason why this demo started looking very weird
+with this theme is because the divider color is used for dividers and rail
+side separator, and even for what was a very faint border around the color
+boxes.
+
+The divider color is not mentioned in the Material 3 guide, yet at least,
+but e.g. on the [menu design](https://m3.material.io/components/menus/overview)
+we can see a divider. It is not using the outline color directly, as it would be
+much stronger. It is perhaps the same color, but with same alpha as before
+(0x1F), could be some new opacity value too.
+This current divider color is perhaps an oversight with the this theme
+creation method.
+
+When it comes to the ThemeData colors, `primaryColor`, `primaryColorLight` and
+`primaryColorDark`, plus the `toggleableActiveColor` in dark mode, things are
+as poorly supported as mentioned in previous analysis of them.
+
+### 8 Analysis - ThemeData made with a ColorScheme.fromSeed
+
+As with previous case where a ThemeData is made from a `ColorScheme` the
+scheme is fine, it is just that we do not get any sensible color assignments
+from it on or `ThemeData`, it is the same situation of course, just another
+wat to make a `ColorScheme`, a quite fancy way, the color we get in
+the `ColorScheme` are quite pretty, although the dull and grey like secondary
+color is not so good on switches, but tat is just this particular scheme.
 
 
-## FlexColorScheme Based
+## FlexColorScheme Based (FTD)
 
 Next we will compare all the above to what FlexColoScheme produces with same
 setup. We can use a fully specified `ColorScheme` as input to `FlexColorScheme`
@@ -571,16 +828,27 @@ colors it will make its own version of a fully specified `ColorScheme` when
 it produces its `ThemeData`. Using key colors for the seed generated `ColorScheme`
 is another computational `ColorScheme` generation method.
 
-### Option 10
+### 10) FTD.light(colorScheme)
 
 In this case we want to use the exact same input `ColorScheme`, so
-we can compare the result by using the same input `ColorScheme` like so:
+we can compare the result by using the same input `ColorScheme` again using
+the `flexSchemeLight` and `flexSchemeDark` we made like so:
 
 ```dart
+// 10) FTD.light(colorScheme)
+//    FlexThemeData.light(colorScheme:...),
+//    FlexThemeData.dark(colorScheme:...),
+//
+title: '10) FTD.light(colorScheme)',
 theme: FlexThemeData.light(colorScheme: flexSchemeLight),
 darkTheme: FlexThemeData.dark(colorScheme: flexSchemeDark),
 ```
-### Option 11
+
+In case it was not obvious, earlier above **TD** was used as short for
+`ThemeData` to fit on the AppBar and here we use **FTD** as short for
+`FlexThemeData`.
+
+### 11) FTD.light(keyColors)
 
 Next, we use the identical seed generated `ColorScheme` as above where we
 used `ColorScheme.fromSeed`, by turning on using keyColors, we just pass in
@@ -589,6 +857,11 @@ the `ColorScheme.fromSeed` used when we used it with the `primary` color
 from our `ColorScheme`.
 
 ```dart
+// 11) FTD.light(keyColors)
+//    FlexThemeData.light(colorScheme:..., keyColors: ...),
+//    FlexThemeData.dark(colorScheme:..., keyColors: ...),
+//
+title: '11) FTD.light(keyColors)',
 theme: FlexThemeData.light(
   colorScheme: flexSchemeLight,
   keyColors: const FlexKeyColors(),
@@ -598,13 +871,28 @@ darkTheme: FlexThemeData.dark(
   keyColors: const FlexKeyColors(),
 ),
 ```
-### Option 12
+### 12) FTD.light(key sub)
 
 Lastly we will enable the opinionated component sub-themes, however to not
 get stuck on the differences in border radius and shape of the FAB, let's make
 it look like Material 2 for this comparison.
 
+Sub-themes also needs a
+fontFamily specification when you opt-in on its internal M3 like text theme
+with its new geometry, if we want to to hav same Roboto defaults as in
+Material 2. The FlexColorScheme's own version of a Material 3 text theme is
+temporary, its usage will migrated to using the actual Material 3 TextTheme
+and its built in Typography once it lands in stable channel,
+see [PR 97829](https://github.com/flutter/flutter/pull/97829).
+
+The new text styles and their names are already available in Flutter 2.10.
+
 ```dart
+// 12) FTD.light(key sub)
+//    FlexThemeData.light(colorScheme:..., keyColors: ...),
+//    FlexThemeData.dark(colorScheme:..., keyColors: ...),
+//
+title: '12) FTD.light(key sub)',
 theme: FlexThemeData.light(
   colorScheme: flexSchemeLight,
   keyColors: const FlexKeyColors(),
@@ -612,6 +900,7 @@ theme: FlexThemeData.light(
     defaultRadius: 4,
     fabUseShape: false,
   ),
+  fontFamily: GoogleFonts.roboto().fontFamily,
 ),
 darkTheme: FlexThemeData.dark(
   colorScheme: flexSchemeDark,
@@ -620,6 +909,7 @@ darkTheme: FlexThemeData.dark(
     defaultRadius: 4,
     fabUseShape: false,
   ),
+  fontFamily: GoogleFonts.roboto().fontFamily,
 ),
 ```
 
@@ -627,13 +917,13 @@ darkTheme: FlexThemeData.dark(
 
 <table>
   <tr>
-    <td><b>Option 9</b></td>
+    <td><b>9) TD.from fromSeed</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 10</b></td>
+    <td><b>10) FTD.light(colorScheme)</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 11</b></td>
+    <td><b>11) FTD.light(keyColors)</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 12</b></td>
+    <td><b>12) FTD.dark(key sub)</b></td>
   </tr>
   <tr>
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png?raw=true" alt="TD Scheme9 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png?raw=true)</td>
@@ -658,7 +948,7 @@ darkTheme: FlexThemeData.dark(
   </tr>
  </table>
 
-**TODO: Review and explain cause of differences - recommendations**
+**TODO: Review and explain differences - recommendations**
 
 
 ### Compare Components
