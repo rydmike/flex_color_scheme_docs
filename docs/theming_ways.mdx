@@ -115,21 +115,23 @@ The above enables easy copy/paste of them for verification, but see the colors
 might be helpful too. Here IDE screenshots that can show the colors of the side
 too which is useful in this case.
 
-<table>
-    <tr>
-    <td><b>Light M3 Baseline</b></td>
-    <td>&nbsp;</td>
-    <td><b>Dark M3 Baseline</b></td>
-  </tr>
-  <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-a-scheme-light.png?raw=true" alt="M3 Baseline light" />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-a-scheme-light.png?raw=true)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-b-scheme-dark.png?raw=true" alt="TD Baseline dark" />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-b-scheme-dark.png?raw=true)</td>
-  </tr>
-  <tr>
-  <td colspan="3">_Used M3 Baseline ColorScheme for ThemeData results difference comparison_</td>
-  </tr>
- </table>
+ <Tabs
+  defaultValue="light"
+  values={[
+    {label: 'Light M3 Baseline', value: 'light'},
+    {label: 'Dark M3 Baseline', value: 'dark'},
+  ]}>
+  <TabItem value="light">
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-a-scheme-light.png?raw=true"
+    caption="Used M3 Baseline light ColorScheme for ThemeData results difference comparison"
+    alt="M3 Baseline light"/>
+  </TabItem>
+  <TabItem value="dark">
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-b-scheme-dark.png?raw=true"
+    caption="Used M3 Baseline dark ColorScheme for ThemeData results difference comparison"
+    alt="M3 Baseline dark" zoom />
+  </TabItem>
+</Tabs>
 
 
  The older `ThemeData` creation methods are `ColorSwatch` based, or actually
@@ -146,35 +148,34 @@ too which is useful in this case.
 
  <img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-c-swatch.png?raw=true" alt="Flex purple swatch"/>
 
- What does this custom `MaterialColor` look like. The `FlexColorPicker` in
- the Themes Playground app can actually visualize it. If you on the
- customizable theme select the primary color and past in value **0xff6750a4**
- it will on the wheel picker draw the swatch created using this color using
- the `createPrimarySwatch` function. Below it you will see the primary
- tonal palette for the same input color.
+ What does this custom `MaterialColor` look like? The `FlexColorPicker` in
+ the **Themes Playground** app can show it to you. Copy the "M3 Baseline" theme
+ to the customizable theme and then select the primary color having color
+ *0xff6750a4**. It will on the wheel picker draw its **Material Color** swatch
+ created using this color using the same `createPrimarySwatch` function. Below
+ it you will also see the primary tonal palette for the same input color.
 
 <img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-d-swatch-image.png?raw=true" alt="Swatch picker image"/>
 
 
 ### Swatch Based
 
-Let's call this group ThemeData Swatch based, since they all either
-directly or under the hood via defaults use the older `MaterialColor`
-color swatch to create `ThemeData` and its colors.
+Let's call this group of theme **Swatch** based, since they all either
+directly or under the hood via defaults, use the old `MaterialColor`
+color swatches to create `ThemeData` and its colors.
 
 These methods are practically obsolete when it comes to producing
 `ColorScheme` based `ThemeData`. Some of them don't even accept a
-`ColorScheme` as input nor do they produce a very usable `ColorScheme`.
+`ColorScheme` as input, nor do they produce a very usable `ColorScheme`.
 The methods are not deprecated, but it is stated in code comments that
-these are not the preferred way to make color correct `ThemeData`, further
-below we will see why.
+these are not the preferred way to make color correct `ThemeData. Let's
+find out why they are not.
 
-Since the methods do not accept a `ColorScheme` as input, we will use the
-old classic Material swatch as input, and we will use our custom `flexSwatch`,
-when possible.
+Since the methods do not accept a `ColorScheme` as input, we will use
+`MaterialColor` swatch as input, and we will use our custom `flexSwatch`.
 
-We start with `ThemeData.light()` and `ThemeData.dark()`. These are just
-small convenience factories made with this code:
+We start with theme methods `ThemeData.light()` and `ThemeData.dark()`. These
+are just small Flutter SDK convenience factories based on this code:
 
 ```dart
   /// A default light blue theme.
@@ -183,12 +184,12 @@ small convenience factories made with this code:
   factory ThemeData.dark() => ThemeData(brightness: Brightness.dark);
 ```
 
-### Option 1
+### O1) TD.light
 These shortcuts are in fact only marginally shorter than using the syntax used
-for what they return, unclear why they exits, but they do. They are not
-very practical when you make a `ThemeData` object, since you cannot define any
-other properties for them directly, you would have to apply all of them with
-`copyWith`. Still if we create our `ThemeData` like this:
+for what they return. It is a bit unclear why they even exits, but they do.
+They are not very practical when you make a `ThemeData` object, since you
+cannot define any other properties for them directly. You would have to apply
+all of them with `copyWith`. Still if we create our `ThemeData` like this:
 
 ```dart
 theme: ThemeData.light(),
@@ -198,7 +199,7 @@ darkTheme: ThemeData.dark(),
 All we can get with the above one is the default `Colors.blue` `MaterialColor`
 swatch based `ThemeData`.
 
-### Option 2
+### O2) TD brightness
 
 We can conclude that it is identical to this:
 
@@ -210,7 +211,7 @@ darkTheme: ThemeData(brightness: Brightness.dark),
 Except with the above syntax we could have specified any of `ThemeData`'s myriad
 of other properties to actually make a useable `ThemeData`object.
 
-### Option 3
+### O3) TD primarySwatch
 
 We could e.g. have specified a swatch. Let's do that, using our custom
 `flexSwatch` and see what that gives us.
