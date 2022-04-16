@@ -1,7 +1,5 @@
 # Ways to ThemeData
 
-**TODO: Complete this chapter for version 5, it is sill WIP, but progressing!**
-
 In this chapter we compare different ways to define and create a `ThemeData`
 object and look at the differences we get in effective **colors** in the theme-
 We will look at using these options, in both light and dark mode, dark is just
@@ -20,9 +18,10 @@ not mentioned below, it go too long:
 11. FlexThemeData.light(colorScheme, keyColors)
 12. FlexThemeData.light(colorScheme, keyColors, subThemesData)
 
-Then compare the results. Yes that's a lot of methods to make a `ThemeData`
-object, last three ones are FlexColorScheme ways with some different parameters.
-Recommendations on what to use when will also be given.
+We will compare the results and discuss findings. Yes that's a lot of methods
+to make a `ThemeData` object. Last three ones are **FlexColorScheme** ways
+with some different parameters. Recommendations on what to use when will also
+be given.
 
 ## Reference Scheme
 
@@ -591,14 +590,14 @@ those colors are still used by a number UI elements it is a bit problematic.
 ### 6) Analysis - ThemeData.from a ColorScheme
 
 **Option 6** with the `ThemeData.from` using our full `ColorScheme`, things are
-as good as they will get in Flutter SDK when it comes to getting reasonable
-colors assigned to legacy colors in `ThemeData`. We can in light mode
+as good as they will get in Flutter SDK, when it comes to getting reasonable
+colors assigned to legacy colors in `ThemeData`. We can see that in light mode
 `primaryColor` got the `ColorScheme.primary` color and `ToggleableColor` got
-the ``ColorScheme.secondary` color (not a very nice color in this particular
-scheme, but the assignment is correct). We also see the error color got moved
-over to THemeData. In fact this applies to canvas, scaffold, card and many
-other colors too. We can take a peek at the `ThemeData.from` factory to get
-the full scoop here:
+the ``ColorScheme.secondary` color, not a very nice color in this particular
+scheme, but the assignment is correct. We also see that the error color got
+copied over to ThemeData. In fact this applies to Canvas, Scaffold, Card
+and many other colors too. We can take a look into the `ThemeData.from` factory
+to get the full scoop here:
 
 ```dart
 factory ThemeData.from({
@@ -632,39 +631,42 @@ factory ThemeData.from({
 ```
 
 The `accentColor` that `ThemeData.from` still sets is actually deprecated, but
-still being used for legacy reasons. If we look closely we see that in
-light theme mode, we get got `colorScheme.secondary` on the
+it is still being used in SDK for backwards compatibility reasons. If we look
+closely we see that in light theme mode, we get got `colorScheme.secondary` on the
 `ThemeData.toggleableActiveColor`, but not in dark mode. Does this matter?
+
 Yes it does, because the `toggleableActiveColor` is still used as default color
-by on/off switches, and in dark theme mode that is now still "teal" colored,
+by on/off like switches, and in dark theme mode that is now a teal color,
 so they will get a teal color that has nothing with our `ColorScheme`, unless
-we apply it to it separately. But why did it get the `secondary` in light
-theme mode and not in dark theme mode, after all it is not even assigned any
-value in `ThemeData.from`. That is because `ThemeData` itself does thin thing_
+we apply it to it separately. But why did it get the `secondary` color in light
+theme mode and not in dark theme mode? After all it is not even assigned any
+value in `ThemeData.from`. This happens because `ThemeData` itself does this
+thing:
 
 ```dart
 toggleableActiveColor ??= isDark ? Colors.tealAccent[200]!
                                  : (accentColor ?? primarySwatch[600]!);
 ```
 
-It is understandable that logic was kept for all the swatch based themes backwards
-compatibility, but why could `ThemeData.from` not just have also
-included a line that set._All
+It is understandable that this logic was kept for all the swatch based
+themes backwards compatibility, but why could `ThemeData.from` not just
+have also included a line that set:
 
 ```dart
 toggleableActiveColor: colorScheme.secondary,
 ```
 
-Along with accent color, back when it was introduced it would have been fine,
-and we would have had a slightly less confusing `ThemeData` from a `ColorScheme`
-result.
+Along with `accentColor`, back when it was introduced it would have been fine,
+and we would have had a slightly less confusing `ThemeData` from a
+`ColorScheme` as a result.
 
-Next we have to wonder about three color that `ThemeData.from` happily ignores
+Next we have to wonder about three colors that `ThemeData.from` happily ignores
 in light theme mode and in dark theme mode make into something completely
 different. As can be seen `primaryColorLight`, `primaryColorDark` and
-`secondaryHeaderColor` are still the same blue as when we used swatch colors.
-That is because in ThemeData they get colors from the swatch, that has not
-been assigned any value, so it has defaulted `Colors.blue`.
+`secondaryHeaderColor` are still the same blue in light theme mode, as when we
+used swatch colors. This is because in `ThemeData` they by default get colors
+from the swatch, that has not been assigned any value, so it in turn has
+defaulted to `Colors.blue`, and we get:
 
 ```dart
   primaryColorLight ??= isDark ? Colors.grey[500]! : primarySwatch[100]!;
@@ -673,9 +675,9 @@ been assigned any value, so it has defaulted `Colors.blue`.
 ```
 
 There are still some UI elements that use these colors as their default colors
-in Flutter, so this means they like the switches in dark mode now use colors
-that has nothing to do with the `ColorScheme` we wanted our application to
-have.
+in Flutter SDK 2.10, so this means they, like the switches in dark mode, now
+use colors that has nothing to do with the `ColorScheme` we wanted our
+application to have.
 
 In dark mode we can see that all these colors are grey and even the
 `ThemeData.primaryColor` is grey. This might be a bit confusing, since these
