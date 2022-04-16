@@ -8,18 +8,18 @@ We will look at using these options, in both light and dark mode, dark is just
 not mentioned below, it go too long:
 
 1. ThemeData.light()
-1. ThemeData(brightness: Brightness.light)
-2. ThemeData(primarySwatch: Colors.blue)
-3. ThemeData(colorScheme: ColorScheme.fromSwatch())
-4. ThemeData.from(colorScheme: ColorScheme.fromSwatch())
-5. ThemeData(colorScheme: ColorScheme())
-6. ThemeData.from(colorScheme: ColorScheme())
-7. ThemeData(colorSchemeSeed: Color()),
-8. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-10. FlexThemeData.light(colorScheme)
-11. FlexThemeData.light(colorScheme, keyColors)
-12. FlexThemeData.light(colorScheme, keyColors, subThemesData)
+2. ThemeData(brightness: Brightness.light)
+3. ThemeData(primarySwatch: Colors.blue)
+4. ThemeData(colorScheme: ColorScheme.fromSwatch())
+5. ThemeData.from(colorScheme: ColorScheme.fromSwatch())
+6. ThemeData(colorScheme: ColorScheme())
+7. ThemeData.from(colorScheme: ColorScheme())
+8. ThemeData(colorSchemeSeed: Color()),
+9. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+10. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
+11. FlexThemeData.light(colorScheme)
+12. FlexThemeData.light(colorScheme, keyColors)
+13. FlexThemeData.light(colorScheme, keyColors, subThemesData)
 
 Then compare the results. Yes that's a lot of methods to make a `ThemeData`
 object, last three ones are FlexColorScheme ways with some different parameters.
@@ -289,13 +289,13 @@ Let's now compare and analyze these results:
 
 <table>
   <tr>
-    <td><b>Option 1 \nTD.light </b></td>
+    <td><b>Option 1<br>TD.light </b></td>
     <td>&nbsp;</td>
-    <td><b>Option 2 \nTD brightness</b></td>
+    <td><b>Option 2<br>TD brightness</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 3 \nTD primarySwatch</b></td>
+    <td><b>Option 3<br>TD primarySwatch</b></td>
     <td>&nbsp;</td>
-    <td><b>Option 4 \nTD Scheme.fromSwatch</b></td>
+    <td><b>Option 4<br>TD Scheme.fromSwatch</b></td>
   </tr>
   <tr>
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true" alt="TD Swatch1 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true)</td>
