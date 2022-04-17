@@ -2,7 +2,7 @@
 
 In this chapter we compare different ways to define and create a `ThemeData`
 object and look at the differences we get in effective **colors** in the theme-
-We will look at using these options, in both light and dark mode, dark is just
+We will look at using these ways, in both light and dark mode, dark is just
 not mentioned below, it go too long:
 
 1. ThemeData.light() and ThemeData(brightness: Brightness.light)
@@ -14,9 +14,9 @@ not mentioned below, it go too long:
 7. ThemeData(colorSchemeSeed: Color()),
 8. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
 9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color())),
-10. FlexThemeData.light(colorScheme)
-11. FlexThemeData.light(colorScheme, keyColors)
-12. FlexThemeData.light(colorScheme, keyColors, subThemesData)
+10. FlexThemeData.light/dark(colorScheme)
+11. FlexThemeData.light/dark(colorScheme, keyColors)
+12. FlexThemeData.light/dark(colorScheme, keyColors, subThemesData)
 
 We will compare the results and discuss findings. Yes that's a lot of methods
 to make a `ThemeData` object. Last three ones are **FlexColorScheme** ways
@@ -875,19 +875,9 @@ darkTheme: FlexThemeData.dark(
 ```
 ### 12) FTD.light(key sub)
 
-Lastly we will enable the opinionated component sub-themes, however to not
+Finally we will enable the opinionated component sub-themes, however to not
 get stuck on the differences in border radius and shape of the FAB, let's make
 it look like Material 2 for this comparison.
-
-Sub-themes also needs a
-fontFamily specification when you opt-in on its internal M3 like text theme
-with its new geometry, if we want to to hav same Roboto defaults as in
-Material 2. The FlexColorScheme's own version of a Material 3 text theme is
-temporary, its usage will migrated to using the actual Material 3 TextTheme
-and its built in Typography once it lands in stable channel,
-see [PR 97829](https://github.com/flutter/flutter/pull/97829).
-
-The new text styles and their names are already available in Flutter 2.10.
 
 ```dart
 // 12) FTD.light(key sub)
@@ -901,8 +891,8 @@ theme: FlexThemeData.light(
   subThemesData: const FlexSubThemesData(
     defaultRadius: 4,
     fabUseShape: false,
+    useTextTheme: false,
   ),
-  fontFamily: GoogleFonts.roboto().fontFamily,
 ),
 darkTheme: FlexThemeData.dark(
   colorScheme: flexSchemeDark,
@@ -910,16 +900,16 @@ darkTheme: FlexThemeData.dark(
   subThemesData: const FlexSubThemesData(
     defaultRadius: 4,
     fabUseShape: false,
+    useTextTheme: false,
   ),
-  fontFamily: GoogleFonts.roboto().fontFamily,
 ),
 ```
 
 ### Compare 9 to 12
 
-Lastly we will compare the Flutter SDK option 9)
+Let us now compare the Flutter SDK option 9)
 ThemeData.from(colorScheme: ColorScheme.fromSeed(...)) method to
-the above three `FleXColorScheme` based ones.
+the above three `FleXColorScheme` based results.
 
 <table>
   <tr>
@@ -954,15 +944,212 @@ the above three `FleXColorScheme` based ones.
   </tr>
  </table>
 
+### 9 Analysis - ThemeData.from a ColorScheme.fromSeed
 
-**TODO: Review and explain differences**
+This is the best result we will get with Flutter's current built in theming.
+As with previous cases we get a `ThemeData` that is mostly well made from a
+`ColorScheme`, where the scheme is fine, but as before we do not get any scheme
+based color assignments on the colors `ThemeData`, `primaryColorLight` and
+`primaryColorDark` or the `secondaryHeaderColor` in light theme mode.
 
-### Recommendations
+As can be seen `primaryColorLight`, `primaryColorDark` and
+`secondaryHeaderColor` are still the same blue in light theme mode, as when we
+used swatch colors, because in `ThemeData` they by default get colors
+from the swatch, that has not been assigned any value, so it in turn has
+defaulted to `Colors.blue` hence their blue shades.
 
-**TODO: Add conclusion and recommendations**
+In dark theme mode as before the peculiar grey scales on `primaryColor`,
+`primaryColorLight`, `primaryColorDark` and `secondaryHeaderColor` prevails,
+as does the teal color on the `toggleableActiveColor` instead of
+`colorScheme.Secondary` that is should have in a ColorScheme based theme by
+default.
 
-### Component Themes
+If you use this theming method and plan to use the above colors you may prefer
+to give the `ColorScheme` appropriate override values using `copyWith`.
 
-Let's compare the look of some components and the themes impact on them too.
+### 10 Analysis - FlexThemeData.light/dark(colorScheme)
 
-**TODO: Add this chapter for V5**
+This FlexColorScheme based theme made from the same `ColorScheme` as used in
+the Flutter SDK examples above, has the closest equivalent in method
+6 earlier.
+
+We can see that it has no legacy `ThemeData` direct
+color properties that do not match and follow the color design in the
+used `ColorScheme`, this applies to both light and dark theme mode.
+
+### 11 Analysis - FlexThemeData.light/dark((colorScheme, keyColors)
+
+This FlexColorScheme based theme, made from the same `ColorScheme` as used in
+the Flutter SDK examples above, and using its primary key as seed color to
+generate a `ColorScheme` from tonal palettes. Using the same algorithm setup
+as the only one offered out of the box by Flutter, has the closest equivalent
+in method 9 above.
+
+Again we can observe that it has no odd legacy `ThemeData`
+direct color properties that do not match and follow the color design in the
+used `ColorScheme`, this applies to both light and dark theme mode.
+
+This scheme also uses a Material 3 seed generated `ColorScheme` that is
+identical to the one produced by Flutter's only directly supported `ColorScheme`
+generation algorithm. FlexColorScheme offers many ways to tune the algorithm.
+
+### 12 Analysis FlexThemeData.light/dark(colorScheme, keyColors, subThemesData)
+
+The produced `ColorScheme` from this setup is identical to method 11.
+
+Again we can observe that it has no odd legacy `ThemeData`
+direct color properties that do not match and follow the color design in the
+used `ColorScheme`, this applies to both light and dark theme mode.
+
+We can however see a difference in `ThemeData` on colors `disabledColor`,
+`focusColor`, `hoverColor`, `highlightColor` and `splashColor`, they all
+have a hint of `ColorScheme.primary` color on them as well.
+This is an opinionated default that comes when we enable and opt-in on
+using `FlexSubThemesData` like we did in the setup for example.
+It can also be turned OFF and reverting to `ThemeData` defaults when using
+the sub-themes by setting by setting its `interactionEffects` to false.
+
+```dart
+  subThemesData: const FlexSubThemesData(interactionEffects: false),
+```
+
+Many sub-themes have their own state theming that define the hover, disabled,
+ink etc effects when using the sub-themes, like e.g. all the Material
+buttons do, and even `ToggleButtons` does.
+
+The interaction and state effects colors in `ThemeData` are the default ones
+used by widgets when their own theme do not define them. These colors are also
+on the previously mentioned deprecation path in Flutter, and will eventually be
+moved into a component theme or several different component themes.
+
+### Recommendation
+
+How should you create your theme when using vanilla Flutter theming to get
+a modern `ColorScheme` based theme?
+
+As shown above, your simplest approach is to use the `ThemeData.from` factory,
+with whatever `ColorScheme` you have defined.
+
+The drawback with this methods is that not all colors in `ThemeData` will get
+colors matching your `ColorScheme`. Additionally you cannot define any component
+themes in same theme definition, nor adjust any of the direct color properties
+in `ThemeData` that you may want to modify from their defaults where
+`ThemeData.from` leaves gaps. You can of course apply all of these using
+`copyWith`, and you should definitively do so.
+
+The second option is to just use the big `ThemeData` factory. This gives you
+access to all the properties in it and you can set and define them as you
+please, as long as you are familiar with all its inner workings, this is fine
+and not so difficult. I recommend starting with a setup the replicates what
+the `ThemeData.from` factory does and adjusting it as desired.
+
+```dart
+// Assuming you have defined your `colorScheme`:
+ThemeData(
+  colorScheme: colorScheme,
+  brightness: colorScheme.brightness,
+  // Prefer this instead for the `ThemeData.primaryColor`
+  primaryColor: colorScheme.primary,
+  // These you have to compute based based on your colorScheme primary color,
+  // if you want to give them scheme matching values, here is an example that
+  // happens to be what FlexColorScheme does, but feel free to use what
+  // is preferred:
+  primaryColorLight: colorScheme.brightness == Brightness.dark
+        ? Color.alphaBlend(Colors.black.withAlpha(0x72), colorScheme.primary)
+        : Color.alphaBlend(Colors.black.withAlpha(0x66), colorScheme.primary),
+  primaryColorDark: colorScheme.brightness == Brightness.dark
+        ? Color.alphaBlend(Colors.white.withAlpha(0x59), colorScheme.primary)
+        : Color.alphaBlend(Colors.white.withAlpha(0x66), colorScheme.primary),
+  secondaryHeaderColor: colorScheme.brightness == Brightness.dark
+        ? Color.alphaBlend(Colors.black.withAlpha(0x99), colorScheme.primary)
+        : Color.alphaBlend(Colors.white.withAlpha(0xCC), colorScheme.primary),
+  // These are deprecated, skip them:
+  //   primaryColorBrightness: ThemeData.estimateBrightnessForColor(colorScheme.primary),
+  //   accentColor: colorScheme.secondary,
+  //   accentColorBrightness: ThemeData.estimateBrightnessForColor(colorScheme.secondary),
+  // As long as `toggleableActiveColor` exists in ThemeData, do add this one:
+  toggleableActiveColor: colorScheme.secondary,
+  // Important background colors in ThemeData.
+  // You can use other colors too, e.g. if you want some surface branding on
+  // them then the above `alphaBlend` is the way to add it.
+  scaffoldBackgroundColor: colorScheme.background,
+  canvasColor: colorScheme.background,
+  backgroundColor: colorScheme.background,
+  cardColor: colorScheme.surface,
+  bottomAppBarColor: colorScheme.surface,
+  // For dialog prefer surface if your scheme background color is different from
+  // surface, this ensures elevation color in dark mode on dialogs, when
+  // applyElevationOverlayColor is true in dark mode.
+  dialogBackgroundColor: colorScheme.surface,
+  // Since we used Colorscheme.primary for primaryColor, this works, you may
+  // need to adjust TabBar theme though depending on where you will use TabBars
+  indicatorColor: colorScheme.onPrimary,
+  dividerColor: colorScheme.onSurface.withOpacity(0.12),
+  errorColor: colorScheme.error,
+  // Set to true in dark mode
+  applyElevationOverlayColor: colorScheme.brightness == Brightness.dark,
+  // Add you your app's text theme here, or skip if default is OK.
+  textTheme: myTextTheme,
+  // Add all your custom component themes:
+  appBarTheme: myAppBarTheme,
+  tabBarTheme: myTabBarTheme,
+  // as many as needed...
+);
+```
+
+If we above for `ColorScheme` substitute it with our earlier defined
+`flexSchemeLight` for or light theme mode and `flexSchemeDark`, and remove
+the `myTextTheme` and component themes, we can try this custom `ThemeData`
+setup in the same demo app we used for all the above cases.
+
+Below we compare this to FlexColorScheme case 10, which it with respect to
+`ColorScheme` and `ThemeData` colors is equal to.
+
+<table>
+  <tr>
+    <td><b>10) FTD.light(scheme)</b></td>
+    <td>&nbsp;</td>
+    <td><b>Custom TD light</b></td>
+    <td>&nbsp;</td>
+    <td><b>10) FTD.dark(scheme)</b></td>
+    <td>&nbsp;</td>
+    <td><b>Custom TD dark</b></td>
+  </tr>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png?raw=true" alt="TD FlexScheme10 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-25-custom-TD-light.png?raw=true" alt="TD FlexScheme10 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-25-custom-TD-light.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png?raw=true" alt="TD FlexScheme10 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-26-custom-TD-dark.png?raw=true" alt="TD FlexScheme10 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-26-custom-TD-dark.png?raw=true)</td>
+  </tr>
+  <tr>
+  <td colspan="7">_Comparing custom ThemeData+ColorScheme to FlexColorScheme option 10 produced ThemeData colors_</td>
+  </tr>
+ </table>
+
+This kind of setup will ensure that all built-in widgets will get and use colors
+that match your `ColorScheme` by default, not just the ones that have already
+been migrated to use default from `ThemeData.colorScheme`.
+
+As the migration and deprecation of `ThemeData` colors in Flutter SDK progresses,
+the importance of doing this will become less important. Some widgets still
+depend on `primaryColorLight` and `primaryColorDark` as their default
+colors, for example `CircleAvatar`.
+
+Currently setting colors on all the background and surface colors from your
+`ColorScheme`, in a similar manner to what `ThemeData.from` does is critical.
+If you do not, you will get those ancient very grey background colors we saw in
+the swatch based themes in dark mode above.
+
+This of course requires that your `ColorScheme` uses correct background
+colors and onColors. Use the build in `ColorScheme.light` and `ColorScheme.dark`
+for that, or even a `ColorScheme.fromSeed` as a base, and define you custom
+colors in them as needed to make your custom light and dark `ColorScheme`.
+
+If all the above felt a bit verbose or complicated, then **FlexColorScheme** will
+do all the above color setups for you. Plus it has surface blending and more
+versitale seed generated `ColorScheme`, and a few built-in
+`ColorScheme`s that can be nice starting points too. To top it off, it can help
+you with component theming too.

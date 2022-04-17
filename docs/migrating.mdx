@@ -5,13 +5,14 @@ major version to the next higher major one.
 
 ## Migrating to Version 5.0
 
-FlexColorScheme version 5.0 is style wise a big breaking change since all the
-built-in produced `ColorScheme`s the the theme use, have been revised to follow
-the new Material 3 based `ColorScheme`. The color changes to the built-in schemes
-have been kept minimal compared to previous styles. Mostly new color values were
-added to provide support for all the new colors in the Flutter
-Material 3 `ColorScheme` update, that landed in Flutter 2.10.
-The new colors are in style sync with past styles as far possible, while also
+FlexColorScheme version 5 is style wise a big breaking change since all the
+built-in produced `ColorScheme`s the themes use have been revised to follow
+the new Flutter 2.10.0 Material 3 based `ColorScheme`. The color changes to
+the built-in schemes have been kept minimal compared to previous styles.
+Mostly new color values were added to provide support for all the new
+colors in the Flutter Material 3 `ColorScheme` update, that landed in Flutter
+2.10.0.
+The new colors are style aligned with past styles as far possible, while also
 keeping them inline with the Material 3 ColorScheme design intent.
 
 As `ColorScheme.primaryVariant` and `secondaryVariant` have been deprecated
@@ -33,12 +34,12 @@ in any stable version of Flutter before version 2.10.
 In version 5, the in version 4.2.0 deprecated property `surfaceStyle`, including all
 its implementing classes, enums, helpers and tests have been removed.
 
-* Removed property: surfaceStyle in FlexColorScheme.light and FlexSchemeData.light.
-* Removed property: surfaceStyle in FlexColorScheme.dark and FlexSchemeData.dark.
-* Removed: enum FlexSurface, that surfaceStyle where.
-* Removed: factory FlexSchemeSurfaceColors.from that was used to create
-  surface using the FlexSurface. The factory FlexSchemeSurfaceColors.blend
-  replaced it in version 4.0.0 already, when using surfaceMode and blendLevel.
+* Removed property: `surfaceStyle` in `FlexColorScheme.light` and `FlexSchemeData.light`.
+* Removed property: `surfaceStyle` in `FlexColorScheme.dark` and `FlexSchemeData.dark`.
+* Removed: enum `FlexSurface`, that only `surfaceStyle` was using.
+* Removed: factory `FlexSchemeSurfaceColors.from` that was used to create
+  surface using the `surfaceStyle`. The factory `FlexSchemeSurfaceColors.blend`
+  replaced it in version 4.0.0 already, when using `surfaceMode` and `blendLevel`.
 
 **Migration:** Use `surfaceMode` and `blendLevel` instead, it has more blend
 styles and finer granularity than the removed `surfaceStyle`.
@@ -89,8 +90,28 @@ follows the same design that is used for the new `keyColors` when using `FlexKey
 error, it just has no effect. You can safely remove it.
 The property `useSubThemes` will be completely removed in release 6.0.
 
+### Change: Color definitions for `ThemeData` colors `primaryColorLight`, `primaryColorDark` and
+`secondaryHeaderColor`
 
-### Beware: `SchemeColor` values and order
+**Style breaking with 4.2.0:** Breaks past used styles on these rarely used colors,
+the new colors are better.
+
+These `ThemeData` colors are on a deprecation path and will likely receive some
+new none `MaterialColor` dependent color defaults when that change happens. The new
+`ColorScheme.primary` computed colors for the above rarely used colors are better balanced
+than before and work well regardless of used `ColorScheme.primary` shade and tint.
+
+### Change: Color definition for `FlexColor.espressoLightPrimary` color was changed
+
+**Style breaking with 4.2.0:** Breaks past used color for this color and theme where used.
+
+The color was changed from 0xFF220804 to 0xFF452F2B. Past color was too dark brown to be
+very usable in a UI. It was very black coffee like, but not very practical in a UI, it was
+too close to black. Since version 5 is anyway major style breaking with the introduction of
+the new Material 3 ColorScheme, the opportunity to improve this color used in the
+`espresso` theme was used.
+
+### Beware: `SchemeColor` values and order, potentially breaking
 
 The enum `SchemeColor` has new values and past values are in a new order.
 The order was changed to accommodate all the new color values, and to keep them in
