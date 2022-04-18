@@ -32,7 +32,7 @@
         ],
         ["Theming Guide",
             [
-                ["Overview", "/theming_guide"],
+                ["Flutter Theming", "/theming_guide"],
                 ["Ways to ThemeData", "/theming_ways"],
                 ["FAQ", "/faq"]
             ]
