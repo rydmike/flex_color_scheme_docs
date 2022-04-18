@@ -6,20 +6,20 @@ major version to the next higher major one.
 ## Migrating to Version 5.0
 
 FlexColorScheme version 5 is style wise a big breaking change since all the
-built-in produced `ColorScheme`s the themes use have been revised to follow
+built-in color schemes the produced themes use, have been revised to follow
 the new Flutter 2.10.0 Material 3 based `ColorScheme`. The color changes to
 the built-in schemes have been kept minimal compared to previous styles.
+
 Mostly new color values were added to provide support for all the new
-colors in the Flutter Material 3 `ColorScheme` update, that landed in Flutter
-2.10.0.
-The new colors are style aligned with past styles as far possible, while also
-keeping them inline with the Material 3 ColorScheme design intent.
+colors in the Flutter Material 3 `ColorScheme` update that landed in Flutter
+2.10.0. The new colors are style aligned with past styles as far possible,
+while also keeping them inline with the Material 3 ColorScheme design intent.
 
 As `ColorScheme.primaryVariant` and `secondaryVariant` have been deprecated
 in Flutter 2.10 SDK, so have they in FlexColorScheme. All past color constants
 for all color values and helper classes with the name "variant" in them, have been
 self deprecated in FlexColorScheme. The variant color values still exists,
-if you have used any of them directly, they still work. The old built-in
+if you have used any of them directly they still work. The old built-in
 variant color values will remain available at least until version 6.0,
 maybe even 7.0 if so requested by users.
 
@@ -42,7 +42,7 @@ its implementing classes, enums, helpers and tests have been removed.
   replaced it in version 4.0.0 already, when using `surfaceMode` and `blendLevel`.
 
 **Migration:** Use `surfaceMode` and `blendLevel` instead, it has more blend
-styles and finer granularity than the removed `surfaceStyle`.
+styles and finer blend granularity than the removed `surfaceStyle`.
 
 ```dart
 theme: FlexThemeData.light(
