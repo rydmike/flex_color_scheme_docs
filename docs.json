@@ -33,7 +33,7 @@
         ["Theming Guide",
             [
                 ["Flutter Theming", "/theming_guide"],
-                ["Ways to ThemeData", "/theming_ways"],
+                ["Roads to ThemeData", "/theming_roads"],
                 ["FAQ", "/faq"]
             ]
         ],
