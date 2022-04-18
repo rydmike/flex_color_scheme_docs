@@ -452,11 +452,11 @@ to `ThemeData.primarySwatch` when using the `ThemeData` factory.
   <tr>
     <td><b>2) TD primarySwatch</b></td>
     <td>&nbsp;</td>
-    <td><b>2flex) TD primarySwatch</b></td>
+    <td><b>2 flex) TD primarySwatch</b></td>
     <td>&nbsp;</td>
-    <td><b>3flex) TD fromSwatch</b></td>
+    <td><b>3 flex) TD fromSwatch</b></td>
     <td>&nbsp;</td>
-    <td><b>4flex) TD.from fromSwatch</b></td>
+    <td><b>4 flex) TD.from fromSwatch</b></td>
   </tr>
 </table>
 <table>
@@ -1133,11 +1133,11 @@ ThemeData(
   // happens to be what FlexColorScheme does, but feel free to use what
   // you prefer:
   primaryColorLight: colorScheme.brightness == Brightness.dark
-        ? Color.alphaBlend(Colors.black.withAlpha(0x72), colorScheme.primary)
-        : Color.alphaBlend(Colors.black.withAlpha(0x66), colorScheme.primary),
-  primaryColorDark: colorScheme.brightness == Brightness.dark
         ? Color.alphaBlend(Colors.white.withAlpha(0x59), colorScheme.primary)
         : Color.alphaBlend(Colors.white.withAlpha(0x66), colorScheme.primary),
+  primaryColorDark: colorScheme.brightness == Brightness.dark
+        ? Color.alphaBlend(Colors.black.withAlpha(0x72), colorScheme.primary)
+        : Color.alphaBlend(Colors.black.withAlpha(0x66), colorScheme.primary),
   secondaryHeaderColor: colorScheme.brightness == Brightness.dark
         ? Color.alphaBlend(Colors.black.withAlpha(0x99), colorScheme.primary)
         : Color.alphaBlend(Colors.white.withAlpha(0xCC), colorScheme.primary),
