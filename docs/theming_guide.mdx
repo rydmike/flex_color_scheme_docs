@@ -175,13 +175,80 @@ However, if you are interested in it right now, then this
 is very good. It is based on older not null safe version of Dart and Flutter,
 but its principles are still the same.
 
-This nice article also contains a cross reference of what TextTheme TextStyle
-is used as default style by Flutter Widgets. Since the article is a bit aged
+
+## Custom TextThemes?
+
+The article also contains an older cross reference of what TextTheme TextStyle
+is used as default style by which Flutter Widget. Since the article is a bit aged,
 some of them might have changed, but I don't think so. There are however some
-newer widgets that are not covered, since they did not exist when the article
-was written. For the same reason it also does not cross reference the new
-M3 style names with the M2 names. These are things I plan to revisit and
-add as reference section to this documentation site.
+newer widgets that are not covered, simply because they did not exist when the article
+was written. For the same reason it also does not contain a cross reference of the new
+M3 style with the past M2 styles.
+
+You can find an image comparing the new Material 3, to the Material 2 text styles
+in this Flutter issue [#89853](https://github.com/flutter/flutter/issues/89853).
+Here is the same image borrowed from the above source:
+
+[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-M3-v-M2-textstyles.png?raw=true"
+caption="Comparing M3 and M2 Text Styles"
+alt="M3 vs M2 text style"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-M3-v-M2-textstyles.png?raw=true)
+
+Defining custom TextThemes for Flutter can be a bit challenging if you do not
+know exactly which component uses what style. The large heading styles are
+generally not used much, they can mostly be quite freely modified without
+impacting component defaults in unforeseen ways. As can be seen above, this
+is actually what Material 3 styles did. This was a good move since pretty much
+all of the M2 heading text styles were too big by default to be very useful.
+
+The smaller TextStyles in the TextTheme are used in the SDK all over the place,
+and it is not well documented anywhere where. You can use the earlier cross
+reference table, or do a search of a style in the SDK source code to find
+out where they are used.
+
+If you modify the text styles, and don't know exactly how they are used where,
+you may get unforeseen results on some widgets. Adjusting them a few points
+up or down can be OK. However, some widgets, e.g. ListTile uses the color and its
+opacity from one TextStyle, it borrows it and applies it to another TextStyle is uses
+from the TextTheme. This is done to create less impactful default subtitle text
+style for the ListTile, using an opacity value it does not have in M2 on
+the TextStyle it uses for size and letter spacing on its subtitle. If you were to
+change the source TextStyle's color opacity it uses for this, your ListTiles would
+no longer look as intended or expected.
+This was just one example, there are many other details like this built into
+default text style behavior for Flutter SDK UI components.
+
+**What can you do?**
+
+Prefer to only make custom font family adjustments on the global app `TextTheme`.
+On the smaller and mid sized TextStyles in TextTheme, only make minor size adjustments
+and letter spacing tweaks. Don't do anything too radical with it, then your app's
+components may still look fine.
+
+For bigger changes, add your custom TextStyle to the component theme levels
+instead. For example, if you want an AppBar with a custom TextStyle. You might think you have to dig
+into the source to see what TextStyle(s) from the global TextTheme it uses by default.
+Then modify the TextStyle(s) it uses for your global app TextTheme, to give it the desired
+themed TextStyle, but don't do that. If you do, multiple other components will be impacted.
+
+The `AppBarTheme` has a `titleTextStyle` and `toolbarTextStyle`, define these `TextStyle`s
+instead to follow your custom design need for the AppBar component, and repeat with
+other components that requires custom TextStyles in your design. This of course only works if the
+component theme has and uses a component level TextStyles. At least check for it
+before you go berserk on the global TextTheme.
+
+**FlexColorScheme** does not include any component level TextTheme support yet in its opinionated
+component themes. It only includes `textTheme` and `fontFamily` pass-on to `ThemeData` for the
+global app TextThemes. It also has a custom "m3like" TextTheme that it for now uses when you opt-in
+on using the not yet merged m3 Typography (sizes and geometry). This text theme will be replaced
+by using the actual M3 TextTheme and its geometry once it lands in Flutter stable. This is the
+[PR 97829](https://github.com/flutter/flutter/pull/97829) that needs to land in stable for
+that to happen.
+
+FlexColorScheme could perhaps in some later version add som TextStyle configuration options to
+some of its opinionated components themes too. At least where it is frequently used.
+If so, where would you like to see it?
+Drop your ideas and thoughts on it in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/ideas).
+
 
 ## Defining ThemeData
 
