@@ -1220,23 +1220,29 @@ been migrated to use defaults from `ThemeData.colorScheme`.
 As the migration and deprecation of `ThemeData` colors in Flutter SDK progresses,
 the importance of doing this will become less important. However, in
 Flutter 2.10 stable some widgets still depend e.g. on `primaryColorLight`
-and `primaryColorDark` as their default colors, for example `CircleAvatar`. If you don't give them
-`ColorScheme` derived values, they will use the default swatch theme based
-colors. What happens in the next new stable release of Flutter we will see.
+and `primaryColorDark` as their default colors, for example `CircleAvatar`.
+If you don't give them `ColorScheme` derived values, they will use the default
+swatch theme based colors.
 
 Currently setting colors on all the background and surface colors from your
 `ColorScheme`, in a similar manner to what `ThemeData.from` does is very
 important. If you do not, you will may get background color defaults in
 dark theme that are not the ones from your `ColorScheme`.
 
+What happens in the next new stable release of Flutter regarding all this
+remains to be seen.
+
 For the background and surface colors to be nice in both light and dark mode,
-of course requires that your `ColorScheme` uses correct background
+it is of course requires that your `ColorScheme` uses correct background
 colors and onColors. Use the built-in `ColorScheme.light` and `ColorScheme.dark`
 factories for that, or even a `ColorScheme.fromSeed` as a base, and define your
-custom colors in them as needed to make your custom light and dark `ColorScheme`.
+custom colors in them as needed, to make your custom light and dark `ColorScheme`.
 
-If all the above felt a bit verbose or complicated, then **FlexColorScheme** will
-do all the above color setups for you. Plus it has surface blending and a more
-versitale seed generated `ColorScheme`, and "a few" built-in color schemes
-that can be nice starting points too. To top it all off, it can help you
-with component theming as well.
+### A Simpler Way
+
+If all the above felt a bit verbose and complicated, then **FlexColorScheme** will
+do all the above color setups for you. Plus it has adjustable primary color
+surface blending and a more versitale seed generated `ColorScheme`,
+and "a few" built-in color schemes that can be nice theme starting points or
+used as they are if they fit your needs. 
+To top it all off, it can help you with component theming as well.
