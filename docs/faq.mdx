@@ -59,7 +59,7 @@ Yes of course, see previous answer.
 Often when you add component themes they need to share `ColorScheme` color
 values with the rest of the `ThemeData` configuration to follow the same style.
 You may also want to keep some properties FlexColorScheme already defined for you
-on the component themes it created. Below answer to these questions.
+on the component themes it created. Below answer to these questions as well.
 
 ### ColorScheme in Components
 
@@ -202,46 +202,52 @@ the properties and shortcut features needed by `FlexColorScheme`. When using
 in to `FlexColorScheme.subThemesData` property, as a convenient to enable and configure
 them.
 
-## If I don't built-in colors schemes, why should I use FlexColorScheme?
+## If I don't use the built-in schemes, why should I use FlexColorScheme?
 
-The purposes with the FlexColorScheme package is to:
+The purposes of **FlexColorScheme** package is to:
 
-* Fixes some odd things in Flutter's standard ThemeData definitions and make
-  all SDK Widgets, old and new, use the specified color scheme in a consistent manner.
+* Address some minor gaps in Flutter's standard ThemeData creation methods and make
+  all SDK Widgets, old and new, use the specified ColorScheme in a consistent manner.
 * Enable easy switching among multiple color schemes in an app.
 * Provide an easy way to make themes with primary color branded and blended
-  backgrounds and surfaces. Be able to easily vary the blend level and mode
+  backgrounds and surfaces. Be able to easily vary the blend level
   for different surfaces.
-* Provide a quick toggle for different `AppBar` styles, without the need to
-  manually make a custom theme for it every time, including to these settings
-  matching `TabBar` theme.
+* Provide a quick toggle for different AppBar styles, without the need to
+  manually make a custom theme for it every time, including to it matching TabBar.
 * Provide optional support for a true black mode for dark themes.
 * Quickly swap the primary and secondary color definitions, if you
   want to try your theme the other way around.
 * Theme the Android System navigation bar to match your app theme, and make it
   partially or totally transparent.
-* Provide seed color generated Material 3 color schemes with more configuration
+* Provide seed color generated Material 3 color schemes, with more configuration
   and custom tuning possibilities than what is offered directly in Flutter SDK.
-* With default settings FlexColorScheme avoids touching the Widget sub-theme
-  definitions, but in a few cases it is needed to fix things and to make some
+* With default settings FlexColorScheme avoids making major changes to the
+  component theme definitions, but in a few cases it is needed to fix things and to make some
   minor design changes. In the default produced ThemeData the changes are as few
   and subtle as possible, leaving the task of component theming up to you.
-  However, when you opt-in on component themes you get a more refined and
-  opinionated look on widgets and used text theme. The defaults for
+  However, when you opt-in on using its component themes, you get a more refined and
+  opinionated look on widgets and used TextTheme. The defaults for
   the component themes are inspired by the new
   [Material 3 guide](https://m3.material.io/). Following it when it can easily
   be accomplished by using the still mostly Material 2 based more limited theming
-  capabilities in Flutter. Full   support for Material 3 widgets and themes is
+  capabilities in Flutter. Full support for Material 3 widgets and themes is
   coming to Flutter soon. The progress can be followed
   [here](https://github.com/flutter/flutter/issues/91605).
-* FlexColorScheme also provides a way to make computed "lazy" quick toned `ColorScheme`
-  themes from just a single light scheme color. Even its dark scheme
-  counterpart can be made from this single color definition.
+* FlexColorScheme also provides a way to make computed multi toned
+  based themes, from just a single or a few light scheme colors as input. Even its dark
+  scheme counterpart can be made from this single color definition. This
+  is bit similar in concept to `ColorScheme.fromSeed` in Material 2, but it
+  has been available since version 1.0 of FlexColorScheme. It is a simpler form
+  of computational `ColorScheme` generation, not as advanced `ColorScheme.fromSeed`,
+  but it comes with fewer color surprises.
 * FlexColorScheme defines the full color set in the new Material 3
   `ColorSchemes` and does not leave most of its values repeating the same color
   by many properties.
+* Enable you to click around and play with your theme design using the
+  [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5) and
+  copy-paste the setup into your app.
 
-If you like the above features, then FlexColorScheme may fit your theming
+If you like the above features, then **FlexColorScheme** may fit your theming
 requirements, even if you do not use any of its built-in color schemes.
 
 ## Can we change this predefined scheme's colors?
