@@ -1191,7 +1191,7 @@ but otherwise the colors are the same.
   <tr>
     <td><b>10) FTD.light(scheme)</b></td>
     <td>&nbsp;</td>
-    <td><b>CCustom TD light</b></td>
+    <td><b>Custom TD light</b></td>
     <td>&nbsp;</td>
     <td><b>10) FTD.dark(scheme)</b></td>
     <td>&nbsp;</td>
@@ -1218,24 +1218,25 @@ that match your `ColorScheme` by default, not just the ones that have already
 been migrated to use defaults from `ThemeData.colorScheme`.
 
 As the migration and deprecation of `ThemeData` colors in Flutter SDK progresses,
-the importance of doing this will become less important. In Flutter 2.10 stable
-some widgets still depend e.g. on `primaryColorLight` and `primaryColorDark` as
-their default colors, for example `CircleAvatar`. If you don't give them
+the importance of doing this will become less important. However, in
+Flutter 2.10 stable some widgets still depend e.g. on `primaryColorLight`
+and `primaryColorDark` as their default colors, for example `CircleAvatar`. If you don't give them
 `ColorScheme` derived values, they will use the default swatch theme based
-colors.
+colors. What happens in the next new stable release of Flutter we will see.
 
 Currently setting colors on all the background and surface colors from your
-`ColorScheme`, in a similar manner to what `ThemeData.from` does is critical.
-If you do not, you will may get background color defaults in dark theme
-that are not the ones from your `ColorScheme.
+`ColorScheme`, in a similar manner to what `ThemeData.from` does is very
+important. If you do not, you will may get background color defaults in
+dark theme that are not the ones from your `ColorScheme`.
 
-This of course all requires that your `ColorScheme` uses correct background
+For the background and surface colors to be nice in both light and dark mode,
+of course requires that your `ColorScheme` uses correct background
 colors and onColors. Use the built-in `ColorScheme.light` and `ColorScheme.dark`
-factories for that, or even a `ColorScheme.fromSeed` as a base, and define you
-custom colors in them as needed, to make your custom light and dark `ColorScheme`.
+factories for that, or even a `ColorScheme.fromSeed` as a base, and define your
+custom colors in them as needed to make your custom light and dark `ColorScheme`.
 
 If all the above felt a bit verbose or complicated, then **FlexColorScheme** will
 do all the above color setups for you. Plus it has surface blending and a more
-versitale seed generated `ColorScheme`, and "a few" built-in `ColorScheme`s
-that can be nice starting points too. To top it off, it can help you
+versitale seed generated `ColorScheme`, and "a few" built-in color schemes
+that can be nice starting points too. To top it all off, it can help you
 with component theming as well.
