@@ -48,7 +48,7 @@
         ],
         ["API guide",
             [
-                ["API Basics", "/api_guide"],
+                ["Overview", "/api_guide"],
                 ["Core defaults", "/core_defaults"],
                 ["Extra Features", "/features"]
             ]

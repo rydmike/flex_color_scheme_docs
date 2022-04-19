@@ -311,3 +311,23 @@ color values from `FlexColorScheme` in a custom scheme, then all its
 color values are also conveniently available as const `Color` values. See `FlexColor`
 [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColor-class.html)
 for full details.
+
+## Why does FlexColorScheme not have perfect pub score?
+
+FlexColorScheme has a 120/130 [score](https://pub.dev/packages/flex_color_scheme/score),
+because it is being nice and documents self deprecated members and references them
+in doc comments. It also internally uses self deprecated members to
+provide a nicer transition using past deprecated members as fallbacks, in cases
+where it is possible and makes sense to not unnecessarily break things,
+while transition you newer APIs.
+
+If it would document things more poorly, and not be nice with transitions, but
+prefer to just totally break things, it would have a perfect pub score.
+The current pana analyzer used by pub.dev is a bit peculiar in this respect, it
+tells me it would be better to make things worse for you, I just prefer
+to not do that.
+
+I did open an issue about pana analyzer's current
+behavior though [#1055](https://github.com/dart-lang/pana/issues/1055). A
+change [PR #1057](https://github.com/dart-lang/pana/pull/1057) to allow using
+self deprecated members without a score penalty is in the pipeline.
