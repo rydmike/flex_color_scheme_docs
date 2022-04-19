@@ -1,57 +1,60 @@
 # Core Defaults
 
-**TODO: Updated to V5, but needs review, it is a bit messy still**
+This chapter describes the `ThemeData` modifications `FlexColorScheme` core does
+when you use it without opting in on the opinionated component themes.
 
-This chapter explains what `ThemeData` modifications `FlexColorScheme` core does
-wen you use it without opting in on the opinionated component themes.
-
- **FlexColorScheme** does not use the `ThemeData.from` factory with a passed
+**FlexColorScheme** does not use the `ThemeData.from` factory with a passed
 in `ColorScheme` to make its `ThemeData` object. It uses the `ThemeData` factory directly, with
-many additional custom theming.  It does of course define a `ColorScheme` that it uses in its
+many additional custom theming tweaks.
+
+It of course defines a `ColorScheme` that it uses in its
 `ThemeData`. FlexColorScheme uses color calculations for the primary color branded/blended
 surfaces, and for the lazy schemes that do not specify all colors in a color scheme.
-It also uses the [Material Color Utilities](https://pub.dev/packages/material_color_utilities)
-from the Google Material theme that Flutter SDK also uses. It extends the
-`CorePalette` to be able to tweak the `ColorScheme` generation parameters in it,
-and uses its own customizable Tone to Scheme mapping.
+It utilizes the [Material Color Utilities](https://pub.dev/packages/material_color_utilities)
+from the Google Material theme that Flutter SDK also uses, to make key colors seed
+generated computational color schemes. It extends the new M3 `CorePalette` in the
+Material Color Utilities to be able to tweak the `ColorScheme` generation
+parameters in it. It also uses its own custom mid-layer Scheme implementation, with
+customizable Tone to ColorScheme mapping.
 
 Most other things it does are more basic, it is just a lot of moving parts.
 However, when just using the core, and not opting in on additional component
-themes, it is not as much. But a few component themes are also created by the
-core version, tey are listed below.
+themes, it is a bit less. Some component themes are however also created by the
+core setup, they are listed further below.
 
-## Component Themes
+## Design Goals
 
 Flutter's default Theme and its ThemeData use a design where all the component theme's in the default
 ThemeData are NULL. It is always the widget component that defines the default behavior and look when its
-theme and its properties. The widget colors for such cases are then typically
-defined by `ThemeData.of(context).colorScheme`.
+theme and its properties are undefined. The widget colors for such cases are then typically
+defined by `ThemeData.colorScheme`.
 
 This Flutter theming design goal is described in this
-[document](https://docs.google.com/document/d/1kzIOQN4QYfVsc5lMZgy_A-FWGXBAJBMySGqZqsJytcE). It is mostly implemented
-by now, but there are still be some components in Flutter remaining that do not fully adhere to this design.
+[document](https://docs.google.com/document/d/1kzIOQN4QYfVsc5lMZgy_A-FWGXBAJBMySGqZqsJytcE). It is
+partially implemented, but there are still be some components in Flutter remaining that do
+not fully adhere to this design. And many color properties still remain in `ThemeData`.
 
-FlexColorScheme first sets its scheme to the `ThemeData.colorScheme` to ensure that its
-colors are applied to all widgets that adhere to this newer standard.
+FlexColorScheme sets its defined and computed scheme to the `ThemeData.colorScheme` to
+ensure that its colors are applied to all widgets that adhere to this newer standard.
 
 Then it also sets all still existing legacy direct colors in `ThemeData`, that some Flutter Widgets
-still use. These `ThemeData` colors are all set to use `ColorScheme` appropriate or from it
+still use. These `ThemeData` colors are all set to use `ColorScheme` appropriate colors, or from it
 derived colors. Thanks to this, there will not be any built-in Widgets in Flutter that do not
-get color themed by FlexColorScheme. As we can see in [Roads to ThemeData](theming_roads), this
+get color themed by FlexColorScheme. As we can see in [Roads to ThemeData](theming_roads) this
 is not the case with Flutter's own ColorScheme based theming methods, you have to
-adjust a bit manually still.
+adjust it a bit manually as well.
 
 The ThemeData created by core FlexColorScheme tries to not create and modify component themes when it does not
 have to. However, to meet its original design goals, FlexColorScheme still has to create a few sub-themes and set some
-of their properties. In some rare cases this is done to correct theming issues in Flutter SDK, and sometimes to
+of their properties. In some rare cases this is done to correct theming issues in Flutter SDK, but mostly to
 reach its own design goals. Below is a list of all the component themes it creates and properties that you can
 **currently** expect to have none null values in them. These component themes and their properties,
 would otherwise be null when just using default `ThemeData()` or `ThemeData.from()` factories, if they
 did not specify component themes.
 
 Even though some component themes currently are not null, and have some none null properties in FlexColorScheme
-based `ThemeData`. It is still recommended to use null fallback values if you access ThemeData sub-themes and
-their properties in `ThemeData.of(context)` that are null in default `ThemeData`.
+based `ThemeData`. You should always use null fallback values if you access ThemeData sub-themes and
+their properties in `Theme.of(context)` that are null in default `ThemeData` or its component themes.
 
 For example, when using the AppBar's theme data, don't just use:
 
@@ -68,14 +71,14 @@ final Color aColor = Theme.of(context)?.appBarTheme?.backgroundColor ??
 ```
 
 **FlexColorScheme** will try to not change past creation of its none null sub-themes. However, changes to these
-implementation details are only considered breaking if they produce a theme that is visibly different from
+implementation details are only considered style breaking if they produce a theme that is visibly different from
 past behavior.
 
 **Flutter SDK** may also change some of its implementation details of `ThemeData`. Take for example the broken
 `Chip` case, if it is modified to fix its dark theme bug, then FlexColorScheme might have no reason
-for its own fix. In cases where Flutter defaults moves in a direction that the same definition is no longer
-needed in FlexColorScheme, such default force built-in sub-theme definitions may eventually be
-removed, **but not without due warning**.
+for its own fix. In cases where Flutter defaults moves in a direction that makes a custom definition for it
+no longer needed in FlexColorScheme, such core sub-theme definitions will eventually be
+removed from its core component themes, but not without due deprecation warning first.
 
 One past such case was the `floatingActionButtonTheme` sub-theme that FlexColorScheme created in earlier
 versions. The used sub-theme did not change Flutter's default behavior. However, in some older versions of
@@ -87,7 +90,10 @@ version 2.0.0-nullsafety.2.
 
 Another similar change was the deprecation of `ThemeData.accentColor`.
 
-### Currently Modified and None Null Component Themes with Core
+## Core Component Themes
+
+Here are all the component themes that core **FlexColorScheme** currently
+defines:
 
 * **AppBarTheme** in `ThemeData.appBarTheme` is NOT null.
   The actual values are defined to match the offered convenience theming options for the AppBar.
@@ -102,21 +108,17 @@ Another similar change was the deprecation of `ThemeData.accentColor`.
     * systemOverlayStyle: *A custom SystemUiOverlayStyle is defined*
     * backwardsCompatibility: `false`
 
-
 * **BottomAppBarTheme** in `ThemeData.bottomAppBarTheme` is NOT null.
     * Color: `colorScheme.background`
     * elevation: *As defined, default is 0*
-
 
 * **TextSelectionThemeData** in `ThemeData.bottomAppBarTheme` is NOT null.
     * selectionColor: `dark ? primary.withOpacity(0.50) : primary.withOpacity(0.30)`
     * selectionHandleColor: `primaryColorDark`
 
-
 * **InputDecorationTheme** in `ThemeData.inputDecorationTheme` is NOT null.
     * filled: `true`
     * fillColor: `dark ? primary.withOpacity(0.06) : primary.withOpacity(0.35)`
-
 
 * **ButtonThemeData** in `ThemeData.buttonTheme` is NOT null.
     * colorScheme: `colorScheme`
@@ -124,14 +126,12 @@ Another similar change was the deprecation of `ThemeData.accentColor`.
     * materialTapTargetSize: `MaterialTapTargetSize.shrinkWrap`
     * padding: `EdgeInsets.symmetric(horizontal: 16)`
 
-
 * **ChipThemeData** in `ThemeData.chipTheme` is NOT null.
   It was originally defined to fix issue [#65663](https://github.com/flutter/flutter/issues/65663) and uses
   `ChipThemeData.fromDefaults` to set:
     * secondaryColor: `colorScheme.primary`
     * brightness: `colorScheme.brightness`
     * labelStyle: `textTheme.bodyText1`
-
 
 * **TabBarTheme** in `ThemeData.tabBarTheme` is NOT null.
   Its colors depend on if a theme appropriate for current active AppBar background color (default), or one for
@@ -141,12 +141,10 @@ Another similar change was the deprecation of `ThemeData.accentColor`.
     * labelColor: *Depends on selected and targeted main usage.*
     * unselectedLabelColor: *Depends on selected and targeted main usage*.
 
-
 * **BottomNavigationBarThemeData** in `ThemeData.bottomNavigationBarTheme` is NOT null.
     * selectedIconTheme: Not null, defines:
         *  color: `colorScheme.primary`
     * selectedItemColor: `colorScheme.primary`
-
 
 * **TooltipThemeData** in `ThemeData.tooltipTheme` is NOT null. This theme is
   modified to address issue [#71429](https://github.com/flutter/flutter/issues/71429) and
@@ -174,7 +172,7 @@ Another similar change was the deprecation of `ThemeData.accentColor`.
        : null // Use default Flutter SDK decoration.
       ```
 
-## ThemeData Customizations
+## Core ThemeData Customizations
 
 In addition to the primary color branded surfaces, full shaded schemes from just one primary color, true
 black and AppBar convenience tricks. The returned `ThemeData` contains some opinionated modifications and theme
@@ -183,16 +181,16 @@ modifications compared to what you get if you would just use the standard `Theme
 You can still of course override the returned `ThemeData` with your own theme modifications and
 additions, by using the `copyWith` method on the resulting `ThemeData` object.
 
-The following lists the differences compared to the standard `ThemeData.from` factory,
+The following lists the differences, compared to the standard `ThemeData.from` factory,
 as well as the rationale behind the made design choices and changes to the defaults.
 
-* `ScaffoldBackgroundColor` has its own color property in `FlexColorScheme`
+* **`ScaffoldBackgroundColor`** has its own color property in `FlexColorScheme`
   and can if so desired differ from the `ColorScheme.background`
   color. When using primary color blended surfaces and backgrounds, it
   is important to be able to vary the very prominent `ScaffoldBackgroundColor`
   separately from other surfaces and backgrounds.
 
-* The `dialogBackgroundColor` uses the `ColorScheme.surface` color
+* The **`dialogBackgroundColor`** uses the `ColorScheme.surface` color
   instead of the default `ColorScheme.background`. In order to preserve the
   `elevationOverlayColor` in dark mode when `ColorScheme.surface` and
   `ColorScheme.background` differs due to different surface blends, the
@@ -200,11 +198,11 @@ as well as the rationale behind the made design choices and changes to the defau
   gets the overlay color applied in dark theme mode. For more info see
   [issue #90353](https://github.com/flutter/flutter/issues/90353).
 
-* The `indicatorColor` is same as `effectiveTabColor`. It uses a function with
+* The **`indicatorColor`** is same as `effectiveTabColor`. It uses a function with
   logic to determine its color based on if a `TabBarTheme` was selected that should
   work on current `AppBar` background color, or on surface/background colors.
 
-* For `toggleableActiveColor` the `ColorScheme.secondary` color is used.
+* For **`toggleableActiveColor`** the `ColorScheme.secondary` color is used.
   The Flutter default just uses the default `ThemeData` colors and
   not the actual colors you define in the `ColorScheme` you create your
   theme from. Perhaps an oversight in Flutter?
@@ -214,7 +212,7 @@ as well as the rationale behind the made design choices and changes to the defau
   [91772](https://github.com/flutter/flutter/issues/91772).
 
 * Flutter themes created with `ThemeData.from` do not define any color
-  scheme related color for the `primaryColorDark` color, FlexColorScheme
+  scheme related color for the **`primaryColorDark`** color, FlexColorScheme
   does. See issue [#65782](https://github.com/flutter/flutter/issues/65782).
   The `ThemeData.from` leaves this color at `ThemeData` factory default,
   this may not match your scheme. Flutter SDK Widgets seldom use this color,
@@ -223,7 +221,7 @@ as well as the rationale behind the made design choices and changes to the defau
   [91772](https://github.com/flutter/flutter/issues/91772).
 
 * Flutter themes created with `ThemeData.from` do not define any color
-  scheme based color for the `primaryColorLight` color, FlexColorScheme does.
+  scheme based color for the **`primaryColorLight`** color, FlexColorScheme does.
   See issue [#65782](https://github.com/flutter/flutter/issues/65782).
   The `ThemeData.from` leaves this color at `ThemeData` factory default
   this may not match your scheme. Flutter SDK Widgets seldom use this color,
@@ -232,7 +230,7 @@ as well as the rationale behind the made design choices and changes to the defau
   [91772](https://github.com/flutter/flutter/issues/91772).
 
 * Flutter themes created with `ThemeData.from` do not define any color
-  scheme based color for the `secondaryHeaderColor` color, FlexColorScheme
+  scheme based color for the **`secondaryHeaderColor`** color, FlexColorScheme
   does. See issue [#65782](https://github.com/flutter/flutter/issues/65782).
   `ThemeData.from` leaves this color at `ThemeData` factory default this
   may not match your scheme. Flutter SDK Widgets seldom use this color,
@@ -240,7 +238,7 @@ as well as the rationale behind the made design choices and changes to the defau
   This color property will be deprecated in Flutter, see issue
   [91772](https://github.com/flutter/flutter/issues/91772).
 
-* Background color for `AppBarTheme` can use a custom themed color
+* Background color for **`AppBarTheme`** can use a custom themed color
   in both light and dark themes, that is not dependent on the theme's
   primary or surface color.
   In the versions prior to Flutter 2.0.0 doing this was **very** difficult to do,
@@ -250,31 +248,31 @@ as well as the rationale behind the made design choices and changes to the defau
   better. FlexColorScheme's implementation has been changed to use this
   new AppBarTheme feature starting from version 2.0.0-nullsafety.2.
 
-* The `AppBarTheme` elevation defaults to 0, an iOs style influenced
+* The **`AppBarTheme`** elevation defaults to 0, an iOs style influenced
   opinionated choice. It can easily be adjusted directly in the
   `FlexColorScheme` definition with property value `appBarElevation`
   without creating a sub theme or using `copyWith`.
 
-* The `bottomAppBarColor` uses color scheme background color to match the
+* The **`bottomAppBarColor`** uses color scheme background color to match the
   background color of the drawer, bottom navigation bar, possible side
   menu and system navigation bar on android, if theming of it is used.
   This is a slight change from the ColorScheme default that uses
   surface color.
 
-* The `BottomAppBarTheme` elevation defaults to `appBarElevation` or 0 if
+* The **`BottomAppBarTheme`** elevation defaults to `appBarElevation` or 0 if
   it is null. It can easily be adjusted directly in the
   `FlexColorScheme` definition with property value `bottomAppBarElevation`
   without creating a sub theme or using `copyWith`.
 
-* In `TextSelectionThemeData`, the standard for `selectionColor` is
+* In **`TextSelectionThemeData`**, the Flutter default for **`selectionColor`** is
   `colorScheme.primary` with opacity value `0.4` for dark-mode and `0.12`
-  for light mode. Here, primary with `0.5` opacity for dark-mode and `0.3` for
-  light mode is used. The standard for `selectionHandleColor` is
+  for light mode. Here, **primary with `0.5` opacity** for dark-mode, and **`0.3`** for
+  light mode is used. The default for **`selectionHandleColor`^** is
   `colorScheme.primary`, here we use the slightly darker shade
-  `primaryColorDark` instead, which does not have a proper color
+  **`primaryColorDark`** instead, which does not have a proper color
   scheme color value in Flutter standard `ColorScheme` based themes.
 
-* A predefined slightly opinionated `InputDecorationTheme` is used. It
+* A predefined slightly opinionated **`InputDecorationTheme`** is used. It
   sets `filled` to `true` and fill color to color scheme primary color
   with opacity `0.035` in light mode and with opacity `0.06` in dark-mode.
   Since the used theme, does not define a `border` property of `TextField`,
@@ -284,14 +282,14 @@ as well as the rationale behind the made design choices and changes to the defau
   If you don't want the filled style, or the primary colored
   borders in dark-mode, you can override them back with `copyWith`.
 
-* The property `fixTextFieldOutlineLabel` is set to `true` by default,
+* The property **`fixTextFieldOutlineLabel`** is set to `true` by default,
   it looks better. The only reason why it is not the default in Flutter,
   is for default backwards legacy design compatibility.
 
 * **NOTE:**
   Since the old buttons have been deprecated in Flutter 2.0.0
   they are no longer presented or used in code in FlexColorScheme and its
-  examples. **However**, FlexColorScheme still defines the theme for
+  examples. However, FlexColorScheme still defines the theme for
   them described below. Defining the theme does not yet cause any
   deprecation warnings or errors, as long as that is the case, this
   theming will be kept available to support out of the box nice themes for
@@ -301,52 +299,52 @@ as well as the rationale behind the made design choices and changes to the defau
   and later removed as well. It FlexColorScheme will then need to deprecate
   and remove the old button theme.
 
-* Button theming is applied to `ThemeData.buttonColor` using color
+* Button theming is applied to **`ThemeData.buttonColor`** using color
   `colorScheme.primary` color.
 
-* For `ThemeData.buttonTheme` the entire color scheme is passed to its
+* For **`ThemeData.buttonTheme`** the entire color scheme is passed to its
   `colorScheme` property, and it uses `textTheme` set to
   `ButtonTextTheme.primary`, plus minor changes to padding and tap target
   size. These modifications make the old buttons almost match the
   default design and look of their corresponding newer buttons.
   The `RaisedButton` looks very similar to `ElevatedButton`,
   `OutlineButton` to `OutlinedButton` and `FlatButton` to `TextButton`.
-  There are some differences in margins and looks, especially in
+  There are some differences in margins and minor details, especially in
   dark-mode, but they are very similar.
 
 * The default theme for Chips contain a design bug that makes the
-  selected `ChoiceChip` widget look disabled in dark-mode, regardless
+  selected **`ChoiceChip`** widget look disabled in dark-mode, regardless
   if was created with `ThemeData` or `ThemeData.from` factory.
   See issue [#65663](https://github.com/flutter/flutter/issues/65663).
-  The `ChipThemeData` modification used here fixes the issue.
+  The **`ChipThemeData`** modification used here fixes the issue.
 
-* For `TabBarTheme`, the Flutter standard selected tab and indicator
+* For **`TabBarTheme`**, the Flutter standard selected tab and indicator
   color is onSurface in dark-mode and onPrimary in light mode, which is
   designed to fit an AppBar colored TabBar. This is kept, and the default
   via `FlexTabBarStyle.forAppBar` style, with a minor modification. If
-  AppBar is "light", then black87 is used, not black, it is the same as
+  AppBar is "light", then black87 is used, not black, this is the same as
   the textTheme on AppBar in light AppBar brightness.
   If the `FlexTabBarStyle.forBackground` style was used, the
-  selected  color is always color scheme primary color, which works well
+  selected color is always color scheme primary color, which works well
   on surface, background and scaffold background colors.
 
   The unselected TabBar color when `FlexTabBarStyle.forBackground` style
   is used, is always the onSurface color with 60% opacity. This is also
   the color if the AppBar background color brightness is light AND its
   color is white, surface or background colored.
-  Otherwise, when the style `FlexTabBarStyle.forAppBar` is used, the
+  When the style `FlexTabBarStyle.forAppBar` is used, the
   unselected tab bar color is the selected tab color with 70% opacity.
-  This opacity value is the same  as Flutter default for the default
+  This opacity value is the same as Flutter default for the default
   theme that is also designed for AppBar usage.
 
-* The `BottomNavigationBarThemeData` uses color scheme primary color for
+* The **`BottomNavigationBarThemeData`** uses color scheme primary color for
   the selected item in both light and dark theme mode. Flutter default uses
   primary in light mode, but defaults to secondary color in dark mode. Primary
   color is a design used on iOS by default for the bottom navigation bar in
   both theme modes. We agree and think it looks better as the default
   choice for apps in both theme modes.
 
-* Default `tooltipTheme` in Flutter is currently a bit flawed on desktop
+* Default **`tooltipTheme`** in Flutter is currently a bit flawed on desktop
   and web, because it defaults to using a very small font (10dp).
   See issue [#71429](https://github.com/flutter/flutter/issues/71429).
   The default theming also does not handle multiline tooltips very well.
@@ -355,8 +353,8 @@ as well as the rationale behind the made design choices and changes to the defau
   and some padding instead of a height constraint to ensure that
   multiline tooltips look nice too.
 
-* FlexColorScheme also includes a boolean property
-  `tooltipsMatchBackground`, that can be toggled to not use Flutter's
+* FlexColorScheme tooltips also include a boolean property
+  **`tooltipsMatchBackground`**, that can be toggled to not use Flutter's
   Material default design that has a theme mode
   inverted background. Tooltips using light background in light theme
   and dark in dark, are commonly used on the Windows desktop platform.
@@ -365,15 +363,15 @@ as well as the rationale behind the made design choices and changes to the defau
   to give users a preference toggle where they change the tooltip
   style to their liking.
 
-* The property `transparentStatusBar` is set to true by default. It is
-  used to make to the AppBar one-toned on Android devices, like on iOS devices.
+* The FlexColorScheme property **`transparentStatusBar`** is set to true by default. It is
+  used to make the AppBar one-toned on Android devices, like on iOS devices.
   Set it to `false` if you want to restore the default Android two toned design.
 
-## Optional Themes
+## Optional Component Themes
 
 FlexColorScheme also offers highly opinionated widget component themes that
-enables you to get more styled and themed widgets automatically. You
-can customize the styles further via
+enables you to get more heavily styled and themed widgets automatically. You
+can customize these styles further via
 [FlexSubThemesData](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData-class.html).
 
 These component themes are as stated **opinionated** design choices.
@@ -390,14 +388,14 @@ within reasonable limits of current Flutter Material 2 based theming capabilitie
 
 The component themes will be modified and extended when Material 3 features
 reaches Flutter stable channel, to use actual Material 3 implementations in
-Flutter. Since Material 3 will become the new normal, FlexColorScheme will
-potentially make some opinionated design choices concerning them in future
-versions, this remains to be seen.
+Flutter. Since Material 3 will eventually become the new normal,
+FlexColorScheme component themes will potentially make some opinionated design
+choices concerning them in future versions, this remains to be seen.
 
-To enable the optional component theming feature in `FlexColorScheme` pass in
+To enable the optional component theming feature in `FlexColorScheme`, pass in
 a default `FlexSubThemesData()` to its `subThemesData` property.
 This gives you the `FlexColorScheme` default opinionated component theme setup.
-Natural `FlexColorScheme` would not be "flex" if the
+Naturally `FlexColorScheme` would not be "flex" if the
 [`FlexSubThemesData`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData-class.html)
 data class did not also contain many optional quick configuration parameters
 for the component themes.
@@ -406,27 +404,29 @@ The list of properties in the configuration class has grown very large.
 While it can be a bit tricky to maintain it, using it is easy and quite
 a convenient way to adjust commonly used properties on UI component
 widget themes using simple "flat" property values.
-No need for deep [ShapeBorder] definitions for simple border radius change,
-nor for the complex [MaterialState] properties. At least not as long
-as choices and offered flat config options covers what you need.
+No need for deep [ShapeBorder] definitions one very component theme for a
+simple border radius change, nor for the complex [MaterialState] properties.
+At least not as long as choices and offered flat config options covers
+what you need.
 
 A common use case for `FlexSubThemes` and the `FlexSubThemesData` is easy to
-use customization of default border radius on all Flutter UI components
+use customization of default border radius on **all** Flutter UI components
 and elements that supports border radius either via [ShapeBorder]
-or [BorderRadiusGeometry]. This can be done with a single property the
+or [BorderRadiusGeometry]. This can be done with a single property, the
 [`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).
 
 When you opt-in on using the component themes, the `FlexColorScheme.toTheme` method uses
 the passed in `FlexSubThemesData` configuration data object passed in via
 `FlexColorScheme.subThemesData` to create the component themes.
-In some simple cases, for some core related legacy component theme cases,
+
+In some cases, typically for some core related "legacy" component theme cases,
 the themes are created directly in the `toTheme` method.
-But in most cases it uses separate static sub-theme helper functions
+However, in most cases it uses separate static sub-theme helper functions
 from the `FlexSubThemes` class. The component themes that are only defined
-directly in the `toTheme` method will be moved into the `FlexSubThemes` class
+directly in the `toTheme` method, will be moved into the `FlexSubThemes` class
 as well in a future update.
 
-You can if you wish, also the static sub-themes without even using
+You can also the static sub-themes without even using
 FlexColorScheme based theming. The `FlexSubThemesData` configuration has
 no direct impact on these static helpers. It is `FlexColorScheme` that uses
 the `FlexSubThemesData` class to configure the opt-in sub-themes based on
@@ -478,7 +478,7 @@ Please consider phasing out the legacy buttons, as they are deprecated and
 will be removed from the Flutter SDK in next stable release. Their theme
 the `ButtonThemeData` will also soon be deprecated and later removed.
 
-The following widgets that have rounded corners, but are excluded from the
+The following widgets have rounded corners, but are excluded from the
 component theming for now:
 
 * `Tooltip`, generally so small that larger prominent rounding the
@@ -500,8 +500,7 @@ component theming for now:
   if Drawer is being used in Scaffold as Drawer or EndDrawer, but support
   via theme is needed too.
 
-
 You can find more information about available component theme
 helpers in the [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
-You can also use these static sub-theme helpers to manually define widget
-sub-theme and even modify them using `copyWith`.
+You could as mentioned also use these static sub-theme helpers to manually
+define widget sub-theme and further modify them using `copyWith`.
