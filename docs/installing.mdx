@@ -18,15 +18,17 @@ in your application. A quick way to do so is to try one of the **40** built-in
 color schemes. The schemes have enum values that you can use to select
 which one is used the theme.
 
-The default example offers a code comment guide on how to use almost
-all properties in FlexColorScheme. The [examples](/examples) chapter show you
-how to try it and all the [tutorial](/tutorial) examples.
-Here we try FlexColorScheme from scratch.
+The default example offers a heavily commented code guide on how to use almost
+all properties in FlexColorScheme. The [examples](/examples) chapter shows you
+how to try it, and all the [tutorial](/tutorial) examples.
 
-First create a default Flutter counter app. Add the FlexColorScheme import,
-we modify one line of code and add two lines as shown further below.
+## FlexColorScheme in Counter App
 
-In this example we used the **Oh Mandy red** color scheme that is
+Let's setup FlexColorScheme in the default Flutter counter app.
+First add the FlexColorScheme import, then modify one line of code, and add
+two lines using these steps:
+
+In this example we use the **Oh Mandy red** color scheme, it is
 represented by `enum` value `FlexScheme.mandyRed`. We set
 the `MaterialApp.themeMode` to `ThemeMode.system`, so that the device can
 control if the app uses its light or dark theme mode, based on the device
