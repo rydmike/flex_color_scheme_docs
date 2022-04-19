@@ -607,7 +607,7 @@ alternatives, excluding option 9, which we will look at in the next group of com
 
 ## Comparing 5 to 8
 
-Lots of differences here, let's look at them closer and analyse them one by one.
+Lots of differences here, let's look at them closer and analyze them one by one.
 
 <table>
   <tr>
@@ -698,7 +698,7 @@ factory ThemeData.from({
 ```
 
 We can that the factory sets the `accentColor`, `accentColorBrightness` and
-`primaryColorBrightness` in `ThemeData` from its `ColorScheme` colors.analyse
+`primaryColorBrightness` in `ThemeData` from its `ColorScheme` colors.analyze
 These properties are all actually deprecated, unknown why they are still being set,
 since they not used by the SDK, but presumably to provide backwards compatibility
 values to apps using the properties.
@@ -1247,7 +1247,7 @@ the importance of doing this will become less important. However, in
 Flutter 2.10 stable and all previous versions, some widgets still depend e.g. on
 `primaryColorLight` and `primaryColorDark` as their default colors,
 for example `CircleAvatar`. If you don't give them `ColorScheme` derived values,
-it will use the default swatch theme based colors.
+the colors will use the default swatch theme based colors, and so will `CircleAvatar`.
 
 Currently setting colors on all the background and surface colors from your
 `ColorScheme`, in a similar manner to what `ThemeData.from` does, is very
@@ -1255,13 +1255,14 @@ important. If you do not, you may get some background color defaults in
 dark theme that are not the ones from your `ColorScheme`.
 
 For the background and surface colors to be nice in both light and dark mode,
-it is of course requires that your `ColorScheme` uses correct background
+it of course requires that your `ColorScheme` uses correct background
 colors and onColors. Use the built-in `ColorScheme.light` and `ColorScheme.dark`
 factories for that, or even a `ColorScheme.fromSeed` as a base, and define your
-custom colors in them as needed, to make your custom light and dark `ColorScheme`.
+custom colors in them as needed to make your custom light and dark `ColorScheme`.
 
 What happens in the next new stable release of Flutter regarding all this
-remains to be seen.
+remains to be seen. Looking at all the work in the master channel I see a lot of improvements,
+but it remains to be seen what lands in stable when.
 
 ### A Simpler Way
 

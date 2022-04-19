@@ -90,16 +90,26 @@ follows the same design that is used for the new `keyColors` when using `FlexKey
 error, it just has no effect. You can safely remove it.
 The property `useSubThemes` will be completely removed in release 6.0.
 
+### Change: Custom and "internal" m3TextTheme revised.
+
+**Style breaking with 4.2.0 and 5.0.0-dev.x**, breaks past used style when opting
+in on component themes and its optional custom `m3TextTheme` enabled. The updated
+custom implementation of it now follows the implementation used in Flutter
+master channel, apart from this [issue](https://github.com/flutter/flutter/issues/102121),
+where it for now implements the value used in the M3 Web guide. The changes in styles
+otherwise concern the addition of the font geometry, height, which the previous custom
+implementation did not have. The usage of the custom `m3TextTheme` should be considered internal and
+temporary, it will be changed to use the actual Flutter implementation once
+[PR #97829](https://github.com/flutter/flutter/pull/97829) lands in Flutter stable channel.
+
 ### Change: Color definitions for `ThemeData` colors `primaryColorLight`, `primaryColorDark` and
 `secondaryHeaderColor`
 
-**Style breaking with 4.2.0:** Breaks past used styles on these rarely used colors,
-the new colors are better.
-
-These `ThemeData` colors are on a deprecation path and will likely receive some
-new none `MaterialColor` dependent color defaults when that change happens. The new
+**Style breaking with 4.2.0 and 5.0.0-dev.x**, breaks past used styles on these rarely used colors.
+The new colors are better. These `ThemeData` colors are on a deprecation path and will likely
+receive some new none `MaterialColor` dependent color defaults when that change happens. The new
 `ColorScheme.primary` computed colors for the above rarely used colors are better balanced
-than before and work well regardless of used `ColorScheme.primary` shade and tint.
+than before, and work well regardless of used `ColorScheme.primary` shade and tint.
 
 ### Change: Color definition for `FlexColor.espressoLightPrimary` color was changed
 
