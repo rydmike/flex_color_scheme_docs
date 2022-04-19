@@ -50,11 +50,11 @@ of their properties. In some rare cases this is done to correct theming issues i
 reach its own design goals. Below is a list of all the component themes it creates and properties that you can
 **currently** expect to have none null values in them. These component themes and their properties,
 would otherwise be null when just using default `ThemeData()` or `ThemeData.from()` factories, if they
-did not specify component themes.
+did not specify any component themes.
 
-Even though some component themes currently are not null, and have some none null properties in FlexColorScheme
-based `ThemeData`. You should always use null fallback values if you access ThemeData sub-themes and
-their properties in `Theme.of(context)` that are null in default `ThemeData` or its component themes.
+Even if some component themes are currently not null, and have some none null properties in FlexColorScheme
+based `ThemeData`, you should still always use null fallback values when you access use ThemeData sub-themes and
+their properties in `Theme.of(context)` that are null in default `ThemeData`, or any of its component themes.
 
 For example, when using the AppBar's theme data, don't just use:
 
@@ -62,7 +62,7 @@ For example, when using the AppBar's theme data, don't just use:
 final Color aColor = Theme.of(context).appBarTheme.backgroundColor;
 ```
 
-It should never be considered fully **safe** to access properties like it without using null fallbacks.
+It should not be considered **safe** to access properties like it without using null fallbacks.
 Instead, do something similar to this:
 
 ```dart
@@ -71,7 +71,7 @@ final Color aColor = Theme.of(context)?.appBarTheme?.backgroundColor ??
 ```
 
 **FlexColorScheme** will try to not change past creation of its none null sub-themes. However, changes to these
-implementation details are only considered style breaking if they produce a theme that is visibly different from
+implementation details are only considered breaking if they produce a theme that is visibly different from
 past behavior.
 
 **Flutter SDK** may also change some of its implementation details of `ThemeData`. Take for example the broken
@@ -86,9 +86,7 @@ Flutter there was a deprecation warning if the sub-theme was not defined. Later 
 observed that Flutter SDK default and FlexColorScheme sub-theme agreed 100% on the design. There was
 no longer any deprecation warning if the sub-theme was totally removed from FlexColorScheme's theme definition.
 This sub-theme definition was thus no longer needed and was removed starting from FlexColorScheme
-version 2.0.0-nullsafety.2.
-
-Another similar change was the deprecation of `ThemeData.accentColor`.
+version 2.0.0-nullsafety.2. Another similar change was the deprecation of `ThemeData.accentColor`.
 
 ## Core Component Themes
 
