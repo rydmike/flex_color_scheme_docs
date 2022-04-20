@@ -381,9 +381,18 @@ wrapper for a `SystemUiOverlayStyle` that works for screens that use and adhere 
 If your application use screens that do not follow the current theme, then just use `SystemUiOverlayStyle`
 directly in the annotated region for such screens to define their desired style. You can also make your own
 convenience wrapper function or even just a const value for it if you need to use a fixed style and design frequently.
-The system navigation bar icons do not seem to change color correctly until API30 (Android 11). On earlier
-API levels you may sometimes end up with light themed system navigation bar icons, even if you requested dark
-ones from the Android system. This has been observed at least with Pixel 4XL emulator on API29 (Android 10).
+
+
+* There is a known issue in Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100027)
+  "Using systemNavigationBarDividerColor changes statusBarIconBrightness and
+  systemNavigationBarIconBrightness on Android 11". It affects this feature. Two temporary
+  changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
+  * The divider feature is disabled until the issue has been resolved.
+  * There is a temporary workaround implemented, it manages to keep system
+     icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
+  The temporary changes will be reverted when the fix for the Flutter issue
+  has reached the stable channel.
+
 
 You can also use the `FlexColorScheme.themedSystemNavigationBar` to hide the top status icons if you are not
 using an app bar at all. This can be useful on a splash or onboarding page. Example 5 contains three different
@@ -391,23 +400,30 @@ examples, each with their own limitations, read more in the example 5 source cod
 can be used, here what they look like. The last Example SplashPage 2, would be the ideal version, and it
 works well on some versions of Android, but it seems to fail on newer ones, so you may prefer 1b instead.
 
-<img src="https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true" alt="ColorScheme Splash pages"/>
+[<img src="https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true" alt="ColorScheme Splash pages"/>](https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true)
 
-## Android Transparent System Navigation Bar
+### Android Transparent System Navigation Bar
 
-Version 4 added full support for transparent system navigation bar for Android
+FlexColorScheme V4 added full support for transparent system navigation bar for Android
 SDK >= 29 (Android 10). The support is added via the
 [opacity](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/themedSystemNavigationBar.html)
 property in `FlexColorScheme.themedSystemNavigationBar`.
+Use and support for the opacity value on the system navigation bar is supported
+starting from Flutter 2.5. This [PR 28616](https://github.com/flutter/engine/pull/28616) amended it a bit
+and limits its functionality to SDK >= 29.
 
-Use and support for the opacity
-value on the system navigation bar is supported
-starting from Flutter 2.5. The [PR 28616](https://github.com/flutter/engine/pull/28616) will
-once it lands in stable also result in more predictable
-and consistent behavior, and limit its functionality to SDK >= 29.
+Examples 1 to 4 do not use the transparent or themed system navigation bar feature,
+but **example 5**, the **Copy Playground** and the default example
+**Hot Reload Playground** do. If you build them on an Android device you
+can see it working if you use appropriate Android API levels that are supported.
 
-Example 1 to 4 do not use the transparent or themed system navigation bar,
-but if you if you build example 5 on an Android device you can try and see the partially and even
+When you build example 5 the **Themes Playground**" on an Android device you can
+try and see the partially and even
 fully transparent Android system navigation bar in action. You can adjust the settings on its
 interactive "Android System Navigation Bar" panel. These settings are not a part of
-theme that can be copied, since the required setup is not
+theme that can be copied, since the required setup is not in ThemeData.
+
+The themed and transparent system navigation bar work even if you used the
+older 3 button system navigation, the two button option, or even with the thin
+gestures navigation bar. It is just not as visible or obvious when using the
+thin gestures based one.
