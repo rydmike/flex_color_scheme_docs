@@ -606,7 +606,7 @@ with this themed design:
  </table>
 
 
-### Components Construction
+### FlexSubThemes
 
 When you opt-in on using the component themes, the `FlexColorScheme.toTheme`
 method uses the passed in `FlexSubThemesData` configuration data object, that is
@@ -616,12 +616,11 @@ the properties provided.
 In some cases, typically for older core related "legacy" component theme cases,
 the component themes are created directly in the `toTheme` method.
 However, in most cases separate static sub-theme helper functions
-from the `FlexSubThemes` class are used.
+from the `FlexSubThemes` class are used. Component themes that are currently
+only defined directly in the `toTheme` method, will be moved into the
+`FlexSubThemes` class as well in a future update.
 
 API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
-
-> Component themes that are only defined directly in the `toTheme` method,
-> will be moved into the `FlexSubThemes` class as well in a future update.
 
 These `FlexSubThemes` component themes are currently available and used via
 their static helper functions, when `toTheme` creates `ThemeData`:
@@ -648,8 +647,8 @@ their static helper functions, when `toTheme` creates `ThemeData`:
 * [**toggleButtonsTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/toggleButtonsTheme.html)
 
 You can also use these static component theme helpers without using
-FlexColorScheme to define custom components themes or even without using
-FlexColorScheme at all. You can further modify the component helper  themes'
-produced results by using their `copyWith`. The helpers be simpler to
-use than the raw component theme constructors, or your can just study to
-see how some component theme is made that interests you.
+FlexColorScheme to define custom components themes, or even without using
+FlexColorScheme at all. You can further modify the component theme helpers'
+produced results by using their `copyWith`. The helpers may be simpler to
+use than the raw component theme constructors, or your can just study them to
+see how some component theme is defined that interests you.

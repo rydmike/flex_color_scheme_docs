@@ -50,7 +50,7 @@
             [
                 ["Guide", "/api_guide"],
                 ["Core defaults", "/core_defaults"],
-                ["Deep dives", "/features"]
+                ["Deep dives", "/deep_dives"]
             ]
         ],
         ["Scheme reference", "/scheme_reference"]

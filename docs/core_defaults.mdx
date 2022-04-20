@@ -420,20 +420,20 @@ the passed in `FlexSubThemesData` configuration data object, passed in via
 In some cases, typically for older core related "legacy" component theme cases,
 the themes are created directly in the `toTheme` method.
 However, in most cases separate static sub-theme helper functions
-from the `FlexSubThemes` class are used. 
+from the `FlexSubThemes` class are used. The component themes that are defined
+directly in the `toTheme` method, will be moved into the `FlexSubThemes` class
+as well in a future update.
 
-> The component themes that are only defined
-> directly in the `toTheme` method, will be moved into the `FlexSubThemes` class
-> as well in a future update.
+You can also use these static component theme helpers without using
+FlexColorScheme to define custom components themes, or even without using
+FlexColorScheme at all.
 
-
-You can also the static sub-themes without even using
-FlexColorScheme based theming. The `FlexSubThemesData` configuration has
+The `FlexSubThemesData` configuration has
 no direct impact on these static helpers. It is `FlexColorScheme` that uses
 the `FlexSubThemesData` class to configure the opt-in sub-themes based on
 the setup information provided via `FlexColorScheme.subThemesData`.
 
-These component themes are available:
+There are component theming helpers available for:
 
 * `ButtonThemeData` for old deprecated buttons, via `buttonTheme`.
 * `BottomNavigationBarThemeData` for `BottomNavigationBar` via
@@ -461,26 +461,26 @@ These component themes are available:
 In `ToggleButtons` hover, press, selected and focus states are not
 an exact match for the main buttons. It does not have as flexible styling
 as the main buttons. The theme mimics the style of the `OutlinedButton` for
-not selected buttons and the style of `ElevatedButton` for selected
+not selected buttons, and the style of `ElevatedButton` for selected
 button. It does not support `MaterialStateProperty` and has only
 one state for different parts of the button. The selected and not selected,
 states would need different property values to be able to match the general
-buttons. It can therefore not fully match the same theme style as the
+buttons. It can therefore not fully match the same theme style, as the
 Material states used on two different `ButtonStyleButton` buttons that
-it should match.
+it should match, but it is quite close.
 
 The theme `ButtonThemeData` is included to provide a very similar
 theme style on the deprecated legacy buttons `RaisedButton`,
 `OutlineButton` and `FlatButton` as on the current main buttons. It is not
 an exact match, since the legacy buttons do not offer as flexible
-styling as the newer buttons. They do follow and match the styling on
-`ToggleButtons` when it comes to hover, press, selected and focus.
+styling as the newer buttons. The legacy button theme follows and match the
+styling on `ToggleButtons` when it comes to hover, press, selected and focus.
 Please consider phasing out the legacy buttons, as they are deprecated and
-will be removed from the Flutter SDK in next stable release. Their theme
-the `ButtonThemeData` will also soon be deprecated and later removed.
+will be removed from the Flutter SDK in next stable release. Their theme,
+the `ButtonThemeData` will also soon be deprecated and later removed in Flutter.
 
 The following widgets have rounded corners, but are excluded from the
-component theming for now:
+component border radius theming for now:
 
 * `Tooltip`, generally so small that larger prominent rounding the
   opinionated sub-theming is designed for, is not a good fit.
@@ -503,5 +503,6 @@ component theming for now:
 
 You can find more information about available component theme
 helpers in the [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
-You could as mentioned also use these static sub-theme helpers to manually
-define widget sub-theme and further modify them using `copyWith`.
+You can as mentioned in the API guide also use these static sub-theme helpers
+to manually define widget sub-theme, and even further modify them using
+their `copyWith` methods.
