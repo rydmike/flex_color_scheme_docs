@@ -374,25 +374,23 @@ AppBar's status bar, and the system navigation bar look, like shown below:
 The top status bar scrim toggle, system navigation bar divider and style only have an impact
 on Android builds, they do not have any functionality on the live Web example.
 
-**NOTE:**
-
-* The static helper `FlexColorScheme.themedSystemNavigationBar(context, ...)` is designed to provide a convenience
+The static helper `FlexColorScheme.themedSystemNavigationBar(context, ...)` is designed to provide a convenience
 wrapper for a `SystemUiOverlayStyle` that works for screens that use and adhere to current theme mode colors.
 If your application use screens that do not follow the current theme, then just use `SystemUiOverlayStyle`
 directly in the annotated region for such screens to define their desired style. You can also make your own
 convenience wrapper function or even just a const value for it if you need to use a fixed style and design frequently.
 
 
-* There is a known issue in Flutter [#100027](https://github.com/flutter/flutter/issues/100027)
-  "Using systemNavigationBarDividerColor changes statusBarIconBrightness and
-  systemNavigationBarIconBrightness on Android 11". It affects this feature. Two temporary
-  changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
-  * The divider feature is disabled until the issue has been resolved.
-  * There is a temporary workaround implemented, it manages to keep system
-     icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
-  The temporary changes will be reverted when the fix for the Flutter issue
+**Known issue:**
+There is a known issue in Flutter [#100027](https://github.com/flutter/flutter/issues/100027)
+"Using systemNavigationBarDividerColor changes statusBarIconBrightness and
+systemNavigationBarIconBrightness on Android 11". It affects the **themedSystemNavigationBar** feature.
+Two temporary changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
+* The divider feature is disabled until the issue has been resolved.
+* There is a temporary workaround implemented, it manages to keep system
+  icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
+  These temporary changes will be reverted when the fix for the Flutter issue
   has reached the stable channel.
-
 
 You can also use the `FlexColorScheme.themedSystemNavigationBar` to hide the top status icons if you are not
 using an app bar at all. This can be useful on a splash or onboarding page. Example 5 contains three different
