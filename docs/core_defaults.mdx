@@ -25,27 +25,26 @@ core setup, they are listed further below.
 ## Design Goals
 
 Flutter's default Theme and its ThemeData use a design where all the component theme's in the default
-ThemeData are NULL. It is always the widget component that defines the default behavior and look when its
-theme and its properties are undefined. The widget colors for such cases are then typically
-defined by `ThemeData.colorScheme`.
+ThemeData have properties that are all **null**. It is always the widget component that defines
+the default behavior and look when its theme and its properties are undefined.
+The widget colors for such cases are then typically defined by `ThemeData.colorScheme`.
 
 This Flutter theming design goal is described in this
 [document](https://docs.google.com/document/d/1kzIOQN4QYfVsc5lMZgy_A-FWGXBAJBMySGqZqsJytcE). It is
-partially implemented, but there are still be some components in Flutter remaining that do
-not fully adhere to this design. And many color properties still remain in `ThemeData`.
+partially implemented, but there are still some components in Flutter remaining that do
+not adhere to this design, and there are also many color properties still remaining in `ThemeData`.
 
-FlexColorScheme sets its defined and computed scheme to the `ThemeData.colorScheme` to
+FlexColorScheme assigns its defined and computed colors to the `ThemeData.colorScheme` to
 ensure that its colors are applied to all widgets that adhere to this newer standard.
-
-Then it also sets all still existing legacy direct colors in `ThemeData`, that some Flutter Widgets
+Then it also defines all still existing legacy direct colors in `ThemeData`, that some Flutter Widgets
 still use. These `ThemeData` colors are all set to use `ColorScheme` appropriate colors, or from it
-derived colors. Thanks to this, there will not be any built-in Widgets in Flutter that do not
-get color themed by FlexColorScheme. As we can see in [Roads to ThemeData](theming_roads) this
-is not the case with Flutter's own ColorScheme based theming methods, you have to
-adjust it a bit manually as well.
+derived colors. Thanks to this, there are not any built-in Widgets in Flutter that do not
+get color themed by FlexColorScheme. As we can see in [Roads to ThemeData](theming_roads), this
+is not the case with Flutter's own ColorScheme based theming methods, or any of its
+theming methods, you have to adjust ThemeData a bit manually as well to ge there.
 
 The ThemeData created by core FlexColorScheme tries to not create and modify component themes when it does not
-have to. However, to meet its original design goals, FlexColorScheme still has to create a few sub-themes and set some
+have to. However, to meet its own design goals, FlexColorScheme still has to create a few sub-themes and set some
 of their properties. In some rare cases this is done to correct theming issues in Flutter SDK, but mostly to
 reach its own design goals. Below is a list of all the component themes it creates and properties that you can
 **currently** expect to have none null values in them. These component themes and their properties,
