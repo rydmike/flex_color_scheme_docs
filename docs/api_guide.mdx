@@ -105,7 +105,7 @@ counterparts, all have the same properties and are interchangeable.
 The `light` and `dark` factory constructor parameters differ slightly, due to
 a few different features for light and dark themes.
 
-## Properties
+## Common Properties
 
 Important properties for `FlexColorScheme.light()` and
 `FlexThemeData.light()`, as well as for `FlexColorScheme.dark()` and
@@ -233,7 +233,7 @@ are used to create the effective `ColorScheme` used in produced `ThemeData`.
    they are more clearly distinguishable from your main theme colors.
 
 
-**Example: Demo of Basic Properties**
+**Example: Demo of Common Properties**
 
 In this example we use many of the above discussed properties:
 
@@ -347,11 +347,11 @@ Above you could also create the entire `ThemeData` from the
 `FlexColorScheme` instance `flexScheme` above. Extract its `ColorScheme`
 and use it to make the custom component `toggleButtonsTheme`, and then
 use `copyWith` on the already created `ThemeData` that you return as
-`ThemeData. Both work, the above should in theory be marginally more
+`ThemeData`. Both work, the above should in theory be marginally more
 resource efficient, but it probably does not matter in practice.
 
 
-## Key Color Seed Generated ColorScheme
+## Generated ColorScheme
 
 Flutter has `ColorScheme.fromSeed` to make delightful Material 3 specification
 based computational ColorSchemes. With **FlexColorScheme** you can use the
@@ -395,13 +395,13 @@ the primary, secondary and tertiary tonal palettes. The properties `Chroma` and
 tonal palette from corresponding key color, adjust how the algorithm uses
 the input colors when it generates the tonal palettes from the key colors.
 
-See API docs for details:
+See API reference for details:
 * [**primaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/primaryChroma.html)
-* [**primaryMinChroma**]https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/primaryMinChroma.html)
+* [**primaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/primaryMinChroma.html)
 * [**secondaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/secondaryChroma.html)
-* [**secondaryMinChroma**]https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/secondaryMinChroma.html)
+* [**secondaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/secondaryMinChroma.html)
 * [**tertiaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryChroma.html)
-* [**tertiaryMinChroma**]https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryMinChroma.html)
+* [**tertiaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryMinChroma.html)
 
 You can also modify which
 tone in the generated tonal palettes is mapped to what `ColorScheme`
@@ -422,15 +422,15 @@ Please share it in the FlexColorScheme GitHub repository's show and tell
 [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell)
 forum, maybe we can add it as another predefined option.
 
-See API docs for more details on **FlexTones**:
+See API reference for more details on **FlexTones**:
 * Class [**FlexTones**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones-class.html)
 * Light mode default value factory [**FlexTones.light**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/FlexTones.light.html)
 * Dark mode default value factory [**FlexTones.dark**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/FlexTones.dark.html)
-* Material 3 spec tones constructor [FlexTones.material](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/material.html)
-* Vivid tones constructor [FlexTones.vivid](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/vivid.html)
-* Vivid surfaces tones constructor [FlexTones.vividSurfaces](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/vividSurfaces.html)
-* Soft tones constructor [FlexTones.soft](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/soft.html)
-* High contrast tones constructor [FlexTones.highContrast ](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/highContrast.html)
+* Material 3 spec tones constructor [**FlexTones.material**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/material.html)
+* Vivid tones constructor [**FlexTones.vivid**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/vivid.html)
+* Vivid surfaces tones constructor [**FlexTones.vividSurfaces**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/vividSurfaces.html)
+* Soft tones constructor [**FlexTones.soft**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/soft.html)
+* High contrast tones constructor [**FlexTones.highContrast**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/highContrast.html)
 
 **Example: FlexColorScheme with keyColors and Tones**
 Here we use a key color generated ColorScheme, while using otherwise same
@@ -507,7 +507,7 @@ with this theme:
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-api-08-key.png?raw=true" alt="API keyColor 8" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-api-08-key.png?raw=true)</td>
   </tr>
   <tr>
-    <td colspan="7">_The **Copy Playground** theme presentation app, with above FlexThemeData setup, using key colors generated ColorScheme with custom tones._</td>
+    <td colspan="7">_The **Copy Playground** theme presentation app, with above FlexThemeData setup, using **keyColors** generated ColorScheme with custom **tones**._</td>
   </tr>
  </table>
 
@@ -601,7 +601,7 @@ with this themed design:
     <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-api-12-sub.png?raw=true" alt="API sub 12" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-api-12-sub.png?raw=true)</td>
   </tr>
   <tr>
-    <td colspan="7">_The **Copy Playground** theme presentation app, with above FlexThemeData setup using component themes and global border radius 12 dp._</td>
+    <td colspan="7">_The **Copy Playground** theme presentation app, with above FlexThemeData setup using component **subThemesData** and global border **defaultRadius** of 12 dp._</td>
   </tr>
  </table>
 
@@ -620,11 +620,10 @@ from the `FlexSubThemes` class are used. Component themes that are currently
 only defined directly in the `toTheme` method, will be moved into the
 `FlexSubThemes` class as well in a future update.
 
-API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
-
 These `FlexSubThemes` component themes are currently available and used via
 their static helper functions, when `toTheme` creates `ThemeData`:
 
+API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
 * [**buttonTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/buttonTheme.html)
 * [**bottomNavigationBar**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/bottomNavigationBar.html)
 * [**bottomSheetTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/bottomSheetTheme.html)
