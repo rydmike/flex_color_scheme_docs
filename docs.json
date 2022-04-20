@@ -46,11 +46,11 @@
                 ["5) Themes Playground","/tutorial5"]
            ]
         ],
-        ["API guide",
+        ["API",
             [
-                ["Overview", "/api_guide"],
+                ["Guide", "/api_guide"],
                 ["Core defaults", "/core_defaults"],
-                ["Extra Features", "/features"]
+                ["Deep dives", "/features"]
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
