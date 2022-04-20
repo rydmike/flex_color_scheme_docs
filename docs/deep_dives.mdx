@@ -1,14 +1,14 @@
 # Deep Dives
 
-This chapters provides more details and explanations of some features in
-FlexColorScheme. This chapter will receive updates and new deep dives as needed
-in future updates, based on questions user of **FlexColorScheme** have.
+This chapters provides deeper and more detailed information and explanations
+on included topics. It will receive updates and new deep dives as needed
+in future updates based on questions user of **FlexColorScheme** have.
 
-This chapter may contain images and animation from older versions
-of **FlexColorScheme**, they are used wne the principles presented are still
-the same and the actual image matter less. Future version of this chapter
-may update the images based on current version of FlexColorScheme if it is
-needed to improve the concept explanations.
+This chapter may contain images and animations from older versions
+of **FlexColorScheme**. They are used when the principles presented are still
+the same and the actual images matter less. Future version of this chapter
+may update the images to current version of FlexColorScheme, if it is
+needed to improve the explanations.
 
 ## Visual Density
 
@@ -43,7 +43,7 @@ was added to adapt the density according to used platform. The
 more white space on desktops.  Use the one you like and works best for
 your use case.
 
-## Optional FlexThemeModeSwitch
+## FlexThemeModeSwitch
 
 One feature on the `HomePage` of examples 1 to 4 is the `FlexThemeModeSwitch`.
 It is the UI Widget used for the 3-way theme mode switch used in these
@@ -51,7 +51,7 @@ examples to change the active theme mode.
 
 <img src="https://rydmike.com/assets_fcsv4/theme_mode_switch.png?raw=true" alt="theme mode switch" width="350"/>
 
-Using the switch is very simple, give it the currently selected and active theme
+Using the switch is simple, give it the currently selected and active theme
 mode, the current `FlexSchemeData` scheme, so it can color its buttons correctly.
 Then use the `onThemeModeChanged` callback for changes to its mode, and change
 the `themeMode` property in the `MaterialApp` accordingly, to actually change
@@ -94,16 +94,34 @@ Example 5 allows us to toggle the dark mode, from using its hand tuned
 predefined dark scheme colors, to the dark scheme colors computed from the
 light scheme colors. Let's use it to compare some examples.
 
-When using the **deep blue sea** scheme, the computed dark theme colors ones
+When using the **Deep blue sea** scheme, the computed dark theme colors ones
 are a bit more dull and muted in this example, the computed dark scheme
 is on the right.
 
-<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true" alt="ColorScheme example 5 dark" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png?raw=true" alt="ColorScheme example 5 dark computed" width="250"/>
+<table>
+  <tr>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true" alt="ColorScheme example 5 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png?raw=true" alt="ColorScheme example 5 dark computed" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png?raw=true)</td>
+  </tr>
+  <tr>
+    <td colspan="3">_Designed dark **Deep blue see** theme versus computed dark theme from its light theme._</td>
+  </tr>
+</table>
 
 With some other color schemes, like the **Aqua blue** one, there is only a
 minor difference, the computed dark scheme is on the right.
 
-<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png?raw=true" alt="ColorScheme example 5a2 dark" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png?raw=true" alt="ColorScheme example 5 dark computed" width="250"/>
+<table>
+  <tr>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png?raw=true" alt="ColorScheme example 5a2 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png?raw=true" alt="ColorScheme example 5 dark computed" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png?raw=true)</td>
+  </tr>
+  <tr>
+    <td colspan="3">_Designed dark **Aqua blue** theme versus computed dark theme from its light theme._</td>
+  </tr>
+</table>
 
 The result of the `toDark` method varies depending on how saturated the used
 light scheme colors are. It is possible to tune the calculated dark scheme by
@@ -215,12 +233,21 @@ in this case via the `custom` choice.
 Below you can see some different primary color blend level using
 background colors used as the themed AppBar background color.
 
-<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png?raw=true" alt="ColorScheme example 5d light" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png?raw=true" alt="ColorScheme example 5e light" width="250"/>
+<table>
+  <tr>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png?raw=true" alt="ColorScheme example 5d light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png?raw=true" alt="ColorScheme example 5e light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png?raw=true</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png?raw=true" alt="ColorScheme example 5f light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png?raw=true" alt="ColorScheme example 5g light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png?raw=true)</td>
+  </tr>
+  <tr>
+    <td colspan="7">_Using background colored AppBar theme, that includes the primary color blend at different levels in the background_</td>
+  </tr>
+ </table>
 
-Here are few more images of the primary color branded version, when
-looking at some widgets as well.
-
-<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png?raw=true" alt="ColorScheme example 5f light" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png?raw=true" alt="ColorScheme example 5g light" width="250"/>
 
 ## The TabBar Style
 
@@ -276,15 +303,33 @@ for all surfaces and backgrounds, then avoid combining true black mode with prim
 still makes a darker theme than normal dark theme, which can look nice. It may also eliminate the scrolling issue, since
 all background colored pixels are not fully off in the true black modes when you use high blend levels.
 
-Here is an example of a branded dark theme with true black OFF (default and standard) and true black ON,
-when using high blend level with the **Red red wine** color scheme.
+Here is an example of a branded dark theme with true black OFF (default) and true black ON,
+when using high surface blend level with the **Red red wine** color scheme.
 
-<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png?raw=true" alt="ColorScheme example 5c dark" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png?raw=true" alt="ColorScheme example 5b dark" width="250"/>
+<table>
+  <tr>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png?raw=true" alt="ColorScheme example 5c dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png?raw=true" alt="ColorScheme example 5b dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png?raw=true)</td>
+  </tr>
+  <tr>
+    <td colspan="3">_Comparing true black OFF (left) and ON (right), with the **Red red wine** scheme._</td>
+  </tr>
+</table>
 
 Here is another difference example with the **Deep blue sea** scheme, when using mid level blends, and
 a primary colored AppBar in dark-mode.
 
-<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true" alt="ColorScheme example 5 dark" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png?raw=true" alt="ColorScheme example 5 true black" width="250"/>
+<table>
+  <tr>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true" alt="ColorScheme example 5 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png?raw=true" alt="ColorScheme example 5 true black" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png?raw=true)</td>
+  </tr>
+  <tr>
+    <td colspan="3">_Comparing true black OFF (left) and ON (right), with the **Deep blue sea** scheme._</td>
+  </tr>
+</table>
 
 ## Themed System Navigation Bar in Android
 
@@ -299,22 +344,32 @@ toggle dark and light theme mode. Many Flutter applications neglect or forget to
 application.
 
 ```dart
-   return AnnotatedRegion<SystemUiOverlayStyle>(
-     value: FlexColorScheme.themedSystemNavigationBar(
-       context,
-       systemNavBarStyle: systemNavBarStyle,
-       useDivider: useSysNavDivider,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: FlexColorScheme.themedSystemNavigationBar(
+        context,
+        systemNavBarStyle: widget.controller.sysNavBarStyle,
+        useDivider: widget.controller.useSysNavDivider,
+        opacity: widget.controller.sysNavBarOpacity,
+      ),
      ),
      child: ....
    );
 ```
 
-Above the `systemNavBarStyle` is a local `FlexSystemNavBarStyle` state variable tied to the same UI choice in the demo
-home screen and `useSysNavDivider` is local bool state variable. Together with the option to remove the status bar
-scrim, you can have easy complete control of both the AppBar's status bar, and the system navigation bar look,
-like shown below:
+Above the `systemNavBarStyle`, `useDivider` and `opacity` are tied the theme controller in example 5.
+Together with the option to remove the status bar scrim, you can have easy complete control of both the
+AppBar's status bar, and the system navigation bar look, like shown below:
 
-<img src="https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif?raw=true" alt="AppBar StatusBar" width="250"/>  <img src="https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif?raw=true" alt="SysNavBar Style" width="250"/>
+<table>
+  <tr>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif?raw=true" alt="AppBar StatusBar" width="250"/>](https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif?raw=true" alt="SysNavBar Style" width="250"/>](https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif?raw=true" alt="SysNavBar Style" width="250"/>)</td>
+  </tr>
+  <tr>
+    <td colspan="3">_Changing Android system status bar and navigation bar._</td>
+  </tr>
+</table>
 
 The top status bar scrim toggle, system navigation bar divider and style only have an impact
 on Android builds, they do not have any functionality on the live Web example.
