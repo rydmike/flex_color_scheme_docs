@@ -49,8 +49,8 @@
         ["API",
             [
                 ["Guide", "/api_guide"],
-                ["Core defaults", "/core_defaults"],
-                ["Deep dives", "/deep_dives"]
+                ["Deep dives", "/deep_dives"],
+                ["Core defaults", "/core_defaults"]
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
