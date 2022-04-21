@@ -357,8 +357,9 @@ application.
 ```
 
 Above the `systemNavBarStyle`, `useDivider` and `opacity` are tied the theme controller in example 5.
-Together with the option to remove the status bar scrim, you can have easy complete control of both the
-AppBar's status bar, and the system navigation bar look, like shown below:
+You can find the implementation in the repo [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example5/widgets/pages/home_page.dart#L102).
+Together with the option to remove the status bar scrim, you can have complete control of the look
+of both the AppBar status bar, and the system navigation bar, as shown below:
 
 <table>
   <tr>
@@ -382,9 +383,10 @@ convenience wrapper function or even just a const value for it if you need to us
 
 
 **Known issue:**
-There is a known issue in Flutter [#100027](https://github.com/flutter/flutter/issues/100027)
+
+The Flutter issue [#100027](https://github.com/flutter/flutter/issues/100027)
 "Using systemNavigationBarDividerColor changes statusBarIconBrightness and
-systemNavigationBarIconBrightness on Android 11". It affects the **themedSystemNavigationBar** feature.
+systemNavigationBarIconBrightness on Android 11", affects the **themedSystemNavigationBar** feature.
 Two temporary changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
 * The divider feature is disabled until the issue has been resolved.
 * There is a temporary workaround implemented, it manages to keep system
@@ -408,20 +410,42 @@ SDK >= 29 (Android 10). The support is added via the
 property in `FlexColorScheme.themedSystemNavigationBar`.
 Use and support for the opacity value on the system navigation bar is supported
 starting from Flutter 2.5. This [PR 28616](https://github.com/flutter/engine/pull/28616) amended it a bit
-and limits its functionality to SDK >= 29.
+and limits its functionality to Android SDK >= 29.
 
 Examples 1 to 4 do not use the transparent or themed system navigation bar feature,
-but **example 5**, the **Copy Playground** and the default example
-**Hot Reload Playground** do. If you build them on an Android device you
-can see it working if you use appropriate Android API levels that are supported.
+but example 5, the **Themes Playground**, the **Copy Playground** and the default
+example, the **Hot Reload Playground** apps do. If you build them on an Android device you
+can see it working if you use a device with appropriate Android API level that supports it.
 
-When you build example 5 the **Themes Playground**" on an Android device you can
-try and see the partially and even
-fully transparent Android system navigation bar in action. You can adjust the settings on its
-interactive "Android System Navigation Bar" panel. These settings are not a part of
-theme that can be copied, since the required setup is not in ThemeData.
+If you build example 5, the **Themes Playground** on an Android device, you can
+test it with the playground. With it you can modify the settings interactively,
+just as theme settings in the Playground app. Set it to a themed background color to try it
+with colors from active theme, use partially and even fully transparent Android system
+navigation. You can adjust the settings using the "Android System Navigation Bar"
+panel. These settings are not a part of the theme setup that can be copied, since the
+required setup is not in ThemeData. You will have to add support for this
+manually in your in your app to your widget tree.
 
-The themed and transparent system navigation bar work even if you used the
-older 3 button system navigation, the two button option, or even with the thin
-gestures navigation bar. It is just not as visible or obvious when using the
-thin gestures based one.
+ <table>
+  <tr>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-13.png?raw=true" alt="SysNav-1" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-13.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-15.png?raw=true" alt="SysNav-2" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-15.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-19.png?raw=true" alt="SysNav-3" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-19.png?raw=true)</td>
+    <td>&nbsp;</td>
+    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-23.png?raw=true" alt="SysNav-4" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-23.png?raw=true)</td>
+  </tr>
+  <tr>
+    <td colspan="7">_Android System Navigation Bar: Light theme mode white, primary blended ColoScheme.background themed, partially transparent, and fully transparent_</td>
+  </tr>
+</table>
+
+Above we see the themed and transparent system navigation bar in action, even
+when we use the old 3 button system navigation. It works with the two button
+option as well, and even with the thin gesture navigation bar.
+
+It is just not as visible or obvious when using the thin gestures based navigation
+bar. The example screen shots presenting all the built-in themes in
+[Scheme reference](/scheme_reference) were produced with
+fully transparent system navigation bar, using the gesture mode navigation bar.
