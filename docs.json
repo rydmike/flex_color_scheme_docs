@@ -14,7 +14,8 @@
     "sidebar": [
         ["Welcome",
             [
-                ["Introduction","/"],
+                ["About","/"],
+                ["License","/license"],
                 ["All themes", "/all_themes"],
                 ["What's new?", "/whats_new"],
                 ["Migration guide","/migrating"],
