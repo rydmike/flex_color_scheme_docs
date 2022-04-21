@@ -8,10 +8,6 @@
     "theme": "#0x29B6F6",
     "zoomImages": "false",
     "noindex": "false",
-    "navigation": [
-        ["Pub Package", "https://pub.dev/packages/flex_color_scheme"],
-        ["Themes Playground", "https://rydmike.com/flexcolorscheme/themesplayground-v5"]
-    ],
     "sidebar": [
         ["Welcome",
             [
@@ -56,5 +52,9 @@
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
+    ],
+    "navigation": [
+        ["Package", "https://pub.dev/packages/flex_color_scheme"],
+        ["Playground", "https://rydmike.com/flexcolorscheme/themesplayground-v5"]
     ]
 }
