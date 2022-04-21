@@ -87,8 +87,8 @@ their change from one theme mode to another, will even animate correctly.
 ## More Colors?
 
 With Flutter 2.10.0 and later we have the new Material 3 based `ColorScheme`
-that contains much more theme colors than before. Consider first how you
-can use those colors in your application and design.
+that contains more theme colors than before. Consider first how you
+can use these colors in your application and design.
 Also look into if you can compute some additional color shades from the colors
 in the theme `ColorScheme`, in case none of them are the right shade.
 
@@ -105,7 +105,7 @@ final Color lighterPrimary = Color.alphaBlend(
 // To make a darker shade, do the same but use a black overlay and vary its
 // alpha to produce a darker shade of the source color.
 final Color darkerPrimary = Color.alphaBlend(
-    Colors.dark.withAlpha(0x66), Theme.of(context).colorScheme.primary);
+    Colors.black.withAlpha(0x66), Theme.of(context).colorScheme.primary);
 ```
 
 Sometimes you might indeed need a lot of different colors not found in
@@ -124,7 +124,7 @@ application theming.
 Of course, if you only need few such colors and are not using all
 colors in the `ColorScheme` for your application's design, then nothing really
 prevents you from tucking in 3 to 4 color in the `ColorScheme` for this purpose.
-If you do so you may need to set colors of some component themes to some other
+If you do so, you may need to set colors of some component themes to some other
 `colorScheme` based color values, if they used used those colors. Currently this
 is not big challenge as most components typically only use
 `ColorScheme.primary` or `secondary` color by default.
@@ -132,7 +132,7 @@ is not big challenge as most components typically only use
 You can of course in component themes use defined const color values that are
 not from your `ThemeData.colorScheme` color set. If you change these colors in your
 component theme interactively, their transition will also be nicely animated,
-when you change theme, since they are still themed color values, but not just defined
+when you change theme. They are still themed color values, but not just defined
 via the theme `ColorScheme`.
 The Flutter's Material components are however designed to use a coherent
 shared `ColorScheme` based design, so if you do this you should verify
@@ -140,8 +140,8 @@ that your alternative design looks pleasing too.
 
 **FlexColorScheme** on purpose only allows you to select colors from the
 theme's `ColorScheme` based colors when you customize what colors its opinionated
-component themes should use on the its component. If you make completely
-custom component themes, you of course use whatever colors you prefer in them.
+component themes should use on themed components. If you make completely
+custom component themes, you can of course use whatever colors you prefer in them.
 
 ## Default Scheme Colors?
 
@@ -158,8 +158,8 @@ be able to both see and check in the source what the new defaults really are.
 
 As a future update for this guide, I plan to add a cross reference table
 that lists color defaults for different widgets in Material 2, Material 3,
-FlexColorScheme with no component themes and with them. Hunting for them
-in the Flutter SDK source code is possible, but it is quite tedious.
+FlexColorScheme with no component themes and with them. Hunting for the color
+default in the Flutter SDK source code is possible, but it is a bit tedious.
 
 ## Extended Themes?
 
@@ -169,9 +169,9 @@ version. In later revisions to this guide I might add some examples of these
 possibilities too.
 
 However, if you are interested in it right now, then this
-[article](https://www.didierboelens.com/2020/05/material-textstyle-texttheme/)
-is very good. It is based on older not null safe version of Dart and Flutter,
-but its principles are still the same.
+[article by Didier Boelens](https://www.didierboelens.com/2020/05/material-textstyle-texttheme/)
+is very good and one of my favorite ones on the topic. It is based on older
+not null safe version of Dart and Flutter, but its principles are still the same.
 
 ## Custom TextThemes?
 
@@ -198,14 +198,14 @@ alt="M3 vs M2 text style"/>](https://github.com/rydmike/flex_color_scheme_docs/b
 Defining custom TextThemes for Flutter can be a bit challenging if you do not
 know exactly which component uses what style. The large heading styles are
 generally not used much, they can mostly be quite freely modified without
-impacting component defaults in unforeseen ways. As can be seen above this
+impacting component defaults in unforeseen ways. As can be seen above, this
 is exactly what the Material 3 styles did. This was a good move since pretty much
-all of the M2 heading text styles were too big by default to be very useful.
+all of the M2 heading text styles were too big to be very useful by default.
 
 The smaller TextStyles in the TextTheme are used in the SDK all over the place,
-and it is not well documented anywhere where, other than in the above article.
-If you need to know, you can use it, or do a search of a style in the SDK source
-code to find out where they are used.
+and it is not well documented anywhere where they are used, other than in
+the above article. If you need to know, you can use it, or do a search of a
+style in the SDK source code to find out where they are used.
 
 If you modify the text styles, and don't know exactly how they are used where,
 you may get unforeseen results on some widgets due to the change. Adjusting them
@@ -214,7 +214,7 @@ and its opacity from one TextStyle, it kind of borrows it and applies it to anot
 TextStyle is uses from the TextTheme. This is done to create less impactful default subtitle text
 style for the ListTile, using an opacity value it does not have in M2 on
 the TextStyle it uses for size and letter spacing on its subtitle. If you were to
-change the source TextStyle's color opacity it uses for this, your ListTiles would
+change the source TextStyle's color's opacity it uses for this, your ListTiles would
 no longer look as intended or expected.
 This was just one example, there are many other details like this built into
 default text style behavior for Flutter SDK UI components.
@@ -232,14 +232,14 @@ into the source to see what TextStyle(s) from the global TextTheme it uses by de
 Then modify the TextStyle(s) it uses for your global app TextTheme, to give your AppBar the desired
 themed TextStyle. Don't do this, if you do, multiple other components will be impacted.
 
-The `AppBarTheme` has a `titleTextStyle` and `toolbarTextStyle`, define these `TextStyle`s
+The `AppBarTheme` has a `titleTextStyle` and `toolbarTextStyle`, define these TextStyles
 instead to follow your custom design need for the AppBar component, and repeat with
 other components that requires custom TextStyles in your design. This of course only works if the
 component theme has and uses a component level TextStyles. At least check for this
 before you go berserk on the global TextTheme.
 
 **FlexColorScheme** does not include any component level TextTheme support yet in its opinionated
-component themes. It only includes `textTheme` and `fontFamily` pass-on to `ThemeData` for the
+component themes. It only includes `textTheme` and `fontFamily` as pass-on to `ThemeData` for the
 global app TextThemes. It also has a custom "m3like" TextTheme that it for now uses when you opt-in
 on using M3 text theme. It uses this custom text theme because the real M3 Typography
 (sizes and geometry) have not yet landed in Flutter 2.10. This text theme will be replaced
@@ -261,7 +261,7 @@ applications completely. It is not really that difficult to use, but it has many
 quirks and oddities, especially when it comes to used colors. This is mostly
 due to past legacy and things that were not considered early on. Some parts were
 done differently first, later things changed, but those earlier ways are
-still supported in order not to break past behavior.
+still supported in order to not break past behavior.
 
 With many new ways to define and setup colors added later, it can all become
 a bit confusing. This is further amplified since the official docs and its
