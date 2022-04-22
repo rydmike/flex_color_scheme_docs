@@ -1142,75 +1142,107 @@ The second option is to just use the big `ThemeData` factory. This gives us
 access to all the properties in it, and we can set and define them as we
 please. As long as we are familiar with all its inner workings, this is fine
 and not so difficult. I recommend starting with a setup that replicates what
-the `ThemeData.from` factory does and adjusting it as desired.
+the `ThemeData.from` factory does and adjusting it a bit to improve it by
+defining the `ThemeData` colors it ignores or sets in poor ways.
 
-We can just copy it and make custom modified version of it. Let's take
-a look at doing that.
+We can copy `ThemeData.from`, it is quite small, and make custom modified
+version of it to build our `ThemeData`. Let us make a separate version for
+our light a dark theme mode, again using our already defined `flexSchemeLight`
+and `flexSchemeLight` as input color schemes. By making separate setup for
+light and dark, we keep it simple and we easily define it a bit differently
+for our light and dark theme.
 
 ```dart
-// Assuming we have defined our `colorScheme`, we could do this:
-ThemeData(
-  colorScheme: colorScheme,
-  brightness: colorScheme.brightness,
-  // Prefer this for the `ThemeData.primaryColor`
-  primaryColor: colorScheme.primary,
+title: 'Custom ThemeData',
+theme: ThemeData(
+  colorScheme: flexSchemeLight,
+  brightness: flexSchemeLight.brightness,
+  primaryColor: flexSchemeLight.primary,
   // These we have to compute based based on our colorScheme primary color,
   // if we want to give them color scheme matching values. Here is an example that
   // happens to be what FlexColorScheme does, but feel free to use what you prefer:
-  primaryColorLight: colorScheme.brightness == Brightness.dark
-        ? Color.alphaBlend(Colors.white.withAlpha(0x59), colorScheme.primary)
-        : Color.alphaBlend(Colors.white.withAlpha(0x66), colorScheme.primary),
-  primaryColorDark: colorScheme.brightness == Brightness.dark
-        ? Color.alphaBlend(Colors.black.withAlpha(0x72), colorScheme.primary)
-        : Color.alphaBlend(Colors.black.withAlpha(0x66), colorScheme.primary),
-  secondaryHeaderColor: colorScheme.brightness == Brightness.dark
-        ? Color.alphaBlend(Colors.black.withAlpha(0x99), colorScheme.primary)
-        : Color.alphaBlend(Colors.white.withAlpha(0xCC), colorScheme.primary),
-  // These are deprecated, skip them:
+  primaryColorLight: Color.alphaBlend(
+      Colors.white.withAlpha(0x66), flexSchemeLight.primary),
+  primaryColorDark: Color.alphaBlend(
+      Colors.black.withAlpha(0x66), flexSchemeLight.primary),
+  secondaryHeaderColor: Color.alphaBlend(
+      Colors.white.withAlpha(0xCC), flexSchemeLight.primary),
+  // These are deprecated in Flutter, we can skip defining them:
   //   primaryColorBrightness: ThemeData.estimateBrightnessForColor(colorScheme.primary),
   //   accentColor: colorScheme.secondary,
   //   accentColorBrightness: ThemeData.estimateBrightnessForColor(colorScheme.secondary),
+
   // As long as `toggleableActiveColor` exists in ThemeData, consider adding this one:
-  toggleableActiveColor: colorScheme.secondary,
-  // Important background colors in ThemeData.
-  // We can use other colors too, e.g. if we want some surface branding on
-  // them then the above `alphaBlend` is the way to start adding them, not done
-  // here now.
-  scaffoldBackgroundColor: colorScheme.background,
-  canvasColor: colorScheme.background,
-  backgroundColor: colorScheme.background,
-  cardColor: colorScheme.surface,
-  bottomAppBarColor: colorScheme.surface,
+  toggleableActiveColor: flexSchemeLight.secondary,
+  scaffoldBackgroundColor: flexSchemeLight.background,
+  canvasColor: flexSchemeLight.background,
+  backgroundColor: flexSchemeLight.background,
+  cardColor: flexSchemeLight.surface,
+  bottomAppBarColor: flexSchemeLight.surface,
+
   // For dialog prefer surface if your scheme background color is different from
   // its surface, this ensures elevation color in dark mode on dialogs, when
   // applyElevationOverlayColor is true in dark mode.
-  dialogBackgroundColor: colorScheme.surface,
-  // Since we used Colorscheme.primary for primaryColor, this works, you may
-  // need to adjust TabBar theme though depending on where you will use TabBars
-  indicatorColor: colorScheme.onPrimary,
-  dividerColor: colorScheme.onSurface.withOpacity(0.12),
-  errorColor: colorScheme.error,
-  // Set to true in dark mode
-  applyElevationOverlayColor: colorScheme.brightness == Brightness.dark,
+  dialogBackgroundColor: flexSchemeLight.surface,
+  // In light mode the indicator is assumed to be used in a TabBar used
+  // on an AppBar that is primary colored by default, so onPrimary is right
+  // default. If you adjust your AppBar theme to something needing other
+  // contrast color, or use TabBar on a light surface you need to adjust
+  // this e.g. to onBackground.
+  indicatorColor: flexSchemeLight.onPrimary,
+  dividerColor: flexSchemeLight.onSurface.withOpacity(0.12),
+  errorColor: flexSchemeLight.error,
+  // Keep false in light mode.
+  applyElevationOverlayColor: false,
   // Add your app's text theme here, or skip if default is OK.
   textTheme: myTextTheme,
-  // Add all your custom component themes:
+  // Add all your custom component themes, as many as needed...
   appBarTheme: myAppBarTheme,
   tabBarTheme: myTabBarTheme,
-  // as many as needed...
-);
+),
+// We repeat the above for our dark theme mode with our dark color schemes,
+// with a few modifications mentioned below.
+darkTheme: ThemeData(
+  colorScheme: flexSchemeDark,
+  brightness: flexSchemeDark.brightness,
+  // Prefer primary for the `ThemeData.primaryColor` in dark mode too.
+  primaryColor: flexSchemeDark.primary,
+  // Same computation as above, just tuned a bit differently, adjust as needed.
+  primaryColorLight: Color.alphaBlend(
+      Colors.white.withAlpha(0x59), flexSchemeDark.primary),
+  primaryColorDark: Color.alphaBlend(
+      Colors.black.withAlpha(0x72), flexSchemeDark.primary),
+  secondaryHeaderColor: Color.alphaBlend(
+      Colors.black.withAlpha(0x99), flexSchemeDark.primary),
+  // Don't forget this one in dark mode too.
+  toggleableActiveColor: flexSchemeDark.secondary,
+  scaffoldBackgroundColor: flexSchemeDark.background,
+  canvasColor: flexSchemeDark.background,
+  backgroundColor: flexSchemeDark.background,
+  cardColor: flexSchemeDark.surface,
+  bottomAppBarColor: flexSchemeDark.surface,
+  // Use surface instead of background this ensures elevation color on dialogs,
+  // when applyElevationOverlayColor is true.
+  dialogBackgroundColor: flexSchemeDark.surface,
+  // The AppBar will be dark, almost black, so this is correct for indicator
+  // contrast on it, typically used by a TabBar in the AppBar.
+  indicatorColor: flexSchemeDark.onBackground,
+  dividerColor: flexSchemeDark.onSurface.withOpacity(0.12),
+  errorColor: flexSchemeDark.error,
+  // Set to true in dark mode.
+  applyElevationOverlayColor: true,
+  // Add your app's text theme here, or skip if default is OK.
+  textTheme: myTextTheme,
+  // Add all your custom component themes, as many as needed...
+  appBarTheme: myAppBarTheme,
+  tabBarTheme: myTabBarTheme,
+),
 ```
 
-If we above for `ColorScheme` substitute it with our earlier defined
-`flexSchemeLight` for our light theme, and `flexSchemeDark` for our
-dark theme, and remove the `myTextTheme` and component themes. Then we can
-try this custom `ThemeData` setup in the same demo app we used
-for all the above cases.
-
-Below we compare this to the FlexColorScheme case 10, which it with respect to
-`ColorScheme` and `ThemeData` colors is equal to. Well FlexColorScheme has
-no elevation by default on the AppBar, so it will be darker in dark theme mode
-since it is less elevated, but otherwise the colors are the same.
+Below we compare this custom setup to the FlexColorScheme case 10, which it
+with respect to `ColorScheme` and `ThemeData` colors is equal to. Well
+FlexColorScheme has no elevation by default on the AppBar, so it will be darker
+in dark theme mode since it is less elevated, but otherwise the colors are the same.
 
 <table>
   <tr>
