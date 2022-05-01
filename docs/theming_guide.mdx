@@ -1,41 +1,18 @@
 # Theming Guide
 
-This chapter gives you an introduction to application theming in Flutter.
-It is not so much about using **FlexColorScheme** even if it on occasion
-talks about it too. It contains general guidance on Flutter theming,
-and also explain some choices made in FlexColorScheme.
+This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion talks about it too. It explains some choices made in FlexColorScheme.
 
-This guide does not talk about how to make beautiful designs, its focus is on
-the technicalities of how to actually define your `ThemeData` and make it
-work for you. In the ["Roads to ThemeData"](/theming_roads) chapter we look at
-different options for producing a `ThemeData` object, show and analyze
-what their differences are.
+This guide does not talk about how to make beautiful designs. Its focus is on the technicalities of how to actually define your `ThemeData` and make it work for you. In the ["Roads to ThemeData"](/theming_roads) chapter, we look at different options for producing a `ThemeData` object. We show and analyze what their differences are.
 
-If you are not experienced in theming Flutter applications, then
-**FlexColorScheme** can assist you in many ways and often get you quite
-close to where you want to be. FlexColorScheme does not address or do
-everything that is possible with theming in Flutter, nor will it ever do so.
-Its goal is to make commonly used designs quicker and easier to achieve.
-To give you a starting point, with many easy to configure options, that should
-get you close to where you want to be with your theme, or maybe even fully there.
+If you are not experienced in theming Flutter applications, then **FlexColorScheme** can assist you in many ways. FlexColorScheme does not do everything that is possible with theming in Flutter. Its goal is to make often used designs quicker and easier to achieve. Give you a starting point, with many easy to configure options. This should get you close to where you want to be with your theme design, or even fully there.
 
 ## ColorScheme and ThemeData
 
-The `ThemeData` object is what defines how your application looks and even to a 
-degree how it behaves in Flutter. The topic ["Defining ThemeData"](/theming_guide#defining-themedata) and
-and the entire chapter ["Roads to ThemeData"](/theming_roads) looks at it in 
-even more details.
+The Flutter `ThemeData` object defines the look of your application, and to a degree how it behaves. In section ["Defining ThemeData"](/theming_guide#defining-themedata) and chapter ["Roads to ThemeData"](/theming_roads), we look at this closer.
 
-The `ColorScheme` class is a simple data class that holds 27 `Color` properties
-the define colors values that Flutter uses on built-in components by default 
-in your `ThemeData`. The `ColorScheme` is stored as a property `colorScheme` in
-`ThemeData. The `ColorScheme` used to be a a lot simpler prior to Flutter 2.10. 
-To get an understanding of how the color system that uses the colors in your 
-`ColorScheme` are designed and intended to be used, please refer to the
-[Material 3 guide](https://m3.material.io/styles/color/overview).
+The `ColorScheme` class is a data class that holds 27 `Color` properties. Flutter's built-in components use these colors in predefined ways. The property name for the used `ColorScheme` in `ThemeData` is `colorScheme`. The color scheme used to be a a lot simpler before Flutter 2.10, the introduction of Material 3 makes it more complex. There are new features that can help with the color design. For more information about the color system, see the [Material 3 guide](https://m3.material.io/styles/color/overview).
 
-This Tweet 15 slide series, is also a quick intro to the wondrous world of
-Material 3 ColorScheme.
+This tweet with 15 slides, offers an intro to the wondrous world of Material 3 ColorScheme.
 
 <Tweet id="1518201439780282370" width="550" align="left" cards="show" theme="light"/>
 
