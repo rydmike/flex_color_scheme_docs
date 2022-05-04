@@ -1,6 +1,6 @@
 {
     "name": "FlexColorScheme",
-    "favicon": "https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/favicon.png",
+    "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logoDark": "/images/logo.png",
     "twitter": "rydmike",
@@ -57,9 +57,5 @@
             ]
         ],
         ["Scheme reference", "/scheme_reference"]
-    ],
-    "navigation": [
-        ["Package", "https://pub.dev/packages/flex_color_scheme"],
-        ["Playground", "https://rydmike.com/flexcolorscheme/themesplayground-v5"]
     ]
 }
