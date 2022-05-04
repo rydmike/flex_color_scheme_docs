@@ -1,25 +1,19 @@
 # API Guide
 
-The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html)
-for FlexColorScheme, generated from code document comments is very thorough,
-it should cover most questions you might have.
+The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough, it should cover most questions you might have.
 
-An overview of key APIs is presented below. It may be extended with more
-information and examples in future updates. These
-updates will be influenced by what questions users raise about the API.
+An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
 
-You can create FlexColorScheme based `ThemeData` objects using two
-different APIs:
+You can create FlexColorScheme based `ThemeData` objects using two different APIs:
 
 1. **FlexThemeData** static extension on `ThemeData`.
 2. **FlexColorScheme.toTheme** class and method.
 
-## 1) FlexThemeData
+## FlexThemeData
 
 API reference: [**FlexThemeData**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeData.html)
 
-There are separate APIs for creating the light theme mode and dark theme mode
-`ThemeData`:
+There are separate APIs for creating the light theme mode, and dark theme mode `ThemeData`:
 
 * [**FlexThemeData.light()**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeData/light.html)
 * [**FlexThemeData.dark()**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeData/dark.html)
@@ -27,9 +21,7 @@ There are separate APIs for creating the light theme mode and dark theme mode
 
 **Example: FlexThemeData**
 
-Using this API is very familiar, it looks a lot like `ThemeData.light` and `dark`, but
-with Flex prepended. They of course have a lot of additional properties, but
-the basic usage is simple.
+Using this API is very familiar, it looks a lot like `ThemeData.light` and `dark`, but with Flex prepended. They of course have a lot of additional properties, but the basic usage is simple.
 
 ```dart
   class MyApp extends StatelessWidget {
@@ -44,48 +36,32 @@ the basic usage is simple.
     );
 ```
 
-The `FlexThemeData` is a static extension on `ThemeData` to define a
-`FlexColorScheme` object and return the `ThemeData` object defined by
-its instance, using its `FlexColorScheme.toTheme` method, all done in one
-step with a more compact API.
+The `FlexThemeData` is a static extension on `ThemeData` to define a `FlexColorScheme` object and return the `ThemeData` object defined by its instance, using its `FlexColorScheme.toTheme` method, all done in one step with a more compact API.
 
-Using e.g. `FlexThemeData.light()` is a bit shorter than
-`FlexColorScheme.light().toTheme`, and it may also feel more familiar since
-you get a `ThemeData` object directly, that you can use just like any
-other `ThemeData` object produced by Flutter's different built-in `ThemeData`
-factory constructors.
+Using e.g. `FlexThemeData.light()` is a bit shorter than `FlexColorScheme.light().toTheme`, and it may also feel more familiar since you get a `ThemeData` object directly, that you can use just like any other `ThemeData` object produced by Flutter's different built-in `ThemeData` factory constructors.
 
-## 2) FlexColorScheme
+## FlexColorScheme
 
 API reference: [**FlexColorScheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html)
 
 The original way to create FlexColorScheme based `ThemeData` objects is to use
-the package namesake
-[`FlexColorScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html)
-class and then use its
-[`toTheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/toTheme.html)
+the package namesake [`FlexColorScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html)
+class and then use its [`toTheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/toTheme.html)
 method to make and return the `ThemeData` object specified by your immutable `FlexColorScheme` configuration.
 
-Usually you should **not** use the raw default [`FlexColorScheme()`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.html)
-constructor to create your `FlexColorScheme` object, you should prefer using its two factories:
+Usually you should **not** use the raw default [`FlexColorScheme()`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.html) constructor to create your `FlexColorScheme` object, you should prefer using its two factories:
 
 * [**FlexColorScheme.light()**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.light.html)
 * [**FlexColorScheme.dark()**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.dark.html)
 
-These factories are used to make `FlexColorScheme` based `ThemeData` definitions for
-light and dark theme mode respectively. They offer many
-additional parameters over the raw default constructor that are used to
-create more nuanced and computed `ColorScheme` definitions, that is used in
-the created `ThemeData`.
+These factories are used to make `FlexColorScheme` based `ThemeData` definitions for light and dark theme mode respectively. They offer many additional parameters over the raw default constructor, that are used to create more nuanced and computed `ColorScheme` definitions, that are then used by the created `ThemeData`.
 
 Here is how you would use them to define identical themes as the above ones,
 where we used `FlexThemeData.light` and `.dark`:
 
 **Example: FlexColorScheme**
 
-Making `ThemeData` with FlexColorScheme's name sake class, is a bit more
-verbose, but it does the same thing. Strictly speaking it is `FlexThemeData`
-that does the same thing, since it uses `FlexColorScheme.toTheme` under the hood.
+Making `ThemeData` with FlexColorScheme's name sake class, is a bit more verbose, but it does the same thing. Strictly speaking it is `FlexThemeData` that does the same thing, since it uses `FlexColorScheme.toTheme` under the hood.
 
 ```dart
   class MyApp extends StatelessWidget {
@@ -101,91 +77,39 @@ that does the same thing, since it uses `FlexColorScheme.toTheme` under the hood
 ```
 
 The `FlexColorScheme.light().toTheme` and `FlexThemeData.light()`, and its dark
-counterparts, all have the same properties and are interchangeable.
-The `light` and `dark` parameters differ slightly, due to
-a few different features for light and dark themes.
+counterparts, all have the same properties and are interchangeable. The `light` and `dark` parameters differ slightly, due to a few different features for light and dark themes.
 
 ## Common Properties
 
-Important properties for `FlexColorScheme.light()` and
-`FlexThemeData.light()`, as well as for `FlexColorScheme.dark()` and
-`FlexThemeData.dark()`, are presented below. The examples use `FlexThemeData`,
-but they are identical when using `FlexColorScheme`.
+Important properties for `FlexColorScheme.light()` and `FlexThemeData.light()`, as well as for `FlexColorScheme.dark()` and `FlexThemeData.dark()`, are presented below. The examples use `FlexThemeData`, but they are identical when using `FlexColorScheme`.
 
-The two most commonly used properties to define used colors in the
-produced `ThemeData` are:
+The two most commonly used properties to define used colors in the produced `ThemeData` are:
 
-* **scheme** a [`FlexScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexScheme.html)
-  enum value used to select which predefined color scheme to use for the theme.
-* **colors** a [`FlexSchemeColor`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSchemeColor-class.html)
-  object used to define custom colors to be used when creating the theme.
+* **scheme** a [`FlexScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexScheme.html) enum value used to select which predefined color scheme to use for the theme.
+* **colors** a [`FlexSchemeColor`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSchemeColor-class.html) object used to define custom colors to be used when creating the theme.
 
-If you specify both `scheme` and `colors`, the custom colors in `colors` have
-higher precedence and are used, and the `scheme` property is ignored.
-If you specify neither, then `scheme` defaults to `FlexScheme.material`.
+If you specify both `scheme` and `colors`, the custom colors in `colors`, have higher precedence and are used, and the `scheme` property is ignored. If you specify neither, then `scheme` defaults to `FlexScheme.material`.
 
-You can also create a custom `FlexColorScheme` based theme from a Flutter
-standard `ColorScheme` object, by providing it a `colorScheme`.
+You can also create a custom `FlexColorScheme` based theme from a Flutter standard `ColorScheme` object, by providing it a `colorScheme`.
 
-* **colorScheme** a
-  [`ColorScheme`](https://api.flutter.dev/flutter/material/ColorScheme-class.html)
-  object used to create a custom `FlexColorScheme` based theme, from color
-  definitions you already have in a standard `ColorScheme`.
-  This property also exist in the default constructor. If you use `colorScheme`
-  the colors in the provided `colorScheme` will override any values you have
-  given in the `scheme` or `colors` properties.
+* **colorScheme** a [`ColorScheme`](https://api.flutter.dev/flutter/material/ColorScheme-class.html) object used to create a custom `FlexColorScheme` based theme, from color definitions you already have in a standard `ColorScheme`. This property also exist in the default constructor. If you use `colorScheme` the colors in the provided `colorScheme` will override any values you have given in the `scheme` or `colors` properties.
 
-* The direct color properties available in the constructors, e.g. `primary`,
-  `primaryContainer`, etc., that are all named like the same color properties
-  in `ColorScheme` or e.g. `scaffoldBackground` in `ThemeData`, will override
-  any corresponding color values that would be set via other color affecting
-  properties provided via `scheme`, `colors` and also the ones in a
-  `colorScheme`. The direct color properties provide an
-  alternative way to override individual colors values in built-in `scheme`,
-  `colors` or provided `colorScheme`. Not all color properties in a `ColorScheme`
-  are available as direct color property values, but commonly used ones are.
+* The direct color properties available in the constructors, e.g. `primary`,  `primaryContainer`, etc., that are all named like the same color properties in `ColorScheme` or e.g. `scaffoldBackground` in `ThemeData`, will override any corresponding color values that would be set via other color affecting properties provided via `scheme`, `colors` and also the ones in a   `colorScheme`. The direct color properties provide an alternative way to override individual colors values in built-in `scheme`, `colors` or provided `colorScheme`. Not all color properties in a `ColorScheme` are available as direct color property values, but commonly used ones are.
 
-FlexColorScheme has shortcut enum properties that you can use to quickly adjust
-the theme design for your **AppBar** and **TabBar**.
+FlexColorScheme has shortcut enum properties that you can use to quickly adjust the theme design for your **AppBar** and **TabBar**.
 
-* **appBarStyle**
-  a [`FlexAppBarStyle`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexAppBarStyle.html)
-  enum value used to define the themed color of the **AppBar** background color.
-* [**tabBarStyle**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/tabBarStyle.html)
-  a [`FlexTabBarStyle`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTabBarStyle.html)
-  enum value used to select preferred style for used **TabBarTheme** theme.
-* **appBarOpacity** a double value, can also be used to define the opacity of
-  of the AppBar background.
+* **appBarStyle** a [`FlexAppBarStyle`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexAppBarStyle.html) enum value used to define the themed color of the **AppBar** background color.
+* [**tabBarStyle**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/tabBarStyle.html) a [`FlexTabBarStyle`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTabBarStyle.html) enum value used to select preferred style for used **TabBarTheme** theme. 
+* **appBarOpacity** a double value, can also be used to define the opacity of the AppBar background.
 
-An interesting and unique feature of FlexColorScheme is its capability to
-automatically create color schemes and resulting themes, that blend in the primary
-color into different surfaces. You can vary this blending depending
-on surface type and use different blend strengths. This feature is only available
-via the factory constructors and their `ThemeData` extensions, not via the
-default raw `FlexColorscheme()` constructor. To use the surface blending features
-use the properties **surfaceMode** and **blendLevel**.
+An interesting and unique feature of FlexColorScheme is its capability to automatically create color schemes and resulting themes, that blend in the primary color into different surfaces. You can vary this blending depending on surface type and use different blend strengths. This feature is only available via the factory constructors and their `ThemeData` extensions, not via the default raw `FlexColorscheme()` constructor. To use the surface blending features use the properties **surfaceMode** and **blendLevel**.
 
-* **surfaceMode** a [`FlexSurfaceMode`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSurfaceMode.html)
-  enum value used to select the mode for blending in primary color into
-  surface, background, scaffoldBackground and dialogBackground colors.
-* **blendLevel**, integer value, sets the blend level strength
-   used by the used `surfaceMode`.
-   The blend level is the integer decimal value of the alpha value
-   used in the alpha blend function. It mixes one color with another,
-   by using alpha opacity value in the color of a surface put on top of
-   another surface with opaque color, and returns the result as one opaque
-   color.
+* **surfaceMode** a [`FlexSurfaceMode`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSurfaceMode.html) enum value used to select the mode for blending in primary color into surface, background, scaffoldBackground and dialogBackground colors.
+* **blendLevel**, integer value, sets the blend level strength used by the used `surfaceMode`. The blend level is the integer decimal value of the alpha value used in the alpha blend function. It mixes one color with another, by using alpha opacity value in the color of a surface put on top of another surface with opaque color, and returns the result as one opaque color.
 
-You can also use properties like **inputColors**, **swapColors** and e.g.
-**useMaterial3ErrorColors** to modify the main input colors, before they
-are used to create the effective `ColorScheme` used in produced `ThemeData`.
+You can also use properties like **inputColors**, **swapColors** and e.g. **useMaterial3ErrorColors** to modify the main input colors, before they are used to create the effective `ColorScheme` used in produced `ThemeData`.
 
-* **inputColors** integer value that defines the number of the six main
-  scheme colors to be used when creating effective `ColorScheme`.
-  A convenience property that allows you to vary which colors to
-  use of input primary, secondary and tertiary colors and their container
-  colors, when FlexSchemeColor creates its effective `ColorScheme` from
-  the input colors. The integer number corresponds to using:
+* **inputColors** integer value that defines the number of the six main   scheme colors to be used when creating effective `ColorScheme`. A convenience property that allows you to vary which colors to use of input primary, secondary and tertiary colors and their container colors, when FlexSchemeColor creates its effective `ColorScheme` from the input colors. The integer number corresponds to using:
     1. Only the primary color
     2. Primary & Secondary colors
     3. Primary + container & Secondary colors
@@ -193,45 +117,17 @@ are used to create the effective `ColorScheme` used in produced `ThemeData`.
     5. Primary + container & Secondary + container & tertiary colors
     6. Primary + container & Secondary + container & tertiary + container
 
-  Computed color values are used for the ones being left out, the computed colors
-  are derived from included ones. You can create a theme that uses only different
-  shades and tones derived from the input `primary` color, by
-  setting `inputColors` to 1.
-  **Defaults to 6**, always using all 6 main input colors if they are defined.
+  Computed color values are used for the ones being left out, the computed colors are derived from included ones. You can create a theme that uses only different shades and tones derived from the input `primary` color, by setting `inputColors` to 1. **Defaults to 6**, always using all 6 main input colors if they are defined.
 
-* **swapColors** boolean value. When true, the primary and primaryContainer
-  colors will be swapped with their secondary counterparts.
-  Set this flag to true if you want to make a theme where
-  your primary and secondary colors are swapped compared to how they
-  are defined in the passed in color properties or used pre-defined
-  color scheme.
+* **swapColors** boolean value. When true, the primary and primaryContainer colors will be swapped with their secondary counterparts. Set this flag to true if you want to make a theme where your primary and secondary colors are swapped compared to how they are defined in the passed in color properties or used pre-defined color scheme.
 
-  This is useful if you want to do this with the pre-defined
-  schemes for more theme options. If you are explicitly defining all
-  your theme colors you can of course define them in any desired order.
-  Even if you do that, this feature will still swap whatever colors you defined
-  for primary and secondary, when used. You can also offer this feature as an easy end
-  user modifiable theme option if you like. Another usage possibility is to
-  set `swapColors` to true only for the dark mode and use your color
-  scheme primary and secondary the other way around there, but only in dark mode.
+  This is useful if you want to do this with the pre-defined schemes for more theme options. If you are explicitly defining all your theme colors you can of course define them in any desired order. Even if you do that, this feature will still swap whatever colors you defined for primary and secondary, when used. You can also offer this feature as an easy end user modifiable theme option if you like. Another usage possibility is to set `swapColors` to true only for the dark mode and use your color scheme primary and secondary the other way around there, but only in dark mode.
 
-* **useMaterial3ErrorColors** boolean value. Set it to true to use the
-   new Material 3 error colors.
-   If `useMaterial3ErrorColors` is false, the resulting `ColorScheme`
-   and `ThemeData` will use Material 2 default error colors or
-   error colors as defined by the built in color schemes. Thus using same
-   error colors as in FlexColorScheme versions before version 5.
+* **useMaterial3ErrorColors** boolean value. Set it to true to use the new Material 3 error colors. If `useMaterial3ErrorColors` is false, the resulting `ColorScheme` and `ThemeData` will use Material 2 default error colors or    error colors as defined by the built in color schemes. Thus using same error colors as in FlexColorScheme versions before version 5.
 
-   If `useMaterial3ErrorColors` is true, the resulting `ColorScheme`
-   and `ThemeData` will use the Material 3 design guide error colors.
-   Key color seed generated ColorSchemes always use the Material 3
-   design guide error colors, or error colors from its customized
-   `TonalPalette` generation setup. **Defaults to false**.
+   If `useMaterial3ErrorColors` is true, the resulting `ColorScheme` and `ThemeData` will use the Material 3 design guide error colors. Key color seed generated ColorSchemes always use the Material 3 design guide error colors, or error colors from its customized `TonalPalette` generation setup. **Defaults to false**.
 
-   The new M3 error colors are generally nicer looking. If your
-   theme is using red colors shades, you can try both options to see which option
-   works better with your theme's red colors, in the sense that
-   they are more clearly distinguishable from your main theme colors.
+   The new M3 error colors are generally nicer looking. If your theme is using red colors shades, you can try both options to see which option works better with your theme's red colors, in the sense that they are more clearly distinguishable from your main theme colors.
 
 
 **Example: Demo of Common Properties**
@@ -262,8 +158,7 @@ darkTheme: FlexThemeData.dark(
 ),
 ```
 
-This produces an app with a theme looking like this,
-when we try it in the [**Copy Playground**](/copy_playground) app:
+This produces an app with a theme looking like this, when we try it in the [**Copy Playground**](/copy_playground) app:
 
 <table>
   <tr>
@@ -282,24 +177,15 @@ when we try it in the [**Copy Playground**](/copy_playground) app:
 
 ## Use FlexColorScheme or FlexThemeData?
 
-When should you use `FlexColorScheme.light().toTheme` instead of
-`FlexThemeData.light()`?
+When should you use `FlexColorScheme.light().toTheme` instead of `FlexThemeData.light()`?
 
-If all you need is the `ThemeData` object, then
-you may prefer using `FlexThemeData.light()` due to its shorter and more
-familiar syntax.
+If all you need is the `ThemeData` object, then you may prefer using `FlexThemeData.light()` due to its shorter and more familiar syntax.
 
-However, if you need access to the `ColorScheme` that
-will be made by `toTheme` when it creates `ThemeData`, you may prefer
-first defining a `FlexColorScheme` object. You can then use the
-`FlexColorScheme.toScheme` method to get the `ColorScheme` it will use in its
-created `ThemeData`. You can use this `ColorScheme` the get access to the
-identical `ColorScheme`, regardless of what properties you used to define and
-generate it with in your `FlexColorScheme` configuration.
+However, if you need access to the `ColorScheme` that will be made by `toTheme` when it creates `ThemeData`, you may prefer first defining a `FlexColorScheme` object. You can then use the `FlexColorScheme.toScheme` method to get the `ColorScheme` it will use in its created `ThemeData`. You can use this `ColorScheme` the get access to the identical `ColorScheme`, regardless of what properties you used to define and generate it with in your `FlexColorScheme` configuration.
 
 **Example: Using ColorScheme from FlexColorScheme.toScheme**
-You often need access to FlexColorScheme's `ColorScheme` if you make
-custom component themes in order to use theme matching colors in them.
+
+You often need access to FlexColorScheme's `ColorScheme` if you make custom component themes in order to use theme matching colors in them.
 
 ```dart
 // A function to make custom ThemeData using FlexColorScheme
@@ -344,57 +230,25 @@ ToggleButtonsThemeData toggleButtonsTheme(ColorScheme colorScheme) =>
     );
 ```
 
-Above you could also create the entire `ThemeData` from the
-`FlexColorScheme` instance `flexScheme` above. Extract its `ColorScheme`
-and use it to make the component theme `toggleButtonsTheme`, and then
-use `copyWith` on the already created `ThemeData` that you return as
-`ThemeData`. Both work, the above should in theory be marginally more
-resource efficient, but it probably does not matter in practice.
-
+Above you could also create the entire `ThemeData` from the `FlexColorScheme` instance `flexScheme` above. Extract its `ColorScheme` and use it to make the component theme `toggleButtonsTheme`, and then use `copyWith` on the already created `ThemeData` that you return as `ThemeData`. Both work, the above should in theory be marginally more resource efficient, but it probably does not matter in practice.
 
 ## Generated ColorScheme
 
-Flutter has `ColorScheme.fromSeed` to make delightful Material 3 specification
-based **computational** ColorSchemes. With **FlexColorScheme** you can use the
-identical algorithm that is used by `ColorScheme.fromSeed`. You can also
-completely customize it, while still be producing a `ColorScheme` that adheres
-to the Material 3 Color System, but primes the color generation engine
-a bit differently.
+Flutter has `ColorScheme.fromSeed` to make delightful Material 3 specification based **computational** ColorSchemes. With **FlexColorScheme** you can use the identical algorithm that is used by `ColorScheme.fromSeed`. You can also completely customize it, while still be producing a `ColorScheme` that adheres to the Material 3 Color System, but primes the color generation engine a bit differently.
 
-Since `ColorScheme.fromSeed` only uses one single color as seed color, and always
-the same `ColorScheme` generation parameters, the amount of variation it provides
-is a bit limited, and the results also tend to be bit soft pastel color oriented.
-As we get used to them, they will all start looking quite similar.
+Since `ColorScheme.fromSeed` only uses one single color as seed color, and always the same `ColorScheme` generation parameters, the amount of variation it provides is a bit limited, and the results also tend to be bit soft pastel color oriented. As we get used to them, they will all start looking quite similar.
 
-By priming the `FlexColorScheme` customizable `ColorScheme` generation differently,
-you can create more varied results that are not so repetitive of what has already been
-seen before, even if it still uses the same M3 color system
-design principle, based on tonal palettes. You can read and see a brief explanation
-in the Themes Playground guide about what the
-[**tonal palettes**](/playground#tonal-palettes) are.
+By priming the `FlexColorScheme` customizable `ColorScheme` generation differently, you can create more varied results that are not so repetitive of what has already been seen before, even if it still uses the same M3 color system design principle, based on tonal palettes. You can read and see a brief explanation in the Themes Playground guide about what the [**tonal palettes**](/playground#tonal-palettes) are.
 
-To make a key color seed generated `ColorScheme` with FlexColorscheme, using its
-effective input `primary` color as seed key, pass in a default
-`FlexKeyColors()` to the `keyColors` property.
+To make a key color seed generated `ColorScheme` with FlexColorscheme, using its effective input `primary` color as seed key, pass in a default `FlexKeyColors()` to the `keyColors` property.
 
-With this default you get a computed `ColorScheme` that is identical to the
-one you would have gotten if you used ``ColorScheme.fromSeed` with the
-effective input `primary` color from your `FlexColorScheme`.
+With this default you get a computed `ColorScheme` that is identical to the one you would have gotten if you used ``ColorScheme.fromSeed` with the effective input `primary` color from your `FlexColorScheme`.
 
-With `FlexKeyColors` you can also use the `secondary` and `tertiary` input
-colors in your `FlexColorScheme` as color keys, that are then used when generating
-the secondary and tertiary tonal palettes respectively. Please see
-the API documentation for more information about additional parameters in
-`FlexKeyColors`.
+With `FlexKeyColors` you can also use the `secondary` and `tertiary` input colors in your `FlexColorScheme` as color keys, that are then used when generating the secondary and tertiary tonal palettes respectively. Please see the API documentation for more information about additional parameters in `FlexKeyColors`.
 
 API reference: [**FlexKeyColors**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexKeyColors-class.html)
 
-By specifying a `FlexTones()` configuration for `tones` in `FlexColorScheme`
-you can further adjust how the `ColorScheme` generation algorithm computes
-the primary, secondary and tertiary tonal palettes. The properties `Chroma` and
-`MinChroma`, prepended with, `primary`, `secondary` and `tertiary` for each
-tonal palette from corresponding key color, adjust how the algorithm uses
-the input colors when it generates the tonal palettes from the key colors.
+By specifying a `FlexTones()` configuration for `tones` in `FlexColorScheme` you can further adjust how the `ColorScheme` generation algorithm computes the primary, secondary and tertiary tonal palettes. The properties `Chroma` and `MinChroma`, prepended with, `primary`, `secondary` and `tertiary` for each tonal palette from corresponding key color, adjust how the algorithm uses the input colors when it generates the tonal palettes from the key colors.
 
 See API reference for details:
 * [**primaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/primaryChroma.html)
@@ -404,26 +258,15 @@ See API reference for details:
 * [**tertiaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryChroma.html)
 * [**tertiaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryMinChroma.html)
 
-You can also modify which
-tone in the generated tonal palettes is mapped to what `ColorScheme`
-color, within the limits that it only allows mapping tones from
-each tonal palette to the colors in the ColorScheme that in M# color system design
-use the tonal palette in question, but you can change used tone to be different
-from the Material 3 guide specification and values used in Flutter SDK.
+You can also modify which tone in the generated tonal palettes is mapped to what `ColorScheme` color, within the limits that it only allows mapping tones from each tonal palette to the colors in the ColorScheme that in M# color system design use the tonal palette in question, but you can change used tone to be different from the Material 3 guide specification and values used in Flutter SDK.
 
-To make custom `FlexTones()` it is recommend to use the theme mode appropriate
-constructor `FlexTones.light()` or `FlexTones.dark()` that have defaults
-that create the setup for the Material 3 spec used in Flutter `ColorScheme.fromSeed`,
-but where each property can be changed from the default as preferred.
+To make custom `FlexTones()` it is recommend to use the theme mode appropriate constructor `FlexTones.light()` or `FlexTones.dark()` that have defaults that create the setup for the Material 3 spec used in Flutter `ColorScheme.fromSeed`, but where each property can be changed from the default as preferred.
 
-There also predefined `FlexTones` configurations in addition to the default
-M3 guide spec matching one, you can use them as they are, or use them as examples
-of how to create your own custom `tones` configurations. Made a great one?
-Please share it in the FlexColorScheme GitHub repository's show and tell
-[discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell)
-forum. Maybe we can add it as another predefined option.
+There also predefined `FlexTones` configurations in addition to the default M3 guide spec matching one, you can use them as they are, or use them as examples of how to create your own custom `tones` configurations. Made a great one? Please share it in the FlexColorScheme GitHub repository's show and tell
+[discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) forum. Maybe we can add it as another predefined option.
 
 See API reference for more details on **FlexTones**:
+
 * Class [**FlexTones**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones-class.html)
 * Light mode default value factory [**FlexTones.light**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/FlexTones.light.html)
 * Dark mode default value factory [**FlexTones.dark**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/FlexTones.dark.html)
@@ -434,8 +277,8 @@ See API reference for more details on **FlexTones**:
 * High contrast tones constructor [**FlexTones.highContrast**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/highContrast.html)
 
 **Example: FlexColorScheme with keyColors and Tones**
-Here we use a key color generated ColorScheme, while using otherwise same
-property values as in the previous example.
+
+Here we use a key color generated ColorScheme, while using otherwise same property values as in the previous example.
 
 ```dart
 theme: FlexThemeData.light(
@@ -469,8 +312,7 @@ darkTheme: FlexThemeData.dark(
 ),
 ```
 
-Above we used one of the predefined custom tone setups called `FlexTones.vivid`.
-Making custom tones is simple, the code for this predefined example is:
+Above we used one of the predefined custom tone setups called `FlexTones.vivid`. Making custom tones is simple, the code for this predefined example is:
 
 ```dart
 static FlexTones vivid(Brightness brightness) =>
@@ -493,9 +335,7 @@ static FlexTones vivid(Brightness brightness) =>
           );
 ```
 
-When we try the above `FlexThemeData` config, again in the
-[**Copy Playground**](/copy_playground) app, we get an application
-with this theme:
+When we try the above `FlexThemeData` config, again in the [**Copy Playground**](/copy_playground) app, we get an application with this theme:
 
 <table>
   <tr>
@@ -515,40 +355,33 @@ with this theme:
 
 ## Component Themes
 
-A more opinionated theme and style can be created by passing in a default
-`FlexSubThemesData()` constructor to the `FlexColorScheme` or `FlexThemeData`,
-property `subThemesData`.
+A more opinionated theme and style can be created by passing in a default `FlexSubThemesData()` constructor to the `FlexColorScheme` or `FlexThemeData`, property `subThemesData`.
 
-By default the component themes take inspiration from the Material 3 design
-guide [specification](https://m3.material.io) and uses its values as
-defaults when it is possible to do so in Flutter
-SDK theming, still having its Material 2 design theming limitations.
+By default the component themes take inspiration from the Material 3 design guide [specification](https://m3.material.io) and uses its values as defaults when it is possible to do so in Flutter SDK theming, still having its Material 2 design theming limitations.
 
-The component themes can be configured further by configuring a large
-number of properties in `FlexSubThemesData`, that is passed into
-`subThemesData`. A commonly used feature is to adjust the default corner
-border radius on all sub-themes for widgets that supports it.
+The component themes can be configured further by configuring a large number of properties in `FlexSubThemesData`, that is passed into `subThemesData`. A commonly used feature is to adjust the default corner border radius on all sub-themes for widgets that supports it.
 
-Other opinionated changes includes a more flat design, and features like
-primary tinted hover, focus, highlight and splash colors, among other things.
+Other opinionated changes includes a more flat design, and features like primary tinted hover, focus, highlight and splash colors, among other things.
 
-For full list of component theme configuration options and some other related
-theme modifying properties, please see the API docs for `FlexSubThemesData`.
+For full list of component theme configuration options and some other related theme modifying properties, please see the API docs for `FlexSubThemesData`.
 
 API reference: [**FlexSubThemesData**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData-class.html).
 
-A common use case for `FlexSubThemes` is easy to
-use customization of default border radius on **all** Flutter UI components
-and elements that supports border radius either via [ShapeBorder]
-or [BorderRadiusGeometry]. This is be done with a single property, the
-[`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).
 
+### FlexSubThemesData
 
+In addition to the actual theme configuration parameters the `FlexSubThemesData` configuration has a few extra settings that are used to control the behavior of the component themes.
+
+* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (**true**/false). When opting in on using the component sub-themes, this flag controls if the text theme that uses Material 3 font sizes and letter spacing, is also used. For the time being, until the [Typography for Material 3 lands in Flutter stable](https://github.com/flutter/flutter/pull/97829), a custom [**m3extTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/m3TextTheme-constant.html) "internal" replica with its geometry is used when this is enabled, which it is by default. **IMPORTANT** this temporary M3 TextTheme only supports "English like" text geometry, or Typography. If you are using a locale that does not use "English like" character types, then you may have to set this flag to **false** to opt-out of using this text theme and geometry for now, in order for letter spacing to work as intended. This issue will be resolved when M3 Typography lands in Flutter stable channel, and FlexColorScheme can be changed to use it, instead of the custom temporary version it now uses as M3 TextTheme and geometry.
+* [blendTextTheme](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendTextTheme.html): (**true**/false). Used blend primary color into text themes for both `ThemeData.textTheme` and `ThemeData.primaryTextTheme`. The strength of the blend is affected by the general `blendLevel` of used FlexColorScheme. This feature does not look so good if you need to put text on a completely different colored container than the background color. Which is why this feature can also be opted out of.
+* [blendOnLevel](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendOnLevel.html): (int: **0**). Sets the blend level strength of container color used on its onColor. Use `blendOnLevel` value to in FlexColorScheme themes to also blend in each corresponding `ColorScheme` color property's color into its onColors. If `blendOnColors` is false, the `blendOnLevel` setting only affects `onSurface`, `onBackGround`, `onPrimaryContainer`, `onSecondaryContainer` `onTertiaryContainer` and `onErrorContainer`. If `blendOnColors` is true, it also impacts `onPrimary`, `onSecondary`, `onTertiary` and `onError`.
+* [blendOnColors](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendOnColors.html): (**true**/false). Set to true to enable `blendOnLevel` based onColor blending also on `onPrimary`, `onSecondary` and `onTertiary` colors. Use `blendOnLevel` value to in FlexColorScheme themes to also blend in each corresponding `ColorScheme` color property's color into its onColors. If `blendOnColors` is false, the `blendOnLevel` setting only affects `onSurface`, `onBackGround`, `onPrimaryContainer`, `onSecondaryContainer` `onTertiaryContainer` and `onErrorContainer`. If `blendOnColors` is true, it also impacts `onPrimary`, `onSecondary`, `onTertiary` and `onError`.
+ 
 **Example: FlexColorScheme with SubThemes**
-Here we enable the opinionated component themes, and decided we want all
-our components that have an adjustable border radius to use 12 dp
-as border radius. Otherwise we use same the
-property values as in the previous example.
+
+A common use case for `FlexSubThemes` is easy to use customization of default border radius on **all** Flutter UI components and elements that supports border radius either via [ShapeBorder] or [BorderRadiusGeometry]. This is be done with a single property, the [`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).
+
+Here we enable the opinionated component themes, and decided we want all our components that have an adjustable border radius, to use 12dp as their border radius. We also turned off the M3 text theme, and want onColors in light mode to use blend level 20, and no blends on `onPrimary`, `onSecondary`, `onTertiary` and `onError`. In dark mode we wanted a stronger blend on the onColors and we wanted in on all onColors and left `blendOnColors` to its default `true`value. Otherwise we use same the property values as in the previous example. 
 
 ```dart
 theme: FlexThemeData.light(
@@ -561,6 +394,9 @@ theme: FlexThemeData.light(
   tabBarStyle: FlexTabBarStyle.forBackground,
   swapColors: true,
   subThemesData: const FlexSubThemesData(
+    blendOnLevel: 20,
+    blendOnColors: false,
+    useTextTheme: false,
     defaultRadius: 12.0,
   ),
   keyColors: const FlexKeyColors(
@@ -578,6 +414,8 @@ darkTheme: FlexThemeData.dark(
   appBarOpacity: 0.90,
   tabBarStyle: FlexTabBarStyle.forBackground,
   subThemesData: const FlexSubThemesData(
+    blendOnLevel: 30,
+    useTextTheme: false,
     defaultRadius: 12.0,
   ),
   keyColors: const FlexKeyColors(
@@ -608,26 +446,17 @@ with this themed design:
  </table>
 
 
-### FlexSubThemes
+## FlexSubThemes
 
-When you opt-in on using the component themes, the `FlexColorScheme.toTheme`
-method uses the passed in `FlexSubThemesData` configuration data object, that is
-passed in via `FlexColorScheme.subThemesData`, to create the component themes using
-the properties provided.
+When you opt-in on using the component themes, the `FlexColorScheme.toTheme` method uses the passed in `FlexSubThemesData` configuration data object, that is passed in via `FlexColorScheme.subThemesData`, to create the component themes using the properties provided.
 
-In some cases, typically for older core related "legacy" component theme cases,
-the component themes are created directly in the `toTheme` method.
-However, in most cases separate static sub-theme helper functions
-from the `FlexSubThemes` class are used. Component themes that are currently
-only defined directly in the `toTheme` method, will be moved into the
-`FlexSubThemes` class as well in a future update.
+In some cases, typically for older core related "legacy" component theme cases, the component themes are created directly in the `toTheme` method. However, in most cases separate static sub-theme helper functions from the `FlexSubThemes` class are used. Component themes that are currently only defined directly in the `toTheme` method, will be moved into the `FlexSubThemes` class as well in a future update.
 
-These `FlexSubThemes` component themes are currently available and used via
-their static helper functions, when `toTheme` creates `ThemeData`:
+These `FlexSubThemes` component themes are currently available and used via their static helper functions, when `toTheme` creates `ThemeData`:
 
 API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
-* [**buttonTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/buttonTheme.html)
-* [**bottomNavigationBar**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/bottomNavigationBar.html)
+* [**buttonTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/buttonTheme.html). This theme controls the old deprecated Material buttons theme. The buttons are already deprecated and will be removed in next version of Flutter SDK. This theme is also going away in Flutter and will be deprecated in next version of FlexColorScheme too. 
+* [**bottomNavigationBar**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/bottomNavigationBar.html) used to create the component theme for the [BottomNavigationBarWidget](https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html).
 * [**bottomSheetTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/bottomSheetTheme.html)
 * [**cardTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/cardTheme.html)
 * [**checkboxTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/checkboxTheme.html)
@@ -647,9 +476,4 @@ API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/l
 * [**timePickerTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/timePickerTheme.html)
 * [**toggleButtonsTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/toggleButtonsTheme.html)
 
-You can also use these static component theme helpers without using
-FlexColorScheme to define custom components themes, or even without using
-FlexColorScheme at all. You can further modify the component theme helpers'
-produced results by using their `copyWith` method. The helpers may be simpler to
-use than the raw component theme constructors, or your can just study them to
-see how some component theme that interests you, is defined.
+You can also use these static component theme helpers without using FlexColorScheme to define custom components themes, or even without using FlexColorScheme at all. You can further modify the component theme helpers' produced results by using their `copyWith` method. The helpers may be simpler to use than the raw component theme constructors, or your can just study them to see how some component theme that interests you, is defined.
