@@ -370,7 +370,7 @@ API reference: [**FlexSubThemesData**](https://pub.dev/documentation/flex_color_
 
 ### FlexSubThemesData
 
-In addition to the actual theme configuration parameters the `FlexSubThemesData` configuration has a few extra settings that are used to control the behavior of the component themes.
+In addition to all the actual component theme configuration parameters, the `FlexSubThemesData` configuration has a few extra settings that are also used to control the behavior of the opinionated overall theme.
 
 * [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (**true**/false). When opting in on using the component sub-themes, this flag controls if the text theme that uses Material 3 font sizes and letter spacing, is also used. For the time being, until the [Typography for Material 3 lands in Flutter stable](https://github.com/flutter/flutter/pull/97829), a custom [**m3TextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/m3TextTheme-constant.html) "internal" replica with its geometry is used when this is enabled, which it is by default. 
 **IMPORTANT:** This temporary Material 3 TextTheme only supports "English like" text geometry, or Typography. If you are using a locale that does not use "English like" character types, then you may have to set this flag to **false** to opt-out of using this text theme and geometry for now, in case letter spacing does not work satisfactory. This issue will be resolved when above mentioned M3 Typography lands in Flutter stable channel. FlexColorScheme can then be changed to use it, instead of the custom temporary version it now uses as M3 TextTheme and geometry.
@@ -380,6 +380,8 @@ In addition to the actual theme configuration parameters the `FlexSubThemesData`
 * [**blendOnLevel**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendOnLevel.html): (int: **0**). Sets the blend level strength of container color used on its onColor. Use `blendOnLevel` value to in FlexColorScheme themes to also blend in each corresponding `ColorScheme` color property's color into its onColors. If `blendOnColors` is false, the `blendOnLevel` setting only affects `onSurface`, `onBackGround`, `onPrimaryContainer`, `onSecondaryContainer` `onTertiaryContainer` and `onErrorContainer`. If `blendOnColors` is true, it also impacts `onPrimary`, `onSecondary`, `onTertiary` and `onError`.
 
 * [**blendOnColors**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendOnColors.html): (**true**/false). Set to true to enable `blendOnLevel` based onColor blending also on `onPrimary`, `onSecondary` and `onTertiary` colors. Use `blendOnLevel` value to in FlexColorScheme themes to also blend in each corresponding `ColorScheme` color property's color into its onColors. If `blendOnColors` is false, the `blendOnLevel` setting only affects `onSurface`, `onBackGround`, `onPrimaryContainer`, `onSecondaryContainer` `onTertiaryContainer` and `onErrorContainer`. If `blendOnColors` is true, it also impacts `onPrimary`, `onSecondary`, `onTertiary` and `onError`.
+
+* [**interactionEffects**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/interactionEffects.html): (**true**/false). Opt-in on using color branded hover, focus, highlight and splash interaction state effects. The standard colors on hover, focus, highlight and splash effects use greys, i.e. white or black with different opacity levels. To get a color themed effect, set interactionEffects to true, and to false for the Flutter SDK Material 2 default ThemeData values. These effects apply to all Widgets that get them from ThemeData.
  
 **Example: FlexColorScheme with SubThemes**
 
@@ -450,7 +452,7 @@ with this themed design:
  </table>
 
 
-## FlexSubThemes
+### FlexSubThemes
 
 When you opt-in on using the component themes, the `FlexColorScheme.toTheme` method uses the passed in `FlexSubThemesData` configuration data object, that is passed in via `FlexColorScheme.subThemesData`, to create the component themes using the properties provided.
 
