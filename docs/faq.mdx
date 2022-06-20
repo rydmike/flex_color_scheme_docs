@@ -37,23 +37,44 @@ Yes of course, see previous answer.
 
 Often when you add component themes they need to share `ColorScheme` color values with the rest of the `ThemeData` configuration to follow the same style. You may also want to keep some properties FlexColorScheme already defined for you on the component themes it created. Below answer to these questions as well.
 
-### ColorScheme in Components
+## Can I use the ColorScheme FlexColorScheme creates in custom component themes?
 
-If you need color values that `FlexColorScheme` has created, maybe some auto calculated colors, typically the blended surface and onColors for your sub-themes, you can get them too.
+If you need color values that `FlexColorScheme` has created, maybe some auto calculated colors, typically the blended surface and onColors for your sub-themes, or a computed Material 3 Colorscheme, you can get them from FlexColorScheme.
 
-For this advanced use case, it is recommended to use FlexColorScheme with the factory constructor `FlexColorScheme.light` and `FlexColorScheme.dark`, to first create the light and dark `FlexColorScheme` objects. Then get the `ColorScheme` they define with its `toScheme` method, and use this `ColorScheme` data as input for your custom components themes.
+For this advanced use case, it is recommended to use FlexColorScheme with the factory constructor `FlexColorScheme.light` and `FlexColorScheme.dark`, to first create the light and dark `FlexColorScheme` objects. Then get the `ColorScheme` they define with its `toScheme` method, and use this `ColorScheme` data as input for your custom component themes.
 
-When you make sub themes, you often need access to the colors their main `ThemeData` is using and storing in its `colorScheme` property. This step gives you that before even creating the `ThemeData` object from your FlexColorScheme object. You can then pass the `ColorScheme` you got from `toScheme`, or just one or some of its color values, along to your methods that define your component theme data.
+When you make custom component themes, you often need access to the colors the main `ThemeData` is using and storing in its `colorScheme` property. This step gives you that before even creating the `ThemeData` object from your FlexColorScheme object. You can then pass the `ColorScheme` you got from `toScheme`, or just one or some of its color values, along to your methods that define your component theme data.
 
-You can turn your light and FlexColorScheme objects to `ThemeData` with its `toTheme` method, and add your sub themes with `copyWith` to this object in one definition, since they now use the same `ColorScheme` colors, that the ThemeData created with `toTheme` will get as as well.
+You can turn your light and FlexColorScheme objects to `ThemeData` with its `toTheme` method, and add your sub themes with `copyWith` to this object in one definition, since they now use the same `ColorScheme` colors, that the `ThemeData` created with `toTheme` will get as as well.
 
-You can of course also create the FlexColorScheme `ThemeData` with the more frequently used `ThemeData` extensions `FlexThemeData.light` and `dark`, and get the `ColorScheme` object from the ThemeData `colorScheme` property. Then use that `colorScheme` to create your sub-themes that need access to its color values. Finally, use `copyWith` to create a new `ThemeData` with your custom sub themes included. This is however one extra step and additional ThemeData object compared to the other approach.
+You can of course also create the FlexColorScheme `ThemeData` with the more frequently used `ThemeData` extensions `FlexThemeData.light` and `dark`, and get the `ColorScheme` object from the `ThemeData.colorScheme` property. Then use that `colorScheme` to create your sub-themes that need access to its color values. Finally, use `copyWith` to create a new `ThemeData` with your custom sub themes included. This is however one extra step and additional ThemeData object compared to the other approach.
 
-### Modifying Component Themes
+## How do I reset a component theme back to its Flutter default theme?
 
-If you want to make modifications to a component theme that FlexColorScheme already created, **and** you want to keep all the properties it defined, the steps are bit more involved.
+When you enable opinionated component themes, FlexColorScheme adds a large number of modified component themes to `ThemeData`. If you want to reset one or a few of them, back to their Flutter SDK defaults, use `copyWith` to add a default constructor instance of the component theme in question to the `ThemeData` object that FlexColorScheme returns. 
 
-To only override a few property values in a component theme created by FlexColorScheme, you will need to first create the `FlexColorScheme` based `ThemeData` object. Use the component theme from it that you want to add a modified copy of as input to the new `ThemeData`. In such a case you might as well use `FlexThemeData.light` and `dark` API, since there is no win in the steps by first creating the `FlexColorScheme` object. You can then get access to the `ColorScheme` and all ready made component themes it contains.
+This will completely override the component theme FlexColorScheme produced with a default one, where all the properties are null. Flutter will then use default theming for the component theme in question.
+
+For example, if you want to restore the look of the `ElevatedButton` from FlexColorScheme's opinionated design, you could do this for the light theme:
+
+```dart
+final ThemeData lightTheme = FlexThemeData.light(
+  subThemesData: const FlexSubThemesData(),
+).copyWith( 
+  elevatedButtonTheme: const ElevatedButtonThemeData(),
+);
+```
+
+Remember to do the same for your dark theme as well.
+
+A future version of the Themes Playground application may add these "resets" for
+a few of the component themes, but you can add them manually to any component theme.
+
+## How do I modify the component themes with custom features?
+
+If you want to make modifications to a component theme that FlexColorScheme already created, **and** you want to keep some of the properties it defined, the steps are bit more involved than resetting it back to defaults.
+
+To only override a few property values in a component theme created by FlexColorScheme, you will need to first create the `FlexColorScheme` based `ThemeData` object. Use the component theme from it that you want to add a modified copy of as input to the new `ThemeData`. In such a case you might as well use `FlexThemeData.light` and `dark` API, since there is no win in the steps by first creating the `FlexColorScheme` object. 
 
 If you are not opting in on the opinionated component themes, then the component themes that get created and modified by `FlexColorScheme` core are:
 
@@ -67,7 +88,7 @@ If you are not opting in on the opinionated component themes, then the component
 - `ThemeData.textSelectionTheme`
 - `ThemeData.tooltipTheme`
 
-The changes made in the vanilla FlexColorScheme based `ThemeData` component themes are fairly small, but the themes are not null, like they are by default in Flutter SDK. You can read more about these changes `FlexColorScheme` makes in the [core defaults](/core_defaults) chapter.
+The changes made in the vanilla FlexColorScheme based `ThemeData` component themes are fairly small, but the above component themes are not null, like they are by default in Flutter SDK. You can read more about these changes `FlexColorScheme` makes in the [core defaults](/core_defaults) chapter.
 
 When you opt-in on using the opinionated component themes, the above component themes are typically further modified. Additionally, the following component themes are also no longer null, which they are in the vanilla core version:
 
@@ -90,17 +111,18 @@ When you opt-in on using the opinionated component themes, the above component t
 - `ThemeData.timePickerTheme`
 - `ThemeData.toggleButtonsTheme`
 
-If you want to add custom component themes and keep the already existing modified properties in `ThemeData` created by FlexColorScheme intact, you cannot use just a `copyWith` using a component theme constructor. You have to use the component theme instance from the `ThemeData` created with FlexColorScheme, and a `copyWith` on it. Then assign it to the component theme with a `copyWith` to the new `ThemeData`, with the modified properties.
+If you want to add custom component themes and keep the already existing modified properties in `ThemeData` created by FlexColorScheme intact, you cannot use just a `copyWith` using a component theme constructor. You have to use the component theme instance from the `ThemeData` created by FlexColorScheme, and a `copyWith` on it. Then assign it to the component theme with a `copyWith` to the new `ThemeData`, with the modified properties.
 
 This is the same way that you would "modify" `ThemeData` when you create scoped ThemeData inside your app, and want it to fully inherit the parent's Theme, but with a few properties modified in some component theme only. In the Flutter documentation this is shown in [Cookbook > Design > Themes](https://docs.flutter.dev/cookbook/design/themes).
 
-This may sounds more complicated than it is. To make it easier to follow, here is an example of what it looks like. Say you want to modify shadow color of the `appBarTheme` in `ThemeData`, but you also want to keep all the other theme changes FlexColorScheme has introduced to it, like e.g. using surface color with a blend of primary as its background color, if you have chosen that mode for the `AppBar` theme. You can then add your shadow color to it like this:
+This may sounds more complicated than it is. To make it easier to follow, here is an example of what it looks like. Say you want to modify shadow color of the `appBarTheme` in `ThemeData`, but you also want to keep all the other theme changes FlexColorScheme has introduced to it, like e.g. using surface color with a blend of primary as its background color, if you had chosen that mode for the `AppBar` theme. You can then add your shadow color to it like this:
 
 ```dart
 class MyApp extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
-    final ThemeData lightTheme = FlexThemeData.light(scheme: FlexScheme.mandyRed);
+    final ThemeData lightTheme = 
+      FlexThemeData.light(scheme: FlexScheme.mandyRed);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: lightTheme.copyWith(appBarTheme: lightTheme.appBarTheme.copyWith(
@@ -113,11 +135,11 @@ class MyApp extends StatelessWidget {
 ```
 
 One additional possibility when creating totally custom component themes is to utilize the static helper functions in the `FlexSubThemes` class. FlexColorScheme uses them internally to create its opinionated component themes.
-You can find its API documentation [here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
+You can find their API documentation [here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html).
 
-They offer simplified APIs for setting and using more involved features in standard SDK sub-theme. You can also use them to check out how a particular design is implemented if you want to replicate it in a standard Flutter SDK sub-theme.
+They offer simplified APIs for setting and using more involved features in standard SDK sub-theme. You can also use them to check out how a particular design is implemented, if you e.g. want to replicate it in a standard Flutter SDK sub-theme.
 
-You can also use these component theming functions to make custom sub-themes, and complement them with `copyWith` values for properties they do not provide. Please note that the `FlexSubThemes` static helper functions are not meant to provide all properties for all existing component themes. They only cover the properties and shortcut features needed by `FlexColorScheme`. When using `FlexColorScheme` you use them via the `FlexSubThemesData` configuration class, passed in to `FlexColorScheme.subThemesData` property, as a convenient to enable and configure them.
+You can also use these component theming functions to make custom sub-themes, and complement them with `copyWith` values for properties they do not provide. Please note that the `FlexSubThemes` static helper functions are not meant to provide all properties for all existing component themes. They only cover the properties and shortcut features needed by `FlexColorScheme`. When using `FlexColorScheme`, you use them under the hood via the `FlexSubThemesData` configuration class, passed in to `FlexColorScheme.subThemesData` property, as a convenient way to enable and configure them.
 
 ## If I don't use the built-in schemes, why should I use FlexColorScheme?
 
@@ -138,14 +160,14 @@ The purposes of **FlexColorScheme** package is to:
 
 If you like the above features, then **FlexColorScheme** may fit your theming requirements, even if you do not use any of its built-in color schemes.
 
-## Can we change this predefined scheme's colors?
+## Can we change this existing scheme's colors?
 
 No, current predefined schemes will not be changed lightly. Changing them would be a breaking change to the package version promise. The scheme colors can of course be changed by releasing a new major version that break past scheme color definitions. At the moment, there are no plans to ever add breaking releases to just change a predefined scheme's color(s). Such changes are only done when so required by changes in Flutter's color design. Version 5 is the first release to include such changes since the entire `ColorScheme` changed, as did also the
 color design system via Material 3.
 
 All current color definition values are also included in the package tests. A failed color value test is considered a breaking change. So a new color value for a past existing color is a major breaking change and requires a new major release.
 
-## Can we add this scheme?
+## Can we add my ColorScheme suggestion to FlexColorScheme?
 
 To keep things interesting, there will from time to time be new color schemes added to the package. If you have a beautiful color scheme with matching light and dark theme mode colors, that you think would be perfect to include, then please post a suggestion as a GitHub issue, or if you want to keep it less formal and discuss it, post in in the package [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/ideas).
 
