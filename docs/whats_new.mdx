@@ -1,14 +1,75 @@
-# What is new?
+# What Is New?
 
 This what is new chapter covers the last two major releases. Older what's new
 chapters are purged as new ones are added.
 
 ## Documentation
 
-This documentation site and its content is very new. It will be continuously
-improved, concerning spelling, grammar, style and content.
+This documentation site and its content is still fairly new and was released with the 5.0.0 release.
+It will be improved over time, concerning spelling, grammar, style and content.
 
-## New in Version 5
+## Version 5.1.0
+
+Updated to support Flutter 3.0.0, Dart 2.17 and latest Flutter package dependencies in example apps.
+Requires at least Flutter 3.0.0 and Dart 2.17.0.
+
+### New Features in v5.1.0
+
+Added support for in Flutter 3.0.0 new `ColorScheme.surfaceTint` color. It is set to
+`ColorScheme.primary` color by default, as Flutter and Material 3 does. If a custom `surfaceTint`
+color is provided, it is also used as the blend color, instead of `primary` color, for
+FlexColorScheme's surface blend feature.
+
+Added API for using Flutter 3.0.0 theme extensions directly via FlexColorScheme API. It was added
+as a convenience feature in order to avoid having to add theme extensions with a `copyWith` on
+FlexColorScheme produced ThemeData. With the `FlexColorScheme.extensions` and
+`FlexThemeData.extensions` properties you can add custom theme extensions directly.
+
+### Changes in v5.1.0
+
+* Floating Action Button background color, will when opting in on
+  `ThemeData.useMaterial3`, use color `theme.colorScheme.primaryContainer`,
+  otherwise `theme.colorScheme.secondary` is used.
+
+* The `TextField` and its `InputDecorator` border radius
+  default value was changed from 20 dp to 16 dp when using opinionated component themes.
+  If opting in on Material 3, the default value for M3 design is used, which is only 4 dp.
+  See specification https://m3.material.io/components/text-fields/specs.
+  Flutter 3.0.x does not yet implement the new M3 TextField style, but via this change when
+  opting in on M3, FlexColorScheme offers an early approximation of it.
+
+* Default colors of `NavigationBar` when opting in on
+  `useMaterial3` and not using opinionated component themes will now match M3 default colors.
+  The background color will follow M3 style also by default when component themes are enabled and
+  `useMaterial3` is true. This style is difficult to replicate with a single color otherwise.
+  The difference is subtle for FCS surface tinted background colors. You can still set it to
+  `background` color to replicate past FCS default color when sub-themes were enabled.
+  For other properties, if opinionated component themes are not used, FCS will use default M3
+  theme styles on `NavigationBar` when `useMaterial3` is true. If opting in
+  on opinionated component themes, FCS uses its own custom opinionated default style. Which can be
+  modified to be the same as default M3 style too, just as before. The change also includes a
+  default font size change for FCS opinionated styled navigation bar, from 11dp to 12dp. This change
+  was done to harmonize it with its M3 style.
+
+* Default colors of `NavigationRail` when opting in on
+  `useMaterial3` and not using opinionated component themes will now match M3 default colors.
+  If opinionated component themes are not used, FCS will use default M3 theme styles on
+  `NavigationRail` when `useMaterial3` is true. If opting in on opinionated component themes,
+  FCS uses its own custom opinionated default style. Which can be modified to be the same as
+  default M3 style too, just as before. The change also includes a default font
+  size change for FCS opinionated styled rail, from 14dp to 12dp.  This change was
+  done to harmonize it with its M3 style.
+
+* Default color of toggles (Switch, CheckBox and Radio) are now
+  using `primary` color as default themed color when opting in on opinionated component themes or
+  setting `ThemeData.useMaterial3` to true. The Switch, CheckBox and Radio themes then use a style
+  that match the M3 color design intent. In it,
+  switches and toggles are mostly primary color based. In M3 color design, the secondary color is a
+  poor choice for switches and toggles, and it is therefore not used as their default color. It
+  does not look nice with M3 based ColorSchemes, created e.g. using M3 color seeding. If you use a
+  custom M3 color design, where secondary color is still prominent, you can of course still use it.
+
+## Version 5.0.0
 
 FlexColorScheme [Version 5](https://pub.dev/packages/flex_color_scheme/versions/5.0.0)
 is a large upgrade from version 4, with deprecation of previous `variant` based color names in
@@ -60,7 +121,7 @@ The slide series is using the Themes Playground app from the 5.0.0-dev.1 release
 The current version of the app is a lot fancier, but all the FlexColorScheme V5
 features and principles are the same as in the above tweet.
 
-## New V5 Themes
+### New v5.0.0 Themes
 
 There are of course new built-in color schemes in version 5. Four of them is by now the de-facto
 standard for major new releases. The new color schemes are:

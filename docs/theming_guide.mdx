@@ -136,7 +136,9 @@ This feature finally solves the limitation of not being able to easily hook into
 
 With theme extensions there is no reason why your custom widgets should not have its own theme if it is complex enough to warrant it. Going forward we  should expect that well written user interface packages come with their own theme extension.
 
-Based on my early assessment of the Theme extensions, it completely changes what you can do with theming in Flutter, you can finally build that design system you always wanted to make to speed up your development, and ensure easy to reuse design consistency.
+Theme extensions completely changes what you can do with theming in Flutter, you can finally build that design system you always wanted to make to speed up your development, and ensure easy to reuse design consistency.
+
+Starting from version 5.1.0 FlexColorScheme support the Theme Extensions API directly as well. It is just a convenience pass through to the `ThemeData` API, so you don't have to add it with and extra ``opyWith`. You use it exactly the same way as the extensions in ThemeData. The [default example](/examples#default-example---hot-reload-playground) includes a small example on how to use it.
 
 ## Defining ThemeData
 

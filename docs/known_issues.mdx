@@ -1,10 +1,61 @@
-# Version 5 Known Issues
+# Known Issues
 
+The chapter lists known issues. Currently all known issues impacting FlexColorScheme are rooted in
+Flutter SDK issues and cannot be fixed in the package. These issues are being tracked and status
+changes will be updated here.
+
+## Flutter SDK: Switching Typography dynamically causes crash
+
+Switching Typography dynamically in Flutter SDK ThemeData is broken, see
+issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information.
+If it is done and the error ignored, an app doing so eventually become unstable.
+
+The Themes Playground app contains a workaround to
+avoid issue [#103864](https://github.com/flutter/flutter/issues/103864). The workaround
+is done by always using 2021 Typography, but simulating 2018 Typography. This is done by using
+a custom TextTheme that looks like 2018 Typography is used when using M2 theme mode. The
+Playground App actually always stays in 2021 Typography, but looks
+like it switches it. Which it does by applying a custom `TextTheme` in 2021 Typography, that looks
+like 2018 Typography is used. All other examples also avoid the issue by only using the
+M3 2021 Typography and not even mimicking a switch between M2 and M3 Typography.
+
+The above workaround is needed because the Playground app has toggles that switches Typography
+frequently, without the workaround it will eventually crash. With this workaround it never
+switches Typography, it just looks like it does, but app stays in 2021 Typography all the time.
+The by Themes Playground generated ThemeData config will use the actual real effective
+Typography. This is also fine, since an app using the theme will likely never switch used
+Typography. However, if it does, it will face the same issue the Playground app did. The issue
+is a Flutter SDK issue that FlexColorScheme cannot fix. Most likely 99% of apps will never run
+into this issue.
+
+## Flutter SDK: Elevation when opting in on useMaterial3
+
+In Flutter SDK 3.0.x, when opting in on `useMaterial3:true`, the `Material` widget and other SDK
+widgets built on it, gets no elevation when only the `elevation` property is defined. It is
+required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect.
+When using the `Material` widget itself this is easy to address. However, widgets like
+`Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`,
+`TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these
+`Material` properties and cannot be elevated.
+
+The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190)
+and also mentioned in the `FlexColorScheme` repo here
+[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds
+for using elevation on these widgets when `useMaterial3` is true. The options are to not use
+M3, if such elevations are important to your app design. One working fix is to wrap those widgets
+in a theme where `useMaterial3` is false, then te rest of your app can still use it. This is
+however a rather tedious workaround fix. Due to current SDK `Material` elevation issues when
+`useMaterial3` is true, it is recommended to not use it yet.
+
+## Flutter SDK: AppBar icon theme not respected (Regression, master)
+
+This regression only aplies in master channel and impacts AppBar icon colors when using Material 3
+[#107305](https://github.com/flutter/flutter/issues/107305). It has not yet landed in stable
+channel Flutter 3.0.4, but if you use master channel it is something to be aware of.
 
 ## Flutter SDK: Android System Navigation Bar
 
-Due to Flutter SDK
-[issue #100027](https://github.com/flutter/flutter/issues/100027)
+Due to Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100027)
 "Using systemNavigationBarDividerColor changes statusBarIconBrightness and
 systemNavigationBarIconBrightness on Android 11". Two temporary
 changes were made to `FlexColorScheme.themedSystemNavigationBar`
