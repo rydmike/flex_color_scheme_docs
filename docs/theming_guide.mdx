@@ -1,10 +1,10 @@
 # Theming Guide
 
-This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion mentions it. When it does, it mostly explains some choices made in FlexColorScheme. 
+This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion mentions it. When it does, it mostly explains some theming choices made in FlexColorScheme. 
 
 Nor is this guide about how to make beautiful theme designs. Its focus is on the technicalities of how to actually define your `ThemeData` object in Flutter, how to make the theme work for you. In the ["Roads to ThemeData"](/theming_roads) chapter, we look at different options for producing a `ThemeData` object, and analyze what their differences are.
 
-If you prefer to watch a live recorded talk about these topics, there is one from Flutter Nordics meetup May 17th, 2022. You can find links to the recording of my live streamed talk [Flutter App Theming here](https://rydmike.com/blog_m3_talk). In the talk I present many of the same topics as those that are explained in this chapter, and in the chapter ["Roads to ThemeData"](/theming_roads).
+If you prefer to watch a live recorded talk about these topics, there is one from Flutter Nordics meetup May 17th, 2022. You can find links to the recording of my live streamed talk [Flutter App Theming here](https://rydmike.com/blog_m3_talk). In the talk I present many of the same topics as those that are explained in this chapter and in the chapter ["Roads to ThemeData"](/theming_roads).
 
 If you are not experienced in theming Flutter applications, then **FlexColorScheme** can assist you in many ways. FlexColorScheme does not do everything that is possible with theming in Flutter. Its goal is to make often used designs quicker and easier to achieve. Give you a starting point, with many easy to configure options. This should get you close to where you want to be with your theme design, or even fully there.
 
@@ -126,19 +126,19 @@ FlexColorScheme could perhaps in some later version also add some TextStyle conf
 
 ## New Theme Extensions
 
-A new and exiting feature that is arriving in next stable version of Flutter, after 2.10, is Theme Extensions. This new feature is nicely presented in this FlutterDev YouTube video, released May 3, 2022:
+A new and exiting feature that arrived with Flutter 3.0.0 is Theme Extensions. This new feature is nicely presented in this FlutterDev YouTube video, released May 3, 2022:
 
 <YouTube id="8-szcYzFVao" />
 
-_Flutter New Theme Extensions_
+_Flutter Theme Extensions_
 
-This feature finally solves the limitation of not being able to easily hook into the Flutter theming engine and extend it with properties your custom widgets need. A very simple use case is just adding more colors to the theme, that your application needs. But of course all other properties your custom widgets needs as well, like those TextStyle as well.
+This feature finally solves the limitation of not being able to easily hook into the Flutter theming engine and extend it with properties your custom widgets need. A very simple use case is just adding more colors to the theme that your application needs, and all other properties your custom widgets needs as well, like those custom TextStyles.
 
-With theme extensions there is no reason why your custom widgets should not have its own theme if it is complex enough to warrant it. Going forward we  should expect that well written user interface packages come with their own theme extension.
+With theme extensions there is no reason why your custom widgets should not have its own theme if it is complex enough to warrant it. Going forward we may see that user interface packages come with their own theme extension.
 
 Theme extensions completely changes what you can do with theming in Flutter, you can finally build that design system you always wanted to make to speed up your development, and ensure easy to reuse design consistency.
 
-Starting from version 5.1.0 FlexColorScheme support the Theme Extensions API directly as well. It is just a convenience pass through to the `ThemeData` API so you don't have to add it with an extra `copyWith`. You use it exactly the same way as the extensions in ThemeData. The [default example](/examples#theme-extensions) includes a small example on how to use it.
+Starting from version 5.1.0 FlexColorScheme supports the Theme Extensions API directly as well. It is a convenience pass-through to the `ThemeData` API so you don't have to add it with an extra `copyWith`. You use it exactly the same way as the extensions in `ThemeData`. The [default example](/examples#theme-extensions) includes a small demonstration on how to use it.
 
 ## Defining ThemeData
 
