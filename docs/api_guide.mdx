@@ -45,13 +45,12 @@ Using e.g. `FlexThemeData.light()` is a bit shorter than `FlexColorScheme.light(
 API reference: [**FlexColorScheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html)
 
 The original way to create FlexColorScheme based `ThemeData` objects is to use
-the package namesake [`FlexColorScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html)
-class and then use its [`toTheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/toTheme.html)
-method to make and return the `ThemeData` object specified by your immutable `FlexColorScheme` configuration.
+the package namesake [`FlexColorScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html) class and then use its [`toTheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/toTheme.html) method to make and return the `ThemeData` object specified by your immutable `FlexColorScheme` configuration.
 
 Usually you should **not** use the raw default [`FlexColorScheme()`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.html) constructor to create your `FlexColorScheme` object, you should prefer using its two factories:
 
 * [**FlexColorScheme.light()**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.light.html)
+
 * [**FlexColorScheme.dark()**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.dark.html)
 
 These factories are used to make `FlexColorScheme` based `ThemeData` definitions for light and dark theme mode respectively. They offer many additional parameters over the raw default constructor, that are used to create more nuanced and computed `ColorScheme` definitions, that are then used by the created `ThemeData`.
@@ -86,6 +85,7 @@ Important properties for `FlexColorScheme.light()` and `FlexThemeData.light()`, 
 The two most commonly used properties to define used colors in the produced `ThemeData` are:
 
 * **scheme** a [`FlexScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexScheme.html) enum value used to select which predefined color scheme to use for the theme.
+
 * **colors** a [`FlexSchemeColor`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSchemeColor-class.html) object used to define custom colors to be used when creating the theme.
 
 If you specify both `scheme` and `colors`, the custom colors in `colors`, have higher precedence and are used, and the `scheme` property is ignored. If you specify neither, then `scheme` defaults to `FlexScheme.material`.
@@ -99,12 +99,15 @@ You can also create a custom `FlexColorScheme` based theme from a Flutter standa
 FlexColorScheme has shortcut enum properties that you can use to quickly adjust the theme design for your **AppBar** and **TabBar**.
 
 * **appBarStyle** a [`FlexAppBarStyle`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexAppBarStyle.html) enum value used to define the themed color of the **AppBar** background color.
+
 * [**tabBarStyle**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/tabBarStyle.html) a [`FlexTabBarStyle`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTabBarStyle.html) enum value used to select preferred style for used **TabBarTheme** theme. 
+
 * **appBarOpacity** a double value, can also be used to define the opacity of the AppBar background.
 
 An interesting and unique feature of FlexColorScheme is its capability to automatically create color schemes and resulting themes, that blend in the primary color into different surfaces. You can vary this blending depending on surface type and use different blend strengths. This feature is only available via the factory constructors and their `ThemeData` extensions, not via the default raw `FlexColorscheme()` constructor. To use the surface blending features use the properties **surfaceMode** and **blendLevel**.
 
 * **surfaceMode** a [`FlexSurfaceMode`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSurfaceMode.html) enum value used to select the mode for blending in primary color into surface, background, scaffoldBackground and dialogBackground colors.
+
 * **blendLevel**, integer value, sets the blend level strength used by the used `surfaceMode`. The blend level is the integer decimal value of the alpha value used in the alpha blend function. It mixes one color with another, by using alpha opacity value in the color of a surface put on top of another surface with opaque color, and returns the result as one opaque color.
 
 You can also use properties like **inputColors**, **swapColors** and e.g. **useMaterial3ErrorColors** to modify the main input colors, before they are used to create the effective `ColorScheme` used in produced `ThemeData`.
@@ -372,8 +375,8 @@ API reference: [**FlexSubThemesData**](https://pub.dev/documentation/flex_color_
 
 In addition to all the actual component theme configuration parameters, the `FlexSubThemesData` configuration has a few extra settings that are also used to control the behavior of the opinionated overall theme.
 
-* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (**true**/false). When opting in on using the component sub-themes, this flag controls if the text theme that uses Material 3 font sizes and letter spacing, is also used. For the time being, until the [Typography for Material 3 lands in Flutter stable](https://github.com/flutter/flutter/pull/97829), a custom [**m3TextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/m3TextTheme-constant.html) "internal" replica with its geometry is used when this is enabled, which it is by default. 
-**IMPORTANT:** This temporary Material 3 TextTheme only supports "English like" text geometry, or Typography. If you are using a locale that does not use "English like" character types, then you may have to set this flag to **false** to opt-out of using this text theme and geometry for now, in case letter spacing does not work satisfactory. This issue will be resolved when above mentioned M3 Typography lands in Flutter stable channel. FlexColorScheme can then be changed to use it, instead of the custom temporary version it now uses as M3 TextTheme and geometry.
+* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (**true**/false). When opting in on using the component sub-themes, this flag controls if the text theme uses Material 3 font sizes and letter spacing is used, which it is by default. Starting in version 5.1.0 native M3 typography that was released with Flutter 3.0.0 is used to enable this feature. This comes with its own issue concerning switching Typography dynamically, [see known issues](/known_issues#flutter-sdk-switching-typography-dynamically-causes-crash).
+* If you are using a FlexColorScheme version before 5.1.0, be aware that a custom [**m3TextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/m3TextTheme-constant.html) "internal" replica is used then. This temporary Material 3 TextTheme replica only supported "English like" text geometry/typography. If you are using a locale that does not use "English like" character types, then you may have to set this flag to **false** to opt-out of using this text theme and geometry in case letter spacing does not work satisfactory. This issue was resolved in version 5.1.0 that uses the real M3 Typography that landed in Flutter stable 3.0.0.
 
 * [**blendTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendTextTheme.html): (**true**/false). Used blend primary color into text themes for both `ThemeData.textTheme` and `ThemeData.primaryTextTheme`. The strength of the blend is affected by the general `blendLevel` of used FlexColorScheme. This feature does not look so good if you need to put text on a completely different colored container than the background color. Which is why this feature can also be opted out of.
 

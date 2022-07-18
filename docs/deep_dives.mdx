@@ -1,61 +1,30 @@
 # Deep Dives
 
-This chapters provides deeper and more detailed information and explanations
-on included topics. It will receive updates and new deep dives as needed
-in future updates based on questions user of **FlexColorScheme** have.
+This chapters provides deeper and more detailed information and explanations on included topics. It will receive updates and new deep dives as needed in future updates based on questions user of **FlexColorScheme** have.
 
-This chapter may contain images and animations from older versions
-of **FlexColorScheme**. They are used when the principles presented are still
-the same and the actual images matter less. Future version of this chapter
-may update the images to current version of FlexColorScheme, if it is
-needed to improve the explanations.
+This chapter may contain images and animations from older versions of  *FlexColorScheme**. They are used when the principles presented are still the same and the actual images matter less. Future version of this chapter may update the images to current version of FlexColorScheme, if it is needed to improve the explanations.
 
 ## Visual Density
 
-Examples 3,4 and 5 in this package use **comfortable** adaptive platform visual
-density via `FlexColorScheme.comfortablePlatformDensity`, instead of the
-default counter application's `VisualDensity.adaptivePlatformDensity`.
+Examples 3, 4 and 5 in this package use **comfortable** adaptive platform visual density via `FlexColorScheme.comfortablePlatformDensity`, instead of the default counter application's `VisualDensity.adaptivePlatformDensity`.
 
-This is an alternative visual density design that on desktop applications
-results in the Flutter `comfortable` visual density being used, instead of
-`compact`. On devices, they both result in the default large `standard`
-visual density that is suitable for small touch devices.
+This is an alternative visual density design that on desktop applications results in the Flutter `comfortable` visual density being used, instead of `compact`. On devices, they both result in the default large `standard` visual density that is suitable for small touch devices.
 
-This helper function was added to provide an easy option for using a bit larger
-UI elements on desktop and web apps, while keeping the correct size for devices.
+This helper function was added to provide an easy option for using a bit larger UI elements on desktop and web apps, while keeping the correct size for devices.
 
-If the desktop and web versions of the app is used on computers with touch
-screens, the `comfortable` density provides a nice balance. It still looks
-compact enough to be desktop like, while providing a bit more touch friendly
-space, without looking like an overblown small device UI on a desktop.
+If the desktop and web versions of the app is used on computers with touch screens, the `comfortable` density provides a nice balance. It still looks compact enough to be desktop like, while providing a bit more touch friendly space, without looking like an overblown small device UI on a desktop.
 
-FlexColorScheme can also use the `VisualDensity.adaptivePlatformDensity` value.
-If you prefer it, just replace the line with it. If you do not specify any
-visual density, the Flutter default density `standard` is used on
-**all platforms**. This creates widgets with a lot of white space around and
-inside them. It may not be what you want on web/desktop applications, but is
-the correct choice for small touch devices. The visual density feature in
-Flutter was created to address this difference in design requirement.
+FlexColorScheme can also use the `VisualDensity.adaptivePlatformDensity` value. If you prefer it, just replace the line with it. If you do not specify any visual density, the Flutter default density `standard` is used on **all platforms**. This creates widgets with a lot of white space around and inside them. It may not be what you want on web/desktop applications, but is the correct choice for small touch devices. The visual density feature in Flutter was created to address this difference in design requirement.
 
-The Flutter SDK built-in function `VisualDensity.adaptivePlatformDensity`
-was added to adapt the density according to used platform. The
-`FlexColorScheme.comfortablePlatformDensity` does the same, but with a bit
-more white space on desktops.  Use the one you like and works best for
-your use case.
+The Flutter SDK built-in function `VisualDensity.adaptivePlatformDensity` was added to adapt the density according to used platform. The `FlexColorScheme.comfortablePlatformDensity` does the same, but with a bit more white space on desktops.  Use the one you like and works best for your use case.
 
 ## FlexThemeModeSwitch
 
-One feature on the `HomePage` of examples 1 to 4 is the `FlexThemeModeSwitch`.
-It is the UI Widget used for the 3-way theme mode switch used in these
-examples to change the active theme mode.
+One feature on the `HomePage` of examples 1 to 4 is the `FlexThemeModeSwitch`. It is the UI Widget used for the 3-way theme mode switch used in these examples to change the active theme mode.
 
 <img src="https://rydmike.com/assets_fcsv4/theme_mode_switch.png?raw=true" alt="theme mode switch" width="350"/>
 
-Using the switch is simple, give it the currently selected and active theme
-mode, the current `FlexSchemeData` scheme, so it can color its buttons correctly.
-Then use the `onThemeModeChanged` callback for changes to its mode, and change
-the `themeMode` property in the `MaterialApp` accordingly, to actually change
-the used theme mode.
+Using the switch is simple, give it the currently selected and active theme mode, the current `FlexSchemeData` scheme, so it can color its buttons  correctly. Then use the `onThemeModeChanged` callback for changes to its mode, and change the `themeMode` property in the `MaterialApp` accordingly, to actually change the used theme mode.
 
 ```dart
 FlexThemeModeSwitch(
@@ -65,38 +34,21 @@ FlexThemeModeSwitch(
 ),
 ```
 
-Using the `FlexThemeModeSwitch` 3-way theme mode switch is optional and not
-required to use `FlexColorScheme` based themes. It is just a custom theme mode
-switch design and was included as a bonus feature in the
-`FlexColorScheme` package. It was added based on a request after it
-had been observed in the wild in the Flexfold demo app.
+Using the `FlexThemeModeSwitch` 3-way theme mode switch is optional and not required to use `FlexColorScheme` based themes. It is just a custom theme mode switch design and was included as a bonus feature in the `FlexColorScheme` package. It was added based on a request after it had been observed in the wild in the Flexfold demo app.
 
-In the Flexfold demo app the switch was originally a fairly fixed design.
-This `FlexThemeModeSwitch` has many properties that allow you to customize
-it extensively. You can find its [API
-reference here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeModeSwitch-class.html) and its companion, the
-`FlexThemeModeOptionButton` [API reference here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeModeOptionButton-class.html).
-With the API you can customize the look of the `FlexThemeModeSwitch`,
-here are some examples:
+In the Flexfold demo app the switch was originally a fairly fixed design. This `FlexThemeModeSwitch` has many properties that allow you to customize it extensively. You can find its [API reference here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeModeSwitch-class.html) and its companion, the `FlexThemeModeOptionButton` [API reference here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeModeOptionButton-class.html). With the API you can customize the look of the `FlexThemeModeSwitch`, here are some examples:
 
 <img src="https://rydmike.com/assets_fcsv4/ThemeSwitchCustomize.png?raw=true" alt="theme mode customize"/>
 
-The `FlexThemeModeOptionButton` is typically used by the `FlexThemeModeSwitch`,
-but it can also be used as a part of other theme related indicator widgets.
-Like for example the scrolling horizontal list used in example 5, where it is
-used as a theme indicator and selector in a horizontally scrolling list.
+The `FlexThemeModeOptionButton` is typically used by the `FlexThemeModeSwitch`, but it can also be used as a part of other theme related indicator widgets. Like for example the scrolling horizontal list used in example 5, where it is used as a theme indicator and selector in a horizontally scrolling list. 
 
 <img src="https://rydmike.com/assets_fcsv4/ThemeIndicatorList.png?raw=true" alt="theme indicator list"/>
 
 ## Computed Dark Theme
 
-Example 5 allows us to toggle the dark mode, from using its hand tuned
-predefined dark scheme colors, to the dark scheme colors computed from the
-light scheme colors. Let's use it to compare some examples.
+Example 5 allows us to toggle the dark mode, from using its hand tuned predefined dark scheme colors, to the dark scheme colors computed from the light scheme colors. Let's use it to compare some examples. 
 
-When using the **Deep blue sea** scheme, the computed dark theme colors ones
-are a bit more dull and muted in this example, the computed dark scheme
-is on the right.
+When using the **Deep blue sea** scheme, the computed dark theme colors ones are a bit more dull and muted in this example, the computed dark scheme is on the right.
 
 <table>
   <tr>
@@ -109,8 +61,7 @@ is on the right.
   </tr>
 </table>
 
-With some other color schemes, like the **Aqua blue** one, there is only a
-minor difference, the computed dark scheme is on the right.
+With some other color schemes, like the **Aqua blue** one, there is only a minor difference, the computed dark scheme is on the right.
 
 <table>
   <tr>
@@ -123,48 +74,20 @@ minor difference, the computed dark scheme is on the right.
   </tr>
 </table>
 
-The result of the `toDark` method varies depending on how saturated the used
-light scheme colors are. It is possible to tune the calculated dark scheme by
-modifying the `whiteBlend` property it uses to blend in white to make the
-dark scheme. The default `whiteBlend` is 35%, this is normally a suitable
-value. For more saturated light scheme colors try 40%, which is also used in
-the Material 2 design guide to convert the default red error color for light
-mode, to dark mode. For light scheme color with low saturation, a white
-blend of 20...30% often produces nice results.
+The result of the `toDark` method varies depending on how saturated the used light scheme colors are. It is possible to tune the calculated dark scheme by modifying the `whiteBlend` property it uses to blend in white to make the dark scheme. The default `whiteBlend` is 35%, this is normally a suitable value. For more saturated light scheme colors try 40%, which is also used in the Material 2 design guide to convert the default red error color for light mode, to dark mode. For light scheme color with low saturation, a white blend of 20...30% often produces nice results.
 
-With the included level slider in the example 5 we can interactively change
-the `whiteBlend` level for the computed dark mode scheme colors. Let's select
-a color scheme, say the **Brand blues** one, then go dark.
+With the included level slider in the example 5 we can interactively change the `whiteBlend` level for the computed dark mode scheme colors. Let's select a color scheme, say the **Brand blues** one, then go dark.
 
-By default, the built-in predefined hand-picked matching dark scheme colors
-for the dark theme mode are used. Turn on the "Compute dark theme" mode,
-the result is pretty close to the predefined one for this dark scheme with
-the default level of 35%. Then adjust the white level blend to tune how
-saturated the computed dark scheme colors are compared to their light scheme
-master. At 0% they are the same as the light scheme, at 100%, well then they
-are white, not so useful. A range of 10...50% can produce excellent results.
-What is best depends on how saturated your starting light scheme colors are,
-and of course what kind of matching dark theme look you like and want.
+By default, the built-in predefined hand-picked matching dark scheme colors for the dark theme mode are used. Turn on the "Compute dark theme" mode, the result is pretty close to the predefined one for this dark scheme with the default level of 35%. Then adjust the white level blend to tune how saturated the computed dark scheme colors are compared to their light scheme master. At 0% they are the same as the light scheme, at 100%, well then they are white, not so useful. A range of 10...50% can produce excellent results. What is best depends on how saturated your starting light scheme colors are, and of course what kind of matching dark theme look you like and want.
 
-If you use the even darker dark-mode, **true black**, you may want to have a
-different saturation for your dark scheme colors compared to standard
-dark-mode surface. You could easily implement that adjustment with this feature.
+If you use the even darker dark-mode, **true black**, you may want to have a different saturation for your dark scheme colors compared to standard dark-mode surface. You could easily implement that adjustment with this feature.
 
-This screen recording compares the computed `toDark` theme result, to the
-built-in hand-picked one. It does this by toggling the mode a few times, so
-you can compare the different results. It also uses the level slider
-to adjust the `toDark` theme result. A sharp eye might notice that this
-recording does not use the `defaultError` error color modifier, the changing
-dark error color does not look so nice when tuning the computed scheme colors.
-The bundled example 5 and live web version of it uses the modifier.
+This screen recording compares the computed `toDark` theme result, to the built-in hand-picked one. It does this by toggling the mode a few times, so you can compare the different results. It also uses the level slider to adjust the `toDark` theme result. A sharp eye might notice that this recording does not use the `defaultError` error color modifier, the changing dark error color does not look so nice when tuning the computed scheme colors. The bundled example 5 and live web version of it uses the modifier.
 
 <img src="https://rydmike.com/assets/fcs_v1-1-0-phone1.gif?raw=true" alt="Dark scheme calc level"/>
 
 
-So that you can find the same setup in the new version 5 of the ThemesPlayground,
-here is an image of it when using the same `brandBlue` scheme
-and computing the dark theme from light one at level 35%. You can see the code
-in the image too, the key part is this:
+So that you can find the same setup in the new version 5 of the **Themes Playground**, here is an image of it when using the same `brandBlue` scheme and computing the dark theme from light one at level 35%. You can see the code in the image too, the key part is this:
 
 ```dart
 darkTheme: FlexThemeData.dark(
@@ -174,20 +97,9 @@ darkTheme: FlexThemeData.dark(
 
 [<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-01-toDark.png?raw=true" alt="V5 toDark-1"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-01-toDark.png?raw=true)
 
-In FlexColorScheme v5 that has container colors for each main color
-in the `ColorScheme`, a new way to produce the computed dark mode colors was added.
-If you in dark mode, swap main and container colors, the colors will usually work
-well as they are in dark mode, at least if
-you followed the design principle for main color and its container color in light
-theme mode.
+In FlexColorScheme V5 that has container colors for each main color in the `ColorScheme`, a new way to produce the computed dark mode colors was added. If you in dark mode, swap main and container colors, the colors will usually work well as they are in dark mode, at least if you followed the design principle for main color and its container color in light theme mode.
 
-You can then pass 'true' to the toDark method, indicating you have a "true" M3
-light theme mode ColorScheme design. The `toDark` computation will swap the
-colors from the light mode colors, and use it as a starting point for the
-dark theme mode. This also produces a more design correct dark mode,
-with respect to the shade tones used on main color and its container color.
-You may not even need to add any white blend level to de-saturate the colors.
-Below we use 5% to demonstrate that you can.
+You can then pass 'true' to the toDark method, indicating you have a "true" M3 light theme mode ColorScheme design. The `toDark` computation will swap the colors from the light mode colors, and use it as a starting point for the dark theme mode. This also produces a more design correct dark mode, with respect to the shade tones used on main color and its container color. You may not even need to add any white blend level to de-saturate the colors. Below we use 5% to demonstrate that you can.
 
 ```dart
 darkTheme: FlexThemeData.dark(
@@ -197,41 +109,21 @@ darkTheme: FlexThemeData.dark(
 
 [<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-02-toDark.png?raw=true" alt="V5 toDark-2"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-02-toDark.png?raw=true)
 
-If your light theme mode colors follow the M3 design intent, then always use
-the `toDark(level, true)` API. If you on the other have colors that are designed
-with older M2 design intent, then using `toDark(level)` as before, which
-defaults to `toDark(level, false)` is usually a better choice.
+If your light theme mode colors follow the M3 design intent, then always use the `toDark(level, true)` API. If you on the other have colors that are designed with older M2 design intent, then using `toDark(level)` as before, which defaults to `toDark(level, false)` is usually a better choice.
 
 ## Convenient AppBar Theming
 
-Let's study what `FlexColorScheme` can do with the `AppBarTheme` and how you
-can match it to your surface blending if you like.
+Let's study what `FlexColorScheme` can do with the `AppBarTheme` and how you can match it to your surface blending if you like.
 
-You can easily toggle both dark and light mode AppBars to use differently
-themed backgrounds. By default, Material design uses AppBars with
-`ColorScheme.primary` color for light theme mode, and the dark background
-color in dark theme mode. Without using a separately defined sub `AppBarTheme`,
-**FlexColorScheme** AppBars can use different themed backgrounds based on
-an enum value.
+You can easily toggle both dark and light mode AppBars to use differently themed backgrounds. By default, Material design uses AppBars with `ColorScheme.primary` color for light theme mode, and the dark background color in dark theme mode. Without using a separately defined sub `AppBarTheme`, **FlexColorScheme** AppBars can use different themed backgrounds based on an enum value.
 
-The themed `AppBar` background can use scheme primary color, default Material
-plain white/dark background color, primary branded surface, primary branded
-background color, or a custom AppBar color.
+The themed `AppBar` background can use scheme primary color, default Material plain white/dark background color, primary branded surface, primary branded background color, or a custom AppBar color.
 
-The `FlexColorScheme` scheme's `appBarColor` is a separate scheme color that
-does not exist in Flutter's standard `ColorScheme`, so it does not have to be
-any of the colors available in a `ColorScheme`.
+The `FlexColorScheme` scheme's `appBarColor` is a separate scheme color that does not exist in Flutter's standard `ColorScheme`, so it does not have to be any of the colors available in a `ColorScheme`.
 
-The predefined schemes use the color defined in a `ColorScheme`
-scheme's `tertiary` color, as their value for the custom `appBarColor`.
-When you make your own schemes you can do the same or use a totally
-none `ColorScheme` related color as the AppBar's custom color option. This
-color then becomes one of the FlexColorScheme's easy selectable AppBar theme
-color option, via the `appBarStyle` property and the `FlexAppBarStyle` enum,
-in this case via the `custom` choice.
+The predefined schemes use the color defined in a `ColorScheme` scheme's `tertiary` color, as their value for the custom `appBarColor`. When you make your own schemes you can do the same or use a totally none `ColorScheme` related color as the AppBar's custom color option. This color then becomes one of the FlexColorScheme's easy selectable AppBar theme color option, via the `appBarStyle` property and the `FlexAppBarStyle` enum, in this case via the `custom` choice.
 
-Below you can see some different primary color blend level using
-background colors used as the themed AppBar background color.
+Below you can see some different primary color blend level using background colors used as the themed AppBar background color.
 
 <table>
   <tr>
@@ -251,60 +143,27 @@ background colors used as the themed AppBar background color.
 
 ## The TabBar Style
 
-The `tabBarStyle` property can be used to toggle the theme the `TabBar`
-receives. By default, a theme that is designed to make it fit in an `AppBar`,
-regardless of which style you have selected for it, is used. This is the
-`FlexTabBarStyle.forAppBar` style. The typical usage of a `TabBar` is to have
-it in an `AppBar`, and the default style works for this use case.
+The `tabBarStyle` property can be used to toggle the theme the `TabBar` receives. By default, a theme that is designed to make it fit in an `AppBar`, regardless of which style you have selected for it, is used. This is the `FlexTabBarStyle.forAppBar` style. The typical usage of a `TabBar` is to have it in an `AppBar`, and the default style works for this use case.
 
-Alternatively you can choose a style that makes a `TabBarTheme` that fits well
-on background colors. Use this option if you intend to use the `TabBar` in a
-`Scaffold` body, in Dialogs, Drawers or other surface and
-background colored Material. If you do so, you do not have re-theme it, or
-style it separately for this purpose.
+Alternatively you can choose a style that makes a `TabBarTheme` that fits well on background colors. Use this option if you intend to use the `TabBar` in a `Scaffold` body, in Dialogs, Drawers or other surface and background colored Material. If you do so, you do not have re-theme it, or style it separately for this purpose.
 
-If you intend to use `TabBar` widgets in both AppBars and on surface and
-backgrounds, you will have to choose the style that most often fits your
-use case. Then theme it separately for the other use case. You would have to do
-the same with Flutter standard themes and `TabBarTheme` as well when not
-using FlexColorScheme, but the first theme your get without effort.
+If you intend to use `TabBar` widgets in both AppBars and on surface and backgrounds, you will have to choose the style that most often fits your use case. Then theme it separately for the other use case. You would have to do the same with Flutter standard themes and `TabBarTheme` as well when not using FlexColorScheme, but the first theme your get without effort.
 
-Which `tabBarStyle` style and resulting `TabBarTheme` actually works best,
-depends on the background color. Here we see TabBars used on surfaces and in
-an `AppBar`, when the AppBar is using primary color. As can be seen, the tab bar
-theme that goes well in an app bar in such a case, does not fit on the surfaces
-at all, and wise versa.
+Which `tabBarStyle` style and resulting `TabBarTheme` actually works best, depends on the background color. Here we see TabBars used on surfaces and in an `AppBar`, when the AppBar is using primary color. As can be seen, the tab bar theme that goes well in an app bar in such a case, does not fit on the surfaces at all, and wise versa.
 
 [<img src="https://rydmike.com/assets_fcsv4/TabBar-on-primary.png?raw=true" alt="tab bar on primary"/>](https://rydmike.com/assets_fcsv4/TabBar-on-primary.png?raw=true)
 
-If you plan to use only surface or background (also the branded ones) colored
-AppBars, you can see that both TabBar styles, and their resulting themes, work
-for both situations. The difference is minor, and it is a matter of opinion
-which one is preferable. Both style options can be used if you restrict your
-AppBar color to background and surface colors, or their primary branded variants.
-In such a use case you can get away with using just one of the built-in
-style options, even if you use TabBars in both AppBars and on other surfaces.
+If you plan to use only surface or background (also the branded ones) colored AppBars, you can see that both TabBar styles, and their resulting themes, work for both situations. The difference is minor, and it is a matter of opinion which one is preferable. Both style options can be used if you restrict your AppBar color to background and surface colors, or their primary branded variants. In such a use case you can get away with using just one of the built-in style options, even if you use TabBars in both AppBars and on other surfaces.
 
 [<img src="https://rydmike.com/assets_fcsv4/TabBar-on-surface.png?raw=true" alt="tab bar on surface"/>](https://rydmike.com/assets_fcsv4/TabBar-on-surface.png?raw=true)
 
 ## True Black
 
-Dark-mode is cool and with `FlexColorScheme` you can go even darker. Go **true black** with the flick of a
-switch. When using the true black option for dark-mode, surface, background and scaffold background are set to
-fully black. This can save power on OLED screens as the pixels are turned off, but it can also cause scrolling artefact
-issues when pixels turn fully on and off rapidly as you scroll. You can read about this and see an example of it in
-the [Material design guide](https://material.io/design/color/dark-theme.html#ui-application)
-as well. (Scroll back up one heading from the link to get to the mention of it.)
+Dark-mode is cool and with `FlexColorScheme` you can go even darker. Go **true black** with the flick of a switch. When using the true black option for dark-mode, surface, background and scaffold background are set to fully black. This can save power on OLED screens as the pixels are turned off, but it can also cause scrolling artefact issues when pixels turn fully on and off rapidly as you scroll. You can read about this and see an example of it in the [Material design guide](https://material.io/design/color/dark-theme.html#ui-application) as well. Scroll back up one heading from the link to get to the mention of it.
 
-If you use surface blends with true black mode enabled, you will notice that the surface blends have a lower impact,
-only at higher blend levels does it have a visible effect. This is by design to keep most surfaces totally or
-very close to black when true black is combined with surface blends. If you really want complete black
-for all surfaces and backgrounds, then avoid combining true black mode with blended surfaces. On the other hand it
-still makes a much darker theme than normal dark theme, which can look nice. It may also eliminate the scrolling issue, since
-all background colored pixels are not fully off in the true black modes when you use higher blend levels.
+If you use surface blends with true black mode enabled, you will notice that the surface blends have a lower impact, only at higher blend levels does it have a visible effect. This is by design to keep most surfaces totally or very close to black when true black is combined with surface blends. If you really want complete black for all surfaces and backgrounds, then avoid combining true black mode with blended surfaces. On the other hand it still makes a much darker theme than normal dark theme, which can look nice. It may also eliminate the scrolling issue, since all background colored pixels are not fully off in the true black modes when you use higher blend levels.
 
-Here is an example of a branded dark theme with true black OFF (default) and true black ON,
-when using high surface blend level with the **Red red wine** color scheme.
+Here is an example of a branded dark theme with true black OFF (default) and true black ON, when using high surface blend level with the **Red red wine** color scheme.
 
 <table>
   <tr>
@@ -333,15 +192,9 @@ a primary colored AppBar in dark-mode.
 
 ## Themed System Navigation Bar in Android
 
-The HomePage's build method for this example starts by wrapping the entire page content in an `AnnotatedRegion`
-with a `SystemUiOverlayStyle` value that we get from the static helper
-`FlexColorScheme.themedSystemNavigationBar(context, ...)`.
+The HomePage's build method for this example starts by wrapping the entire page content in an `AnnotatedRegion` with a `SystemUiOverlayStyle` value that we get from the static helper `FlexColorScheme.themedSystemNavigationBar(context, ...)`.
 
-Using this we can get a system navigation bar, typically on older Android phones that still uses one, that
-follows the active theme's background color and theme mode. The system navigation bar will get updated as
-you select new themes, different background color branding style and strength, and
-toggle dark and light theme mode. Many Flutter applications neglect or forget to include this feature in their
-application.
+Using this we can get a system navigation bar, typically on older Android phones that still uses one, that follows the active theme's background color and theme mode. The system navigation bar will get updated as you select new themes, different background color branding style and strength, and toggle dark and light theme mode. Many Flutter applications neglect or forget to include this feature in their application.
 
 ```dart
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -356,10 +209,7 @@ application.
    );
 ```
 
-Above the `systemNavBarStyle`, `useDivider` and `opacity` are tied the theme controller in example 5.
-You can find the implementation in the repo [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example5/widgets/pages/home_page.dart#L102).
-Together with the option to remove the status bar scrim, you can have complete control of the look
-of both the AppBar status bar, and the system navigation bar, as shown below:
+Above the `systemNavBarStyle`, `useDivider` and `opacity` are tied the theme controller in example 5. You can find the implementation in the repo [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example5/widgets/pages/home_page.dart#L102). Together with the option to remove the status bar scrim, you can have complete control of the look of both the AppBar status bar, and the system navigation bar, as shown below:
 
 <table>
   <tr>
@@ -372,59 +222,31 @@ of both the AppBar status bar, and the system navigation bar, as shown below:
   </tr>
 </table>
 
-The top status bar scrim toggle, system navigation bar divider and style only have an impact
-on Android builds, they do not have any functionality on the live Web example.
+The top status bar scrim toggle, system navigation bar divider and style only have an impact on Android builds, they do not have any functionality on the live Web example.
 
-The static helper `FlexColorScheme.themedSystemNavigationBar(context, ...)` is designed to provide a convenience
-wrapper for a `SystemUiOverlayStyle` that works for screens that use and adhere to current theme mode colors.
-If your application use screens that do not follow the current theme, then just use `SystemUiOverlayStyle`
-directly in the annotated region for such screens to define their desired style. You can also make your own
-convenience wrapper function or even just a const value for it if you need to use a fixed style and design frequently.
+The static helper `FlexColorScheme.themedSystemNavigationBar(context, ...)` is designed to provide a convenience wrapper for a `SystemUiOverlayStyle` that works for screens that use and adhere to current theme mode colors. If your application use screens that do not follow the current theme, then just use `SystemUiOverlayStyle` directly in the annotated region for such screens to define their desired style. You can also make your own convenience wrapper function or even just a const value for it if you need to use a fixed style and design frequently.
 
 
 **Known issue:**
 
-The Flutter issue [#100027](https://github.com/flutter/flutter/issues/100027)
-"Using systemNavigationBarDividerColor changes statusBarIconBrightness and
-systemNavigationBarIconBrightness on Android 11", affects the **themedSystemNavigationBar** feature.
-Two temporary changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
-* The divider feature is disabled until the issue has been resolved.
-* There is a temporary workaround implemented, it manages to keep system
-  icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
-  These temporary changes will be reverted when the fix for the Flutter issue
-  has reached the stable channel.
+The Flutter issue [#100027](https://github.com/flutter/flutter/issues/100027) "Using systemNavigationBarDividerColor changes statusBarIconBrightness and systemNavigationBarIconBrightness on Android 11", affects the **themedSystemNavigationBar** feature. Two temporary changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
 
-You can also use the `FlexColorScheme.themedSystemNavigationBar` to hide the top status icons if you are not
-using an app bar at all. This can be useful on a splash or onboarding page. Example 5 contains three different
-examples, each with their own limitations, read more in the example 5 source code comments on how it
-can be used, here what they look like. The last Example SplashPage 2, would be the ideal version, and it
-works well on some versions of Android, but it seems to fail on newer ones, so you may prefer 1b instead.
+* The divider feature is disabled until the issue has been resolved.
+
+* There is a temporary workaround implemented, it manages to keep system
+  icons from getting the wrong brightness on Android 11 by calling systemChrome twice. These temporary changes will be reverted when the fix for the Flutter issue has reached the stable channel.
+
+You can also use the `FlexColorScheme.themedSystemNavigationBar` to hide the top status icons if you are not using an app bar at all. This can be useful on a splash or onboarding page. Example 5 contains three different examples, each with their own limitations, read more in the example 5 source code comments on how it can be used, here what they look like. The last Example SplashPage 2, would be the ideal version, and it works well on some versions of Android, but it seems to fail on newer ones, so you may prefer 1b instead.
 
 [<img src="https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true" alt="ColorScheme Splash pages"/>](https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true)
 
 ### Android Transparent System Navigation Bar
 
-FlexColorScheme V4 added full support for transparent system navigation bar for Android
-SDK >= 29 (Android 10). The support is added via the
-[opacity](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/themedSystemNavigationBar.html)
-property in `FlexColorScheme.themedSystemNavigationBar`.
-Use and support for the opacity value on the system navigation bar is supported
-starting from Flutter 2.5. This [PR 28616](https://github.com/flutter/engine/pull/28616) amended it a bit
-and limits its functionality to Android SDK >= 29.
+FlexColorScheme V4 added full support for transparent system navigation bar for Android SDK >= 29 (Android 10). The support is added via the [opacity](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/themedSystemNavigationBar.html) property in `FlexColorScheme.themedSystemNavigationBar`. Use and support for the opacity value on the system navigation bar is supported starting from Flutter 2.5. This [PR 28616](https://github.com/flutter/engine/pull/28616) amended it a bit and limits its functionality to Android SDK >= 29.
 
-Examples 1 to 4 do not use the transparent or themed system navigation bar feature,
-but example 5, the **Themes Playground**, the **Copy Playground** and the default
-example, the **Hot Reload Playground** apps do. If you build them on an Android device you
-can see it working if you use a device with appropriate Android API level that supports it.
+Examples 1 to 4 do not use the transparent or themed system navigation bar feature, but example 5, the **Themes Playground**, the **Copy Playground** and the default example, the **Hot Reload Playground** apps do. If you build them on an Android device you can see it working if you use a device with appropriate Android API level that supports it.
 
-If you build example 5, the **Themes Playground** on an Android device, you can
-test it with the playground. With it you can modify the settings interactively,
-just as theme settings in the Playground app. Set it to a themed background color to try it
-with colors from active theme, use partially and even fully transparent Android system
-navigation. You can adjust the settings using the "Android System Navigation Bar"
-panel. These settings are not a part of the theme setup that can be copied, since the
-required setup is not in ThemeData. You will have to add support for this
-manually in your in your app to your widget tree.
+If you build example 5, the **Themes Playground** on an Android device, you can test it with the playground. With it you can modify the settings interactively, just as theme settings in the Playground app. Set it to a themed background color to try it with colors from active theme, use partially and even fully transparent Android system navigation. You can adjust the settings using the "Android System Navigation Bar" panel. These settings are not a part of the theme setup that can be copied, since the required setup is not in ThemeData. You will have to add support for this manually in your in your app to your widget tree.
 
  <table>
   <tr>
@@ -441,11 +263,6 @@ manually in your in your app to your widget tree.
   </tr>
 </table>
 
-Above we see the themed and transparent system navigation bar in action, even
-when we use the old 3 button system navigation. It works with the two button
-option as well, and even with the thin gesture navigation bar.
+Above we see the themed and transparent system navigation bar in action, even when we use the old 3 button system navigation. It works with the two button option as well, and even with the thin gesture navigation bar.
 
-It is just not as visible or obvious when using the thin gestures based navigation
-bar. The example screen shots presenting all the built-in themes in
-[Scheme reference](/scheme_reference) were produced with
-fully transparent system navigation bar, using the gesture mode navigation bar.
+It is just not as visible or obvious when using the thin gestures based navigation bar. The example screen shots presenting all the built-in themes in [Scheme reference](/scheme_reference) were produced with fully transparent system navigation bar, using the gesture mode navigation bar.
