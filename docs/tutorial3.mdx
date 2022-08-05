@@ -1,52 +1,27 @@
 # 3) Four Themes
 
-The third tutorial example shows how we can use three built-in color schemes, add a custom
-scheme, using the same colors as in example 2. We then use these four color schemes
-as selectable `FlexColorScheme` based theme options. The example also uses surface
-colors with primary color blends.
+The third tutorial example shows how we can use three built-in color schemes, add a custom scheme, using the same colors as in example 2. We then use these four color schemes as selectable `FlexColorScheme` based theme options. The example also uses surface colors with primary color blends.
 
-Additionally we can activate an option that
-uses the selected scheme's colors as input to generate a ColorScheme computed
-by the Material 3 based `ColorScheme` generation algorithms. We can also turn the
-opinionated component widget themes ON or OFF.
+Additionally we can activate an option that uses the selected scheme's colors as input to generate a ColorScheme computed by the Material 3 based `ColorScheme` generation algorithms. We can also turn the opinionated component widget themes ON or OFF.
 
-Only code highlights might be shown below, the complete code for the example can
-be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3).
+Only code highlights might be shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3).
 
 ## ThemeServicePrefs
 
-The `main` start function of the app is very similar to example 2, but in this
-case we use another `ThemeService` implementation, the `ThemeServicePrefs`
-version, that will locally persist the theme selection options we make.
+The `main` start function of the app is very similar to example 2, but in this case we use another `ThemeService` implementation, the `ThemeServicePrefs` version, that will locally persist the theme selection options we make.
 
-The `ThemeServicePrefs` persistence is based on the popular package
-[SharedPreferences](https://pub.dev/packages/shared_preferences).
+The `ThemeServicePrefs` persistence is based on the popular package [SharedPreferences](https://pub.dev/packages/shared_preferences).
 
-We again use the `ThemeController`, which glues our theme settings to
-Flutter Widgets. The controller uses an abstract `ThemeService` interface to get
-and save the settings. There are 3 concrete implementations available that we
-can use in these examples.
+We again use the `ThemeController`, which glues our theme settings to Flutter Widgets. The controller uses an abstract `ThemeService` interface to get and save the settings. There are 3 concrete implementations available that we can use in these examples.
 
-  0. ThemeService      - Abstract interface base class.
-  1. ThemeServiceMem   - Only keeps settings in memory.
-  2. ThemeServicePrefs - Persist settings locally using SharedPreferences.
-  3. ThemeServiceHive  - Persist settings locally using Hive.
+0. ThemeService      - Abstract interface base class.
+1. ThemeServiceMem   - Only keeps settings in memory.
+2. ThemeServicePrefs - Persist settings locally using SharedPreferences.
+3. ThemeServiceHive  - Persist settings locally using Hive.
 
-  In this example we use the `ThemeServicePrefs` option. These examples are all
-  built using same **example** app. If we use SharedPreferences in more than one
-  of them, they would all use the same storage container and share the settings
-  when you build them locally. By using Hive for most examples, we can change
-  the storage container name for each example. In these demos the
-  SharedPreferences service is only used in this example. You can swap
-  in the Hive based one here as well, or SharedPreferences on the other ones
-  too, if you want to try it.
+In this example we use the `ThemeServicePrefs` option. These examples are all built using same **example** app. If we use SharedPreferences in more than one of them, they would all use the same storage container and share the settings when you build them locally. By using Hive for most examples, we can change the storage container name for each example. In these demos the SharedPreferences service is only used in this example. You can swap in the Hive based one here as well, or SharedPreferences on the other ones too, if you want to try it.
 
-  These tutorials are not about how to setup the used Flutter skeleton style
-  controller, or how to make the abstract service with three different
-  implementations. Still they do demonstrate with these examples
-  how one can easily swap the used persistence implementation. You can take
-  a peek at the source code of examples 2 to 5, to learn more about how it
-  is done in these examples.
+These tutorials are not about how to setup the used Flutter skeleton style controller, or how to make the abstract service with three different implementations. Still they do demonstrate with these examples how one can easily swap the used persistence implementation. You can take a peek at the source code of examples 2 to 5, to learn more about how it is done in these examples.
 
 ```dart
 Future<void> main() async {
@@ -66,10 +41,7 @@ Future<void> main() async {
 }
 ```
 
-In this example we use the theme controller to change the `themeMode` and to
-toggle opting in and out of FlexColorScheme's opinionated component sub-themes.
-We also use it to change a number of other settings the `ThemeController`
-provides.
+In this example we use the theme controller to change the `themeMode` and to toggle opting in and out of FlexColorScheme's opinionated component sub-themes. We also use it to change a number of other settings the `ThemeController` provides.
 
 ## Custom Colors
 
@@ -100,19 +72,9 @@ const FlexSchemeData _myFlexScheme = FlexSchemeData(
 
 ## Theme Setup
 
-The `AnimatedBuilder` and `MaterialApp` setup is as it was in the previous
-example. New in this example is that we set `surfaceMode` to
-`FlexSurfaceMode.highSurfaceLowScaffold`
-and `blendLevel` to 10. This gives us a higher primary color alpha blend level,
-on the theme's `ColorScheme` `surface` color than on its `background` color,
-while `scaffoldBackgroundColor` will use a much lower alpha blend than either
-of them.
+The `AnimatedBuilder` and `MaterialApp` setup is as it was in the previous example. New in this example is that we set `surfaceMode` to `FlexSurfaceMode.highSurfaceLowScaffold` and `blendLevel` to 10. This gives us a higher primary color alpha blend level, on the theme's `ColorScheme` `surface` color than on its `background` color, while `scaffoldBackgroundColor` will use a much lower alpha blend than either of them.
 
-In dark mode we decided to use the inverted `surfaceMode` blend to this, the
-`highScaffoldLowSurfaces`, where surface and background colors have a lower
-and same primary color alpha blend, in relation to the Scaffold background
-color. We also set the used blend level a bit higher in dark mode, to 12
-in this example.
+In dark mode we decided to use the inverted `surfaceMode` blend to this, the `highScaffoldLowSurfaces`, where surface and background colors have a lower and same primary color alpha blend, in relation to the Scaffold background color. We also set the used blend level a bit higher in dark mode, to 12 in this example.
 
 ```dart
 class DemoApp extends StatelessWidget {
@@ -188,16 +150,9 @@ Below we go through the above theme setup in more detail.
 
 ## Selecting Theme
 
-We select the used active theme for the app by using the theme controller's
-`usedScheme` property, that contains the value of currently selected
-`FlexScheme` enum. If it is the `custom` value, we use our custom scheme
-`_myFlexScheme` colors. If it is any other value, we get the corresponding
-colors from the `FlexColor.schemes` map, using the enum value as key.
+We select the used active theme for the app by using the theme controller's `usedScheme` property, that contains the value of currently selected `FlexScheme` enum. If it is the `custom` value, we use our custom scheme `_myFlexScheme` colors. If it is any other value, we get the corresponding colors from the `FlexColor.schemes` map, using the enum value as key.
 
-On the `HomePage` we have a Flutter SDK `ToggleButtons` based UI widget, that
-allows us the select one of the used 4 different `FlexScheme` enum values,
-it changes the `ThemeController` accordingly. The used enum values we can
-use are `hippieBlue`, `mallardGreen`, `outerSpace` and the `custom` option.
+On the `HomePage` we have a Flutter SDK `ToggleButtons` based UI widget, that allows us the select one of the used 4 different `FlexScheme` enum values, it changes the `ThemeController` accordingly. The used enum values we can use are `hippieBlue`, `mallardGreen`, `outerSpace` and the `custom` option.
 
 ```dart
 ListTile(
@@ -210,21 +165,13 @@ ListTile(
 ),
 ```
 
-The `ThemeSelectButtons` is a simple `StatelessWidget` using Flutter
-`ToggleButtons` to make an enum value based toggle selector, you can find
-it [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example3/widgets/theme_select_buttons.dart).
+The `ThemeSelectButtons` is a simple `StatelessWidget` using Flutter `ToggleButtons` to make an enum value based toggle selector, you can find it [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example3/widgets/theme_select_buttons.dart).
 
 ## Component Themes
 
-As in example 2 the `themeController` is also used to decide if we opt in or out on using
-the component sub-theming via `useSubThemes`. A simple on/off switch on the `HomePage`
-allows us to toggle its state between true and false, thus turning on or off
-the usage of FlexColorScheme's sub theming feature.
+As in example 2 the `themeController` is also used to decide if we opt in or out on using the component sub-theming via `useSubThemes`. A simple on/off switch on the `HomePage` allows us to toggle its state between true and false, thus turning on or off the usage of FlexColorScheme's sub theming feature.
 
-When the opt-in is true we pass in a default
-`FlexSubThemesData()` constructor, otherwise `null` to not use the
-sub themes at all. Later we will explore more options that we can configure with
-`FlexSubThemesData`
+When the opt-in is true we pass in a default `FlexSubThemesData()` constructor, otherwise `null` to not use the sub themes at all. Later we will explore more options that we can configure with `FlexSubThemesData`
 
 ```dart
   // Opt in/out on using FlexColorScheme sub-themes.
@@ -235,52 +182,29 @@ sub themes at all. Later we will explore more options that we can configure with
 
 ## Visual Density
 
-In this example we also use `FlexColorScheme.comfortablePlatformDensity` as
-`visualDensity` for our `ThemeData`, as a platform adaptive visual density
-setting for our theme. It is similar to the Flutter SDK
-`VisualDensity.adaptivePlatformDensity`.
+In this example we also use `FlexColorScheme.comfortablePlatformDensity` as `visualDensity` for our `ThemeData`, as a platform adaptive visual density setting for our theme. It is similar to the Flutter SDK `VisualDensity.adaptivePlatformDensity`.
 
 ```dart
   // Use FlexColorScheme static helper comfortablePlatformDensity.
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
 ```
 
-The difference is that it returns `comfortable` density on desktops,
-instead of `compact`, like the `VisualDensity.adaptivePlatformDensity` does.
-This setting can be a good compromise for desktop, especially if they have touch
-screens, since it keeps buttons and touch targets a bit larger than the Flutter
-offered `adaptivePlatformDensity` `compact` result on desktops, but
-not as large as on small hand held devices, that we get with `standard` if we
-do not define it at all.
+The difference is that it returns `comfortable` density on desktops, instead of `compact`, like the `VisualDensity.adaptivePlatformDensity` does. This setting can be a good compromise for desktop, especially if they have touch screens, since it keeps buttons and touch targets a bit larger than the Flutter offered `adaptivePlatformDensity` `compact` result on desktops, but not as large as on small hand held devices, that we get with `standard` if we do not define it at all.
 
 ## Key Colors
 
-Flutter 2.10 includes the option to use Material 3 based key color seed generated
-`ColorScheme`'s. FlexColorScheme version 5.0.0 and later, can do the same and
-much more. Flutter's seeded `ColorScheme`s are based on `ColorScheme.fromSeed`
-using a single **"main"** or primary input color as the seed color. With
-FlexColorScheme you can optionally use different key colors for the primary,
-secondary and tertiary generated `ColorScheme`'s tonal palettes.
+Flutter 2.10 includes the option to use Material 3 based key color seed generated `ColorScheme`'s. FlexColorScheme version 5.0.0 and later, can do the same and much more. Flutter's seeded `ColorScheme`s are based on `ColorScheme.fromSeed` using a single **"main"** or primary input color as the seed color. With FlexColorScheme you can optionally use different key colors for the primary, secondary and tertiary generated `ColorScheme`'s tonal palettes.
 
-To learn more about the **Tonal Palette** concept, please see the Material 3 color
-guide [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
-It is also explained and visualized in the Themes Playground
-[guide](/playground#tonal-palettes).
+To learn more about the **Tonal Palette** concept, please see the Material 3 color guide [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones). It is also explained and visualized in the Themes Playground [guide](/playground#tonal-palettes).
 
-Passing in a default `FlexKeyColors()` to `keyColors` activates
-Material 3 key color seed based schemes. The primary color in your active theme
-is always used as the main "primary" key for the generated `ColorScheme` when it
-is activated. This is the same as using the Flutter SDK `ColorScheme.fromSeed()`
-and giving it the primary color.
+Passing in a default `FlexKeyColors()` to `keyColors` activates Material 3 key color seed based schemes. The primary color in your active theme is always used as the main "primary" key for the generated `ColorScheme` when it is activated. This is the same as using the Flutter SDK `ColorScheme.fromSeed()` and giving it the primary color.
 
 ```dart
 // Generate ColorScheme from active theme's primary color.
 keyColors: FlexKeyColors(),
 ```
 
-Flutter SDK only makes seed `ColorScheme`s where the entire scheme is generated
-from only one input color. In FlexColorScheme, you can also use the secondary
-and tertiary colors, as input keys to seed their Tonal Palette colors.
+Flutter SDK only makes seed `ColorScheme`s where the entire scheme is generated from only one input color. In FlexColorScheme, you can also use the secondary and tertiary colors, as input keys to seed their Tonal Palette colors. 
 
 ```dart
 // Generate the ColorScheme from active theme's primary,
@@ -302,36 +226,17 @@ keyColors: FlexKeyColors(
 ),
 ```
 
-Where `themeController.useKeyColors`, `themeController.useSecondary` and
-`themeController.useTertiary` are `bool` values controlled by our `ThemeController`.
+Where `themeController.useKeyColors`, `themeController.useSecondary` and `themeController.useTertiary` are `bool` values controlled by our `ThemeController`.
 
-The first value is used on the convenience property `useKeyColors` in the `FlexKeyColors`.
-If it is set to false the entire `FlexKeyColors` setup is ignored.
-Alternatively, we could also pass in null to `keyColors` when it is false and
-then when it is true, the `FlexKeyColors` with its `useSecondary` and
-`useTertiary` values.
-However, this looks a bit cleaner and is more convenient if you want to toggle the
-usage. The `FlexKeyColors.useKeyColors` property is intended and included as a
-convenience property for making `FlexKeyColors` easier to toggle via user
-interfaces.
+The first value is used on the convenience property `useKeyColors` in the `FlexKeyColors`. If it is set to false the entire `FlexKeyColors` setup is ignored. Alternatively, we could also pass in null to `keyColors` when it is false and then when it is true, the `FlexKeyColors` with its `useSecondary` and `useTertiary` values. However, this looks a bit cleaner and is more convenient if you want to toggle the usage. The `FlexKeyColors.useKeyColors` property is intended and included as a convenience property for making `FlexKeyColors` easier to toggle via user interfaces.
 
-All three `themeController` values above are also again used as choices in a
-`ToggleButtons` UI control. In it we can select multiple options,
-but we always have to select at least the first choice before the other
-two become enabled. The `ToggleButtons` UI control is on on the `HomeScreen`
-and built as a simple stateless widget called `UseKeyColorsButtons`. In this case
-the `ToggleButtons` sets the above three boolean controller values. The
-`UseKeyColorsButtons` contains some minor logic for the inclusion/exclusion of
-valid choices. You can find the code for it
-[here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/widgets/app/use_key_colors_buttons.dart).
+All three `themeController` values above are also again used as choices in a `ToggleButtons` UI control. In it we can select multiple options, but we always have to select at least the first choice before the other two become enabled. The `ToggleButtons` UI control is on on the `HomeScreen` and built as a simple stateless widget called `UseKeyColorsButtons`. In this case the `ToggleButtons` sets the above three boolean controller values. The `UseKeyColorsButtons` contains some minor logic for the inclusion/exclusion of valid choices. You can find the code for it [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/widgets/app/use_key_colors_buttons.dart).
 
 ## Result
 
-When we build this application, we get an application where we can switch between
-four different themes.
+When we build this application, we get an application where we can switch between four different themes.
 
-Below are the four resulting themes with their light and dark modes, that we
-can select and use in this example.
+Below are the four resulting themes with their light and dark modes, that we can select and use in this example.
 
 <table>
   <tr>
@@ -369,31 +274,15 @@ Scroll down in the app to see the theme showcase further below. It presents the
 theme with common Material UI widgets. You can try this example as a Flutter
 [web app here](https://rydmike.com/flexcolorscheme/fourthemes-v5).
 
- ## Seeded ColorScheme
+## Seeded ColorScheme
 
-When key colors are used to generate Material 3 Tonal
-Palettes, the same key color(s) should in Material 3 color system design be used
-to generate the Tonal Palettes for both the light and dark mode theme.
+When key colors are used to generate Material 3 Tonal Palettes, the same key color(s) should in Material 3 color system design be used to generate the Tonal Palettes for both the light and dark mode theme.
 
-The `ColorScheme` then uses different "Tones" (shades) from the identical key color
-sourced Tonal Palettes to select appropriate tones for the light and dark mode
-from these palettes. In the Themes Playground [guide](/playground#tonal-palettes)
-we explore these basic concepts more and show visualizations of the Tonal Palettes.
+The `ColorScheme` then uses different "Tones" (shades) from the identical key color sourced Tonal Palettes to select appropriate tones for the light and dark mode from these palettes. In the Themes Playground [guide](/playground#tonal-palettes) we explore these basic concepts more and show visualizations of the Tonal Palettes.
 
-Below we compare the look of the Mallard green theme, using its theme as defined,
-versus using its colors as key colors to generate the ColorScheme from those
-colors. The result is usually very balanced and pleasing. However, if we look
-at the result when using only the primary color as key color, it is not at all the
-same ColorScheme as the original one. The result is the same result as creating
-the color scheme with `ColorScheme.fromSeed` and giving it the Mallard scheme's
-primary light theme mode color as input.
+Below we compare the look of the Mallard green theme, using its theme as defined, versus using its colors as key colors to generate the ColorScheme from those colors. The result is usually very balanced and pleasing. However, if we look at the result when using only the primary color as key color, it is not at all the same ColorScheme as the original one. The result is the same result as creating the color scheme with `ColorScheme.fromSeed` and giving it the Mallard scheme's primary light theme mode color as input.
 
-As we one by one turn on using also primary and tertiary colors as keys, we see
-that the result gets a bit closer to the original design intent. Still the
-colors are quite a bit different. In this example when secondary and tertiary are used
-as key colors, the Tonal Palette generation is using the chroma from these colors,
-but limited to same max values as the `ColorScheme.fromSeed` algorithm uses for
-its single seed color.
+As we one by one turn on using also primary and tertiary colors as keys, we see that the result gets a bit closer to the original design intent. Still the colors are quite a bit different. In this example when secondary and tertiary are used as key colors, the Tonal Palette generation is using the chroma from these colors, but limited to same max values as the `ColorScheme.fromSeed` algorithm uses for its single seed color.
 
 The comparison below show the Mallard green theme in light and dark mode, when using:
 
@@ -426,31 +315,10 @@ The comparison below show the Mallard green theme in light and dark mode, when u
   </tr>
  </table>
 
-The color math in the Material 3 Tonal Palette generation is very sophisticated,
-but in Flutter SDK little of it is exposed directly. FlexColorScheme opens up
-more of its capabilities via an easy to use API. This API also let's you change the
-key color chroma limits and even which tone is used for what for color in the resulting
-ColorScheme. This can make generated schemes more vivid or muted, the number of
-ways you can tune the Tonal Palette generation is almost limitless.
+The color math in the Material 3 Tonal Palette generation is very sophisticated, but in Flutter SDK little of it is exposed directly. FlexColorScheme opens up more of its capabilities via an easy to use API. This API also let's you change the key color chroma limits and even which tone is used for what for color in the resulting ColorScheme. This can make generated schemes more vivid or muted, the number of ways you can tune the Tonal Palette generation is almost limitless.
 
-This example keeps the primary color surface blend level at the same value for the
-seed generated ColorSchemes at the same level. Seed generated ColorSchemes already
-mix a bit of their primary color into the generate neutral tonal palettes, that is
-there already as a base when using surface blends with them. Their surface blend
-coloring gets a lot stronger at lower blend levels, since the mixing starts
-with a hint of the primary in the base surface colors already.
+This example keeps the primary color surface blend level at the same value for the seed generated ColorSchemes at the same level. Seed generated ColorSchemes already mix a bit of their primary color into the generate neutral tonal palettes, that is there already as a base when using surface blends with them. Their surface blend coloring gets a lot stronger at lower blend levels, since the mixing starts with a hint of the primary in the base surface colors already.
 
-FlexColorScheme primary color surface blends works well with seed generated
-ColorSchemes too, it is however often needed to reduce the blend strength.
-If you want the actual Material 3 default surface blends, then keep blend
-level at zero.
+FlexColorScheme primary color surface blends works well with seed generated ColorSchemes too, it is however often needed to reduce the blend strength. If you want the actual Material 3 default surface blends, then keep blend level at zero.
 
-The key color itself is seldom included as a color in the generated `ColorScheme`.
-This can be problematic if you want to use that specific color in your
-custom scheme for branding purposes. The `FlexKeyColors` configuration data
-class contains additional properties where you can instruct it to keep a color
-defined in FlexColorScheme at its defined input value. Set e.g.
-`keepPrimary: true` to ensure that the actual primary color you used to
-seed your color scheme, is also used as the primary color in the otherwise seed
-generated ColorScheme from the used color. In the next example we will
-explore this as well.
+The key color itself is seldom included as a color in the generated `ColorScheme`. This can be problematic if you want to use that specific color in your custom scheme for branding purposes. The `FlexKeyColors` configuration data class contains additional properties where you can instruct it to keep a color defined in FlexColorScheme at its defined input value. Set e.g. `keepPrimary: true` to ensure that the actual primary color you used to seed your color scheme, is also used as the primary color in the otherwise seed generated ColorScheme from the used color. In the next example we will explore this as well.

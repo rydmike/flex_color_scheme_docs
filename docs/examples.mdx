@@ -1,38 +1,25 @@
 # Example Applications
 
-FlexColorScheme comes bundled with seven different examples. A default example that is built
-if you build `main.dart` in the example lib folder.
+FlexColorScheme comes bundled with seven different examples. A default example that is built if you build `main.dart` in the example lib folder.
 
-The default example is a template that is heavily commented to guide
-you and encourage you to play around with different options in code, then use
-Flutter's hot reload feature and see the results at once.
+The default example is a template that is heavily commented to guide you and encourage you to play around with different options in code, then use Flutter's hot reload feature and see the results at once.
 
-The other five examples are a part of a tutorial path, with increasing
-complexity, that we walk through in the tutorial. It ends with the complete
-**Themes Playground** demo app included as example 5.
+The other five examples are a part of a tutorial path, with increasing complexity, that we walk through in the tutorial. It ends with the complete **Themes Playground** demo app included as example 5.
 
-The last example is a copy-paste template, that you can use to test copy-pasted
-theme setup code from the Themes Playground.
+The last example is a copy-paste template, that you can use to test copy-pasted theme setup code from the Themes Playground.
 
 ## Default Example - Hot Reload Playground
 
-A quick and simple way to try FlexColorScheme is to build the
-default example application. You can then use it as a hot reload playground to
-experiment with and test different theming and configuration options.
+A quick and simple way to try FlexColorScheme is to build the default example application. You can then use it as a hot reload playground to experiment with and test different theming and configuration options.
 
-To try the default **example** on a device or simulator,
-clone the [repository](https://github.com/rydmike/flex_color_scheme) and
-run the example:
+To try the default **example** on a device or simulator, clone the [repository](https://github.com/rydmike/flex_color_scheme) and run the example:
 
 ```bash
 cd example/
 flutter run
 ```
 
-The result is a demo app that uses the **Flutter Dash** color scheme,
-has a theme mode switch, includes theme colors presentation
-and Material widget samples. With these you can see the active color scheme's
-colors and the created theme's impact on common Material UI widgets.
+The result is a demo app that uses the **Flutter Dash** color scheme, has a theme mode switch, includes theme colors presentation and Material widget samples. With these you can see the active color scheme's colors and the created theme's impact on common Material UI widgets.
 
 <table>
   <tr>
@@ -49,10 +36,7 @@ colors and the created theme's impact on common Material UI widgets.
     </tr>
  </table>
 
-It is a fully loaded template, that uses a large number of available API options
-and thorough comments that explain what to change to produce different results. You
-could for example change the `_scheme` to `FlexScheme.blueWhale`, as shown below
-and hot reload it, to use it as its theme instead.
+It is a fully loaded template, that uses a large number of available API options and thorough comments that explain what to change to produce different results. You could for example change the `_scheme` to `FlexScheme.blueWhale`, as shown below and hot reload it, to use it as its theme instead.
 
 ```dart
 // To use a pre-defined color scheme, don't assign any FlexSchemeColor to
@@ -62,9 +46,7 @@ const FlexScheme _scheme = FlexScheme.blueWhale;
 
 ```
 
-There are many properties you can easily modify in the default example application. They are
-excessively commented in order to provide guidance for those that want to jump right
-in and start trying it out.
+There are many properties you can easily modify in the default example application. They are excessively commented in order to provide guidance for those that want to jump right in and start trying it out.
 
 <table>
   <tr>
@@ -81,17 +63,11 @@ in and start trying it out.
   </tr>
  </table>
 
-The results shown above were all produced by editing a few simple properties in the
-**Hot Reload Playground**.
+The results shown above were all produced by editing a few simple properties in the **Hot Reload Playground**.
 
 ### Theme Extensions
 
-In version 5.1.0 FlexColorScheme added direct support for theme extensions to its API. You use it the
-same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes
-a simple demonstration of how to use it. In this example it is only used to add a single extra theme color,
-that is used to give the heading a color based on this theme extension color. With theme extensions
-you can add as many colors and other theme properties as you need, and you can add multiple
-different ThemeExtension sub classes as well.
+In version 5.1.0 FlexColorScheme added direct support for theme extensions to its API. You use it the same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes a simple demonstration of how to use it. In this example it is only used to add a single extra theme color, that is used to give the heading a color based on this theme extension color. With theme extensions you can add as many colors and other theme properties as you need, and you can add multiple different ThemeExtension sub classes as well.
 
 ```dart
 /// A theme Extension example with a single custom brand color property.
@@ -158,13 +134,9 @@ Same is done with the `darkBrandTheme` color in `darkTheme` with `FlexThemeData.
 
 ## Building the Examples
 
-You can build the examples by using pre-configured launch and run config files for
-VS-Code (.vscode -> launch.json) and Android Studio/IntelliJ
-(.run -> *.xml files).
+You can build the examples by using pre-configured launch and run config files for VS-Code (.vscode -> launch.json) and Android Studio/IntelliJ (.run -> *.xml files).
 
-When you have cloned the package repo and opened the
-project in VS-Code or Android Studio/IntelliJ, the configurations below should be
-available. With them you can easily build all the examples.
+When you have cloned the package repo and opened the project in VS-Code or Android Studio/IntelliJ, the configurations below should be available. With them you can easily build all the examples.
 
 <Tabs
   defaultValue="intellij"
@@ -188,16 +160,11 @@ available. With them you can easily build all the examples.
 
 ## Live WEB Demos of the Examples
 
-If you want to take a quick look at all these tutorial example applications, you can see screenshots of
-them as phone builds below. Even better, try their live web versions by clicking on their
-respective example link below.
+If you want to take a quick look at all these tutorial example applications, you can see screenshots of them as phone builds below. Even better, try their live web versions by clicking on their respective example link below.
 
 ### 1) Basic Theme
 
-[**Example 1**](https://rydmike.com/flexcolorscheme/basictheme-v5) represents the simplest
-use case. To use one of the built-in color schemes as your application theme.
-You can toggle between its light and dark variant, or allow device system theme
-mode setting to control if the dark or light theme is used.
+[**Example 1**](https://rydmike.com/flexcolorscheme/basictheme-v5) represents the simplest use case. To use one of the built-in color schemes as your application theme. You can toggle between its light and dark variant, or allow device system theme mode setting to control if the dark or light theme is used.
 
 <table>
   <tr>
@@ -215,12 +182,7 @@ mode setting to control if the dark or light theme is used.
 
 ### 2) Custom Theme
 
-[**Example 2**](https://rydmike.com/flexcolorscheme/customtheme-v5) is like example 1,
-but we use custom colors to make a custom color scheme and turn it into a theme.
-The architecture is also more advanced, it uses the approach introduced with
-Flutter skeleton template, using a theme service and theme controller.
-Here we keep settings only in memory using the in memory `ThemeServiceMem`
-theme service.
+[**Example 2**](https://rydmike.com/flexcolorscheme/customtheme-v5) is like example 1, but we use custom colors to make a custom color scheme and turn it into a theme. The architecture is also more advanced, it uses the approach introduced with Flutter skeleton template, using a theme service and theme controller. Here we keep settings only in memory using the in memory `ThemeServiceMem` theme service.
 
 <table>
   <tr>
@@ -238,15 +200,9 @@ theme service.
 
 ### 3) Four Themes
 
-[**In example 3**](https://rydmike.com/flexcolorscheme/fourthemes-v5) we can toggle the
-active theme between 3 different predefined color schemes, plus the custom one
-we defined in example 2. We can also opt in and out of using FlexColorScheme's
-opinionated component sub-theming.
+[**In example 3**](https://rydmike.com/flexcolorscheme/fourthemes-v5) we can toggle the active theme between 3 different predefined color schemes, plus the custom one we defined in example 2. We can also opt in and out of using FlexColorScheme's opinionated component sub-theming.
 
-All the settings are persisted locally, using a theme service
-called `ThemeServicePrefs`. This service uses the package
-[SharedPreferences](https://pub.dev/packages/shared_preferences) to persist
-the theme settings locally as they are modified.
+All the settings are persisted locally, using a theme service called `ThemeServicePrefs`. This service uses the package [SharedPreferences](https://pub.dev/packages/shared_preferences) to persist the theme settings locally as they are modified.
 
 <table>
   <tr>
@@ -263,11 +219,7 @@ the theme settings locally as they are modified.
 
 ### 4) All Themes
 
-[**In example 4**](https://rydmike.com/flexcolorscheme/allthemes-v5) we can select any
-of the different built-in color schemes plus three custom ones, and
-use them as the application theme. In this example we persist the theme
-settings using a theme service called `ThemeServiceHive`. It persists the
-settings locally using a package called [Hive](https://pub.dev/packages/hive).
+[**In example 4**](https://rydmike.com/flexcolorscheme/allthemes-v5) we can select any of the different built-in color schemes plus three custom ones, and use them as the application theme. In this example we persist the theme settings using a theme service called `ThemeServiceHive`. It persists the settings locally using a package called [Hive](https://pub.dev/packages/hive).
 
 <table>
   <tr>
@@ -284,38 +236,17 @@ settings locally using a package called [Hive](https://pub.dev/packages/hive).
 
 ### 5) Themes Playground
 
-[**Example 5**](https://rydmike.com/flexcolorscheme/themesplayground-v5) is the last, and most
-complex of the examples. It contains almost all configuration and
-settings available in FlexColorScheme. You can modify them interactively
-and the application changes theme as you modify any setting.
+[**Example 5**](https://rydmike.com/flexcolorscheme/themesplayground-v5) is the last, and most complex of the examples. It contains almost all configuration and settings available in FlexColorScheme. You can modify them interactively and the application changes theme as you modify any setting.
 
-In this example we also persist the theme settings as you change any value
-and parameter in the app. This is done using the same theme service
-`ThemeServiceHive` that was used in example 4. The settings can also be reset
-back to their default values.
+In this example we also persist the theme settings as you change any value and parameter in the app. This is done using the same theme service `ThemeServiceHive` that was used in example 4. The settings can also be reset back to their default values.
 
-This example is best seen and tested on a tablet, desktop native or desktop
-web browser, rather than on a phone. The app certainly works well on a phone sized
-canvas too, it is using two different **very** responsive designs.
-It is however a bit challenging to get a good overview of all the theming
-possibilities and their impact on different
-widgets, while changing the settings on a phone. You can just not see
-so many different widgets the same time when you change theming property values.
+This example is best seen and tested on a tablet, desktop native or desktop web browser, rather than on a phone. The app certainly works well on a phone sized canvas too, it is using two different **very** responsive designs. It is however a bit challenging to get a good overview of all the theming possibilities and their impact on different widgets, while changing the settings on a phone. You can just not see so many different widgets the same time when you change theming property values.
 
-However, starting from version 5, the topic based swipe enabled page view is very
-nice on phones too and mostly gets around this issue. When used on a canvas about
-the size of a tablet in landscape it can even show you the code configuration
-in a side-by-side view on each topic page. You can then see how the setup and config
-code changes and updates, as you modify settings. This is quite fascinating and
-a very convenient way to study the API.
+However, starting from version 5, the topic based swipe enabled page view is very nice on phones too and mostly gets around this issue. When used on a canvas about the size of a tablet in landscape it can even show you the code configuration in a side-by-side view on each topic page. You can then see how the setup and config code changes and updates, as you modify settings. This is quite fascinating and a very convenient way to study the API.
 
-Originally this application was supposed to be only a slightly more complex example than example 4.
-However, it has since then grown into a complete companion application for FlexColorScheme.
+Originally this application was supposed to be only a slightly more complex example than example 4. However, it has since then grown into a complete companion application for FlexColorScheme.
 
-You can use the live web version to play with theme configurations as much as you like, with
-complete customization possibilities of almost every API FlexColorScheme offers. When you
-are done, you can copy the configuration setup code for it, and paste it into
-your application and start using the exact same theme that you configured in the Themes Playground.
+You can use the live web version to play with theme configurations as much as you like, with complete customization possibilities of almost every API FlexColorScheme offers. When you are done, you can copy the configuration setup code for it, and paste it into your application and start using the exact same theme that you configured in the Themes Playground.
 
 There is a separate chapter with more info and a guide on [how to use the Themes Playground](/playground).
 
@@ -337,20 +268,12 @@ There is a separate chapter with more info and a guide on [how to use the Themes
 
 [**Flexfold demo**](https://rydmike.com/demoflexfold)
 
-An already classic example of **FlexColorScheme** usage can be seen in the Flutter
-web [**Flexfold demo app**](https://rydmike.com/demoflexfold).
+An already classic example of **FlexColorScheme** usage can be seen in the Flutter web [**Flexfold demo app**](https://rydmike.com/demoflexfold).
 
 <img src="https://rydmike.com/assets/FoldTheme1.gif?raw=true" alt="Flexfold demo"/>
 
-The live version of the Flexfold demo is still using FlexColorScheme version 3.
-As can be seen it was very capable already back then. Example 5, the
-**Themes Playground** app now has many more options and offers considerably
-more advanced theming features than the Flexfold demo ever did.
+The live version of the Flexfold demo is still using FlexColorScheme version 3. As can be seen it was very capable already back then. Example 5, the **Themes Playground** app now has many more options and offers considerably more advanced theming features than the Flexfold demo ever did.
 
 ---
 
-I would love to feature a few select apps using FlexColorScheme here. If you
-have one and would allow and like me to include a mention and screenshot of it here. Then
-please drop me some screen shots first in the FlexColorScheme GitHub discussions
-[show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell)
-section, and we can take it from there.
+I would love to feature a few select apps using FlexColorScheme here. If you have one and would allow and like me to include a mention and screenshot of it here. Then please drop me some screen shots first in the FlexColorScheme GitHub discussions [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) section, and we can take it from there.

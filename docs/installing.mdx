@@ -1,11 +1,8 @@
 # Installing and Using
 
-The Flutter **FlexColorScheme** package is published on
-[pub.dev](https://pub.dev/packages/flex_color_scheme) and has its open source
-code in the GitHub [flex_color_scheme](https://github.com/rydmike/flex_color_scheme) repository.
+The Flutter **FlexColorScheme** package is published on [pub.dev](https://pub.dev/packages/flex_color_scheme) and has its open source code in the GitHub [flex_color_scheme](https://github.com/rydmike/flex_color_scheme) repository.
 
-To use FlexColorScheme in your **Flutter** project, add the following dependency
-to your project's `pubspec.yaml` file:
+To use FlexColorScheme in your **Flutter** project, add the following dependency to your project's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
@@ -18,39 +15,21 @@ Then import the library where needed in your Flutter project:
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 ```
 
-You can now start using `FlexColorScheme` based color schemes and theming
-in your application. A quick way to do so, is to try one of the **40** built-in
-color schemes. They have enum values that you can use to select
-which one to use as the theme of your application.
+You can now start using `FlexColorScheme` based color schemes and theming in your application. A quick way to do so, is to try one of the **40** built-in color schemes. They have enum values that you can use to select which one to use as the theme of your application.
 
-The package default example offers a commented code guide on how to use
-almost every property in FlexColorScheme. The [examples](/examples) chapter
-shows you how to try it, as well as the five [tutorial](/tutorial) examples.
+The package default example offers a commented code guide on how to use almost every property in FlexColorScheme. The [examples](/examples) chapter shows you how to try it, as well as the five [tutorial](/tutorial) examples.
 
 ## FlexColorScheme Counter App
 
-Let's first setup FlexColorScheme in the default Flutter counter app.
-Create a new Flutter project giving you the default counter app.
-Add the FlexColorScheme import, we then change one line of code, and add
-two lines, using these steps:
+Let's first setup FlexColorScheme in the default Flutter counter app. Create a new Flutter project giving you the default counter app. Add the FlexColorScheme import, we then change one line of code, and add two lines, using these steps:
 
-Here we use the **Oh Mandy red** color scheme, it is
-represented by `enum` value `FlexScheme.mandyRed`. Set
-the `MaterialApp.themeMode` to `ThemeMode.system` so that the device can
-control if the app uses its light or dark theme mode. You can toggle theme
-mode by changing theme mode on the device.
+Here we use the **Oh Mandy red** color scheme, it is represented by `enum` value `FlexScheme.mandyRed`. Set the `MaterialApp.themeMode` to `ThemeMode.system` so that the device can control if the app uses its light or dark theme mode. You can toggle theme mode by changing theme mode on the device.
 
-Assign `FlexThemeData.light` to the app's `theme` property, which is the
-application's light theme definition property, and `FlexThemeData.dark`
-to `darkTheme`.
+Assign `FlexThemeData.light` to the app's `theme` property, which is the application's light theme definition property, and `FlexThemeData.dark` to `darkTheme`.
 
-For both `FlexThemeData` dark and light we set the `scheme` property to
-`FlexScheme.mandyRed` to use the same **Oh Mandy red** predefined `scheme`
-colors in both theme modes. We then get matching light and dark themes based on
-the built-in scheme's color definitions.
+For both `FlexThemeData` dark and light we set the `scheme` property to `FlexScheme.mandyRed` to use the same **Oh Mandy red** predefined `scheme` colors in both theme modes. We then get matching light and dark themes based on the built-in scheme's color definitions.
 
-The three line modified `MaterialApp` of the Flutter default counter app
-becomes:
+The three line modified `MaterialApp` of the Flutter default counter app becomes:
 
 ```dart
 class MyApp extends StatelessWidget {
@@ -83,7 +62,4 @@ This gives us a counter application that looks like this:
   </tr>
 </table>
 
-Not as exciting as the images shown on the introduction page. That is because 
-the basic counter app uses very few features and widgets, thus it cannot show 
-the results. The included examples contain demo user interface code. This code
-is not relevant to using FlexColorScheme, it is only there to show the results.
+Not as exciting as the images shown on the introduction page. That is because the basic counter app uses very few features and widgets, thus it cannot show the results. The included examples contain demo user interface code. This code is not relevant to using FlexColorScheme, it is only there to show the results.

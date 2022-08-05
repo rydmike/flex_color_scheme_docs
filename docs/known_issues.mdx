@@ -1,86 +1,49 @@
 # Known Issues
 
-The chapter lists known issues. Currently all known issues impacting FlexColorScheme are rooted in
-Flutter SDK issues and cannot be fixed in the package. These issues are being tracked and status
-changes will be updated here.
+The chapter lists known issues. Currently all known issues impacting FlexColorScheme are rooted in Flutter SDK issues and cannot be fixed in the package. These issues are being tracked and status changes will be updated here.
 
 ## Flutter SDK: Switching Typography dynamically causes crash
 
 Switching Typography dynamically in Flutter SDK ThemeData is broken, see
-issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information.
-If it is done and the error ignored, an app doing so eventually become unstable.
+issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information. If it is done and the error ignored, an app doing so eventually become unstable.
 
-The Themes Playground app contains a workaround to
-avoid issue [#103864](https://github.com/flutter/flutter/issues/103864). The workaround
-is done by always using 2021 Typography, but simulating 2018 Typography. This is done by using
-a custom TextTheme that looks like 2018 Typography is used when using M2 theme mode. The
-Playground App actually always stays in 2021 Typography, but looks
-like it switches it. Which it does by applying a custom `TextTheme` in 2021 Typography, that looks
-like 2018 Typography is used. All other examples also avoid the issue by only using the
-M3 2021 Typography and not even mimicking a switch between M2 and M3 Typography.
+The Themes Playground app contains a workaround to avoid issue [#103864](https://github.com/flutter/flutter/issues/103864). The workaround is done by always using 2021 Typography, but simulating 2018 Typography. This is done by using a custom TextTheme that looks like 2018 Typography is used when using M2 theme mode. The Playground App actually always stays in 2021 Typography, but looks like it switches it. Which it does by applying a custom `TextTheme` in 2021 Typography, that looks like 2018 Typography is used. All other examples also avoid the issue by only using the M3 2021 Typography and not even mimicking a switch between M2 and M3 Typography.
 
-The above workaround is needed because the Playground app has toggles that switches Typography
-frequently, without the workaround it will eventually crash. With this workaround it never
-switches Typography, it just looks like it does, but app stays in 2021 Typography all the time.
-The by Themes Playground generated ThemeData config will use the actual real effective
-Typography. This is also fine, since an app using the theme will likely never switch used
-Typography. However, if it does, it will face the same issue the Playground app did. The issue
-is a Flutter SDK issue that FlexColorScheme cannot fix. Most likely 99% of apps will never run
-into this issue.
+The above workaround is needed because the Playground app has toggles that switches Typography frequently, without the workaround it will eventually crash. With this workaround it never switches Typography, it just looks like it does, but app stays in 2021 Typography all the time. The by Themes Playground generated ThemeData config will use the actual real effective Typography. This is also fine, since an app using the theme will likely never switch used Typography. However, if it does, it will face the same issue the Playground app did. The issue is a Flutter SDK issue that FlexColorScheme cannot fix. Most likely 99% of apps will never run into this issue.
 
 ## Flutter SDK: Elevation when opting in on useMaterial3
 
-In Flutter SDK 3.0.x, when opting in on `useMaterial3:true`, the `Material` widget and other SDK
-widgets built on it, gets no elevation when only the `elevation` property is defined. It is
-required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect.
-When using the `Material` widget itself this is easy to address. However, widgets like
-`Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`,
-`TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these
-`Material` properties and cannot be elevated.
+In Flutter SDK 3.0.x, when opting in on `useMaterial3:true`, the `Material` widget and other SDK widgets built on it, gets no elevation when only the `elevation` property is defined. It is required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect. When using the `Material` widget itself this is easy to address. However, widgets like `Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`, `TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these `Material` properties and cannot be elevated.
 
-The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190)
-and also mentioned in the `FlexColorScheme` repo here
-[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds
-for using elevation on these widgets when `useMaterial3` is true. The options are to not use
-M3, if such elevations are important to your app design. One working fix is to wrap those widgets
-in a theme where `useMaterial3` is false, then te rest of your app can still use it. This is
-however a rather tedious workaround fix. Due to current SDK `Material` elevation issues when
-`useMaterial3` is true, it is recommended to not use it yet.
+The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190) and also mentioned in the `FlexColorScheme` repo here
+[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3, if such elevations are important to your app design. One working fix is to wrap those widgets in a theme where `useMaterial3` is false, then te rest of your app can still use it. This is however a rather tedious workaround fix. Due to current SDK `Material` elevation issues when `useMaterial3` is true, it is recommended to not use it yet.
 
 ## Flutter SDK: AppBar icon theme not respected (Regression, master)
 
-This regression only aplies in master channel and impacts AppBar icon colors when using Material 3
-[#107305](https://github.com/flutter/flutter/issues/107305). It has not yet landed in stable
-channel Flutter 3.0.4, but if you use master channel it is something to be aware of.
+This regression only applies in master channel and impacts AppBar icon colors when using Material 3 [#107305](https://github.com/flutter/flutter/issues/107305). It has not yet landed in stable channel Flutter 3.0.4, but if you use master channel it is something to be aware of.
 
 ## Flutter SDK: Android System Navigation Bar
 
-Due to Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100027)
-"Using systemNavigationBarDividerColor changes statusBarIconBrightness and
-systemNavigationBarIconBrightness on Android 11". Two temporary
-changes were made to `FlexColorScheme.themedSystemNavigationBar`
-implementation:
+Due to Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100027) *"Using systemNavigationBarDividerColor changes statusBarIconBrightness and systemNavigationBarIconBrightness on Android 11"*. Two temporary changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
 
 * The divider feature is disabled until the issue has been resolved.
-* There is a temporary workaround implemented, it manages to keep system
-  icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
+* There is a temporary workaround implemented, it manages to keep system icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
 
 The temporary changes will be reverted when the fix for the Flutter issue
 has reached the stable channel.
 
 ## Flutter SDK: UnderlineInputBorder
 
-ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality
-operator and hashCode in Flutter SDK, it is missing the borderRadius property.
-Report not yet submitted to Flutter repo.
+ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality operator and hashCode in Flutter SDK, it is missing the borderRadius property. Report not yet submitted to Flutter repo.
 
-This can be seen in the **Themes Playground** app where changing the
-controller value borderRadius on the used `UnderlineInputBorder` property
-does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder,
-since the value change is not observed because the property is not included
-in the object equality. Equality remains true, even though one of its property
-values has changed. Deeper issue analysis, reproduction sample and submission
-as a Flutter bug still to be done.
+This can be seen in the **Themes Playground** app where changing the controller value borderRadius on the used `UnderlineInputBorder` property does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder, since the value change is not observed because the property is not included in the object equality. Equality remains true, even though one of its property values has changed. Deeper issue analysis, reproduction sample and submission as a Flutter bug still to be done.
+
+## Flutter SDK: Dark mode M2 elevation limitation.
+
+The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary colored surface and backgrounds, and the theme's `applyElevationOverlayColor: true` is true. This is caused
+by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
+
+Version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color is not really necessary.
 
 ## Found an issue?
 

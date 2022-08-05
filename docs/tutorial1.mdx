@@ -1,26 +1,16 @@
 # Tutorial
 
-In the tutorial we go through all the bundled examples and explain main
-used `FlexColorScheme` features in each example.
+In the tutorial we go through all the bundled examples and explain main used `FlexColorScheme` features in each example.
 
-The key part for each example is always in the used `MaterialApp`, where the
-`FlexColorScheme` setup for the light and dark themes are made. The rest of
-the content in the examples is mainly there to make a visual presentation of
-the resulting theme from the used color scheme, and to allow you to control
-theme settings interactively.
+The key part for each example is always in the used `MaterialApp`, where the `FlexColorScheme` setup for the light and dark themes are made. The rest of the content in the examples is mainly there to make a visual presentation of the resulting theme from the used color scheme, and to allow you to control theme settings interactively.
 
 ## 1) Basic Theme
 
-The first and simplest example shows how you can use a predefined color scheme
-in `FlexColorScheme` as your applications light and dark themes. It demonstrates
-how to turn it into `ThemeData` that is used by your application, and then
-switch between its light and dark theme modes.
+The first and simplest example shows how you can use a predefined color scheme in `FlexColorScheme` as your applications light and dark themes. It demonstrates how to turn it into `ThemeData` that is used by your application and then switch between its light and dark theme modes.
 
-A theme showcase widget shows the theme's effect on several common Material
-UI component widgets.
+A theme showcase widget shows the theme's effect on several common Material UI component widgets.
 
-Only code highlights might be shown below, the complete code for the example can
-be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1).
+Only code highlights might be shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1).
 
  ```dart
 void main() => runApp(const DemoApp());
@@ -75,36 +65,17 @@ class _DemoAppState extends State<DemoApp> {
 }
 ```
 
-To the `HomePage` we pass in the current value of the `themeMode` and use a
-simple callback to get back its changed value. We then use it to update
-`themeMode` in a standard `setState` to make the app rebuild using
-the new value. We also pass in the `FlexSchemeData` for the `usedScheme` we
-selected as our custom theme to the `HomePage`. Not really needed, but we use
-it on the home page to show the active theme's name, description and
-colors in a theme mode switch.
+To the `HomePage` we pass in the current value of the `themeMode` and use a simple callback to get back its changed value. We then use it to update `themeMode` in a standard `setState` to make the app rebuild using the new value. We also pass in the `FlexSchemeData` for the `usedScheme` we selected as our custom theme to the `HomePage`. Not really needed, but we use it on the home page to show the active theme's name, description and colors in a theme mode switch.
 
-The key part to notice above is that `FlexThemeData.light` and
-`FlexThemeData.dark` return a standard Flutter `ThemeData` object to your
-application's `MaterialApp` `theme` and `darkTheme` properties.
-The `ThemeData` content returned is however highly refined, can be extensively
-and quickly customized using a simple API, that creates very
-elaborate `ThemeData` objects.
+The key part to notice above is that `FlexThemeData.light` and `FlexThemeData.dark` return a standard Flutter `ThemeData` object to your application's `MaterialApp` `theme` and `darkTheme` properties. The `ThemeData` content returned is however highly refined, can be extensively and quickly customized using a simple API, that creates very elaborate `ThemeData` objects.
 
-This also puts limits on what `FlexColorScheme` can do, it can only modify
-your application's theme in ways that is supported by Flutter's `ThemeData`.
-This can also be reassuring, since you can be sure that all it does is help
-you define a fancy `ThemeData` object for your application, and that everything
-it does you can do directly with `ThemeData` too, it might just be very
-verbose and time consuming to do so.
+This also puts limits on what `FlexColorScheme` can do, it can only modify your application's theme in ways that is supported by Flutter's `ThemeData`. This can also be reassuring, since you can be sure that all it does is help you define a fancy `ThemeData` object for your application, and that everything it does you can do directly with `ThemeData` too, it might just be very verbose and time consuming to do so.
 
-Since `FlexColorScheme` at the end of the day returns a `ThemeData` object,
-you can also further modify and customize anything it has done, by
-using `ThemeData`'s own `copyWith` property.
+Since `FlexColorScheme` at the end of the day returns a `ThemeData` object, you can also further modify and customize anything it has done, by using `ThemeData`'s own `copyWith` property.
 
 ## Result
 
-When you build and run **example 1** you get an application that looks
-like this in light theme mode:
+When you build and run **example 1** you get an application that looks like this in light theme mode:
 
 <table>
   <tr>
@@ -134,6 +105,4 @@ like this in light theme mode:
   </tr>
  </table>
 
-Scroll down in the app to see the theme showcase further below. It presents the
-theme with common Material UI widgets. You can try this example as a Flutter
-[web app here](https://rydmike.com/flexcolorscheme/basictheme-v5).
+Scroll down in the app to see the theme showcase further below. It presents the theme with common Material UI widgets. You can try this example as a Flutter [web app here](https://rydmike.com/flexcolorscheme/basictheme-v5).
