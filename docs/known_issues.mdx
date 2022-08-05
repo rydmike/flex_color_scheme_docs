@@ -2,6 +2,10 @@
 
 The chapter lists known issues. Currently all known issues impacting FlexColorScheme are rooted in Flutter SDK issues and cannot be fixed in the package. These issues are being tracked and status changes will be updated here.
 
+## Found an issue?
+
+Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a question about FlexColorScheme and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
+
 ## Flutter SDK: Switching Typography dynamically causes crash
 
 Switching Typography dynamically in Flutter SDK ThemeData is broken, see
@@ -40,12 +44,6 @@ This can be seen in the **Themes Playground** app where changing the controller 
 
 ## Flutter SDK: Dark mode M2 elevation limitation.
 
-The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary colored surface and backgrounds, and the theme's `applyElevationOverlayColor: true` is true. This is caused
-by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
+The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
 
 Version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color is not really necessary.
-
-## Found an issue?
-
-Please open it as new issue in the project GitHub repo
-[here](https://github.com/rydmike/flex_color_scheme/issues).
