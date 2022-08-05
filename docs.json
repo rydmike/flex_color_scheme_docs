@@ -22,7 +22,8 @@
                 ["What's new?", "/whats_new"],
                 ["Migration guide","/migrating"],
                 ["Changelog","/changelog"],
-                ["Known issues", "/known_issues"]
+                ["Known issues", "/known_issues"],
+                ["Future features", "/future_features"]
             ]
         ],
         ["Getting Started",
