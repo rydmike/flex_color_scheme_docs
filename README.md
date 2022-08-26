@@ -1,6 +1,6 @@
 # flex_color_scheme_docs
 
-This is the documentation repository for the Flutter **FlexColorScheme** package found on
+Documentation repository for the Flutter **FlexColorScheme** package found on
 pub.dev [here](https://pub.dev/packages/flex_color_scheme) that has its public code repository is on
 GitHub [here](https://github.com/rydmike/flex_color_scheme).
 
