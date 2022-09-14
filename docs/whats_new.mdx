@@ -1,26 +1,25 @@
 # What Is New?
 
-This chapter features recent news and updates in **FlexColorScheme**. For more complete and older updates, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
+This chapter features recent news and updates in **FlexColorScheme**. For a more complete and older updates, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
-## Documentation
-
-This documentation site and its content was launched together with the package 5.0.0 release. It will be improved over time, concerning spelling, grammar, style and content. Improvement suggestions and corrections to the documentation are welcome contributions.
+This documentation site was launched together with version 5.0.0. It is constantly updated and improved. Suggestions and corrections to improve the documentation are welcome contributions.
 
 ## Version 6.0.0
 
-This is a **breaking** release. For a more complete list of all changes see [change log](https://pub.dev/packages/flex_color_scheme/versions/6.0.0/changelog). Generated [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) are available and up to date with version 6.
+This is a **breaking** release. For a complete list of all changes see [change log](https://pub.dev/packages/flex_color_scheme/versions/6.0.0/changelog). Generated [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) are available and up to date with version 6.
 
-This release **requires** at least Flutter 3.3.0 and Dart 2.18.0.
+This release **requires** at least Flutter 3.3.0 and Dart 2.18.0. It uses theming features in 
+Flutter SDK that do not exist in earlier versions.
 
 **BREAKING**
 
-* This **FlexColorScheme** version no longer directly depends on package  [Material Color Utilities package](https://pub.dev/packages/material_color_utilities), which is also used by Flutter SDK. Instead, it uses package [FlexSeedScheme](https://pub.dev/packages/flex_seed_scheme) that depends on it. As a part of this change classes `FlexTones`, `FlexTonalPalette` and `FlexCorePalette` where moved into the package **FlexSeedScheme**. FlexColorScheme still exports these classes. If you were using them directly before, you can still do so without adding the FlexSeedScheme package.
+* **FlexColorScheme** no longer directly depends on package [Material Color Utilities package](https://pub.dev/packages/material_color_utilities), which is also used by Flutter SDK. Instead, it uses package [FlexSeedScheme](https://pub.dev/packages/flex_seed_scheme) that depends on it. As a part of this change classes `FlexTones`, `FlexTonalPalette` and `FlexCorePalette` where moved into the package **FlexSeedScheme**. FlexColorScheme still exports these classes. If you were using them directly before, you can still do so without adding the FlexSeedScheme package.
   * In **FlexSeedScheme**, `FlexTones` contains a minor breaking change to make the API cleaner. The `FlexTones.light` and `FlexTones.dark` no longer produce the config for the Material 3 tone and chroma setup. They no longer lock the chroma values to the default values for M3, but use null in their configs for their chroma values. Resulting in that chroma from key colors will be used, as long as they are over set minimum values.
   * In **FlexSeedScheme** `FlexCorePalette.fromSeeds` properties `secondaryChroma` and `tertiaryChroma` now default to null instead of previous M3 palette default generating values 16 and 24 respectively. Set them to values 16 and 24 to create same tonal palettes as Material Color Utilities `CorePalette` and previous versions of `FlexCorePalette`.
   * To allow for greater flexibility and addition of tonal palette tones 5 (custom for FCS) and 98 (Google Material 3 Web theme builder app includes tone 98 to, but not Flutter SDK), `FlexCorePalette` no longer extends `CorePalette`, it is a modified re-implementation.
   * In **FlexSeedScheme** the `FlexTonalPalette` method `asList` and constructor `fromList`, now include the values of the error color in produced asList, and as required values in fromList.
 
-**BREAKING: STYLE CHANGES**
+**STYLE CHANGES**
 
 * Updated `ElevatedButton` to support `useMaterial3` defaults concerning its switched foreground and background color roles. It now also uses stadium border instead of 20dp, M3 size, padding and elevation defaults, when `useMaterial3` is opted in on. The switched color defaults compared to M2 is to make it compliant with M3 style by default. You can configure it back to M2 style in M3 mode if you so prefer by setting background color to `primary` and the foreground color to `surface` or `onPrimary`, for a more M2 styled `ElevatedButton`. Material 3 will also offer two new button styles, called `FilledButton` and `FilledButton.tonal`, which in their default color style are more like `ElevatedButton` in Material 2, but without elevation. These buttons are however not yet available in Flutter 3.3. When Flutter stable supports them, they will be added to FlexColorScheme as well.
 
@@ -46,9 +45,9 @@ This release **requires** at least Flutter 3.3.0 and Dart 2.18.0.
     - Use same error container color idea for FCS default that M3 uses, could be OK for all modes.
     - Option to use FCS component defaults on fill colors and disabled colors, also when opting in on M3. These FCS defaults can provide a nice alternative also when opting in on M3, but we should not force it on M3 unless asked for.
 
-**BREAKING: REMOVED EARLIER DEPRECATED MEMBERS**
+**BREAKING: REMOVED DEPRECATED MEMBERS**
 
-All previously deprecated members have been removed from version 6.0.0. FCS no longer has any self deprecated members. This removes a lot legacy backwards compatibility with deprecated members from versions 2, 3 and 4, and even one from version 5.1.0. The removed deprecated members are:
+All previously deprecated members have been removed from version 6.0.0. FCS no longer has any self deprecated members. This removes legacy backwards compatibility with deprecated members from versions 2, 3 and 4, and even one from version 5.1.0. The removed deprecated members are:
 
 * *FlexSubThemesData:*  
   `inputDecorationRadius`, `bottomNavigationBarSchemeColor`,
@@ -76,13 +75,13 @@ All previously deprecated members have been removed from version 6.0.0. FCS no l
 
 Updated to support Flutter 3.0.0, Dart 2.17 and latest Flutter package dependencies in example apps. Requires at least Flutter 3.0.0 and Dart 2.17.0.
 
-### New Features in v5.1.0
+**NEW FEATURES**
 
 * Added support for in Flutter 3.0.0 new `ColorScheme.surfaceTint` color. It is set to `ColorScheme.primary` color by default, as Flutter and Material 3 does. If a custom `surfaceTint` color is provided, it is also used as the blend color, instead of `primary` color, for FlexColorScheme's surface blend feature.
 
 * Added API for using Flutter 3.0.0 theme extensions directly via FlexColorScheme API. It was added as a convenience feature in order to avoid having to add theme extensions with a `copyWith` on FlexColorScheme produced ThemeData. With the `FlexColorScheme.extensions` and `FlexThemeData.extensions` properties you can add custom theme extensions directly.
 
-### Changes in v5.1.0
+**STYLE CHANGES**
 
 * Floating Action Button background color, will when opting in on `ThemeData.useMaterial3`, use color `theme.colorScheme.primaryContainer`, otherwise `theme.colorScheme.secondary` is used.
 
@@ -100,11 +99,9 @@ FlexColorScheme [Version 5](https://pub.dev/packages/flex_color_scheme/versions/
 
 Version 5 has many new advanced coloring features and fully supports Material 3 based color schemes, including seed key color generated color schemes. With more configuration options to generate the `ColorScheme` from key colors, compared to what is currently available in Flutter SDK. Version 5 also comes with many more convenient component sub-theming options compared to previous versions.
 
-The open source companion app, the [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5) has been completely revised. It now has two view modes, the previous large masonry grid and also a convenient topic based page view. In the new version you can also see the generated theme setup
-code as you change your theming settings.
+The open source companion app, the [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5) has been completely revised. It now has two view modes, the previous large masonry grid and also a convenient topic based page view. In the new version you can also see the generated theme setup code as you change your theming settings.
 
-This is a **breaking** release, with many new Material 3 ColorScheme features.
-See [change log](https://pub.dev/packages/flex_color_scheme/versions/5.0.0/changelog) for detailed change information. 
+This is a **breaking** release, with many new Material 3 ColorScheme features. See [change log](https://pub.dev/packages/flex_color_scheme/versions/5.0.0/changelog) for detailed change information. 
 
 The example apps have all been updated. New live web builds for v5 are available here:
 
@@ -125,7 +122,7 @@ where Flutter Dash explains all the new features in a dashing slide series.
 
 The slides in the tweet thread is using the Themes Playground app from the 5.0.0-dev.1 release. The release version 5 of the app is a lot fancier, but all the FlexColorScheme V5 features and principles are the same as in the above thread.
 
-### New v5.0.0 Themes
+### New V5 Themes
 
 There are of course new built-in color schemes in version 5. Four of them is by now the de-facto standard for major new releases. The new color schemes are:
 
@@ -167,7 +164,7 @@ There are of course new built-in color schemes in version 5. Four of them is by 
   </tr>
 </table>
 
-## New in Version 4
+## Version 4.0.0
 
 There are two major new features. The first one is that FlexColorScheme now comes with **opinionated widget sub themes** that you can opt in on. By default, these Flutter UI component widget sub-themes follow the [Material 3 guide](https://m3.material.io/). This is done as far as reasonably possible while still using standard Material 2 theming features available in Flutter 2.8. There is a Material 3 style TextTheme as well, and by default this text theme is also slightly color tinted using the color scheme's primary color. You can turn these styles on and off, based on your own preferences when you opt in on the sub themes.
 
