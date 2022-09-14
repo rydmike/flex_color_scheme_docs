@@ -241,21 +241,25 @@ By priming the `FlexColorScheme` customizable `ColorScheme` generation different
 
 To make a key color seed generated `ColorScheme` with FlexColorscheme, using its effective input `primary` color as seed key, pass in a default `FlexKeyColors()` to the `keyColors` property.
 
-With this default you get a computed `ColorScheme` that is identical to the one you would have gotten if you used ``ColorScheme.fromSeed` with the effective input `primary` color from your `FlexColorScheme`.
+With this default you get a computed `ColorScheme` that is identical to the one you would have gotten if you used `ColorScheme.fromSeed` with the effective input `primary` color from your `FlexColorScheme`.
 
 With `FlexKeyColors` you can also use the `secondary` and `tertiary` input colors in your `FlexColorScheme` as color keys, that are then used when generating the secondary and tertiary tonal palettes respectively. Please see the API documentation for more information about additional parameters in `FlexKeyColors`.
+
+Starting from version 6.0.0, FlexColorScheme no longer directly depends on package
+[Material Color Utilities package](https://pub.dev/packages/material_color_utilities), which
+is also used by Flutter SDK. Instead, it uses package [FlexSeedScheme](https://pub.dev/packages/flex_seed_scheme) that depends on it. As a part of this change classes `FlexTones`, `FlexTonalPalette` and `FlexCorePalette` where moved into the package **FlexSeedScheme**. FlexColorScheme still exports these classes. If you were using them directly before, you can still do so without adding the FlexSeedScheme package.
 
 API reference: [**FlexKeyColors**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexKeyColors-class.html)
 
 By specifying a `FlexTones()` configuration for `tones` in `FlexColorScheme` you can further adjust how the `ColorScheme` generation algorithm computes the primary, secondary and tertiary tonal palettes. The properties `Chroma` and `MinChroma`, prepended with, `primary`, `secondary` and `tertiary` for each tonal palette from corresponding key color, adjust how the algorithm uses the input colors when it generates the tonal palettes from the key colors.
 
 See API reference for details:
-* [**primaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/primaryChroma.html)
-* [**primaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/primaryMinChroma.html)
-* [**secondaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/secondaryChroma.html)
-* [**secondaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/secondaryMinChroma.html)
-* [**tertiaryChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryChroma.html)
-* [**tertiaryMinChroma**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/tertiaryMinChroma.html)
+* [**primaryChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/primaryChroma.html)
+* [**primaryMinChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/primaryMinChroma.html)
+* [**secondaryChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/secondaryChroma.html)
+* [**secondaryMinChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/secondaryMinChroma.html)
+* [**tertiaryChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/tertiaryChroma.html)
+* [**tertiaryMinChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/tertiaryMinChroma.html)
 
 You can also modify which tone in the generated tonal palettes is mapped to what `ColorScheme` color, within the limits that it only allows mapping tones from each tonal palette to the colors in the ColorScheme that in M# color system design use the tonal palette in question, but you can change used tone to be different from the Material 3 guide specification and values used in Flutter SDK.
 
@@ -266,14 +270,16 @@ There also predefined `FlexTones` configurations in addition to the default M3 g
 
 See API reference for more details on **FlexTones**:
 
-* Class [**FlexTones**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones-class.html)
-* Light mode default value factory [**FlexTones.light**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/FlexTones.light.html), default and same as Flutter SDK M3 setup for a light ColorScheme.
-* Dark mode default value factory [**FlexTones.dark**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/FlexTones.dark.html), default and same as Flutter SDK M3 setup for a dark ColorScheme.
-* Material 3 spec tones constructor [**FlexTones.material**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/material.html), default and same as Flutter SDK M3 setup.
-* Vivid tones constructor [**FlexTones.vivid**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/vivid.html), more vivid colors, or at least closer in chroma to used seed key color, as it uses chroma from all key colors as given.
-* Vivid surfaces tones constructor [**FlexTones.vividSurfaces**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/vividSurfaces.html), like vivid, but with double the chroma in each surface tonal palette.
-* Soft tones constructor [**FlexTones.soft**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/soft.html), softer and earthier tones than M3 FlexTones.material.
-* High contrast tones constructor [**FlexTones.highContrast**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones/highContrast.html), can be used for more color accessible themes, it offers more contrast between colors.
+* Class [**FlexTones**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones-class.html)
+* Light mode default value factory [**FlexTones.light**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.light.html), default and same as Flutter SDK M3 setup for a light ColorScheme.
+* Dark mode default value factory [**FlexTones.dark**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.dark.html), default and same as Flutter SDK M3 setup for a dark ColorScheme.
+* Material 3 spec tones constructor [**FlexTones.material**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.material.html), default and same as Flutter SDK M3 setup.
+* Vivid tones constructor [**FlexTones.vivid**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.vivid.html), more vivid colors, or at least closer in chroma to used seed key color, as it uses chroma from all key colors as given.
+* Vivid surfaces tones constructor [**FlexTones.vividSurfaces**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.vividSurfaces.html), like vivid, but with double the chroma in each surface tonal palette.
+* Soft tones constructor [**FlexTones.soft**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.soft.html), softer and earthier tones than M3 FlexTones.material.
+* High contrast tones constructor [**FlexTones.highContrast**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.highContrast.html), can be used for more color accessible themes, it offers more contrast between colors.
+* Ultra contrast tones constructor [**FlexTones.ultraContrast**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.ultraContrast.html), a tonal palette extraction setup that results in a very high contrast version of produced ColorsSchemes, it is less colorful and more focused a pure white or pure dark backgrounds and foreground colors.
+* Jolly tones constructor [**FlexTones.jolly**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.jolly.html), creates a tonal palette extraction setup that results in a more jolly and colorful ColorsSchemes.
 
 **Example: FlexColorScheme with keyColors and Tones**
 
