@@ -186,9 +186,9 @@ The `scheme` property prevents using the light scheme colors for the dark factor
 
 If you are making custom color schemes and would just like to re-use one or two color values from `FlexColorScheme` in a custom scheme, then all its color values are also conveniently available as const `Color` values. See `FlexColor` [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColor-class.html) for full details.
 
-## Why does FlexColorScheme not have perfect pub score?
+## Sometimes FlexColorScheme not have perfect pub score, why?
 
-Currently, FlexColorScheme has a perfect pub score, but it may at times be lower, typically 130/130 [score](https://pub.dev/packages/flex_color_scheme/score). This happens when it is being nice and documents self deprecated members and references them in doc comments. It may also internally use self deprecated members to provide a nicer transition using past deprecated members as fallbacks. This is done in cases where it is possible and makes sense to not unnecessarily break things, while transition you to newer APIs.
+Currently, FlexColorScheme has a perfect pub score, but it may at times be lower, typically 130/140 [score](https://pub.dev/packages/flex_color_scheme/score). This happens when it is being nice and documents self deprecated members and references them in doc comments. It may also internally use self deprecated members to provide a nicer transition using past deprecated members as fallbacks. This is done in cases where it is possible and makes sense to not unnecessarily break things, while transition you to newer APIs.
 
 In situations like this, if FlexColorScheme would document things more poorly, and not be nice with API transitions, but prefer to just totally break things, it would have a perfect pub score. The current pana analyzer used by pub.dev is a bit peculiar in this respect, it basically tells me it would be better to make things worse for you, I just prefer to not do that.
 
