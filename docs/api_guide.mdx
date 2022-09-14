@@ -484,3 +484,70 @@ API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/l
 You can also use these static component theme helpers without using FlexColorScheme to define custom components themes, or even without using FlexColorScheme at all. You can further modify the component theme helpers' produced results by using their `copyWith` method. 
 
 These helpers may sometimes be simpler to use than the raw component theme constructors. You can also study them to see how some component theme that interests you is defined.
+
+### Theme Extensions
+
+In version 5.1.0 FlexColorScheme added direct support for theme extensions to its API. You use it the same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes a simple demonstration of how to use it. In this example it is only used to add a single extra theme color, that is used to give the heading a color based on this theme extension color. With theme extensions you can add as many colors and other theme properties as you need, and you can add multiple different **ThemeExtension** subclasses as well.
+
+```dart
+/// A theme Extension example with a single custom brand color property.
+class BrandTheme extends ThemeExtension<BrandTheme> {
+  const BrandTheme({
+    this.brandColor,
+  });
+  final Color? brandColor;
+
+  // You must override the copyWith method.
+  @override
+  BrandTheme copyWith({
+    Color? brandColor,
+  }) =>
+      BrandTheme(
+        brandColor: brandColor ?? this.brandColor,
+      );
+
+  // You must override the lerp method.
+  @override
+  BrandTheme lerp(ThemeExtension<BrandTheme>? other, double t) {
+    if (other is! BrandTheme) {
+      return this;
+    }
+    return BrandTheme(
+      brandColor: Color.lerp(brandColor, other.brandColor, t),
+    );
+  }
+}
+
+// Custom const theme with our brand color in light mode.
+const BrandTheme lightBrandTheme = BrandTheme(
+  brandColor: Color.fromARGB(255, 8, 79, 71),
+);
+
+// Custom const theme with our brand color in dark mode.
+const BrandTheme darkBrandTheme = BrandTheme(
+  brandColor: Color.fromARGB(255, 167, 227, 218),
+);
+
+```
+
+The `lightBrandTheme` is then added to our light theme via `FlexThemeData.light`, like so:
+
+```dart
+class _DemoAppState extends State<DemoApp> {
+  ThemeMode themeMode = ThemeMode.system;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: FlexThemeData.light(
+        ...
+        // Add all our custom theme extensions, in this case we only have one.
+        extensions: <ThemeExtension<dynamic>>{
+          lightBrandTheme,
+        },
+      ),
+   ...
+   );
+```
+
+Same is done with the `darkBrandTheme` color in `darkTheme` with `FlexThemeData.dark`.
