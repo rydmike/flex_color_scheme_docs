@@ -2,7 +2,7 @@
 
 The **Copy Playground** is a simple template example suitable for testing themes that you copy-paste from the **Themes Playground**. It is intended to be used as a quick and simple app that you can use for experimenting with themes you configured in the Themes Playground and want to test on a device build.
 
-The source code for this template is available in the example sub folder, in folder [/example_copy_paste](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example_copy_paste).
+The source code for this template is available in the example sub folder, in folder [/example_copy_paste_from_playground](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example_copy_paste_from_playground).
 
 You can of course test with a plain vanilla counter app too, or any app where you want to try a theme. You may however find the **Copy Playground** helpful, since it includes presentation of all ColorScheme and Theme colors, as well as commonly used Flutter Material UI widgets. This makes it easy to see and verify that the theme looks as intended with a large number of UI elements.
 
@@ -18,7 +18,7 @@ We then turn ON FlexColorscheme and modify some settings, like border radius on 
 
 When we are done configuring our scheme, we **COPY** the generated setup code, and **PASTE** it into the **Copy Playground** app into the `MaterialApp` widget, making sure to comment or delete any existing `theme` and `darkTheme` definitions.
 
-If you are doing this in your own app you will need to first add the `flex_color_scheme` package to your application and import it. In the **Copy Playground** template this is already done. Even the Google fonts package is imported, so we can easily also use the same NotoSans font that the **Themes Playground** app uses. This is done in this demo just to create and exact match of the result on the mobile device.
+If you are doing this in your own app you will need to first add the `flex_color_scheme` package to your application and import it. In the **Copy Playground** template this is already done. Even the Google fonts package is imported, so we can easily also use the same **NotoSans** font that the **Themes Playground** app uses. This is done in this demo just to create and exact match of the result on the mobile device.
 
 When we hot-reload the **Copy Playground** app, we can see how it changes to use the theme we just configured in the **Themes Playground**, it is pretty magical. In the Playground we use the Widget Showcase to compare the colors and UI widget styles in the Themes Playground, and in the Copy Playground we can see and verify that they are the same.
 

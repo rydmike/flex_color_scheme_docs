@@ -28,7 +28,7 @@ The most common breaking style changes you may run into is that the `ElevatedBut
 
 ### FAB Usage of Global Border Radius
 
-The `FlexSubThemesData.fabUseShape` opinionated component theme style default was changed from `true` to `false`, this breaks previous default style where FAB also by default got border radius from the global FCS border radius setting. The opinionated style change was done to be able use a style that by default matches M3 style when `ThemeData.useMaterial3` is `true`. If you had kept `FlexSubThemesData.fabUseShape` unspecified and relied on default value in a previous version, you must set it to `true` to get the same result as before.
+The `FlexSubThemesData.fabUseShape` opinionated component theme style default was changed from `true` to `false`, this breaks previous default style where FAB also by default got border radius from the global FCS border radius setting. The opinionated style change was done to use a style that by default matches M3 style when `ThemeData.useMaterial3` is `true`. If you had kept `FlexSubThemesData.fabUseShape` unspecified and relied on default value in a previous version, you must set it to `true` to get the same result as before.
 
 ### New M3 Chip Styles
 
@@ -131,9 +131,9 @@ with version 5.0, and
 
 **Then**, in those cases the **variant** color properties will function as fallback input for color properties `primaryContainer` and `secondaryContainer` respectively, unless own color values for these properties are provided.
 
-Thus when you upgrade package version to 5.0.0 and have used custom color schemes, you will find your custom variant colors on the corresponding new container colors. Be aware though that past variant color shades are not necessarily a great fit for a Material 3 design intent of container colors, but at least you will get your past custom colors used in the new theme by default.
+When you upgrade package version to 5.0.0 and have used custom color schemes, you will find your custom variant colors on the corresponding new container colors. Be aware though that past variant color shades are not necessarily a great fit for a Material 3 design intent of container colors, but at least you will get your past custom colors used in the new theme by default.
 
-**Migration:** Define new custom colors values for all container colors and tertiary color. Use them to make your custom `FlexColorScheme` instead. Then migrate away from using Flutter SDK `ColorScheme` colors `primaryVariant` and `secondaryVariant` anywhere in your application. Instead use any of its new `ColorScheme` color properties as fitting with your design. This is something you have to do after Flutter 2.10, even if you are not using FlexColorScheme. Sure, not immediately, but eventually when the Flutter SDK `ColorScheme` colors `primaryVariant` and `secondaryVariant` are removed after a year or so.
+**Migration:** Define new custom colors values for all container colors and tertiary color. Use them to make your custom `FlexColorScheme` instead. Then migrate away from using Flutter SDK `ColorScheme` colors `primaryVariant` and `secondaryVariant` anywhere in your application. Prefer using its new `ColorScheme` color properties as fitting with your design. This is something you have to do after Flutter 2.10, even if you are not using FlexColorScheme. Sure, not immediately, but eventually when the Flutter SDK `ColorScheme` colors `primaryVariant` and `secondaryVariant` are removed after a year or so.
 
 ### Info: Built-in schemes
 

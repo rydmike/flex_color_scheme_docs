@@ -45,7 +45,7 @@ For this advanced use case, it is recommended to use FlexColorScheme with the fa
 
 When you make custom component themes, you often need access to the colors the main `ThemeData` is using and storing in its `colorScheme` property. This step gives you that before even creating the `ThemeData` object from your FlexColorScheme object. You can then pass the `ColorScheme` you got from `toScheme`, or just one or some of its color values, along to your methods that define your component theme data.
 
-You can turn your light and FlexColorScheme objects to `ThemeData` with its `toTheme` method, and add your sub themes with `copyWith` to this object in one definition, since they now use the same `ColorScheme` colors, that the `ThemeData` created with `toTheme` will get as as well.
+You can turn your light and FlexColorScheme objects to `ThemeData` with its `toTheme` method, and add your sub themes with `copyWith` to this object in one definition, since they now use the same `ColorScheme` colors, that the `ThemeData` created with `toTheme` will get as well.
 
 You can of course also create the FlexColorScheme `ThemeData` with the more frequently used `ThemeData` extensions `FlexThemeData.light` and `dark`, and get the `ColorScheme` object from the `ThemeData.colorScheme` property. Then use that `colorScheme` to create your sub-themes that need access to its color values. Finally, use `copyWith` to create a new `ThemeData` with your custom sub themes included. This is however one extra step and additional ThemeData object compared to the other approach.
 
@@ -72,7 +72,7 @@ a few of the component themes, but you can add them manually to any component th
 
 ## How do I modify the component themes with custom features?
 
-If you want to make modifications to a component theme that FlexColorScheme already created, **and** you want to keep some of the properties it defined, the steps are bit more involved than resetting it back to defaults.
+If you want to make modifications to a component theme that FlexColorScheme already created, **and** you want to keep some values it defined, the steps are a bit more involved than resetting it back to default values.
 
 To only override a few property values in a component theme created by FlexColorScheme, you will need to first create the `FlexColorScheme` based `ThemeData` object. Use the component theme from it that you want to add a modified copy of as input to the new `ThemeData`. In such a case you might as well use `FlexThemeData.light` and `dark` API, since there is no win in the steps by first creating the `FlexColorScheme` object. 
 
@@ -90,7 +90,7 @@ If you are not opting in on the opinionated component themes, then the component
 
 The changes made in the vanilla FlexColorScheme based `ThemeData` component themes are fairly small, but the above component themes are not null, like they are by default in Flutter SDK. You can read more about these changes `FlexColorScheme` makes in the [core defaults](/core_defaults) chapter.
 
-When you opt-in on using the opinionated component themes, the above component themes are typically further modified. Additionally, the following component themes are also no longer null, which they are in the vanilla core version:
+When you opt in on using the opinionated component themes, the above component themes are typically further modified. Additionally, the following component themes are also no longer null, which they are in the vanilla core version:
 
 - `ThemeData.bottomSheetTheme`
 - `ThemeData.cardTheme`
@@ -115,7 +115,7 @@ If you want to add custom component themes and keep the already existing modifie
 
 This is the same way that you would "modify" `ThemeData` when you create scoped ThemeData inside your app, and want it to fully inherit the parent's Theme, but with a few properties modified in some component theme only. In the Flutter documentation this is shown in [Cookbook > Design > Themes](https://docs.flutter.dev/cookbook/design/themes).
 
-This may sounds more complicated than it is. To make it easier to follow, here is an example of what it looks like. Say you want to modify shadow color of the `appBarTheme` in `ThemeData`, but you also want to keep all the other theme changes FlexColorScheme has introduced to it, like e.g. using surface color with a blend of primary as its background color, if you had chosen that mode for the `AppBar` theme. You can then add your shadow color to it like this:
+This sounds more complicated than it is. To make it easier to follow, here is an example of what it looks like. Say you want to modify shadow color of the `appBarTheme` in `ThemeData`, but you also want to keep all the other theme changes FlexColorScheme has introduced to it, like e.g. using surface color with a blend of primary as its background color, if you had chosen that mode for the `AppBar` theme. You can then add your shadow color to it like this:
 
 ```dart
 class MyApp extends StatelessWidget {
@@ -153,8 +153,8 @@ The purposes of **FlexColorScheme** package is to:
 * Quickly swap the primary and secondary color definitions, if you want to try your theme the other way around.
 * Theme the Android System navigation bar to match your app theme, and make it partially or totally transparent.
 * Provide seed color generated Material 3 color schemes, with more configuration and custom tuning possibilities than what is offered directly in Flutter SDK.
-* With default settings FlexColorScheme avoids making major changes to the component theme definitions, but in a few cases it is needed to fix things and to make some minor design changes. In the default produced ThemeData the changes are as few and subtle as possible, leaving the task of component theming up to you. However, when you opt-in on using its component themes, you get a more refined and opinionated look on widgets and used TextTheme. The defaults for the component themes are inspired by the new [Material 3 guide](https://m3.material.io/). Following it when it can easily be accomplished by using the still mostly Material 2 based more limited theming capabilities in Flutter. Full support for Material 3 widgets and themes is coming to Flutter soon. The progress can be followed [here](https://github.com/flutter/flutter/issues/91605).
-* FlexColorScheme also provides a way to make computed multi toned based themes, from just a single or a few light scheme colors as input. Even its dark scheme counterpart can be made from this single color definition. This is bit similar in concept to `ColorScheme.fromSeed` in Material 2, but it has been available since version 1.0 of FlexColorScheme. It is a simpler form of computational `ColorScheme` generation, not as advanced `ColorScheme.fromSeed`, but it comes with fewer color surprises.
+* With default settings FlexColorScheme avoids making major changes to the component theme definitions, but in a few cases it is needed to fix things and to make some minor design changes. In the default produced ThemeData the changes are as few and subtle as possible, leaving the task of component theming up to you. However, when you opt in on using its component themes, you get a more refined and opinionated look on widgets and used TextTheme. The defaults for the component themes are inspired by the new [Material 3 guide](https://m3.material.io/). Following it when it can easily be accomplished by using the still mostly Material 2 based more limited theming capabilities in Flutter. Full support for Material 3 widgets and themes is coming to Flutter soon. The progress can be followed [here](https://github.com/flutter/flutter/issues/91605).
+* FlexColorScheme also provides a way to make computed multi toned based themes, from just a single or a few light scheme colors as input. Even its dark scheme counterpart can be made from this single color definition. This is similar in concept to `ColorScheme.fromSeed` in Material 2. It has been available since version 1.0 of FlexColorScheme. It is a simpler form of computational `ColorScheme` generation, not as advanced `ColorScheme.fromSeed`, but it comes with fewer color surprises.
 * FlexColorScheme defines the full color set in the new Material 3 `ColorSchemes` and does not leave most of its values repeating the same color by many properties.
 * Enable you to click around and play with your theme design using the   [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5) and copy-paste the setup into your app.
 
@@ -169,7 +169,7 @@ All current color definition values are also included in the package tests. A fa
 
 ## Can we add my ColorScheme suggestion to FlexColorScheme?
 
-To keep things interesting, there will from time to time be new color schemes added to the package. If you have a beautiful color scheme with matching light and dark theme mode colors, that you think would be perfect to include, then please post a suggestion as a GitHub issue, or if you want to keep it less formal and discuss it, post in in the package [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/ideas).
+To keep things interesting, there will from time to time be new color schemes added to the package. If you have a beautiful color scheme with matching light and dark theme mode colors, that you think would be perfect to include, then please post a suggestion as a GitHub issue, or if you want to keep it less formal and discuss it, post it in the package [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/ideas).
 
 No promise is made about its eventual inclusion, but if it is a nice, unique, and overall a pretty color scheme, it will likely be included. Coming up with nice color schemes is trickier than it seems, suggestions and contributions to new ones are very welcome.
 
@@ -187,8 +187,8 @@ If you are making custom color schemes and would just like to re-use one or two 
 
 ## Why does FlexColorScheme not have perfect pub score?
 
-FlexColorScheme has a 120/130 [score](https://pub.dev/packages/flex_color_scheme/score), because it is being nice and documents self deprecated members and references them in doc comments. It also internally uses self deprecated members to provide a nicer transition using past deprecated members as fallbacks, in cases where it is possible and makes sense to not unnecessarily break things, while transition you to newer APIs.
+Currently, FlexColorScheme has a perfect pub score, but it may at times be lower, typically 130/130 [score](https://pub.dev/packages/flex_color_scheme/score). This happens when it is being nice and documents self deprecated members and references them in doc comments. It may also internally use self deprecated members to provide a nicer transition using past deprecated members as fallbacks. This is done in cases where it is possible and makes sense to not unnecessarily break things, while transition you to newer APIs.
 
-If it would document things more poorly, and not be nice with transitions, but prefer to just totally break things, it would have a perfect pub score. The current pana analyzer used by pub.dev is a bit peculiar in this respect, it tells me it would be better to make things worse for you, I just prefer to not do that.
+In situations like this, if FlexColorScheme would document things more poorly, and not be nice with API transitions, but prefer to just totally break things, it would have a perfect pub score. The current pana analyzer used by pub.dev is a bit peculiar in this respect, it basically tells me it would be better to make things worse for you, I just prefer to not do that.
 
-I did open an issue about pana analyzer's current behavior though [#1055](https://github.com/dart-lang/pana/issues/1055). A change [PR #1057](https://github.com/dart-lang/pana/pull/1057) to allow using self deprecated members without a score penalty is in the pipeline.
+I did open an issue about pana analyzer's current behavior though [#1055](https://github.com/dart-lang/pana/issues/1055). A change [PR #1057](https://github.com/dart-lang/pana/pull/1057) to allow using self deprecated members without a score penalty was in the works, but got closed without being merged.

@@ -2,15 +2,15 @@
 
 In this chapter we compare different ways to define and create a `ThemeData` object and look at the differences we get in effective colors in the theme. We examine 13 different ways, or roads to making a ThemeData object.
 
-1. **a)** ThemeData.light/dark() and **b)** ThemeData(brightness: Brightness.light/dark)
+1. **a.** ThemeData.light/dark, and **b.** ThemeData(brightness: Brightness.light/dark)
 2. ThemeData(primarySwatch: ...)
 3. ThemeData(colorScheme: ColorScheme.fromSwatch(...))
 4. ThemeData.from(colorScheme: ColorScheme.fromSwatch(...))
 5. ThemeData(colorScheme: ColorScheme(...))
 6. ThemeData.from(colorScheme: ColorScheme(...))
-7. ThemeData(colorSchemeSeed: Color(...)),
+7. ThemeData(colorSchemeSeed: Color(...))
 8. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color(...))),
-9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color(...))),
+9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color(...)))
 10. FlexThemeData.light/dark(colorScheme)
 11. FlexThemeData.light/dark(colorScheme, keyColors)
 12. FlexThemeData.light/dark(colorScheme, keyColors, subThemesData)
@@ -123,7 +123,7 @@ FlexColorScheme and FlexColorPicker both contain a helper that can create a `Mat
 
 <img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-c-swatch.png?raw=true" alt="Flex purple swatch"/>
 
-What does this custom `MaterialColor` look like? The `FlexColorPicker` in the **Themes Playground** app can show it to us. Copy the "M3 Baseline" theme to  the customizable theme and then tap the input primary color, having color value **0xff6750a4**. Tapping this this color will open the color picker where the wheel picker will draw a  **Material Color** swatch created using this color, using this same `createPrimarySwatch` function. Below it you will also see the primary tonal palette for the same input color.
+What does this custom `MaterialColor` look like? The `FlexColorPicker` in the **Themes Playground** app can show it to us. Copy the "M3 Baseline" theme to  the customizable theme and then tap the input primary color, having color value **0xff6750a4**. Tapping this color will open the color picker where the wheel picker will draw a  **Material Color** swatch created using this color, using this same `createPrimarySwatch` function. Below it, you will also see the primary tonal palette for the same input color.
 
 <img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-d-swatch-image.png?raw=true" alt="Swatch picker image"/>
 
@@ -147,7 +147,7 @@ We start with theme methods `ThemeData.light()` and `ThemeData.dark()`. These ar
   factory ThemeData.dark() => ThemeData(brightness: Brightness.dark);
 ```
 
-These shortcuts are in fact only marginally shorter than using the syntax used for what they return. It is a bit unclear why they even exits, but they do. They are not very practical when you make a `ThemeData` object, since you cannot define any other properties for them directly. You would have to apply all of them with `copyWith`, if we create our `ThemeData` like this:
+These shortcuts are in fact only marginally shorter than using the syntax used for what they return. It is a bit unclear why they even exit, but they do. They are not very practical when you make a `ThemeData` object, since you cannot define any other properties for them directly. You would have to apply all of them with `copyWith`, if we create our `ThemeData` like this:
 
 ```dart
 // 1a) TD.light
@@ -188,7 +188,7 @@ darkTheme: ThemeData(
 ),
 ```
 
-If we use the `Colors.blue` as input it will still be identical to 1a and 1b. All using our `flexSwatch` as input will give us, is a variation with a different color, but let's do it anyway so we can compare it later to its `ColorScheme` based versions.
+If we use the `Colors.blue` as input it will still be identical to 1a and 1b. All using our `flexSwatch` as input will give us, is a variation with a different color, but let's do it anyway, so we can compare it later to its `ColorScheme` based versions.
 
 ```dart
 // 2 flex) TD primarySwatch
@@ -300,7 +300,7 @@ Let's now compare and analyze the different results.
 
 **Why does `onBackground` get wrong color?**
 
-We can track the wrong `onBackground` from `ThemeData` and see that if we have not passed in a `colorScheme` to it, it will be created with `colorScheme ??= ColorScheme.fromSwatch` and in it we find the issue, which is explained in the commented Flutter SDK code below:
+We can track the wrong `onBackground` from `ThemeData` and see that if we have not passed in a `colorScheme` to it, it will be created with `colorScheme ??= ColorScheme.fromSwatch` and in it, we find the issue, which is explained in the commented Flutter SDK code below:
 
 ```dart
 // Create a color scheme from a [MaterialColor] swatch.
@@ -354,7 +354,7 @@ factory ColorScheme.fromSwatch({
 }
 ```
 
-What about the 4th option, in it we are using the recommended way of creating a `ThemeData`, by using `ThemeData.from` a `ColorScheme`.
+What about the 4th option, where we are using the recommended way of creating a `ThemeData`, by using `ThemeData.from` a `ColorScheme`.
 
 This sounds good in theory, but since we are making the `ColorScheme` using the broken or at least fidelity wise very poor `ColorScheme.fromSwatch` factory, we will have the same issue with the background's `onBackground` color in light mode.
 
@@ -406,7 +406,7 @@ Let's move on to using `ColorScheme` to make `ColorScheme` based themes as we sh
 
 ## Scheme Based
 
-Making `ThemeData` colors by defining a `ColorScheme` is the recommend way today. But there are many ways to make `ThemeData` with `ColorScheme` as well.
+Making `ThemeData` colors by defining a `ColorScheme` is the officially recommend way. But there are many ways to make `ThemeData` with `ColorScheme` as well.
 
 What are their differences? Let's take a closer look.
 
@@ -506,7 +506,7 @@ darkTheme: ThemeData.from(
 ),
 ```
 
-If all these options feel confusing, it is because because they are.
+If all these options feel confusing, it is because they are.
 
 To find out if any of it matters, let's look at the results from the above alternatives, excluding option 9, which we will look at in the next group of comparisons.
 
@@ -591,9 +591,9 @@ factory ThemeData.from({
 }
 ```
 
-We can that the factory sets the `accentColor`, `accentColorBrightness` and `primaryColorBrightness` in `ThemeData` from its `ColorScheme` colors.analyze These properties are all actually deprecated, unknown why they are still being set, since they not used by the SDK, but presumably to provide backwards compatibility values to apps using the properties.
+We can see that the factory sets the `accentColor`, `accentColorBrightness` and `primaryColorBrightness` in `ThemeData` from its `ColorScheme` colors. These properties are all actually deprecated, unknown why they are still being set, they are not used by the SDK, but presumably set to provide backwards compatibility values to apps using the properties.
 
-If we look further at the results, we see that in light theme mode we get got `colorScheme.secondary` on the `ThemeData.toggleableActiveColor`, but not in dark mode. Does this matter?
+If we look further at the results, we see that in light theme mode we got `colorScheme.secondary` on the `ThemeData.toggleableActiveColor`, but not in dark mode. Does this matter?
 
 Yes it does, because the `toggleableActiveColor` is still used as default theme color by on/off type UI switches and toggles. In dark theme mode that is now a teal color, so they will get a teal color that has nothing with our `ColorScheme`, unless we apply it a color from separately ourselves. But why did it get the `secondary` color in light theme mode and not in dark theme mode? After all it is not even assigned any value in `ThemeData.from`. This happens because `ThemeData` itself does this:
 
@@ -634,9 +634,10 @@ Today this is not needed, at least not for that reason anymore, newer version of
 
 I wrote a long analysis and review about these inconsistencies back in 2020. Back then, this peculiarity had already existed for about year. If you are curious, you can read about it in [issue 65782](https://github.com/flutter/flutter/issues/65782).
 
-Some of the reported observations in the issue have since been addressed, by the still on going `ThemeData` rework. While some parts, like the `primaryColorLight` and `primaryColorDark` are not even yet mentioned on the deprecation path, even though all other direct colors in `ThemeData`are. The `ThemeData` color rework progress is being tracked in this umbrella [issue 91772](https://github.com/flutter/flutter/issues/91772).
+Some observations in the issue have since been addressed, via the still on going `ThemeData` rework, tracked in this umbrella [issue 91772](https://github.com/flutter/flutter/issues/91772). 
+Other parts, like the `primaryColorLight` and `primaryColorDark` are quite new [additions via #110848](https://github.com/flutter/flutter/pull/110848) to the upcoming deprecations in same umbrella issue. 
 
-In any case, the road forward is clear and things will get more consistent out of the box once all the tasks in [issue 91772](https://github.com/flutter/flutter/issues/91772) are done and have landed in stable channel. As an example, `toggleableActiveColor` is being deprecated, see [PR 95870](https://github.com/flutter/flutter/pull/95870) channel, there is even a migration document prepared [here](https://docs.flutter.dev/release/breaking-changes/toggleable-active-color#migration-guide.). This is not yet in stable channel 2.10, but it might arrive in the next stable release.
+The road forward is clear and things will get more consistent out-of-the-box, once all the tasks in [issue 91772](https://github.com/flutter/flutter/issues/91772) are done and have landed in stable channel. As an example, `toggleableActiveColor` is being deprecated, see [PR 95870](https://github.com/flutter/flutter/pull/95870) channel, there is even a migration document prepared [here](https://docs.flutter.dev/release/breaking-changes/toggleable-active-color#migration-guide.). This is not yet in stable channel 2.10, but it might arrive in the next stable release.
 
 We are looking forward to the day when the entire `ThemeData` color confusion
 is cleaned up. Until then, we will see further below that **FlexColorScheme** can help you with the inconsistencies and give you a coherent color theme now and give an example on how you can work around it manually too.
@@ -658,7 +659,7 @@ Material 3 color system uses a new elevation color overlay algorithm that is not
 
 When working with elevation overlays in Material 2 it is important to know that it should be applied to dark Material surfaces that might get elevated. These surfaces might actually be using the `ColorScheme.surface` color, which may even be in the form of `ThemeData.cardColor` on the surface or `ColorScheme.background`, which again might be in the form of `ThemeData.canvasColor` this all depends on how the actual Material surface UI elements implements their default surface/background color, and they do vary. However, surfaces will only get an elevation overlay color if the color value is equal to the `ColorScheme.surface` color value. An implementation oversight perhaps, in the sense that it assumes they are all equal.
 
-When you are working with blended surfaces, where `surface` and `background` may differ, this matters. Typically with default Flutter SDK values, these  colors all share the same color value, so the issue won't be noticed. In **FlexColorScheme** they may be different. FlexColorScheme addresses this issue by mostly using `ColorScheme.surface` as the themed color for surfaces that will typically be elevated, like Card and Dialogs. Dialogs otherwise default to background in Flutter SDK default values.
+When you are working with blended surfaces, where `surface` and `background` may differ, this matters. Typically, with default Flutter SDK values, these colors all share the same color value, so the issue won't be noticed. In **FlexColorScheme** they may be different. FlexColorScheme addresses this issue by mostly using `ColorScheme.surface` as the themed color for surfaces that will typically be elevated, like Card and Dialogs. Dialogs otherwise default to background in Flutter SDK default values.
 
 If this is not enough, FlexColorScheme also offers blend modes where surface and background always get the same blend strength, keeping their color values identical. You can read more about this implementation oversight here in [issue #90353](https://github.com/flutter/flutter/issues/90353). Where it is analyzed and a solution proposed that would remedy it. It is unlikely to ever be addressed, so the best thing to do is to be aware of it, and design around it when so needed for the dark theme design.
 
@@ -690,7 +691,7 @@ Using `FlexColorScheme` with a custom `ColorScheme` as input, is possible and ve
 
 In this case we want to use the exact same input `ColorScheme` as before, so we can compare the results with the standard `ColorScheme` based `ThemeData` creation methods we used earlier.
 
-We can do that by using the same `ColorScheme` as input to `FlexColorScheme`. Thus we again use the `flexSchemeLight` and `flexSchemeDark` we defined earlier, but now in our `FlexColorScheme` setup:
+We can do that by using the same `ColorScheme` as input to `FlexColorScheme`. We again use the `flexSchemeLight` and `flexSchemeDark` we defined earlier, but now in our `FlexColorScheme` setup:
 
 ```dart
 // 10) FTD.light(colorScheme)
@@ -725,7 +726,7 @@ darkTheme: FlexThemeData.dark(
 ```
 ### 12) FTD.light(key sub)
 
-Finally we will enable the opinionated component sub-themes, however to not get stuck on the differences in border radius and shape of the FAB, and custom text theme, let's make it look like Material 2 for this comparison.
+Finally, we will enable the opinionated component sub-themes, however to not get stuck on the differences in border radius and shape of the FAB, and custom text theme, let's make it look like Material 2 for this comparison.
 
 ```dart
 // 12) FTD.light(key sub)
@@ -794,11 +795,11 @@ Let us now compare the Flutter SDK option 9) ThemeData.from(colorScheme: ColorSc
 
 ### 9 Analysis - ThemeData.from a ColorScheme.fromSeed
 
-This is the best result we will get with Flutter's current built-in theming. As with previous cases we get a `ThemeData` that is mostly well made from a `ColorScheme`, where the scheme is fine, but as before we do not get any scheme based color assignments on the `ThemeData` colors `primaryColorLight`, `primaryColorDark` and `secondaryHeaderColor` in light theme mode.
+This is the best result we will get with Flutter's current built-in theming. As with previous cases we get a `ThemeData` that is mostly well-made from a `ColorScheme`, where the scheme is fine, but as before we do not get any scheme based color assignments on the `ThemeData` colors `primaryColorLight`, `primaryColorDark` and `secondaryHeaderColor` in light theme mode.
 
 As can be seen `primaryColorLight`, `primaryColorDark` and `secondaryHeaderColor` are still the same blue in light theme mode, as when we used swatch colors, because in `ThemeData` they by default get colors from the swatch, that has not been assigned any value, so it in turn has defaulted to `Colors.blue` hence their blue shades.
 
-In dark theme mode, the peculiar grey-scales on `primaryColor`, `primaryColorLight`, `primaryColorDark` and `secondaryHeaderColor` prevail. As does the teal color on the `toggleableActiveColor`, instead of the `colorScheme.Secondary` that is should have in a `ColorScheme` based theme by default.
+In dark theme mode, the peculiar grey-scales on `primaryColor`, `primaryColorLight`, `primaryColorDark` and `secondaryHeaderColor` prevail. As does the teal color on the `toggleableActiveColor`, instead of the `colorScheme.secondary` that we should have in a `ColorScheme` based theme by default.
 
 If you use this theming method and plan to use the above colors, you may prefer to give the `ColorScheme` appropriate override values using `copyWith`.
 
@@ -832,7 +833,7 @@ This is an opinionated default that came when we enabled and opted-in on using `
 
 Many sub-themes have their own state theming that define the hover, disabled, ink etc. effects, when using the sub-themes, like e.g. all the Material buttons do, and even `ToggleButtons` does.
 
-The interaction and state effects colors in `ThemeData` are the default ones used by widgets when their own theme does not define them. These `ThemeData` colors are also on the previously mentioned deprecation path in Flutter. They will eventually be moved into a component theme, or several different component themes.
+The interaction and state effects colors in `ThemeData` are the default ones used by widgets when their own theme does not define them. These `ThemeData` colors are also on the previously mentioned deprecation path in Flutter. They will eventually be moved into a component theme, or several component themes, if so needed.
 
 ## Recommendation
 
@@ -842,13 +843,13 @@ How should we create our theme when using vanilla Flutter theming to get a moder
 
 As shown above, the simplest approach is to use the **`ThemeData.from`** factory, with whatever `ColorScheme` we have defined.
 
-The drawback with this methods is that not all colors in `ThemeData` will get colors matching our `ColorScheme`. Additionally we cannot define any component themes in the same theme definition, nor adjust any of the direct color properties in `ThemeData` that we may want to modify from their defaults where `ThemeData.from` leaves gaps. We can of course apply all of these using `copyWith`. When using `ThemeData.from` we should definitively do that.
+The drawback with this method is that not all colors in `ThemeData` will get colors matching our `ColorScheme`. Additionally, we cannot define any component themes in the same theme definition, nor adjust any of the direct color properties in `ThemeData` that we may want to modify from their defaults where `ThemeData.from` leaves gaps. We can of course apply all of these using `copyWith`. When using `ThemeData.from` we should definitively do that.
 
 ### ThemeData
 
 The second option is to just use the big `ThemeData` factory. This gives us access to all the properties in it, and we can set and define them as we please. As long as we are familiar with all its inner workings, this is fine and not so difficult. I recommend starting with a setup that replicates what the `ThemeData.from` factory does and adjusting it a bit to improve it by defining the `ThemeData` colors it ignores or sets in poor ways. 
 
-We can copy `ThemeData.from`, it is quite small, and make custom modified version of it to build our `ThemeData`. Let us make a separate version for our light a dark theme mode, again using our already defined `flexSchemeLight` and `flexSchemeLight` as input color schemes. By making separate setup for light and dark, we keep it simple and we easily define it a bit differently for our light and dark theme.
+We can copy `ThemeData.from`, it is quite small, and make custom modified version of it to build our `ThemeData`. Let us make a separate version for our light a dark theme mode, again using our already defined `flexSchemeLight` and `flexSchemeLight` as input color schemes. By making separate setup for light and dark, we keep it simple, and we can easily define it a bit differently for our light and dark theme.
 
 ```dart
 title: 'Custom ThemeData',
@@ -969,7 +970,7 @@ This kind of setup will ensure that all built-in widgets will get and use colors
 
 As the migration and deprecation of `ThemeData` colors in Flutter SDK progresses, the importance of doing this will become less important. However, in Flutter 2.10 stable and all previous versions, some widgets still depend e.g. on `primaryColorLight` and `primaryColorDark` as their default colors, for example `CircleAvatar`. If you don't give them `ColorScheme` derived values, the colors will use the default swatch theme based colors, and so will `CircleAvatar`.
 
-Currently setting colors on all the background and surface colors from your `ColorScheme`, in a similar manner to what `ThemeData.from` does, is very important. If you do not, you may get some background color defaults in dark theme that are not the ones from your `ColorScheme`.
+Setting colors on all the background and surface colors from your `ColorScheme`, in a similar manner to what `ThemeData.from` does, is still very important. If you do not, you may get some background color defaults in dark theme that are not the ones from your `ColorScheme`.
 
 For the background and surface colors to be nice in both light and dark mode, it of course requires that your `ColorScheme` uses correct background colors and onColors. Use the built-in `ColorScheme.light` and `ColorScheme.dark` factories for that, or even a `ColorScheme.fromSeed` as a base, and define your custom colors in them as needed to make your custom light and dark `ColorScheme`.
 

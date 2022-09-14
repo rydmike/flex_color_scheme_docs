@@ -1,8 +1,8 @@
 # Example Applications
 
-FlexColorScheme comes bundled with seven different examples. A default example that is built if you build `main.dart` in the example lib folder.
+FlexColorScheme comes bundled with seven different examples. A **default example** that is built if you build `main.dart` in the example lib folder.
 
-The default example is a template that is heavily commented to guide you and encourage you to play around with different options in code, then use Flutter's hot reload feature and see the results at once.
+The *default example** is a template that is heavily commented to guide you and encourage you to play around with different options using the **FlexColorScheme** API, then use Flutter's hot reload feature and see the results at once.
 
 The other five examples are a part of a tutorial path, with increasing complexity, we walk through in the tutorial. It ends with the complete **Themes Playground** app included as example 5.
 
@@ -67,7 +67,7 @@ The results shown above were all produced by editing a few simple properties in 
 
 ### Theme Extensions
 
-In version 5.1.0 FlexColorScheme added direct support for theme extensions to its API. You use it the same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes a simple demonstration of how to use it. In this example it is only used to add a single extra theme color, that is used to give the heading a color based on this theme extension color. With theme extensions you can add as many colors and other theme properties as you need, and you can add multiple different ThemeExtension sub classes as well.
+In version 5.1.0 FlexColorScheme added direct support for theme extensions to its API. You use it the same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes a simple demonstration of how to use it. In this example it is only used to add a single extra theme color, that is used to give the heading a color based on this theme extension color. With theme extensions you can add as many colors and other theme properties as you need, and you can add multiple different **ThemeExtension** subclasses as well.
 
 ```dart
 /// A theme Extension example with a single custom brand color property.
@@ -136,7 +136,7 @@ Same is done with the `darkBrandTheme` color in `darkTheme` with `FlexThemeData.
 
 You can build the examples by using pre-configured launch and run config files for VS-Code (.vscode -> launch.json) and Android Studio/IntelliJ (.run -> *.xml files).
 
-When you have cloned the package repo and opened the project in VS-Code or Android Studio/IntelliJ, the configurations below should be available. With them you can easily build all the examples.
+When you have cloned the package repo and opened the project in VS-Code or Android Studio/IntelliJ, the configurations below should be available. With them, you can easily build all the examples.
 
 <Tabs
   defaultValue="intellij"
@@ -240,9 +240,9 @@ All the settings are persisted locally, using a theme service called `ThemeServi
 
 In this example we also persist the theme settings as you change any value and parameter in the app. This is done using the same theme service `ThemeServiceHive` that was used in example 4. The settings can also be reset back to their default values.
 
-This example is best seen and tested on a tablet, desktop native or desktop web browser, rather than on a phone. The app certainly works well on a phone sized canvas too, it is using two different **very** responsive designs. It is however a bit challenging to get a good overview of all the theming possibilities and their impact on different widgets, while changing the settings on a phone. You can just not see so many different widgets the same time when you change theming property values.
+This example is best seen and tested on a tablet, desktop native or desktop web browser, rather than on a phone. The app certainly works well on a phone sized canvas too, it is using two different **very** responsive designs. It is however a bit challenging to get a good overview of all the theming possibilities and their impact on different widgets on a phone, since you see only a few widgets at the same time when you change the theme.
 
-However, starting from version 5, the topic based swipe enabled page view is very nice on phones too and mostly gets around this issue. When used on a canvas about the size of a tablet in landscape it can even show you the code configuration in a side-by-side view on each topic page. You can then see how the setup and config code changes and updates, as you modify settings. This is quite fascinating and a very convenient way to study the API.
+Starting from version 5, the topic based swipe enabled page view is very nice on phones too, and mostly gets around this issue. When used on a canvas about the size of a tablet in landscape it can even show you the code configuration in a side-by-side view on each topic page. You can then see how the setup and config code changes and updates, as you modify settings. This is quite fascinating and a very convenient way to study the API.
 
 Originally this application was supposed to be only a slightly more complex example than example 4. However, it has since then grown into a complete companion application for FlexColorScheme.
 
@@ -276,4 +276,4 @@ The live version of the Flexfold demo is still using FlexColorScheme version 3. 
 
 ---
 
-I would love to feature a few select apps using FlexColorScheme here. If you have one and would allow and like me to include a mention and screenshot of it here. Then please drop me some screen shots first in the FlexColorScheme GitHub discussions [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) section, and we can take it from there.
+I would love to feature a few select apps using FlexColorScheme here. If you have one and would allow and like me to include a mention and screenshot of it here. Then please drop me some screenshots first in the FlexColorScheme GitHub discussions [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) section, and we can take it from there.

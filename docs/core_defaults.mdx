@@ -312,22 +312,22 @@ The following lists the differences, compared to the standard `ThemeData.from` f
   used to make the AppBar one-toned on Android devices, like on iOS devices.
   Set it to `false` if you want to restore the default Android two toned design.
 
-## Optional Component Themes
+## Component Themes
 
 FlexColorScheme also offers highly opinionated widget component themes that enables you to get more heavily styled and themed widgets automatically. You can customize these styles further via [FlexSubThemesData](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData-class.html).
 
 These component themes are as stated **opinionated** design choices. You may or may not like them. They can be modified and tuned, some of them only a bit, while others offer quite extensive quick configuration options. The intent
 is to keep the component themes visual results consistent from version to version. However, changes in the SDK and supporting new features may require minor style breaking changes to them from time to time.
 
-The defaults for these mostly still Flutter Material 2 based using component themes, draw inspiration from Material 3. Their are inspired by the [Material 3 Design Guide](https://m3.material.io/), within reasonable limits of current Flutter Material 2 based theming capabilities.
+In Material 2 mode, the defaults for these component themes, draw inspiration from Material 3. They are inspired by the [Material 3 Design Guide](https://m3.material.io/), within reasonable limits of current Flutter Material 2 based theming capabilities. When you enable opinionated component themes and keep using Material 2, you get a design that is quite similar to Material 2, without actually committing to using Material 2.
 
-The component themes will be modified and extended when Material 3 features reaches Flutter stable channel, to use actual Material 3 implementations in Flutter. Since Material 3 will eventually become the new normal, FlexColorScheme component themes will potentially make some opinionated design choices concerning them in future versions, this remains to be seen.
+The component themes are modified and extended as Material 3 features reaches Flutter stable channel, to use actual Material 3 implementations in Flutter when opting in on using Material 3, and enabling the FlexColorScheme component themes. Since Material 3 will eventually become the new normal, FlexColorScheme component themes does make some opinionated design choices concerning them as well. So far they are very minor.
 
 To enable the optional component theming feature in `FlexColorScheme`, pass in a default `FlexSubThemesData()` to its `subThemesData` property. This gives you the `FlexColorScheme` default opinionated component theme setup. Naturally `FlexColorScheme` would not be "flex" if the [`FlexSubThemesData`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData-class.html) data class did not also contain many optional quick configuration parameters for the opinionated component themes.
 
 The list of properties in the configuration class has grown very large. While it can be a bit tricky to maintain it, using it is easy and quite a convenient way to adjust commonly used properties on UI component widget themes using simple "flat" property values. No need for deep `ShapeBorder` definitions on every component theme for a simple border radius change, nor for the complex `MaterialState` properties. At least not as long as choices and offered flat config options covers what you need.
 
-A common use case for `FlexSubThemes` is easy to use customization of default border radius on **all** Flutter UI components and elements that supports border radius either via [ShapeBorder] or [BorderRadiusGeometry]. This is be done with a single property, the [`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).
+A common use case for `FlexSubThemes` is easy to use customization of default border radius on **all** Flutter UI components and elements that supports border radius either via [ShapeBorder] or [BorderRadiusGeometry]. This can be done with a single property, [`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).
 
 When you opt in on using the component themes, the `FlexColorScheme.toTheme` method uses the passed in `FlexSubThemesData` configuration data object, passed in via `FlexColorScheme.subThemesData`, to create the component themes.
 
@@ -366,26 +366,13 @@ In `ToggleButtons` hover, press, selected and focus states are not an exact matc
 
 The theme `ButtonThemeData` (deprecated in version 5.1.0) is still included to provide a very similar theme style on the deprecated and partially SDK removed legacy buttons `RaisedButton`, `OutlineButton` and `FlatButton` as on the current main buttons. It is not an exact match, since the legacy buttons do not offer as flexible styling as the newer buttons. The legacy button theme follows and match the styling on `ToggleButtons` when it comes to hover, press, selected and focus. Please consider phasing out the legacy buttons, as they are deprecated and will be removed from the Flutter SDK in next stable release. Their theme, the `ButtonThemeData` will also soon be deprecated and later removed in Flutter.
 
-The following widgets have rounded corners, but are excluded from the
-component border radius theming for now:
+The following widgets have rounded corners, but are excluded from the component border radius theming for now:
 
-* `Tooltip`, generally so small that larger prominent rounding the
-  opinionated sub-theming is designed for, is not a good fit.
-  FlexColorScheme does include out of the box theming options for tooltips,
-  that also adapts to color branding when opting in on sub themes,
-  it also gets a bit more rounded when opting in.
+* `Tooltip`, generally so small that larger prominent rounding the opinionated sub-theming is designed for, is not a good fit. FlexColorScheme does include out of the box theming options for tooltips, that also adapts to color branding when opting in on sub themes, it also gets a bit more rounded when opting in.
 * `Scrollbar`, rounding on edges of scrollbars are left to platform default.
 * The `AppBar` and `BottomAppBar` shape properties are left to their defaults.
-* `SnackBar` the floating SnackBar should be themed to also include
-  border radius, but the none floating one should remain
+* `SnackBar` the floating SnackBar should be themed to also include border radius, but the none floating one should remain
   straight. This cannot can be done via current theming features.
-* `Drawer` should have have rounding on shown side edge, it is in recent
-  version possible to assign a Shape in the drawer theme. But
-  Drawer uses same theme, when used as Drawer and EndDrawer and the rounding
-  should be on end edge on Drawer and start edge in EndDrawer. It seem we
-  cannot do this without having two Shapes in its theme or other usage
-  behavior modifying it. A default behavior in SDK can implement it by looking
-  up if Drawer is being used in Scaffold as Drawer or EndDrawer, but support
-  via theme is needed too.
+* `Drawer` should have rounding on shown side edge, it is in recent version possible to assign a Shape in the drawer theme. But Drawer uses same theme, when used as Drawer and EndDrawer and the rounding should be on end edge on Drawer and start edge in EndDrawer. It seems we cannot do this without having two Shapes in its theme or other usage behavior modifying it. A default behavior in SDK can implement it by looking up if Drawer is being used in Scaffold as Drawer or EndDrawer, but support via theme is needed too.
 
 You can find more information about available component theme helpers in the [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes-class.html). You can as mentioned in the API guide also use these static sub-theme helpers to manually define widget sub-theme, and even further modify them using their `copyWith` methods.

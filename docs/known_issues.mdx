@@ -1,10 +1,10 @@
 # Known Issues
 
-The chapter lists known issues. Currently all known issues impacting FlexColorScheme are rooted in Flutter SDK issues and cannot be fixed in the package. These issues are being tracked and status changes will be updated here.
+The chapter lists known issues. Currently, all known issues impacting FlexColorScheme are rooted in Flutter SDK issues and cannot be fixed in the package. All known issues are being tracked, and status changes will be updated below.
 
 ## Found an issue?
 
-Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a question about FlexColorScheme and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
+Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a **question about FlexColorScheme** and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
 
 ## Flutter SDK: Switching Typography dynamically causes crash
 
@@ -30,7 +30,7 @@ This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the 
 
 Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are ignored when `useMaterial3` is true. This was not seen in Flutter stable 3.0.5, but is now in 3.3.0. See issue[#107305](https://github.com/flutter/flutter/issues/107305), that was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) in master. The fix did not land in Flutter 3.3.0, as mentioned in issue [#110878](https://github.com/flutter/flutter/issues/110878), so this issue regressed into stable 3.3 release, even though it was fixed in master 28 days before stable 3.3 release.
 
-## Flutter SDK: Cannot set foreground color on SliverAppBar.medium and SliverAppBar.large 
+## Flutter SDK: Cannot set foreground color on SliverAppBar medium and large 
 
 When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not used by the app bar, see issue[#110951](https://github.com/flutter/flutter/issues/110951).
 

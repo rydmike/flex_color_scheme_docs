@@ -4,11 +4,11 @@ This example shows how you can use all the built-in color schemes, add three cus
 
 The example also uses primary color blending on background and surface colors. A subpage is available that shows the same theme applied when opening another page, that in Flutter just inherits the same theme.
 
-Additionally we can activate an option that uses the selected scheme's colors, as input to generate a ColorScheme computed by the Material 3 ColorScheme generation tools. In example 3 we mentioned it being possible to keep primary, secondary and tertiary colors as defined by their inputs, while other are generated. In this example we do can interactively toggle these settings and observe the differences.
+We can activate an option that uses the selected scheme's colors, as input to generate a ColorScheme computed by the Material 3 ColorScheme generation tools. In example 3 we mentioned it being possible to keep primary, secondary and tertiary colors as defined by their inputs, while other are generated. In this example we do can interactively toggle these settings and observe the differences.
 
 As before, we can also turn the opinionated component widget themes ON or OFF. When it is ON, we can now also adjust the border radius on all component themes with one single setting.
 
-Only code highlights are shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example4).
+Only code highlights are shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example4_all_themes).
 
 ## ThemeServiceHive
 
@@ -45,7 +45,7 @@ runApp(DemoApp(themeController: themeController));
 
 Instead of having our final and const color scheme definition values in the main file, we moved them into a static class called [AppColor](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/const/app_color.dart).
 
-In it we begin by defining the same colors that we used in example 2 and 3, to be our first custom color. In this case we also assign a custom color to the optional `appBarColor`.
+In it, we begin by defining the same colors that we used in example 2 and 3, to be our first custom color. In this case we also assign a custom color to the optional `appBarColor`.
 
 ```dart
 class AppColor {
@@ -108,8 +108,7 @@ For our 3rd custom color scheme we define primary and secondary colors, but no c
  );
 ```
 
-Using the `FlexSchemeColor.from` is great for filling out missing colors when quickly trying different colors for custom themes. However, when you figure out the actual final colors you want, it might be a good idea to use the const constructor. As in the above case with the custom _myScheme1Light and dark, since it is const and you can then make your entire list of color schemes
-a const too.
+Using the `FlexSchemeColor.from` is great for filling out missing colors when quickly trying different colors for custom themes. However, when you figure out the actual final colors you want, it might be a good idea to use the const constructor. As in the above case with the custom _myScheme1Light and dark, since it is const, and you can then make your entire list of color schemes a const too.
 
 ## List of Schemes
 
@@ -259,7 +258,7 @@ Below we go through the above theme setup in more detail.
 
 To select which of the 43 themes in our list that we use as our active theme, becomes as simple as setting the `themeController.schemeIndex` index value, to the color scheme we want to use.
 
-We do this with a simple popup menu button on the `HomePage`. This is a standard Flutter SDK UI widget, you can find how it is set up for this use case [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example4/widgets/theme_popup_menu.dart). It is used in a simple `StatelessWidget` called `ThemePopupMenu` with a current index value and call-back when a value is selected, that we use together with our `ThemeController` on the `HomePage`.
+We do this with a simple popup menu button on the `HomePage`. This is a standard Flutter SDK UI widget, you can find how it is set up for this use case [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example4_all_themes/widgets/theme_popup_menu.dart). It is used in a simple `StatelessWidget` called `ThemePopupMenu` with a current index value and call-back when a value is selected, that we use together with our `ThemeController` on the `HomePage`.
 
 ```dart
 ThemePopupMenu(
@@ -324,7 +323,7 @@ The setup with using `FlexKeyColors()` to `keyColors` is identical to the one us
 
 In this example we also add 3 boolean values that allows us to define that we want to keep the primary, secondary and/or tertiary colors, as specified by our input key colors, in the generated resulting `ColorScheme`.
 
-When we do so, all the other colors will still be computed by the Material 3 based color generation algorithm. This is a useful feature because for the selected important key colors we may want to keep our custom, typically brand colors, but are OK with using computed and well balanced tones for all other colors in the Material 3 based `ColorScheme`.
+When we do so, all the other colors will still be computed by the Material 3 based color generation algorithm. This is a useful feature because for the selected important key colors we may want to keep our custom, typically brand colors, but are OK with using computed and well-balanced tones for all other colors in the Material 3 based `ColorScheme`.
 
 This example uses separate controller values for the dark and light theme mode to select which colors we keep. Often we might have a fixed given brand color for light mode, as paper is white. However, many customers may lack a defined brand color suitable for dark mode usage, then you might consider letting the color generation algorithm make one for you using the light mode brand color as the seed key for dark mode.
 
@@ -371,9 +370,9 @@ A slight custom `StatelessWidget` wrapper of the Flutter `SwitchListTile.adaptiv
 
 You can find the code for the slightly modified wrapped version of `SwitchListTile.adaptive` [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/widgets/universal/switch_list_tile_adaptive.dart).
 
-This setup is a bit complex in this example. The usage based on the the theme controller is used in this example application only in order to be able to demonstrate the differences by using UI input controls that can be toggled to demonstrate the differences.
+This setup is a bit complex in this example. The usage based on the theme controller is used in this example application only in order to be able to demonstrate the differences by using UI input controls that can be toggled to demonstrate the differences.
 
-Normally for the `FlexKeyColors` properties you would just pass in `true` for the configuration you want. If you for example want to make a seeded `ColorScheme` that uses the hue from all the input colors, and you only want to want to keep the primary color as a given brand color, then you could simplicity use:
+Normally for the `FlexKeyColors` properties you would just pass in `true` for the configuration you want. If you for example want to make a seeded `ColorScheme` that uses the hue from all the input colors, and you only want to keep the primary color as a given brand color, then you can use:
 
 ```dart
   keyColors: FlexKeyColors(

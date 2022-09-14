@@ -10,7 +10,7 @@ The first and simplest example shows how you can use a predefined color scheme i
 
 A theme showcase widget shows the theme's effect on several common Material UI component widgets.
 
-Only code highlights might be shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1).
+Only code highlights might be shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example1_basic_theme_usage).
 
  ```dart
 void main() => runApp(const DemoApp());
@@ -69,7 +69,7 @@ To the `HomePage` we pass in the current value of the `themeMode` and use a simp
 
 The key part to notice above is that `FlexThemeData.light` and `FlexThemeData.dark` return a standard Flutter `ThemeData` object to your application's `MaterialApp` `theme` and `darkTheme` properties. The `ThemeData` content returned is however highly refined, can be extensively and quickly customized using a simple API, that creates very elaborate `ThemeData` objects.
 
-This also puts limits on what `FlexColorScheme` can do, it can only modify your application's theme in ways that is supported by Flutter's `ThemeData`. This can also be reassuring, since you can be sure that all it does is help you define a fancy `ThemeData` object for your application, and that everything it does you can do directly with `ThemeData` too, it might just be very verbose and time consuming to do so.
+This also puts limits on what `FlexColorScheme` can do, it can only modify your application's theme in ways that is supported by Flutter's `ThemeData`. This can also be reassuring, since you can be sure that all it does is help you define a fancy `ThemeData` object for your application, and that everything it does, you can do directly with `ThemeData` too, it might just be very verbose and time-consuming to do so.
 
 Since `FlexColorScheme` at the end of the day returns a `ThemeData` object, you can also further modify and customize anything it has done, by using `ThemeData`'s own `copyWith` property.
 
