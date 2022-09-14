@@ -15,16 +15,25 @@ The Themes Playground app contains a workaround to avoid issue [#103864](https:/
 
 The above workaround is needed because the Playground app has toggles that switches Typography frequently, without the workaround it will eventually crash. With this workaround it never switches Typography, it just looks like it does, but app stays in 2021 Typography all the time. The by Themes Playground generated ThemeData config will use the actual real effective Typography. This is also fine, since an app using the theme will likely never switch used Typography. However, if it does, it will face the same issue the Playground app did. The issue is a Flutter SDK issue that FlexColorScheme cannot fix. Most likely 99% of apps will never run into this issue.
 
-## Flutter SDK: Elevation when opting in on useMaterial3
+A fix [PR #110870](https://github.com/flutter/flutter/pull/110870) for this issue now exists in master channel, but it is not yet available in Flutter 3.3.
 
-In Flutter SDK 3.0.x, when opting in on `useMaterial3:true`, the `Material` widget and other SDK widgets built on it, gets no elevation when only the `elevation` property is defined. It is required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect. When using the `Material` widget itself this is easy to address. However, widgets like `Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`, `TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these `Material` properties and cannot be elevated.
+## Flutter SDK: Elevation issues when opting in on useMaterial3
+
+In Flutter 3.0 and 3.3, when opting in on `useMaterial3:true`, the `Material` widget and other SDK widgets built on it, gets no elevation when only the `elevation` property is defined. It is required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect. When using the `Material` widget itself this is easy to address. However, widgets like `Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`, `TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these `Material` properties and cannot be elevated.
 
 The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190) and also mentioned in the `FlexColorScheme` repo here
-[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3, if such elevations are important to your app design. One working fix is to wrap those widgets in a theme where `useMaterial3` is false, then te rest of your app can still use it. This is however a rather tedious workaround fix. Due to current SDK `Material` elevation issues when `useMaterial3` is true, it is recommended to not use it yet.
+[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3, if such elevations are important to your app design. One working fix is to wrap those widgets in a theme where `useMaterial3` is false, then te rest of your app can still use it. This is however a rather tedious workaround fix. Due to this current SDK `Material` elevation issues when `useMaterial3` is true, it is recommended to avoid opting in on Material 3 if correctly elevated Material on Dialogs, Drawers, BottomSheet and PopupMenuButton is important for the app.
 
-## Flutter SDK: AppBar icon theme not respected (Regression, master)
+This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the default elevation issue for `Material`, but it is not yet available in Flutter 3.3. It also does not fully solve the poor dark mode `PopupMenuButton` style.
 
-This regression only applies to master channel and impacts `AppBar` icon colors when using Material 3 [#107305](https://github.com/flutter/flutter/issues/107305). It has not landed in stable channel *Flutter 3.0.5*, but if you use master channel it is something to be aware of with certain versions of it. This issue was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) and can no longer be observed in *master, 3.1.0-0.0.pre.2108* or later versions.
+## Flutter SDK: AppBar icon theme not respected (Regression)
+
+Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are ignored when `useMaterial3` is true. This was not seen in Flutter stable 3.0.5, but is now in 3.3.0. See issue[#107305](https://github.com/flutter/flutter/issues/107305), that was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) in master. The fix did not land in Flutter 3.3.0, as mentioned in issue [#110878](https://github.com/flutter/flutter/issues/110878), so this issue regressed into stable 3.3 release, even though it was fixed in master 28 days before stable 3.3 release.
+
+## Flutter SDK: Cannot set foreground color on SliverAppBar.medium and SliverAppBar.large 
+
+When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not used by the app bar, see issue[#110951](https://github.com/flutter/flutter/issues/110951).
+
 
 ## Flutter SDK: Android System Navigation Bar
 
@@ -36,6 +45,18 @@ Due to Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100
 The temporary changes will be reverted when the fix for the Flutter issue
 has reached the stable channel.
 
+## Flutter SDK: Vanilla Chip has no M3 style
+
+Chip theme in Flutter 3.3 do not M3 style the plain vanilla Chip. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470).
+
+## Flutter SDK: FloatingActionButton theming limitation
+
+Cannot theme shape and iconSize differently for different sized FloatingActionButton, see issue [#107946](https://github.com/flutter/flutter/issues/107946).
+
+## Flutter SDK: SnackBar theming limitation
+
+Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539).
+
 ## Flutter SDK: UnderlineInputBorder
 
 ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality operator and hashCode in Flutter SDK, it is missing the borderRadius property. Report not yet submitted to Flutter repo.
@@ -46,4 +67,4 @@ This can be seen in the **Themes Playground** app where changing the controller 
 
 The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
 
-Version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color is not really necessary.
+Version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.

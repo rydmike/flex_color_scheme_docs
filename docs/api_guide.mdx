@@ -1,8 +1,6 @@
 # API Guide
 
-The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough, it should cover most questions you might have.
-
-An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
+The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough, it should cover most questions you might have. An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
 
 You can create FlexColorScheme based `ThemeData` objects using two different APIs:
 
@@ -44,8 +42,7 @@ Using e.g. `FlexThemeData.light()` is a bit shorter than `FlexColorScheme.light(
 
 API reference: [**FlexColorScheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html)
 
-The original way to create FlexColorScheme based `ThemeData` objects is to use
-the package namesake [`FlexColorScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html) class and then use its [`toTheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/toTheme.html) method to make and return the `ThemeData` object specified by your immutable `FlexColorScheme` configuration.
+The original way to create FlexColorScheme based `ThemeData` objects is to use the package namesake [`FlexColorScheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme-class.html) class and then use its [`toTheme`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/toTheme.html) method to make and return the `ThemeData` object specified by your immutable `FlexColorScheme` configuration.
 
 Usually you should **not** use the raw default [`FlexColorScheme()`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/FlexColorScheme.html) constructor to create your `FlexColorScheme` object, you should prefer using its two factories:
 
@@ -75,8 +72,7 @@ Making `ThemeData` with FlexColorScheme's name sake class, is a bit more verbose
     );
 ```
 
-The `FlexColorScheme.light().toTheme` and `FlexThemeData.light()`, and its dark
-counterparts, all have the same properties and are interchangeable. The `light` and `dark` parameters differ slightly, due to a few different features for light and dark themes.
+The `FlexColorScheme.light().toTheme` and `FlexThemeData.light()`, and its dark counterparts, all have the same properties and are interchangeable. The `light` and `dark` parameters differ slightly, due to a few different features for light and dark themes.
 
 ## Common Properties
 
