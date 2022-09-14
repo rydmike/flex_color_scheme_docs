@@ -2,6 +2,8 @@
 
 Below some frequently asked question and answers about using FlexColorScheme and customizing it beyond what is offered via its API.
 
+In addition to the questions and answers below, you can find more questions, asked by FlexColorScheme users, and answers to them in the GitHub repo discussions section under [category Q&A](https://github.com/rydmike/flex_color_scheme/discussions/categories/q-a). If you have additional questions concerning FlexColorScheme, theming, Material 3 and ColorScheme in Flutter, you are welcome to post theme there.
+
 ## Custom Colors?
 
 Can I use custom colors with FlexColorScheme?
@@ -126,7 +128,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: lightTheme.copyWith(appBarTheme: lightTheme.appBarTheme.copyWith(
-           shadowColor: const Color(0xFF2D0606));
+           shadowColor: const Color(0xFF2D0606))),
       themeMode: ThemeMode.light,
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
