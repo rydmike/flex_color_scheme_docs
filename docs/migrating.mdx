@@ -4,11 +4,16 @@ This chapter contains guides for the minimum required changes to move from a low
 
 ## Migrating to Version 6.0
 
-FlexColorScheme version 6 has some minor default style changes that are breaking with previous used defaults. It has also removed all members that were deprecated in version 5.1 or earlier byt still present. To make migration easier, make sure in version 5.1 that you are not using any of its deprecated APIs. Version 5.1 will still tell you witch members are deprecated and what you should replace them with. In this version those members are totally removed and there is no longer any deprecation guidance on them.
+ All members that were deprecated in version 5.1 or earlier but still present
+ in versions before 6.0.0 have been removed. To make migration easier, make sure in version 5.1 that you are not using any of its deprecated APIs. 
+ 
+ Version 5.1 will still tell you which members are deprecated and what you should replace them with. In this version those members are totally removed and there is no longer any deprecation guidance for them.
 
-**Changes made to increase Material 3 style compliance by default**
+**Changes made to increase Material 3 style compliance**
 
-All noticeable style changes concern FlexColorScheme defaults when opting in on Material 3. Some widgets that in the Flutter SDK have received correct Material 3 design, now also in FlexColorScheme when opting in on Material 3, defaults to their correct Material 3 default styles. Previously they may have used a Material 2 style that was Material 3 inspired, but not entirely in-line with Material 3.
+FlexColorScheme version 6 has some default style changes that are breaking with previous used defaults. All style changes concern FlexColorScheme defaults when opting in on Material 3. 
+
+Some widgets that in the Flutter SDK have received correct Material 3 design, now also in FlexColorScheme when opting in on Material 3, defaults to their actual Material 3 default styles. Previously they may have used a Material 2 style that was Material 3 inspired, but not entirely in-line with Material 3.
 
 ### ElevatedButton
 
@@ -20,9 +25,24 @@ The most common breaking style changes you may run into is that the `ElevatedBut
     elevatedButtonSecondarySchemeColor: SchemeColor.primary,
   ),
 ```
-### FAB Use Global Border Radius
 
-The `FlexSubThemesData.fabUseShape` opinionated component theme style default was changed from `true` to `false`, this breaks previous default style where FAB also by default got border radius from the global FCS setting. The opinionated style change was done to be able use a style that by default matches M3 style when `ThemeData.useMaterial3` is `true`. If you had kept `FlexSubThemesData.fabUseShape` unspecified and relied on default value in a previous version, you must set it to `true` to get the same result as before.
+### FAB Usage of Global Border Radius
+
+The `FlexSubThemesData.fabUseShape` opinionated component theme style default was changed from `true` to `false`, this breaks previous default style where FAB also by default got border radius from the global FCS border radius setting. The opinionated style change was done to be able use a style that by default matches M3 style when `ThemeData.useMaterial3` is `true`. If you had kept `FlexSubThemesData.fabUseShape` unspecified and relied on default value in a previous version, you must set it to `true` to get the same result as before.
+
+### New M3 Chip Styles
+
+When opting in on `useMaterial3`. When `true` it now uses actual M3 styled `Chips` instead of its own opinionated custom style, also when the opinionated component sub-themes are enabled. To get the same opinionated coloring as before, but on the M3 styled chips when using M3, set component sub-themes data
+
+```dart
+subThemesData: const FlexSubThemesData(
+    chipSchemeColor: SchemeColor.primary
+  ),
+```
+
+### Other style changes 
+
+There are some other minor style changes to default values when opting in on Material. Please see the [changelog](https://pub.dev/packages/flex_color_scheme/changelog) for a complete list.
 
 
 ## Migrating to Version 5.0
