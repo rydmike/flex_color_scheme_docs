@@ -327,7 +327,7 @@ When we do so, all the other colors will still be computed by the Material 3 bas
 
 This example uses separate controller values for the dark and light theme mode to select which colors we keep. Often we might have a fixed given brand color for light mode, as paper is white. However, many customers may lack a defined brand color suitable for dark mode usage, then you might consider letting the color generation algorithm make one for you using the light mode brand color as the seed key for dark mode.
 
-In this example we for the light theme mode have these "keep" color controller values:
+In this example, for the light theme mode we have these "keep" color controller values:
 
 ```dart
   keyColors: FlexKeyColors(
@@ -414,9 +414,9 @@ The comparison below show the Blumine theme in light and dark mode, when using:
   </tr>
 </table>
 
-You may find that the Chroma limits imposed by using the same `ColorScheme` generation algorithm values, that the Flutter Material 3 `ColorScheme.fromSeed` uses. is not enough to bring in required amount of the "color" in your input colors to the seed generated values for your secondary and tertiary colors in the generated `ColorScheme`. In that case you can use `tones` to configure a custom `FlexTones` to customize how the seed generation treats chroma in the input colors, and even how it maps colors from the generated Tonal Palettes to the resulting generated `ColorScheme`.
+You may find that the Chroma limits imposed by using the same `ColorScheme` generation algorithm values, that the Flutter Material 3 `ColorScheme.fromSeed` uses, is not enough to bring in required amount of the "color" in your input colors to the seed generated values for your secondary and tertiary colors in the generated `ColorScheme`. In that case you can use `tones` to configure a custom `FlexTones` to customize how the seed generation treats chroma in the input colors, and even how it maps colors from the generated tonal palettes to the resulting generated `ColorScheme`.
 
-You can make complete custom config, or used one of the built-in pre-made custom example configurations. Below we use `FlexTones.vivid` tones constructor, to use a configuration that lets secondary and tertiary palette generation use the chroma as is in their input colors, so the generated tonal palettes will be closer in style to the actual source color.
+You can make complete custom configurations, or used one of the built-in configurations. Below we use `FlexTones.vivid` tones constructor, a configuration that lets secondary and tertiary palette generation use the chroma as given by their input colors, the generated tonal palettes will then become closer in style to the actual source color.
 
 ```dart
   keyColors: FlexKeyColors(
@@ -430,4 +430,4 @@ You can make complete custom config, or used one of the built-in pre-made custom
 
 You can read more about `FlexTones` and its usage in the package API reference [here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones-class.html). Its concept is also explained and visualized in Themes Playground [guide](/playground#tonal-palettes).
 
-In example 5, the **Themes Playground** you can select between all the different built-in `FlexTones` options, and also see what the actual **Tonal Palettes** look like when you use generated `ColorScheme`s and how each tonal palette color maps to every `ColorScheme` color. It is a handy tool for exploring how the Tonal Palette and mapping to a `ColorScheme` works.
+In example 5, the **Themes Playground** you can select between all the different built-in `FlexTones` options, and also see what the actual **Tonal Palettes** look when you use generated `ColorScheme`s and how each tonal palette color maps to every `ColorScheme` color. It is a handy tool for exploring how tonal palettes and their mapping to a `ColorScheme` work.

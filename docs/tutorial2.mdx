@@ -90,7 +90,7 @@ The result of this setup is that whenever you update any theme settings managed 
 
 The entire application tree is actually rebuilt when any value in the `ThemeController` trigger a change via a `notifyListeners` call. This is reasonably fine in this use case, since all properties we use in the `ThemeController` are of the nature that the entire application UI needs to be redrawn anyway when they change, since they modify our `ThemeData` for the entire application.
 
-This approach works well for this particular use case, but may not work as well for some use cases as it is a bit sub-optimal to always rebuild the entire sub-tree whenever anything bound to the same `ChangeNotifier` controller changes. You could of course use the same idea to add more/other controllers and in `StatefulWidget`s at right levels in the widget tree use e.g. `otherController.addListener(() => setState((){}))`. Then you do not need an `AnimatedBuilder` and you get a basic MVC like state management, where you bind a ChangeNotifier to the tree and trigger rebuilds in a simple way.
+This approach works well for this particular use case, but may not work as well for some use cases as it is a bit suboptimal to always rebuild the entire subtree whenever anything bound to the same `ChangeNotifier` controller changes. You could of course use the same idea to add more/other controllers and in `StatefulWidget`s at right levels in the widget tree use e.g. `otherController.addListener(() => setState((){}))`. Then you do not need an `AnimatedBuilder` and you get a basic MVC like state management, where you bind a ChangeNotifier to the tree and trigger rebuilds in a simple way.
 
 ## Theming Code
 

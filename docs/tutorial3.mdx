@@ -204,11 +204,11 @@ Passing in a default `FlexKeyColors()` to `keyColors` activates Material 3 key c
 keyColors: FlexKeyColors(),
 ```
 
-Flutter SDK only makes seed `ColorScheme`s where the entire scheme is generated from only one input color. In FlexColorScheme, you can also use the secondary and tertiary colors, as input keys to seed their Tonal Palette colors. 
+Flutter SDK only makes seed `ColorScheme`s where the entire scheme is generated from only one input color. In FlexColorScheme, you can also use the secondary and tertiary colors, as input keys to seed their tonal palette colors. 
 
 ```dart
 // Generate the ColorScheme from active theme's primary,
-// secondary and tertiary  colors.
+// secondary and tertiary colors.
 keyColors: FlexKeyColors(
   useSecondary: true,
   useTertiary: true,
@@ -315,10 +315,10 @@ The comparison below show the Mallard green theme in light and dark mode, when u
   </tr>
  </table>
 
-The color math in the Material 3 Tonal Palette generation is very sophisticated, but in Flutter SDK little of it is exposed directly. FlexColorScheme opens up more of its capabilities via an easy-to-use API. This API also lets you change the key color chroma limits and even which tone is used for what for color in the resulting ColorScheme. This can make generated schemes more vivid or muted, the number of ways you can tune the Tonal Palette generation is almost limitless.
+The color math in the Material 3 tonal palette generation is very sophisticated, but in Flutter SDK little of it is exposed directly. FlexColorScheme uses package [FlexSeedScheme package](https://pub.dev/packages/flex_seed_scheme), it opens up more of its capabilities via an easy-to-use API. Its API also lets you change the key color chroma limits and even which tone is used for what for color in the resulting ColorScheme. This can make generated schemes more vivid or muted, the number of ways you can tune the tonal palette generation is almost limitless.
 
 This example keeps the primary color surface blend level at the same value for the seed generated ColorSchemes at the same level. Seed generated ColorSchemes already mix a bit of their primary color into the generated neutral tonal palettes, that is there already as a base when using surface blends with them. Their surface blend coloring gets a lot stronger at lower blend levels, since the mixing starts with a hint of the primary in the base surface colors already.
 
 FlexColorScheme primary color surface blends works well with seed generated ColorSchemes too, it is however often needed to reduce the blend strength. If you want the actual Material 3 default surface blends, then keep blend level at zero.
 
-The key color itself is seldom included as a color in the generated `ColorScheme`. This can be problematic if you want to use that specific color in your custom scheme for branding purposes. The `FlexKeyColors` configuration data class contains additional properties where you can instruct it to keep a color defined in FlexColorScheme at its defined input value. Set e.g. `keepPrimary: true` to ensure that the actual primary color you used to seed your color scheme, is also used as the primary color in the otherwise seed generated ColorScheme from the used color. In the next example we will explore this as well.
+The key colors themselves are seldom included as colors in the generated `ColorScheme`. This can be problematic if you want to use specific colors in your custom scheme for branding purposes. The `FlexKeyColors` configuration data class contains additional properties where you can instruct it to keep a color defined in FlexColorScheme at its defined input value. Set e.g. `keepPrimary: true` to ensure that the actual primary color you used to seed your `ColorScheme`, is also used as the primary color in the otherwise seed generated `ColorScheme` from the used color. In the next example we will explore this as well.
