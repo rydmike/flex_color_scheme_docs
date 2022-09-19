@@ -28,13 +28,6 @@
                 ["Copy Playground","/copy_playground"]
             ]
         ],
-        ["Theming Guide",
-            [
-                ["Flutter Theming", "/theming_guide"],
-                ["Roads to ThemeData", "/theming_roads"],
-                ["FAQ", "/faq"]
-            ]
-        ],
         ["Tutorial",
            [
                 ["1. Basic Theme","/tutorial1"],
@@ -49,6 +42,13 @@
                 ["Guide", "/api_guide"],
                 ["Deep dives", "/deep_dives"],
                 ["Core defaults", "/core_defaults"]
+            ]
+        ],
+        ["Theming Guide",
+            [
+                ["Flutter Theming", "/theming_guide"],
+                ["Roads to ThemeData", "/theming_roads"],
+                ["FAQ", "/faq"]
             ]
         ],
         ["Appendix",
