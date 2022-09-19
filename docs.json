@@ -17,13 +17,7 @@
         ["Welcome",
             [
                 ["About","/"],
-                ["License","/license"],
-                ["All themes", "/all_themes"],
-                ["What's new?", "/whats_new"],
-                ["Migration guide","/migrating"],
-                ["Changelog","/changelog"],
-                ["Known issues", "/known_issues"],
-                ["Future features", "/future_features"]
+                ["All themes", "/all_themes"]
             ]
         ],
         ["Getting Started",
@@ -57,6 +51,16 @@
                 ["Core defaults", "/core_defaults"]
             ]
         ],
-        ["Scheme reference", "/scheme_reference"]
+        ["Appendix",
+            [
+                ["What's new?", "/whats_new"],
+                ["Migration guide","/migrating"],
+                ["Changelog","/changelog"],
+                ["License","/license"],
+                ["Known issues", "/known_issues"],
+                ["Future features", "/future_features"],
+                ["Scheme reference", "/scheme_reference"]
+            ]
+        ]
     ]
 }
