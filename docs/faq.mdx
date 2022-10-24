@@ -188,7 +188,15 @@ The `scheme` property prevents using the light scheme colors for the dark factor
 
 If you are making custom color schemes and would just like to re-use one or two color values from `FlexColorScheme` in a custom scheme, then all its color values are also conveniently available as const `Color` values. See `FlexColor` [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColor-class.html) for full details.
 
-## Sometimes FlexColorScheme not have perfect pub score, why?
+## Why are some sub-theme properties in the main class and not it `FlexSubThemesData`?
+
+Legacy! 
+
+When development of FCS was started it was mostly used for colors and to fix a few glaring issues that always needed tuning in Flutter themes. All such properties where then included in the main class.
+
+This concerns mostly theming related to the `AppBar`, `TabBar` and `Tooltips`. When the `subThemesData` property was added to support more extensive pre-configuration of a lot of component sub-themes via `FlexSubThemesData`, we did not want to break past API and kept them there. Today this is a bit inconsistent, and may well be considered technical debt. We plan to later gradually deprecate the direct none color related properties in the main class and move them to `FlexSubThemesData`, in a none breaking manner for a few releases. 
+
+## Sometimes FlexColorScheme does not have a perfect pub score, why not?
 
 Currently, FlexColorScheme has a perfect pub score, but it may at times be lower, typically 130/140 [score](https://pub.dev/packages/flex_color_scheme/score). This happens when it is being nice and documents self deprecated members and references them in doc comments. It may also internally use self deprecated members to provide a nicer transition using past deprecated members as fallbacks. This is done in cases where it is possible and makes sense to not unnecessarily break things, while transition you to newer APIs.
 
