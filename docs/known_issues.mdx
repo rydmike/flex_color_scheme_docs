@@ -6,7 +6,23 @@ The chapter lists known issues. Currently, all known issues impacting FlexColorS
 
 Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a **question about FlexColorScheme** and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
 
-## Flutter SDK: Switching Typography dynamically causes crash
+## Flutter SDK: Chips in Material 3 mode do not follow the specification.
+
+Chip does not conform to Material3 design spec when useMaterial3 is enabled. See [issue #115364](https://github.com/flutter/flutter/issues/115364), no corrective actions started yet (Nov 18, 2022).
+
+## Flutter SDK: NavigationBar ink ripple does not follow M3 spec
+
+The `NavigationBar` has a Material 2 type ink effect when opting in on Material 3. This is not according to Material design specification. See issues [113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618).specification
+
+There is an open (Nov 18, 2022) [PR](https://github.com/flutter/flutter/pull/115499) in the master channels that aims to fixes this and related issues.
+
+## TextField in Material 3 mode has wrong hovered and focused styles
+
+When opting in on Material 3, `TextField` gets wrong focused and hovered styles in some states. See issue [#113329](https://github.com/flutter/flutter/issues/113329) for details.
+
+The [PR #113776](https://github.com/flutter/flutter/pull/113776) in master channel fixes the issue. This issue only occurred in the master channel, because M3 mode support for `TextField` does not exist in the Flutter stable channel. Hopefully, this issue will never regress to the stable channel. We will see when next stable version after Flutter 3.3 is released.
+
+## Flutter SDK: Switching Typography dynamically causes a crash
 
 Switching Typography dynamically in Flutter SDK ThemeData is broken, see
 issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information. If it is done and the error ignored, an app doing so eventually become unstable.
@@ -28,11 +44,11 @@ This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the 
 
 ## Flutter SDK: AppBar icon theme not respected (Regression)
 
-Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are ignored when `useMaterial3` is true. This was not seen in Flutter stable 3.0.5, but is now in 3.3.0. See issue[#107305](https://github.com/flutter/flutter/issues/107305), that was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) in master. The fix did not land in Flutter 3.3.0, as mentioned in issue [#110878](https://github.com/flutter/flutter/issues/110878), so this issue regressed into stable 3.3 release, even though it was fixed in master 28 days before stable 3.3 release.
+Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are ignored when `useMaterial3` is true. This was not seen in Flutter stable 3.0.5, but is now in 3.3.0. See issue[#107305](https://github.com/flutter/flutter/issues/107305), that was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) in master. The fix did not land in Flutter 3.3.0, as mentioned in issue [#110878](https://github.com/flutter/flutter/issues/110878) it regressed into stable 3.3 release, even though it was fixed in master 28 days before stable 3.3 release.
 
 ## Flutter SDK: Cannot set foreground color on SliverAppBar medium and large 
 
-When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not used by the app bar, see issue[#110951](https://github.com/flutter/flutter/issues/110951).
+When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not used by the app bar, see issue[#110951](https://github.com/flutter/flutter/issues/110951). This issue had when last checked (Nov 18, 2022) no known corrective actions in progress in the master channel.
 
 
 ## Flutter SDK: Android System Navigation Bar
@@ -42,20 +58,19 @@ Due to Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100
 * The divider feature is disabled until the issue has been resolved.
 * There is a temporary workaround implemented, it manages to keep system icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
 
-The temporary changes will be reverted when the fix for the Flutter issue
-has reached the stable channel.
+The temporary changes will be reverted when a working fix for the Flutter issue has reached the stable channel. There is a related issue on the topic worth tracking [here #112301](https://github.com/flutter/flutter/issues/112301).
 
 ## Flutter SDK: Vanilla Chip has no M3 style
 
-Chip theme in Flutter 3.3 do not M3 style the plain vanilla Chip. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470).
+Chip theme in Flutter 3.3 do not M3 style the plain vanilla Chip. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470). This issue has been fixed in the master channel via [PR #111597](https://github.com/flutter/flutter/pull/111597), but it has not yet landed in the stable channel.
 
 ## Flutter SDK: FloatingActionButton theming limitation
 
-Cannot theme shape and iconSize differently for different sized FloatingActionButton, see issue [#107946](https://github.com/flutter/flutter/issues/107946).
+Cannot theme shape and iconSize differently for different sized FloatingActionButton, see issue [#107946](https://github.com/flutter/flutter/issues/107946). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
 
 ## Flutter SDK: SnackBar theming limitation
 
-Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539).
+Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
 
 ## Flutter SDK: UnderlineInputBorder
 
