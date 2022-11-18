@@ -316,7 +316,7 @@ The flag to not notify listeners is used in the `resetAllToDefaults()` function,
 
 Making the above setup for all the properties in the **Themes Playground** was a bit tedious, even if it is simple and mechanical.
 
-You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases this approach is quite simple and convenient. In this particular case though, well maybe not with this amount of props. There are **145** individual property key-value pairs managed by the same controller. Clearly a horrific amount, still the entire setup was pretty simple to make, even if as mentioned quite repetitive.
+You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases this approach is quite simple and convenient. In this particular case though, well maybe not with this amount of props. There are **168** individual property key-value pairs managed by the same controller. Clearly a horrific amount, still the entire setup was pretty simple to make, even if as mentioned quite repetitive.
 
 It works surprisingly well despite the large amount of controller properties, even if the values all share the same listener that rebuilds the app when something changes. This is of course because every property in the controller is of the nature that if we change it, then something in `ThemeData` changed, and we need to rebuild the entire app with the new `ThemeData` anyway.
 

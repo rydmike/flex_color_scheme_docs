@@ -116,7 +116,7 @@ The default value in each situation, means the default style and behavior a comp
 
 The undefined defaults are different if FlexColorScheme is not used at all, then you are looking at Flutter SDK default behavior for the widget. If you turn ON FlexColorScheme, but keep component sub-themes OFF, then you are looking at the FlexColorScheme [core defaults](/core_defaults). Mostly they are the same as when not using FlexColorScheme at all, but for certain colors and elevations they differ. The FlexColorScheme [core defaults](/core_defaults) explains, how, when and why FlexColorScheme without component themes enabled, differs from Flutter SDK defaults.
 
-With component sub-themes ON, you again get different defaults, especially for border radius that default to Material 3 specifications where border radius varies a lot per component type.
+With component sub-themes ON, you again get different defaults, especially for border radius that default to Material 3 specifications where border radius varies per component type.
 
 If you when using component sub-themes keep `defaultRadius` undefined, then each component widget will use its Material 3 default border radius value, and show that value when an individual widget border radius has not been specified with its slider.
 
@@ -312,9 +312,9 @@ With the `FlexTones` API you can define these limits as desired for the tonal pa
 
 We can do even more than this, we can also modify the mapping of which tone is used for what color in the `ColorScheme` from the generated Tonal Palettes, as long as it is from the source palette intended for the target color in the `ColorScheme`. Not all tones are useful, but for some use cases and design goals, you can very well go up or down a tone, for some colors in the ColorScheme mapping. This can give you a stronger more contrasty look or an even more muted one than the Material 3 default design.
 
-Current version of Themes Playground only lets you change `FlexTone` settings between five pre-made configurations. It is however very simple to make custom configurations with the API. The pre-made ones are mainly intended as examples. You can read more about `FlexTones` and its usage in the package API reference [here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexTones-class.html). If you make a very nice one, please do share it in the FlexColorScheme GitHub discussions [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) section, perhaps we can add it as another pre-made config.
+Current version of Themes Playground "only" lets you change `FlexTone` settings between nine pre-made configurations. It is however very simple to make custom configurations with the API. The pre-made ones are mainly intended as examples. You can read more about `FlexTones` and its usage in the package **FlexSeedScheme** [API reference](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones-class.html). If you make a very nice one, please do share it in the FlexColorScheme GitHub discussions [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) section, perhaps we can add it as another pre-made config.
 
-Maybe in some future version of the Themes Playground, custom interactive configuration of `FlexTones` will be added. For now let us compare the built-in ones we can swap between in the current version. When you select a pre-made `FlexTones` configuration, the Theme Playground app shows a brief summary of its configuration.
+Maybe in some future version of the Themes Playground, custom interactive configuration of `FlexTones` will be added. For now let us compare some of the built-in ones we can swap between in the current version. When you select a pre-made `FlexTones` configuration, the Theme Playground app shows a brief summary of its configuration.
 
 <Tabs
   defaultValue="flex-tones-m3"
@@ -407,11 +407,11 @@ In both cases above, pay attention to effective surface, container colors and th
 
 ## Custom Colors
 
-Pretty much any color in a box and color code you see in the **Themes Playground** can be tapped and its color value is then copied to the Clipboard in Dart format. This is handy if you want to snipe any color you see in the playground. This works with the individual generated Tonal Palette colors too.
-
 You can copy any pre-made color scheme to the last scheme in the Themes Playground, and use its colors as a base for a completely custom colored theme. You can select and edit colors with the [FlexColorPicker](https://pub.dev/packages/flex_color_picker). The color picker also allows you to enter or paste in color values to it to define the custom color for each input color in the customizable theme.
 
 [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-30-custom-colors-02.gif?raw=true" caption="Copying color values and making a custom theme." alt="custom colors" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-30-custom-colors-02.gif?raw=true)
+
+Pretty much any color in a box and color code you see in the **Themes Playground** can be tapped and its color value is then copied to the Clipboard in Dart format. This is handy if you want to snipe any color you see in the playground. This works with the individual generated Tonal Palette colors too.
 
 ## Copy ColorScheme
 
