@@ -6,26 +6,26 @@ The chapter lists known issues. Currently, all known issues impacting FlexColorS
 
 Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a **question about FlexColorScheme** and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
 
-## Flutter SDK: Chips in Material 3 mode do not follow the specification.
+## Flutter SDK: Chips in Material 3 mode do not follow the M3 specification
 
-Chip does not conform to Material3 design spec when useMaterial3 is enabled. See [issue #115364](https://github.com/flutter/flutter/issues/115364), no corrective actions started yet (Nov 18, 2022).
+Chip does not conform to Material3 design spec when useMaterial3 is enabled. See [issue #115364](https://github.com/flutter/flutter/issues/115364) for details. No known corrective actions yet (Nov 18, 2022).
 
 ## Flutter SDK: NavigationBar ink ripple does not follow M3 spec
 
-The `NavigationBar` has a Material 2 type ink effect when opting in on Material 3. This is not according to Material design specification. See issues [113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618).specification
+The M3 `NavigationBar` has a Material 2 type ink effects also when opting in on Material 3. This is not according to Material design specification. See issues [113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information.
 
-There is an open (Nov 18, 2022) [PR](https://github.com/flutter/flutter/pull/115499) in the master channels that aims to fixes this and related issues.
+There is an open (Nov 18, 2022) [PR](https://github.com/flutter/flutter/pull/115499) in the master channels that aims to fix this and its related ink issues.
 
-## TextField in Material 3 mode has wrong hovered and focused styles
+## Flutter SDK: TextField in Material 3 mode has wrong hovered and focused styles
 
-When opting in on Material 3, `TextField` gets wrong focused and hovered styles in some states. See issue [#113329](https://github.com/flutter/flutter/issues/113329) for details.
+When opting in on Material 3, `TextField` gets wrong `focused` and `hovered` styles in some states. See issue [#113329](https://github.com/flutter/flutter/issues/113329) for details.
 
-The [PR #113776](https://github.com/flutter/flutter/pull/113776) in master channel fixes the issue. This issue only occurred in the master channel, because M3 mode support for `TextField` does not exist in the Flutter stable channel. Hopefully, this issue will never regress to the stable channel. We will see when next stable version after Flutter 3.3 is released.
+The [PR #113776](https://github.com/flutter/flutter/pull/113776) in master channel fixes the issue. This issue only occurred in the master channel, because M3 mode support for `TextField` does not exist in the Flutter stable channel. Hopefully, this issue will never regress to the stable channel. We will not be sure until the next stable version after Flutter 3.3 is released though.
 
 ## Flutter SDK: Switching Typography dynamically causes a crash
 
 Switching Typography dynamically in Flutter SDK ThemeData is broken, see
-issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information. If it is done and the error ignored, an app doing so eventually become unstable.
+issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information. If it is done and the error ignored, an app doing so eventually becomes unstable.
 
 The Themes Playground app contains a workaround to avoid issue [#103864](https://github.com/flutter/flutter/issues/103864). The workaround is done by always using 2021 Typography, but simulating 2018 Typography. This is done by using a custom TextTheme that looks like 2018 Typography is used when using M2 theme mode. The Playground App actually always stays in 2021 Typography, but looks like it switches it. Which it does by applying a custom `TextTheme` in 2021 Typography, that looks like 2018 Typography is used. All other examples also avoid the issue by only using the M3 2021 Typography and not even mimicking a switch between M2 and M3 Typography.
 
