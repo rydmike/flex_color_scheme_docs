@@ -23,10 +23,10 @@ All internally recorded ideas have not yet been listed as polls in discussions, 
 
 ### Serialization of FlexColorScheme
 
-Including built-in serialization of FlexColorScheme, and its key classes has been suggested. I consider `FlexColorScheme` to be functionally on a level similar to `ThemeData` and `ColorScheme`. Therefore, it should not cover serialization of itself. Serialization have to deal with a lot of potential failure points. We think it should not have to be a concern in this type of component. We are not planning to add it.
+Including built-in serialization of FlexColorScheme, and its key classes has been suggested. I consider `FlexColorScheme` to be functionally on a level similar to `ThemeData` and `ColorScheme`. Therefore, it should not cover serialization of itself. Serialization has to deal with a lot of potential failure points. We think it should not have to be a concern in this type of component. There is no plan to add it.
 
 Our recommendation for saving the state of a `FlexColorScheme` is to include values for its settings that you use in your implementation in other models in your application, like an "AppSettings" model or similar.
 
-You probably serialize and store such data already, perhaps with shared preferences, hive, get_storage or some other solution. Include the values you need for your `FlexColorScheme` implementation in your stored settings and then use those values to restore your `FlexColorScheme` configuration and theme. This way, your implementation also remain in control of what it needs to store and restore.
+You probably serialize and store such data already, perhaps with shared preferences, hive, get_storage or some other solution. Include the values you need for your `FlexColorScheme` implementation in your stored settings and then use those values to restore your `FlexColorScheme` configuration and theme. This way, your implementation also remains in control of what it needs to store and restore.
 
 From version 4.0.0 a simple approach using the architecture introduced via the Flutter "skeleton" template in Flutter version 2.5 was used together with Shared Preferences and Hive to persist and load FlexColorScheme on start. This is just one example, other implementations together with Riverpod, Provider, Flutter Bloc, GetX etc., and completely different local persistence packages work well too.

@@ -6,7 +6,7 @@ The same custom color schemes as in example 4 are also used here, please see [ex
 
 If you tried the previous examples on an Android device, you might have noticed that the system navigation bar on Android devices does not change. It is not themed to have a matching tinted background, or even a theme mode appropriate one that matches the active application theme as it changes. This example uses Flutter's `AnnotatedRegion`, with a helper called `FlexColorScheme.themedSystemNavigationBar` to make a `SystemUiOverlayStyle`, that adjusts the look of the Android system navigation bar as the theme is modified. You can read more about this in the [API guide's](/api_guide) deep dive into [`themedSystemNavigationBar`](/deep_dives#themed-system-navigation-bar-in-android).
 
-Only code highlights are shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground).
+Only code highlights are shown below. The complete code of this example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground).
 
 ## ThemeServiceHive
 
@@ -87,7 +87,7 @@ class PlaygroundApp extends StatelessWidget {
 
 There is actually nothing new in how we make our `ThemeData` with `FlexColorScheme` in the **Themes Playground** application compared to previous example 4, **All Themes**. There is just a lot more of it.
 
-We did switch to using the `FlexColorScheme` namesake class in this example, instead of `FlexThemeData`. In the [API guide](api_guide) chapter in topic [FlexColorScheme or FlexThemeData](/api_guide#use-flexcolorscheme-or-flexthemedata) we presented when you might prefer to use `FlexColorScheme` over `FlexThemeData`. This setup in the **Themes Playground**, is a case where we can get some additional benefits by using `FlexColorScheme` instead. Let's find out why.
+We did switch to using the `FlexColorScheme` namesake class in this example, instead of `FlexThemeData`. In the [API guide](api_guide) chapter in topic [FlexColorScheme or FlexThemeData](/api_guide#use-flexcolorscheme-or-flexthemedata) we presented when you might prefer to use `FlexColorScheme` over `FlexThemeData`. This setup in the **Themes Playground** is a case where we can get some additional benefits by using `FlexColorScheme` instead. Let's find out why.
 
 Above in our `MaterialApp` the `flexThemeLight` and `flexThemeDark` are equivalent, thus we only study `flexThemeLight` function, here is what it does:
 
@@ -99,7 +99,7 @@ ThemeData flexThemeLight(ThemeController controller) =>
 
 Well that was not a lot, it only calls `flexColorSchemeLight` passing along our `ThemeController`, the `controller` to the `flexColorSchemeLight` function, that returns a `FlexColorScheme` object, and it then returns its `ThemeData` using the `toTheme` method. This is then used as `ThemeData` by the `theme` property in our `MaterialApp`. Theme done! Well almost, let's open up the details and see why we did it like this.
 
- We do it this way and not directly, or by setting it up via `FlexThemeData.light`,  because for the none `FlexColorScheme` using case, when we create a standard  Flutter SDK theme with `ThemeData.from` a `ColorScheme`, we will use the same `flexColorSchemeLight` function to return the `ColorScheme` it represents with its `toScheme` method.
+ We do it this way and not directly, or by setting it up via `FlexThemeData.light`,  because for the none `FlexColorScheme` use case, when we create a standard Flutter SDK theme with `ThemeData.from` a `ColorScheme`, we use the same `flexColorSchemeLight` function to return the `ColorScheme` it represents with its `toScheme` method.
 
 All the interesting **FlexColorScheme** setups for the entire **Themes Playground** app is in the `flexColorSchemeLight` function for our light theme mode, where we use `FlexColorScheme`. Here is what it looks like:
 
@@ -274,7 +274,7 @@ It is all just one app for all platforms and sizes, with two different main layo
   </tr>
 </table>
 
-By resizing the window on the web version, you can see the responsive designs used. In the Themes Playground guide you can see some screens recordings [showing](https://docs.flexcolorscheme.com/playground#two-layouts) it in action too.
+By resizing the window on the web version, you can see the responsive designs used. In the Themes Playground guide you can see a few screen recordings [showing](https://docs.flexcolorscheme.com/playground#two-layouts) it in action too.
 
 ## ThemeController
 
@@ -288,7 +288,7 @@ Some theme changes can be a bit taxing calculation wise. While some changes that
 
 This animation can be seen as a slight delay in the manifestation of the latest value, as the theme is animating to the last slider value. This can certainly be avoided by not triggering a theme change until the slider change is complete, but in this case we preferred to show the change as the slider is being adjusted.
 
-In these demo apps each property in the controller follow this simple pattern:
+In this tutorial and all example applications, each managed property in the controller follows this simple pattern:
 
 ```dart
   // Private value, getter and setter for the ThemeMode
@@ -310,13 +310,13 @@ In these demo apps each property in the controller follow this simple pattern:
   }
 ```
 
-In cases where we use nullable properties that also needs to be persisted, we obviously skip the null check in the setter above. The logic ensures we do not do any work not needed.
+In cases where we use nullable properties, that also need to be persisted, we obviously skip the null check in the setter above. The logic ensures we do not do any work not needed.
 
 The flag to not notify listeners is used in the `resetAllToDefaults()` function, that calls the setter for every controller property with its `Store.default"Property"` value and notify set to `false`. The `resetAllToDefaults()` then calls `notifyListeners` itself once when it has reset all properties to their default values, triggering only one update, and not one for every set call.
 
 Making the above setup for all the properties in the **Themes Playground** was a bit tedious, even if it is simple and mechanical.
 
-You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases this approach is quite simple and convenient. In this particular case though, well maybe not with this amount of props. There are **168** individual property key-value pairs managed by the same controller. Clearly a horrific amount, still the entire setup was pretty simple to make, even if as mentioned quite repetitive.
+You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases, this approach is quite simple and convenient. In this particular case though, well maybe not with this large number of properties. There are **168** individual theming property key-value pairs managed by the same controller. Clearly a horrific amount, still the entire setup was pretty simple to make, even if as mentioned quite repetitive.
 
 It works surprisingly well despite the large amount of controller properties, even if the values all share the same listener that rebuilds the app when something changes. This is of course because every property in the controller is of the nature that if we change it, then something in `ThemeData` changed, and we need to rebuild the entire app with the new `ThemeData` anyway.
 

@@ -8,37 +8,37 @@ Did you find an issue? Please open it as a new issue in the project [GitHub repo
 
 ## Flutter SDK: Chips in Material 3 mode do not follow the M3 specification
 
-Chip does not conform to Material3 design spec when useMaterial3 is enabled. See [issue #115364](https://github.com/flutter/flutter/issues/115364) for details. No known corrective actions yet (Nov 18, 2022).
+The `Chip` does not conform to Material3 design spec when useMaterial3 is enabled. See [issue #115364](https://github.com/flutter/flutter/issues/115364) for details. No known corrective actions yet (Nov 18, 2022).
 
 ## Flutter SDK: NavigationBar ink ripple does not follow M3 spec
 
-The M3 `NavigationBar` has a Material 2 type ink effects also when opting in on Material 3. This is not according to Material design specification. See issues [113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information.
+The M3 `NavigationBar` has a Material 2 styled ink effects also when opting in on Material 3. This is not according to Material design specification. See issues [113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information.
 
 There is an open (Nov 18, 2022) [PR](https://github.com/flutter/flutter/pull/115499) in the master channels that aims to fix this and its related ink issues.
 
-## Flutter SDK: TextField in Material 3 mode has wrong hovered and focused styles
+## Flutter SDK: TextField in Material 3 has wrong hovered and focused styles
 
 When opting in on Material 3, `TextField` gets wrong `focused` and `hovered` styles in some states. See issue [#113329](https://github.com/flutter/flutter/issues/113329) for details.
 
-The [PR #113776](https://github.com/flutter/flutter/pull/113776) in master channel fixes the issue. This issue only occurred in the master channel, because M3 mode support for `TextField` does not exist in the Flutter stable channel. Hopefully, this issue will never regress to the stable channel. We will not be sure until the next stable version after Flutter 3.3 is released though.
+The [PR #113776](https://github.com/flutter/flutter/pull/113776) in the master channel fixes the issue. This issue only occurred in the master channel, because M3 mode support for `TextField` does not exist in the Flutter stable channel. Hopefully, this issue will never regress to the stable channel. We will not be sure until the next stable version after Flutter 3.3 is released though.
 
 ## Flutter SDK: Switching Typography dynamically causes a crash
 
 Switching Typography dynamically in Flutter SDK ThemeData is broken, see
-issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information. If it is done and the error ignored, an app doing so eventually becomes unstable.
+issue [#103864](https://github.com/flutter/flutter/issues/103864) for more information. If it is done and the error is ignored, an app doing so eventually becomes unstable.
 
-The Themes Playground app contains a workaround to avoid issue [#103864](https://github.com/flutter/flutter/issues/103864). The workaround is done by always using 2021 Typography, but simulating 2018 Typography. This is done by using a custom TextTheme that looks like 2018 Typography is used when using M2 theme mode. The Playground App actually always stays in 2021 Typography, but looks like it switches it. Which it does by applying a custom `TextTheme` in 2021 Typography, that looks like 2018 Typography is used. All other examples also avoid the issue by only using the M3 2021 Typography and not even mimicking a switch between M2 and M3 Typography.
+The **Themes Playground** app contains a workaround to avoid issue [#103864](https://github.com/flutter/flutter/issues/103864). The workaround is done by always using the 2021 Typography, and simulating 2018 Typography. This is implemented by using a custom `TextTheme` that looks like the 2018 Typography is used when using the Material 2 theme mode. The Playground App actually always stays in 2021 Typography, but it looks like it switches. Which it does by applying a custom `TextTheme` using in 2021 Typography, that makes it look like the 2018 Typography is being used. All other examples also avoid the issue by only using the M3 2021 Typography and not even mimicking a switch between M2 and M3 Typography.
 
-The above workaround is needed because the Playground app has toggles that switch Typography frequently, without the workaround it will eventually crash. With this workaround it never switches Typography, it just looks like it does, but app stays in 2021 Typography all the time. The by Themes Playground generated ThemeData config will use the actual real effective Typography. This is also fine, since an app using the theme will likely never switch used Typography. However, if it does, it will face the same issue the Playground app did. The issue is a Flutter SDK issue that FlexColorScheme cannot fix. Most likely 99% of apps will never run into this issue.
+The above workaround is needed because the Playground app has toggles that switch Typography frequently, without the workaround it will eventually crash. With this workaround, it never switches Typography. It just looks like it does, but app stays in 2021 Typography all the time. The by Themes Playground generated ThemeData config will use the actual real effective Typography. This is also fine, since an app using the theme will likely never switch used Typography. However, if it does, it will face the same issue as the Playground app did. The issue is a Flutter SDK issue that FlexColorScheme cannot fix. Most likely, 99% of apps will never run into this issue.
 
-A fix [PR #110870](https://github.com/flutter/flutter/pull/110870) for this issue now exists in master channel, but it is not yet available in Flutter 3.3.
+A fix [PR #110870](https://github.com/flutter/flutter/pull/110870) for this issue now exists in the master channel, but it is not available in the Flutter 3.3 stable channel.
 
 ## Flutter SDK: Elevation issues when opting in on useMaterial3
 
 In Flutter 3.0 and 3.3, when opting in on `useMaterial3:true`, the `Material` widget and other SDK widgets built on it, gets no elevation when only the `elevation` property is defined. It is required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect. When using the `Material` widget itself this is easy to address. However, widgets like `Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`, `TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these `Material` properties and cannot be elevated.
 
 The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190) and also mentioned in the `FlexColorScheme` repo here
-[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3, if such elevations are important to your app design. One working fix is to wrap those widgets in a theme where `useMaterial3` is false, then te rest of your app can still use it. This is however a rather tedious workaround fix. Due to this current SDK `Material` elevation issues when `useMaterial3` is true, it is recommended to avoid opting in on Material 3 if correctly elevated Material on Dialogs, Drawers, BottomSheet and PopupMenuButton is important for the app.
+[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3. However, if such elevations are important to your app design, one working fix is to wrap those widgets in a theme where `useMaterial3` is false, the rest of your app can still use it. This is a rather tedious workaround. Due to this current SDK `Material` elevation issue when `useMaterial3` is true, it is recommended to avoid opting in on Material 3 if correctly elevated Material on Dialogs, Drawers, BottomSheet and PopupMenuButton are critical for the app's design.
 
 This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the default elevation issue for `Material`, but it is not yet available in Flutter 3.3. It also does not fully solve the poor dark mode `PopupMenuButton` style.
 
@@ -48,7 +48,7 @@ Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are igno
 
 ## Flutter SDK: Cannot set foreground color on SliverAppBar medium and large 
 
-When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not used by the app bar, see issue[#110951](https://github.com/flutter/flutter/issues/110951). This issue had when last checked (Nov 18, 2022) no known corrective actions in progress in the master channel.
+When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not getting applied to the `AppBar`as it should. See issue[#110951](https://github.com/flutter/flutter/issues/110951). This issue had when last checked (Nov 18, 2022) no known corrective actions in progress in the master channel.
 
 
 ## Flutter SDK: Android System Navigation Bar
@@ -56,13 +56,13 @@ When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large
 Due to Flutter SDK [issue #100027](https://github.com/flutter/flutter/issues/100027) *"Using systemNavigationBarDividerColor changes statusBarIconBrightness and systemNavigationBarIconBrightness on Android 11"*. Two temporary changes were made to `FlexColorScheme.themedSystemNavigationBar` implementation:
 
 * The divider feature is disabled until the issue has been resolved.
-* There is a temporary workaround implemented, it manages to keep system icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
+* There is a temporary workaround implemented. It manages to keep system icons from getting the wrong brightness on Android 11 by calling systemChrome twice.
 
 The temporary changes will be reverted when a working fix for the Flutter issue has reached the stable channel. There is a related issue on the topic worth tracking [here #112301](https://github.com/flutter/flutter/issues/112301).
 
 ## Flutter SDK: Vanilla Chip has no M3 style
 
-Chip theme in Flutter 3.3 do not M3 style the plain vanilla Chip. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470). This issue has been fixed in the master channel via [PR #111597](https://github.com/flutter/flutter/pull/111597), but it has not yet landed in the stable channel.
+The `Chip` theme in Flutter 3.3 does not M3 style the plain vanilla `Chip`. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470). This issue has been fixed in the master channel via [PR #111597](https://github.com/flutter/flutter/pull/111597), but it has not yet landed in the stable channel.
 
 ## Flutter SDK: FloatingActionButton theming limitation
 
@@ -76,10 +76,10 @@ Cannot theme SnackBar shape independently for its different behaviors, see issue
 
 ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality operator and hashCode in Flutter SDK, it is missing the borderRadius property. Report not yet submitted to Flutter repo.
 
-This can be seen in the **Themes Playground** app where changing the controller value borderRadius on the used `UnderlineInputBorder` property does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder, since the value change is not observed because the property is not included in the object equality. Equality remains true, even though one of its property values has changed. Deeper issue analysis, reproduction sample and submission as a Flutter bug still to be done.
+This can be seen in the **Themes Playground** app where changing the controller value borderRadius on the used `UnderlineInputBorder` property does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder, since the value change is not observed because the property is not included in the object equality. Equality remains true, even though one of its property values has changed. Deeper issue analysis, reproduction sample and submission as a Flutter bug is still to be done.
 
 ## Flutter SDK: Dark mode M2 elevation limitation.
 
-The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
+The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
 
 Version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.

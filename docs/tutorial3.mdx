@@ -4,7 +4,7 @@ The third tutorial example shows how we can use three built-in color schemes, ad
 
 Additionally, we can activate an option that uses the selected scheme's colors as input to generate a ColorScheme computed by the Material 3 based `ColorScheme` generation algorithms. We can also turn the opinionated component widget themes ON or OFF.
 
-Only code highlights might be shown below, the complete code for the example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3_four_themes).
+Only code highlights might be shown below. The complete code of this example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3_four_themes).
 
 ## ThemeServicePrefs
 
@@ -14,14 +14,14 @@ The `ThemeServicePrefs` persistence is based on the popular package [SharedPrefe
 
 We again use the `ThemeController`, which glues our theme settings to Flutter Widgets. The controller uses an abstract `ThemeService` interface to get and save the settings. There are 3 concrete implementations available that we can use in these examples.
 
-0. ThemeService      - Abstract interface base class.
-1. ThemeServiceMem   - Only keeps settings in memory.
-2. ThemeServicePrefs - Persist settings locally using SharedPreferences.
-3. ThemeServiceHive  - Persist settings locally using Hive.
+0. ThemeService, abstract interface base class.
+1. ThemeServiceMem, only keeps settings in memory.
+2. ThemeServicePrefs, persist settings locally using SharedPreferences.
+3. ThemeServiceHive, persist settings locally using Hive.
 
-In this example we use the `ThemeServicePrefs` option. These examples are all built using same **example** app. If we use SharedPreferences in more than one of them, they would all use the same storage container and share the settings when you build them locally. By using Hive for most examples, we can change the storage container name for each example. In these demos the SharedPreferences service is only used in this example. You can swap in the Hive based one here as well, or SharedPreferences on the other ones too, if you want to try it.
+In this example we use the `ThemeServicePrefs` option. These examples are all built using the same **example** app. If we use SharedPreferences in more than one of them, they would all use the same storage container and share the settings when you build them locally. By using Hive for most examples, we can change the storage container name, for each example. In these demos, the SharedPreferences service is only used in this example. You can swap in the Hive-based one here as well, or SharedPreferences on the other ones too.
 
-These tutorials are not about how to define the used Flutter skeleton style controller, or how to make the abstract service with three different implementations. Still they do demonstrate with these examples how one can easily swap the used persistence implementation. You can take a peek at the source code of examples 2 to 5, to learn more about how it is done in these examples.
+These tutorials are not about how to define the used Flutter skeleton style controller, or how to make the abstract service with three different implementations. Still, they do demonstrate with these examples how one can easily swap the used persistence implementation. You can take a peek at the source code of examples 2 to 5, to learn more about how it is done in these examples.
 
 ```dart
 Future<void> main() async {
@@ -150,7 +150,7 @@ Below we go through the above theme setup in more detail.
 
 ## Selecting Theme
 
-We select the used active theme for the app by using the theme controller's `usedScheme` property, that contains the value of currently selected `FlexScheme` enum. If it is the `custom` value, we use our custom scheme `_myFlexScheme` colors. If it is any other value, we get the corresponding colors from the `FlexColor.schemes` map, using the enum value as key.
+We select the used active theme for the app by using the theme controller's `usedScheme` property, that contains the value of currently selected `FlexScheme` enum. If it is the `custom` value, we use our custom scheme `_myFlexScheme` colors. If it is any other value, we get the corresponding colors from the `FlexColor.schemes` map, using the enum value as the key.
 
 On the `HomePage` we have a Flutter SDK `ToggleButtons` based UI widget, that allows us the select one of the used 4 different `FlexScheme` enum values, it changes the `ThemeController` accordingly. The used enum values we can use are `hippieBlue`, `mallardGreen`, `outerSpace` and the `custom` option.
 
@@ -171,7 +171,7 @@ The `ThemeSelectButtons` is a simple `StatelessWidget` using Flutter `ToggleButt
 
 As in example 2 the `themeController` is also used to decide if we opt in or out on using the component sub-theming via `useSubThemes`. A simple on/off switch on the `HomePage` allows us to toggle its state between true and false, thus turning on or off the usage of FlexColorScheme's sub theming feature.
 
-When the opt-in is true we pass in a default `FlexSubThemesData()` constructor, otherwise `null` to not use the sub themes at all. Later we will explore more options that we can configure with `FlexSubThemesData`
+When the `useSubThemes` opt-in is true, we pass in a default `FlexSubThemesData()` constructor, otherwise `null` to not use the sub themes at all. Later we will explore more options that we can configure with `FlexSubThemesData`
 
 ```dart
   // Opt in/out on using FlexColorScheme sub-themes.
@@ -215,7 +215,7 @@ keyColors: FlexKeyColors(
 ),
 ```
 
-In the example app above we use this setup:
+In the example app above, we use this setup:
 
 ```dart
  :
@@ -278,13 +278,13 @@ theme with common Material UI widgets. You can try this example as a Flutter
 
 When key colors are used to generate Material 3 Tonal Palettes, the same key color(s) should in Material 3 color system design be used to generate the Tonal Palettes for both the light and dark mode theme.
 
-The `ColorScheme` then uses different "Tones" (shades) from the identical key color sourced Tonal Palettes to select appropriate tones for the light and dark mode from these palettes. In the Themes Playground [guide](/playground#tonal-palettes) we explore these basic concepts more and show visualizations of the Tonal Palettes.
+The `ColorScheme` then uses different "Tones" (shades) from the identical key color sourced Tonal Palettes to select appropriate tones for the light and dark mode from these palettes. In the Themes Playground [guide](/playground#tonal-palettes), we explore these basic concepts more and show visualizations of the Tonal Palettes.
 
 Below we compare the look of the Mallard green theme, using its theme as defined, versus using its colors as key colors to generate the ColorScheme from those colors. The result is usually very balanced and pleasing. However, if we look at the result when using only the primary color as key color, it is not at all the same ColorScheme as the original one. The result is the same result as creating the color scheme with `ColorScheme.fromSeed` and giving it the Mallard scheme's primary light theme mode color as input.
 
-As we one by one turn on using also primary and tertiary colors as keys, we see that the result gets a bit closer to the original design intent. Still the colors are quite a bit different. In this example when secondary and tertiary are used as key colors, the Tonal Palette generation is using the chroma from these colors, but limited to same max values as the `ColorScheme.fromSeed` algorithm uses for its single seed color.
+As we one-by-one, turn on using secondary and tertiary colors as keys, we see that the result gets a bit closer to the original design intent. Still, the colors are quite a bit different. In this example when secondary and tertiary are used as key colors, the Tonal Palette generation is using the chroma from these colors, but limited to same max values as the `ColorScheme.fromSeed` algorithm uses for its single seed color.
 
-The comparison below show the Mallard green theme in light and dark mode, when using:
+The comparison below shows the Mallard green theme, in light and dark mode, when using:
 
 1. Scheme colors as defined by its color values, used to make the `ColorScheme`.
 2. Seeded ColorScheme, with only primary as input, like `ColorScheme.fromSeed`.
@@ -315,10 +315,10 @@ The comparison below show the Mallard green theme in light and dark mode, when u
   </tr>
  </table>
 
-The color math in the Material 3 tonal palette generation is very sophisticated, but in Flutter SDK little of it is exposed directly. FlexColorScheme uses package [FlexSeedScheme package](https://pub.dev/packages/flex_seed_scheme), it opens up more of its capabilities via an easy-to-use API. Its API also lets you change the key color chroma limits and even which tone is used for what for color in the resulting ColorScheme. This can make generated schemes more vivid or muted, the number of ways you can tune the tonal palette generation is almost limitless.
+The color math in the Material 3 tonal palette generation is very sophisticated, but in Flutter SDK little of it is exposed directly. FlexColorScheme uses package [FlexSeedScheme package](https://pub.dev/packages/flex_seed_scheme). It opens up more of its capabilities via an easy-to-use API. Its API also lets you change the key color chroma limits and even which tone is used for what for color in the resulting ColorScheme. This can make generated schemes more vivid or muted. The number of ways you can tune the tonal palette generation is almost limitless.
 
-This example keeps the primary color surface blend level at the same value for the seed generated ColorSchemes at the same level. Seed generated ColorSchemes already mix a bit of their primary color into the generated neutral tonal palettes, that is there already as a base when using surface blends with them. Their surface blend coloring gets a lot stronger at lower blend levels, since the mixing starts with a hint of the primary in the base surface colors already.
+This example keeps the primary color surface blend level at the same value for the seed generated ColorSchemes. Seed generated ColorSchemes already mix a bit of their primary color into the generated neutral tonal palettes, that is there already as a base when using surface blends with them. Their surface blend coloring gets a lot stronger at lower blend levels. This happens because the mixing starts with a hint of the primary in the base surface colors already.
 
-FlexColorScheme primary color surface blends works well with seed generated ColorSchemes too, it is however often needed to reduce the blend strength. If you want the actual Material 3 default surface blends, then keep blend level at zero.
+FlexColorScheme primary color surface blends work well with seed generated ColorSchemes too. It is, however, often needed to reduce the blend strength. If you want the actual Material 3 default surface blends, then keep blend level at zero.
 
-The key colors themselves are seldom included as colors in the generated `ColorScheme`. This can be problematic if you want to use specific colors in your custom scheme for branding purposes. The `FlexKeyColors` configuration data class contains additional properties where you can instruct it to keep a color defined in FlexColorScheme at its defined input value. Set e.g. `keepPrimary: true` to ensure that the actual primary color you used to seed your `ColorScheme`, is also used as the primary color in the otherwise seed generated `ColorScheme` from the used color. In the next example we will explore this as well.
+The key colors themselves are seldom included as colors in the generated `ColorScheme`. This can be problematic if you want to use specific colors in your custom scheme for branding purposes. The `FlexKeyColors` configuration data class contains additional properties where you can instruct it to keep a color defined in FlexColorScheme at its defined input value. Set e.g. `keepPrimary: true` to ensure that the actual primary color you used to seed your `ColorScheme`, is also used as the primary color in the otherwise seed generated `ColorScheme` from the used color. In the next example, we will explore this as well.
