@@ -2,9 +2,9 @@
 
 This last tutorial is actually the complete **Themes Playground** application. For more info on the Themes Playground application and what it does, please refer to its own [Themes Playground](/playground) chapter in the documentation.
 
-The same custom color schemes as in example 4 are also used here, please see [example 4](/tutorial4#custom-colors) for more details on their setup.
+The same custom color schemes as in example 4 are also used here, please see [example 4] (/tutorial4#custom-colors) for more details on their setup.
 
-If you tried the previous examples on an Android device, you might have noticed that the system navigation bar on Android devices does not change. It is not themed to have a matching tinted background, or even a theme mode appropriate one that matches the active application theme as it changes. This example uses Flutter's `AnnotatedRegion`, with a helper called `FlexColorScheme.themedSystemNavigationBar` to make a `SystemUiOverlayStyle`, that adjusts the look of the Android system navigation bar as the theme is modified. You can read more about this in the [API guide's](/api_guide) deep dive into [`themedSystemNavigationBar`](/deep_dives#themed-system-navigation-bar-in-android).
+If you tried the previous examples on an Android device, you might have noticed that the system navigation bar on Android devices does not change. It is not themed to have a matching tinted background, or even a theme mode appropriate one that matches the active application theme as it changes. This example uses Flutter's `AnnotatedRegion`, with a helper called `FlexColorScheme.themedSystemNavigationBar` to make a `SystemUiOverlayStyle`, that adjusts the look of the Android system navigation bar as the theme is modified. You can read more about this in the [API guide's] (/api_guide) deep dive into [`themedSystemNavigationBar`](/deep_dives#themed-system-navigation-bar-in-android).
 
 Only code highlights are shown below. The complete code of this example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground).
 
@@ -288,7 +288,7 @@ Some theme changes can be a bit taxing calculation wise. While some changes that
 
 This animation can be seen as a slight delay in the manifestation of the latest value, as the theme is animating to the last slider value. This can certainly be avoided by not triggering a theme change until the slider change is complete, but in this case we preferred to show the change as the slider is being adjusted.
 
-In this tutorial and all example applications, each managed property in the controller follows this simple pattern:
+In this tutorial, and all its examples, each managed property in the controller follows this simple pattern:
 
 ```dart
   // Private value, getter and setter for the ThemeMode
@@ -316,15 +316,15 @@ The flag to not notify listeners is used in the `resetAllToDefaults()` function,
 
 Making the above setup for all the properties in the **Themes Playground** was a bit tedious, even if it is simple and mechanical.
 
-You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases, this approach is quite simple and convenient. In this particular case though, well maybe not with this large number of properties. There are **168** individual theming property key-value pairs managed by the same controller. Clearly a horrific amount, still the entire setup was pretty simple to make, even if as mentioned quite repetitive.
+You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases, this approach is quite simple and convenient. In this particular case though, well maybe not with this large number of properties. There are **168** individual theming property key-value pairs managed by the same controller. This is a large number controlled properties. However, the setup is simple to make, even if it as mentioned is quite repetitive.
 
 It works surprisingly well despite the large amount of controller properties, even if the values all share the same listener that rebuilds the app when something changes. This is of course because every property in the controller is of the nature that if we change it, then something in `ThemeData` changed, and we need to rebuild the entire app with the new `ThemeData` anyway.
 
-This does not mean that Flutter always redraws every widget when we change something, if it is local to just one widget type, like input decorator used only in one panel, we can with rainbow paints, even on the big masonry grid view, observe that often only it is being redrawn. Naturally if we change theme colors, everything needs to be redrawn with the new colors. The nature of this app being what it is, this of course happens a lot.
+This does not mean that Flutter always redraws every widget when we change something. If the change is local to just one widget type, like input decorator used only in one panel, we can with rainbow paints, even with the big masonry grid view, observe that often only it is being redrawn. Naturally, if we change theme colors, everything needs to be redrawn with the new colors. The nature of this app being what it is, this of course happens a lot.
 
 ### Persisting "null" Choice
 
-For many theme properties "null" represents the default undefined theming behavior. In our settings that is also a deliberate choice and option that we may choose and want to persist. Whereas a missing key in our persisted key-value pair, only means we have no value for it in it yet, and we should get the app default value for the property. Which is available as const value in the app via `Store.default"Property"` values. The default might not be null in the app defaults, but it may also be so for some properties.
+For many theme properties, "null" represents the default undefined theming behavior. In the theme settings, this is also a deliberate choice and option that we may choose and want to persist. Whereas a missing key in our persisted key-value pair, only means we have no value for it yet, and that we should get the app default value for the property. Which is available as const value in the app via `Store.default"Property"` values. The default might not be null in the app defaults, but it may be so for some properties.
 
 This was quite simple to accomplish with the `ThemeServiceHive` implementation, but for the `ThemeServicePrefs` version we had to make a bit more involved implementation. If you are interested in this detail you can take a peek at the code for [`ThemeServiceHive`](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/services/theme_service_hive.dart) and [`ThemeServicePrefs`](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/shared/services/theme_service_prefs.dart) and compare them.
 
