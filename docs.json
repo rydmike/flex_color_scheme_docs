@@ -18,7 +18,7 @@
             [
                 ["About","/"],
                 ["All themes", "/all_themes"],
-                ["Showcases", "/all_themes"]
+                ["Showcase", "/showcases"]
             ]
         ],
         ["Getting Started",
