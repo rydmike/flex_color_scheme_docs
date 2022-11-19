@@ -1,6 +1,6 @@
 # API Guide
 
-The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough, it should cover most questions you might have. An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
+The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough. It should cover most questions you might have. An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
 
 You can create FlexColorScheme based `ThemeData` objects using two different APIs:
 
@@ -19,7 +19,7 @@ There are separate APIs for creating the light theme mode, and dark theme mode `
 
 **Example: FlexThemeData**
 
-Using this API is very familiar, it looks a lot like `ThemeData.light` and `dark`, but with Flex prepended. They of course have a lot of additional properties, but the basic usage is simple.
+Using this API is very familiar, it looks a lot like `ThemeData.light` and `dark`, but with Flex prepended. They, of course, have a lot of additional properties, but the basic usage is simple.
 
 ```dart
   class MyApp extends StatelessWidget {
@@ -86,11 +86,11 @@ The two most commonly used properties to define used colors in the produced `The
 
 If you specify both `scheme` and `colors`, the custom colors in `colors`, have higher precedence and are used, and the `scheme` property is ignored. If you specify neither, then `scheme` defaults to `FlexScheme.material`.
 
-You can also create a custom `FlexColorScheme` based theme from a Flutter standard `ColorScheme` object, by providing it a `colorScheme`.
+You can also create a custom `FlexColorScheme` based theme, from a Flutter standard `ColorScheme` object, by providing it a `colorScheme`.
 
-* **colorScheme** a [`ColorScheme`](https://api.flutter.dev/flutter/material/ColorScheme-class.html) object used to create a custom `FlexColorScheme` based theme, from color definitions you already have in a standard `ColorScheme`. This property also exist in the default constructor. If you use `colorScheme` the colors in the provided `colorScheme` will override any values you have given in the `scheme` or `colors` properties.
+* **colorScheme** a [`ColorScheme`](https://api.flutter.dev/flutter/material/ColorScheme-class.html) object used to create a custom `FlexColorScheme` based theme, from color definitions you already have in a standard `ColorScheme`. This property also exists in the default constructor. If you use `colorScheme` the colors in the provided `colorScheme` will override any values you have given in the `scheme` or `colors` properties.
 
-* The direct color properties available in the constructors, e.g. `primary`,  `primaryContainer`, etc., that are all named like the same color properties in `ColorScheme` or e.g. `scaffoldBackground` in `ThemeData`, will override any corresponding color values that would be set via other color affecting properties provided via `scheme`, `colors` and also the ones in a   `colorScheme`. The direct color properties provide an alternative way to override individual colors values in built-in `scheme`, `colors` or provided `colorScheme`. Not all color properties in a `ColorScheme` are available as direct color property values, but commonly used ones are.
+* The direct color properties available in the constructors, e.g. `primary`,  `primaryContainer`, etc., that are all named like the same color properties in `ColorScheme` or e.g. `scaffoldBackground` in `ThemeData`, will override any corresponding color values that would be set via any other color affecting properties provided via `scheme`, `colors` and also the ones in a   `colorScheme`. The direct color properties provide an alternative way to override individual colors values in built-in `scheme`, `colors` or provided `colorScheme`. Not all color properties in a `ColorScheme` are available as direct color property values, but commonly used ones are.
 
 FlexColorScheme has shortcut enum properties that you can use to quickly adjust the theme design for your **AppBar** and **TabBar**.
 
@@ -100,7 +100,7 @@ FlexColorScheme has shortcut enum properties that you can use to quickly adjust 
 
 * **appBarOpacity** a double value, can also be used to define the opacity of the AppBar background.
 
-An interesting and unique feature of FlexColorScheme is its capability to automatically create color schemes and resulting themes, that blend in the primary color into different surfaces. You can vary this blending depending on surface type and use different blend strengths. This feature is only available via the factory constructors and their `ThemeData` extensions, not via the default raw `FlexColorscheme()` constructor. To use the surface blending features use the properties **surfaceMode** and **blendLevel**.
+An interesting and unique feature of FlexColorScheme is its capability to automatically create color schemes and resulting themes that blend in the primary color into different surfaces. You can vary this blending depending on the surface type and use different blend strengths. This feature is only available via the factory constructors and their `ThemeData` extensions, not via the default raw `FlexColorscheme()` constructor. To use the surface blending features use the properties **surfaceMode** and **blendLevel**.
 
 * **surfaceMode** a [`FlexSurfaceMode`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSurfaceMode.html) enum value used to select the mode for blending in primary color into surface, background, scaffoldBackground and dialogBackground colors.
 
@@ -108,7 +108,7 @@ An interesting and unique feature of FlexColorScheme is its capability to automa
 
 You can also use properties like **inputColors**, **swapColors** and e.g. **useMaterial3ErrorColors** to modify the main input colors, before they are used to create the effective `ColorScheme` used in produced `ThemeData`.
 
-* **inputColors** integer value that defines the number of the six main   scheme colors to be used when creating effective `ColorScheme`. A convenience property that allows you to vary which colors to use of input primary, secondary and tertiary colors and their container colors, when FlexSchemeColor creates its effective `ColorScheme` from the input colors. The integer number corresponds to using:
+* **inputColors** integer value that defines the number of the six main scheme colors to be used when creating the effective `ColorScheme`. A convenience property that allows you to vary which colors to use of input primary, secondary and tertiary colors and their container colors, when FlexSchemeColor creates its effective `ColorScheme` from the input colors. The integer number corresponds to using:
     1. Only the primary color
     2. Primary & Secondary colors
     3. Primary + container & Secondary colors
@@ -116,18 +116,33 @@ You can also use properties like **inputColors**, **swapColors** and e.g. **useM
     5. Primary + container & Secondary + container & tertiary colors
     6. Primary + container & Secondary + container & tertiary + container
 
-  Computed color values are used for the ones being left out, the computed colors are derived from included ones. You can create a theme that uses only different shades and tones derived from the input `primary` color, by setting `inputColors` to 1. **Defaults to 6**, always using all 6 main input colors if they are defined.
+  Computed color values are used by the ones being left out, the computed colors are derived from included ones. You can create a theme that uses only different shades and tones derived from the input `primary` color, by setting `inputColors` to 1. **Defaults to 6**, always using all 6 main input colors if they are defined.
 
-* **swapColors** boolean value. When true, the primary and primaryContainer colors will be swapped with their secondary counterparts. Set this flag to true if you want to make a theme where your primary and secondary colors are swapped compared to how they are defined in the given in color properties or used pre-defined color scheme.
+* **swapColors** boolean value. When true, the primary and primaryContainer colors will be swapped with their secondary counterparts. Set this flag to true, if you want to make a theme where your primary and secondary colors are swapped, compared to how they are defined in the given input color properties or selected pre-defined color scheme.
 
-  This is useful if you want to do this with the pre-defined schemes for more theme options. If you are explicitly defining all your theme colors you can of course define them in any desired order. Even if you do that, this feature will still swap whatever colors you defined for primary and secondary, when used. You can also offer this feature as an easy end user modifiable theme option if you like. Another usage possibility is to set `swapColors` to true only for the dark mode and use your color scheme primary and secondary the other way around there, but only in dark mode.
+  This is useful if you want to do this with the pre-defined schemes for more theme options. If you are explicitly defining all your theme colors, you can define them in any desired order. Even if you do that, this feature, if used, will still swap whatever colors you defined for primary and secondary. You can also offer this feature as an easy end user modifiable theme option. Another usage possibility is to set `swapColors` to true only for the dark mode and use your color scheme primary and secondary the other way around in dark mode.
 
-* **useMaterial3ErrorColors** boolean value. Set it to true to use the new Material 3 error colors. If `useMaterial3ErrorColors` is false, the resulting `ColorScheme` and `ThemeData` will use Material 2 default error colors or error colors as defined by the built-in color schemes. Thus using same error colors as in FlexColorScheme versions before version 5.
+* **useMaterial3** boolean value. Defaults to false. A flag used to opt in to new SDK Material 3 features. Same property as in `ThemeData`, see [API doc](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/useMaterial3.html) or [Flutter API docs](https://api.flutter.dev/flutter/material/ThemeData/useMaterial3.html) for more information.
+
+* **useMaterial3ErrorColors** boolean value. Set it to true to use the new Material 3 error colors. If `useMaterial3ErrorColors` is false, the resulting `ColorScheme` and `ThemeData` will use Material 2 default error colors or error colors as defined by the built-in color schemes. Thus, using the same error colors as in FlexColorScheme versions before version 5.
 
    If `useMaterial3ErrorColors` is true, the resulting `ColorScheme` and `ThemeData` will use the Material 3 design guide error colors. Key color seed generated ColorSchemes always use the Material 3 design guide error colors, or error colors from its customized `TonalPalette` generation setup. **Defaults to false**.
 
-   The new M3 error colors are generally nicer looking. If your theme is using red colors shades, you can try both options to see which option works better with your theme's red colors, in the sense that they are more clearly distinguishable from your main theme colors.
+   The new M3 error colors are generally nicer looking. If your theme is using red color shades, you can try both options to see which option works better with your theme's red colors. That would be the red error color option that is is more distinguishable from your main red theme colors.
 
+* **swapLegacyOnMaterial3** boolean value. Set it to true, to automatically swap secondary and tertiary colors on built-in color schemes, when `useMaterial3` is true, if the scheme benefits from it to better match the Material 3 color system design intent.
+   
+   Starting with FlexColorScheme version 6.1.0, built-in color schemes, defined via `FlexSchemeColor`, have a flag `swapOnMaterial3`. When defined to be true, the scheme will benefit if the `secondary` and `tertiary` colors, including their containers, are swapped when using Material 3. Most FlexColorScheme color schemes were designed with M2 usage in mind, before M3 existed. They may often have their `swapOnMaterial3` set to true. If this flag is false, it may mean that its `FlexSchemeColor` was designed for M3 or that it won't benefit from swapping its secondary and tertiary colors. In the [Scheme Reference](/scheme_reference) you can see which schemes have the flag defined to true. 
+    
+   Using a seed-generated color scheme based on built-in FlexSchemeColor colors, is another way to make them suitable for the M3 Color system. However, in some cases the secondary color in their design may not be in-line with M3 color system design intent, especially if you use seeded setup that also use the hue from the secondary color to make tonal palettes for it. In some legacy FlexSchemeColor color designs this can be fixed if we swap the secondary and tertiary colors.
+
+   To make FlexSchemeColor designs color designs that benefit from it automatically swap secondary and tertiary colors when `useMaterial3` is set to true, set `swapLegacyOnMaterial3` to true. It defaults to false for backwards compatibility, but it is recommended to turn it on when using Material 3 and its color system. If you use seeded color schemes with Material 2, `useMaterial3` flag is false, then it may be preferable to keep `swapOnMaterial3` false for more prominent colors on secondaries.
+
+   This color swap has higher priority than `swapColor`, using it will always happen on the effective result of `swapLegacyOnMaterial3` and `useMaterial3`, and value of `swapOnMaterial3` in currently used built-in scheme `FlexSchemeColor`. 
+ 
+   If a custom `colorScheme` is passed in, or any of the direct color properties `secondary`, `secondaryContainer`, `tertiary` or `tertiaryContainer`, then it is assumed a custom scheme or overrides, are being used and the `swapLegacyOnMaterial3` setting does nothing.
+
+   The Themes Playground app defaults to setting `swapLegacyOnMaterial3` to ON (true), but allows you to turn it OFF. Defaults to false, for backwards compatibility, but prefer setting it to true if you also set `useMaterial3` to true.
 
 **Example: Demo of Common Properties**
 
