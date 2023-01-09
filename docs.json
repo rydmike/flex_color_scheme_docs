@@ -5,8 +5,8 @@
     "logoDark": "/images/logo.png",
     "twitter": "rydmike",
     "anchors": [
-        { "title": "Package", "icon": "pub", "link": "https://pub.dev/packages/flex_color_scheme" },
-        { "title": "Source", "icon": "github", "link": "https://github.com/rydmike/flex_color_scheme" }
+        { "title": "Package pub.dev", "icon": "cube", "link": "https://pub.dev/packages/flex_color_scheme" },
+        { "title": "GitHub source", "icon": "github", "link": "https://github.com/rydmike/flex_color_scheme" }
     ],
     "socialPreview": "/images/fcs_v5_site_rounded.png",
     "theme": "#0x29B6F6",
