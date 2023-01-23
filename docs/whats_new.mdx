@@ -4,6 +4,30 @@ This chapter features recent news and updates in **FlexColorScheme**. For a more
 
 This documentation site was launched together with version 5.0.0. It is constantly updated and improved. Suggestions and corrections to improve the documentation are welcome contributions.
 
+## Version 7.0.0-dev.1
+
+Jan 23, 2023.
+
+Version 7.0.0-dev.1 is a not yet fully tested development version of **FlexColorScheme** using Flutter beta 3.7.0-1.4.pre. At the time of writing this it works with mentioned Flutter beta and higher versions on master. It will most likely work as is with the next minor or major stable release (after version 3.3.x) of Flutter. This will be tested after the new stable version is released on Jan 25, 2023. There will potentially be a 7.0.0-dev.2 release when the new stable is out to adress any gaps and bump the required Flutter version to the new stable release.
+
+Why version 7.0.0? Are there breaking APIs?
+
+There are actually no breaking APIs in version 7 compared to version 6. You can upgrade to the new version without any changes. However, some past styling have been slightly tuned to align things better with M3. Some tests broke due to this, so the major version has been bumped.
+
+FCS v7 includes theming support for new Material 3 widgets in the next Flutter version. It also comes with 12 new M3 ColorScheme themes, for a total of 52, so now it holds all the cards :D. The additional color schemes can be used as such, and provide a good M3 color system fit as they are. For an even better M3 aligned style, enable seeded ColorScheme in FlexColorScheme. They work well with only primary key color as seed, but are also tuned to work if you enable their secondary and tertiary colors as key colors for seeding the ColorScheme. For a more conservative seed generated ColorScheme, don't use secondary color as a seed color. This applies generally to seeded ColorScheme generation.
+
+With FCS can as before customize how the seeded ColorScheme is generated from key colors. The default option is the Material 3 and Flutter standard `ColorScheme.fromSeed` used settings, but FCS allows you to completely customize how it behaves. To ease the burden of trying this, it comes with many preconfigured options. A new thing is that if you use a custom surface blend color in FCS surface color blending. This same color is now used as seed for the neutral colors (surfaces and backgrounds) when you use M3 ColorScheme seed generation. Normally, in M3 default design, the primary color is always used for the slightly tinted surface colors. With FCS you can now customize this to any other color. Go easy on it though, not everything will look good. But you can certainly create interesting an unique looking apps with it.
+
+New M3 Components
+
+The new filled and tonal buttons are now available. Their color theming capabilities are a bit limited. Theming their colors, changes the colors of both buttons and you no longer get two different button styles. This is a [limitation](https://github.com/flutter/flutter/issues/115827) in current (new) version of Flutter. The situation may be improved in later Flutter versions. I recommend keeping their colors as they are. Changing other parts of their time in sync, like e.g. border radius is often desired, so that is still usable. Together with Elevated, Filled and Text buttons you now get a pretty complete button set out of the box, using most of the common colors in the ColorScheme.
+
+The new menus are one of my personal favorites in the new Flutter version. The same underlying component is used for the menu in `DropDownMenu`, `MenuBar` and `MenuAnchor`. Yes finally we have a lovely dropdown menu in Flutter. The `MenuBar` is great for desktop apps, it supports nested menus and keyboard shortcuts deep into the nested menus. The `MenuAnchor` is like one menu from a `MenuBar` that you can attach to any widget. Common use case could be right- or control-click context menus. For the new menus, FCS7 offers theming of menu part, more quick styling options may be added in later versions. The `DropdownMenu` has a `TextField` input part, it follows the general `TextField` input decoration you defined in FCS. In version 7 there are more quick config options available for the `TextField` and its `InputDecoratior`. Another neat synergy with menus is that for the menu options in the bar and the menu selections, the same `ButtonStyle` button that the normal Material button use is used as their building block. If you are familiar with raw custom theming the `ButtonStyle` Material buttons, with their complex but versatile MaterialState, you already know how to theme the menus selection options. FCS will offer some simpler quick styling of the menu selections in later version. 
+
+There are many other new components and configurable component sub-theme settings in FCS7 for you to explore. You can do so easily in version 7 of the [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7). Check out the package [changelog](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.1/changelog) for full details.
+
+The FlexColorscheme documentation site has otherwise not been updated with any more information about FCS7. Updates to the doc site will follow in stages after stable verson of FCS is released.
+
 ## Version 6.1.0
 
 **FlexColorScheme** version 6.1.0 contains many new features, more component sub-themes and configurable properties. It improves seed-generated color scheme capabilities by adding more pre-configured seed generation configurations and color contrast accessibility options.
