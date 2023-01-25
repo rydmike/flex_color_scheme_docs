@@ -10,7 +10,7 @@ Jan 25, 2023.
 
 Version 7.0.0-dev.2 is a not yet fully tested development, or beta version of **FlexColorScheme** 7.0.0. It is now using Flutter stable 3.7.0.
 
-Why version 7.0.0? Are there breaking APIs?
+**Why version 7.0.0? Are there breaking APIs?**
 
 There are actually no breaking APIs in version 7 compared to version 6. You can upgrade to the new version without any changes. However, some past styles have been slightly tuned to align things better with M3. Some tests broke due to this, so the major version has been bumped.
 
@@ -18,7 +18,7 @@ FCS v7 includes theming support for new Material 3 widgets in the next Flutter v
 
 With FCS can as before customize how the seeded ColorScheme is generated from key colors. The default option is the Material 3 and Flutter standard `ColorScheme.fromSeed` used settings, but FCS allows you to completely customize how it behaves. To ease the burden of trying this, it comes with many preconfigured options. A new thing is that if you use a custom surface blend color in FCS surface color blending. This same color is now used as seed for the neutral colors (surfaces and backgrounds) when you use M3 ColorScheme seed generation. Normally, in M3 default design, the primary color is always used for the slightly tinted surface colors. With FCS, you can now customize this to any other color. Go easy on it though, not everything will look good. But you can certainly create interesting unique looking apps with it.
 
-New M3 Components
+**New M3 Components**
 
 The new filled and tonal buttons are now available. The theming capabilities of these new buttons are a bit limited. Theming their colors, changes the colors of both buttons and you no longer get two different button styles. This is a [limitation](https://github.com/flutter/flutter/issues/115827) in current (new) version of Flutter. The situation may be improved in later Flutter versions. I recommend keeping their colors as they are. Changing other parts of their time in sync, like e.g. border radius is often desired, so that is still usable. Together with Elevated, Filled and Text buttons, you now get a pretty complete button set out of the box, using most of the common colors in the ColorScheme.
 
@@ -30,7 +30,7 @@ There are many other new components and configurable component sub-theme setting
 
 The FlexColorscheme documentation site has otherwise not been updated with any more information about FCS7. Updates to the doc site will follow in stages after the stable version of FCS is released.
 
-For full details of what is new check the [changelog for version 7.0.0-dev.2](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.2/changelog).
+<Info>For full details of what is new check the [changelog for version 7.0.0-dev.2](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.2/changelog).</Info>
 
 ## Version 6.1.0
 
