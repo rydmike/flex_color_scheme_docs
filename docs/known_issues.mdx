@@ -74,7 +74,7 @@ In Flutter 3.0 and 3.3, when opting in on `useMaterial3:true`, the `Material` wi
 The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190) and also mentioned in the `FlexColorScheme` repo here
 [#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3. However, if such elevations are important to your app design, one working fix is to wrap those widgets in a theme where `useMaterial3` is false, the rest of your app can still use it. This is a rather tedious workaround. Due to this current SDK `Material` elevation issue when `useMaterial3` is true, it is recommended to avoid opting in on Material 3 if correctly elevated Material on Dialogs, Drawers, BottomSheet and PopupMenuButton are critical for the app's design.
 
-This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the default elevation issue for `Material`, but it is not yet available in Flutter 3.3. It also does not fully solve the poor dark mode `PopupMenuButton` style.
+This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the default elevation issue for `Material`, but it is not yet available in Flutter 3.3. It also does not fully solve the poor dark mode `PopupMenuButton` style, that needs widget level support for it to work properly.
 
 ## Flutter SDK: AppBar icon theme not respected (Regression)
 
