@@ -6,17 +6,54 @@ The chapter lists known issues. Currently, all known issues impacting FlexColorS
 
 Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a **question about FlexColorScheme** and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
 
+
 ## Flutter SDK: NavigationBar ink ripple moves with height changes (Regression)
 
 <Error>Applies only to Flutter 3.7</Error>
 
-If you change the `NavigationBar` from M3 default value of 80dp, the ink level moves up or down with same amount as the devation from the default 80dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue is caused by a regression in Flutter 3.7. It does not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473). Hopefully this fix PR will be cherry-picked into next/first Flutter 3.7 hotfix, so we do not have to wait for the next stable release. This is still not decided though.  
+If you change the `NavigationBar` from M3 default value of 80dp, the ink level moves up or down with same amount as the devation from the default 80dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue is caused by a regression in Flutter 3.7. It does not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473). Hopefully this fix PR will be cherry-picked into next/first Flutter 3.7 hotfix, so we do not have to wait for the next stable release. This is still not decided though.
+
+
+## Flutter SDK: Known minor M3 specification deviations
+
+<Error>Applies to Flutter 3.7 and earlier, if widget with spec issue supported M3 in earlier versions</Error>
+
+The following M3 themes in Flutter 3.7 have minor deviation errors from their Material 3 specification.
+
+- TimePicker clock-dial use wrong spec color and its web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657)
+- BottomSheet has incorrect shadow. See issue  [#118244](https://github.com/flutter/flutter/issues/118244)
+- BottomAppBar does not match M3 spec, incorrect shadow. See issue  [#118150](https://github.com/flutter/flutter/issues/118150).
+- Wrong selected and disabled InputChip color, see issue  [#115826](https://github.com/flutter/flutter/issues/115826)
+- Missing state elevations on Chips. See issue  [#115825](https://github.com/flutter/flutter/issues/115825)
+- No Ink Splash on Actionable Chips when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824)
+
+
+## Flutter SDK: FilledButton theming limitation
+
+<Error>Applies to Flutter 3.7</Error>
+
+Cannot theme `FilledButton` and `FilledButton.tonal` variants separately, see issue [#118063](https://github.com/flutter/flutter/issues/118063).
+
+The new Material 3 buttons `FilledButton` and `FilledButton.tonal` cannot be themed separately to use different styles from each other.
+
+This is in conflict with their default themes where these buttons can use different styles and do look different. However, if you use `FilledButtonThemeData` in `ThemeData` to try to style the buttons, both variants will become identical since they share the same `FilledButtonThemeData`. This effectively renders theming of the `FilledButton` less usable, since e.g. theming its color properties makes the variants look identical.
+
+## Flutter SDK: Divider Color Inconsistencies
+
+<Error>Applies to Flutter 3.7 and earlier</Error>
+
+The introduction of M3 and some newer theme factories/properties have led to inconsistent divider colors that may cause theme color behavior confusion for developers. Some results are also not according to M2 or M3 specification.
+
+The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on used theme creation factory and M2/M3 mode. See issue [117755](https://github.com/flutter/flutter/issues/117755). 
+
+FlexColorScheme includes custom theming for the divider to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds.
+
 
 ## Flutter SDK: Chips in Material 3 mode do not follow the M3 specification
 
 <Error>Applies to Flutter 3.7 and earlier</Error>
 
-The `Chip` does not conform to Material3 design spec when useMaterial3 is enabled. See issue [#115364](https://github.com/flutter/flutter/issues/115364) for details. No known corrective actions yet (Nov 18, 2022).
+The `Chip` does not conform to Material3 design spec when useMaterial3 is enabled. See umbrella issue [#115364](https://github.com/flutter/flutter/issues/115364) for details. No known corrective actions yet (Nov 18, 2022). 
 
 ## Flutter SDK: Cannot set foreground color on SliverAppBar medium and large
 
@@ -31,6 +68,15 @@ When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large
 ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality operator and hashCode in Flutter SDK, it is missing the borderRadius property. See [issue #118282](https://github.com/flutter/flutter/issues/118282).
 
 This can be seen in the **Themes Playground** app where changing the controller value borderRadius on the used `UnderlineInputBorder` property does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder, since the value change is not observed because the property is not included in the object equality. Equality remains true, even though one of its property values has changed. This issue has been fixed in the master channel via [PR #118284](https://github.com/flutter/flutter/pull/118284), but it has not landed in Flutter stable 3.7.
+
+## Flutter SDK: Wrong Contrast Color on ThemeData.primaryTextTheme in Dark Mode
+
+<Error>Applies to Flutter 3.7 and earlier</Error>
+
+When the primary color of the theme requires dark contrast color, the primaryTextTheme gets the wrong contrast color in dark mode. See issue [118146](https://github.com/flutter/flutter/issues/118146) for more information.
+
+FlexColorScheme has always included a theme fix for this issue. It is a none issue in FCS. It is included here as information and for tracking purposes.
+
 
 ## Flutter SDK: NavigationBar ink ripple does not follow M3 spec
 
@@ -67,6 +113,8 @@ A fix [PR #110870](https://github.com/flutter/flutter/pull/110870) for this issu
 
 <Success>Fixed in Flutter 3.7</Success>
 
+The `TimePickerDialog` does however not yet have M3 support in Flutter 3.7. However, FCS 7.0 styles it correctly anyway, but the elevation can not be changed from its default value. The elevation property does not exist in Flutter 3.7 theme for `TimePickerDialog`, it does exist in master. Master `TimePickerDialog` M3 implemntation still has some issues, see [118657](https://github.com/flutter/flutter/issues/118657).
+
 <Error>Applies to Flutter 3.3 and earlier</Error>
 
 In Flutter 3.0 and 3.3, when opting in on `useMaterial3:true`, the `Material` widget and other SDK widgets built on it, gets no elevation when only the `elevation` property is defined. It is required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect. When using the `Material` widget itself this is easy to address. However, widgets like `Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`, `TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these `Material` properties and cannot be elevated.
@@ -102,6 +150,13 @@ The temporary changes will be reverted when a working fix for the Flutter issue 
 <Error>Applies to Flutter 3.3 and earlier</Error>
 
 The `Chip` theme in Flutter 3.3 does not M3 style the plain vanilla `Chip`. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470). This issue has been fixed in the master channel via [PR #111597](https://github.com/flutter/flutter/pull/111597), but it has not yet landed in the stable channel.
+
+## Flutter SDK: Chips theming limitation
+
+<Warning>Applies to Flutter 3.7 and earlier</Warning>
+
+Cannot make themed **Selected** and **disabled** `ChoiceChip`, `FilterChip` and `InputChip` follow M3 spec by using theming, see issue [#115827](https://github.com/flutter/flutter/issues/115827).
+
 
 ## Flutter SDK: FloatingActionButton theming limitation
 
