@@ -115,11 +115,11 @@ Cannot theme shape and iconSize differently for different sized FloatingActionBu
 
 Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
 
-## Flutter SDK: Dark mode M2 elevation limitation.
+## Flutter SDK: Dark mode M2 elevation limitation
 
 <Info>Applies to Flutter 3.7 and earlier</Info>
 
-The color branding is not applied to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
+The color branding is not applied in Material2 (M2) to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) *"Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353"*
 
 Version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
 
