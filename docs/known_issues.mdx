@@ -20,7 +20,7 @@ If you change the `NavigationBar` from M3 default value of 80dp, the ink level m
 
 The following M3 themes in Flutter 3.7 have minor deviation errors from their Material 3 specification.
 
-- TimePicker clock-dial use wrong spec color and its web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657)
+- TimePicker clock-dial use wrong spec color and its web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657). FCS includes a theme fix for this.
 - BottomSheet has incorrect shadow. See issue  [#118244](https://github.com/flutter/flutter/issues/118244)
 - BottomAppBar does not match M3 spec, incorrect shadow. See issue  [#118150](https://github.com/flutter/flutter/issues/118150).
 - Wrong selected and disabled InputChip color, see issue  [#115826](https://github.com/flutter/flutter/issues/115826)
@@ -38,7 +38,7 @@ The new Material 3 buttons `FilledButton` and `FilledButton.tonal` cannot be the
 
 This is in conflict with their default themes where these buttons can use different styles and do look different. However, if you use `FilledButtonThemeData` in `ThemeData` to try to style the buttons, both variants will become identical since they share the same `FilledButtonThemeData`. This effectively renders theming of the `FilledButton` less usable, since e.g. theming its color properties makes the variants look identical.
 
-## Flutter SDK: Divider Color Inconsistencies
+## Flutter SDK: Divider color inconsistencies
 
 <Error>Applies to Flutter 3.7 and earlier</Error>
 
@@ -69,7 +69,7 @@ ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality o
 
 This can be seen in the **Themes Playground** app where changing the controller value borderRadius on the used `UnderlineInputBorder` property does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder, since the value change is not observed because the property is not included in the object equality. Equality remains true, even though one of its property values has changed. This issue has been fixed in the master channel via [PR #118284](https://github.com/flutter/flutter/pull/118284), but it has not landed in Flutter stable 3.7.
 
-## Flutter SDK: Wrong Contrast Color on ThemeData.primaryTextTheme in Dark Mode
+## Flutter SDK: Wrong contrast color on ThemeData.primaryTextTheme in dark mode
 
 <Error>Applies to Flutter 3.7 and earlier</Error>
 
@@ -88,7 +88,7 @@ The M3 `NavigationBar` has a Material 2 styled ink effects also when opting in o
 
 ## Flutter SDK: TextField in Material 3 has wrong hovered and focused styles
 
-<Info>Only occured in master, appears to not have landed in any Flutter stable version</Info>
+<Info>Only occurred in master, appears to not have landed in any Flutter stable version</Info>
 
 When opting in on Material 3, `TextField` gets wrong `focused` and `hovered` styles in some states. See issue [#113329](https://github.com/flutter/flutter/issues/113329) for details.
 
@@ -97,6 +97,8 @@ The [PR #113776](https://github.com/flutter/flutter/pull/113776) in the master c
 ## Flutter SDK: Switching Typography dynamically causes a crash
 
 <Success>Fixed in Flutter 3.7</Success>
+
+The **Themes Playground** version 7, removes the `Typography` change crash workaround. `Typography` changes now correctly lerp animate when the setting is toggled in the Themes Playground app.
 
 <Error>Applies to Flutter 3.3 and earlier</Error>
 
