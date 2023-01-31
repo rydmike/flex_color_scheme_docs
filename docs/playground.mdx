@@ -360,7 +360,7 @@ With surface blends FlexColorScheme refers to using alpha blends to mix in a hin
 
 The Material 2 guide also talks about using alpha blends to create branded surface colors, especially in dark mode. In this [tweet](https://twitter.com/RydMike/status/1281293363233390599) I show an example of how to create such color tinted background and surface colors, using the `Color.alphaBlend` function.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-27-blends-tweet.png?raw=true" caption="Creating branded surfaces - tweet anno 2020, but still valid." alt="Tweet surface blends 2020"/>](https://twitter.com/RydMike/status/1281293363233390599)
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-27-blends-tweet.png?raw=true" caption="Creating branded surfaces - tweet anno 2020, but still valid." alt="Tweet surface blends 2020" zoom/>
 
 The above is exactly what FlexColorScheme does when you configure it to use surface blends. It also adds different blend modes and variable alpha blend levels, basically just the percentage above, that is then varied per surface type. Or with a bit more detail, the different surface blend modes varies the defined alpha blend level value using different fractional factors for different Flutter surface types.
 
@@ -387,14 +387,14 @@ The above may sound complicated, but using it is not. You can just fiddle with s
     {label: 'onColor blends', value: 'blend-onColor'},
   ]}>
   <TabItem value="blend-surface">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-28-blend-light-02.gif?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-28-blend-light-02.gif?raw=true"
     caption="Demonstration of using primary color surface color blending, its modes and levels."
-    alt="Surface blends" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-28-blend-light-02.gif?raw=true)
+    alt="Surface blends" zoom />
   </TabItem>
   <TabItem value="blend-onColor">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-29-on-blend-light-02.gif?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-29-on-blend-light-02.gif?raw=true"
     caption="Demonstration of using onColor blending and its levels."
-    alt="onColor blends" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-29-on-blend-light-02.gif?raw=true)
+    alt="onColor blends" zoom />
   </TabItem>
 </Tabs>
 
@@ -409,7 +409,7 @@ In both cases above, pay attention to effective surface, container colors and th
 
 You can copy any pre-made color scheme to the last scheme in the Themes Playground, and use its colors as a base for a completely custom colored theme. You can select and edit colors with the [FlexColorPicker](https://pub.dev/packages/flex_color_picker). The color picker also allows you to enter or paste in color values to it to define the custom color for each input color in the customizable theme.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-30-custom-colors-02.gif?raw=true" caption="Copying color values and making a custom theme." alt="custom colors" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-30-custom-colors-02.gif?raw=true)
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-30-custom-colors-02.gif?raw=true" caption="Copying color values and making a custom theme." alt="custom colors" zoom />
 
 Pretty much any color in a box and color code you see in the **Themes Playground** can be tapped and its color value is then copied to the Clipboard in Dart format. This is handy if you want to snipe any color you see in the playground. This works with the individual generated Tonal Palette colors too.
 
@@ -417,6 +417,6 @@ Pretty much any color in a box and color code you see in the **Themes Playground
 
 Only want the raw `ColorScheme` of the active theme you are looking at? No problem, you can copy it too and get a ready-made standard Flutter `ColorScheme` class definition for it.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-31-copy-scheme.png?raw=true" caption="Copy active ColorScheme." alt="Copy active ColorScheme" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-31-copy-scheme.png?raw=true)
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-31-copy-scheme.png?raw=true" caption="Copy active ColorScheme." alt="Copy active ColorScheme" zoom />
 
 You can use this feature if you prefer to not use any of FlexColorScheme's theming features. Maybe you would like to build your custom theme from scratch, but still find creating `ColorScheme` objects with the Themes Playground helpful.
