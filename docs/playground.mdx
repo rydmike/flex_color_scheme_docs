@@ -6,15 +6,33 @@ The [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground
 
 The most useful and popular feature of the **Themes Playground** is that it can generate the Dart and Flutter FlexColorScheme setup code needed to produce the shown active theme configuration. It even shows and modifies the code as you change settings, and you can see the code side-by-side as you change settings. This is a fun way to get familiar with the API. Beware, fiddling with all the different themes and settings can be quite addictive, happy theming! 💙
 
-The **Themes Playground** can be used as a [web app here](https://rydmike.com/flexcolorscheme/themesplayground-v6).
+The latest stable version of **Themes Playground** can be used as a [web app here](https://rydmike.com/flexcolorscheme/themesplayground-v6).
 
 ## Open Source
 
-The **Themes Playground** application is open source and is bundled with the `FlexColorScheme` package in the example sub-folder. In its GitHub repository you can find it here [/example/lib/example5_themes_playground](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground).
+The **Themes Playground** application is open source and bundled with the `FlexColorScheme` package in the example sub-folder. In its GitHub repository you can find it here [/example/lib/example5_themes_playground](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground).
 
-The playground is also the last step in the package tutorial series. The tutorial goes through its main used features that are relevant to using `FlexColorScheme`, and features that differ from the previous examples. It does not go through all the details of the application. You are welcome to study its source code for more insights, if it is of interest. It is on purposes a bit excessively commented. The tutorial also briefly talks about it's background, design choices and limitations.
+The playground is also the last step in the package tutorial series. The tutorial goes through its main used features that are relevant to using `FlexColorScheme`, and features that differ from the previous examples. It does not go through all the details of the Playground application, only highlights. You are welcome to study its source code for more insights. It is on purposes a bit excessively commented to guide you if you do. The tutorial also briefly talks about its background, design choices and limitations. Long story short, it started as small example and was never intended to become as big as it is now. At some future time I might extract the app from this repo to its own, and refactor it significantly.
 
 All the example apps are built from the example folder source code included with the package. The web builds and deployments are automated using GitHub actions, that are included in the GitHub repository as well.
+
+## Versions
+To use the **Themes Playground** together with the **FlexColorScheme** package, you should use the same major version of the Playground as the package. Minor later versions of the package may have added new properties and latest version of Playground will include those properties in generated code. If you are using a lower minor version of the package than the current same major Playground version release is on, the generated Themes Playground config code may include APIs not supported be the lower minor version of the package you use. You can then just delete those rows in the API config, or even better, update your FCS package to the same minor release that the Themes Playground web app build is on.
+
+### Version 7 beta
+A beta release of FlexColorScheme 7.0.0 is available on pub.dev as a pre-release [7.0.0-dev.2](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.2). It supports new Material 3 features in [Flutter stable 3.7.0](https://medium.com/flutter/whats-new-in-flutter-3-7-38cbea71133c). Here you can use [Themes Playground V7 beta](https://rydmike.com/flexcolorscheme/themesplayground-v7). See more details in [what's new](/whats_new) chapter.</Info>
+
+### Version 6
+If you are using the latest stable **FlexColorScheme version 6**, you can go here to use [Themes Playground V6](https://rydmike.com/flexcolorscheme/themesplayground-v6) and generate API setup code for FCS version 6, it supports FlexColorScheme version 6.1. You can also use this version of the Playground with FlexColorScheme version 6.0. If you do, you may have to delete some generated API config setup code for properties only available in version 6.1 that are not supported by FlexColorScheme 6.0. You will see those as unsupported API errors when you copy/paste the Themes Playground code to Flutter if you use FCS 6.0 and not 6.1. Delete such rows, or you can of course upgrade the package to 6.1 to get those features.
+
+### Version 5
+If you are using **FlexColorScheme version 5**, you can go here to use [Themes Playground V5](https://rydmike.com/flexcolorscheme/themesplayground-v5) and generate API setup code for it.
+
+### Version 4
+If you are using **FlexColorScheme version 4** you should really upgrade. Here you can still use [Themes Playground V4](https://rydmike.com/flexcolorschemeV4Tut5). It does not offer any API code generation, since version 4 did not have that feature.
+
+### Custom build
+You can also build a local Windows, macOS or Linux desktop version of the **Themes Playground**. This is highly recommended, as it runs much smoother and nicer than the WEB version. As mentioned above, the **Themes Playground** app is bundled with the package GitHub repository as **Example 5**. If you need a Themes Playground companion build for a specific older FlexColorScheme version, you can download a ZIP bundle from the GitHub repo for any past [release here](https://github.com/rydmike/flex_color_scheme/releases).
 
 ## Two Layouts
 
@@ -23,11 +41,11 @@ The Themes Playground application offers two view modes.
 1. Topic based page views.
 2. Topic based collapsible panels, in a large masonry style grid view.
 
-Both views have their pros and cons. On smaller screens and phone devices, the topic based page view is more practical to use.
+Both views have their pros and cons. On most smaller screens and phone devices, the topic based page view is more practical to use.
 
-The masonry based grid view is best experienced at as high resolution as possible, preferably even 4k.
+The masonry based grid view is best experienced at as high resolution as possible, preferably even pixel native 4k. On the web a full 4k render with all panels open, is not so super smooth, on desktop builds it typically works well.
 
-Both views are very responsive and work very well down to small phone media sizes, even in landscape mode. Still they both benefit a lot from larger media sizes. Mostly because when you use a larger screen with high resolution, you can see the result of more settings at one glance.
+Both views are very responsive and work very well down to small phone media sizes, even in landscape mode. Still, they both benefit a lot from larger media sizes. Mostly because when you use a larger screen with high resolution, you can see the result of more settings at a glance.
 
 The page view becomes more useful at typical landscape tablet sizes or larger. At those sizes you can see the generated setup code in a side-by-side view with each page's configuration topic.
 
@@ -40,7 +58,7 @@ The page view becomes more useful at typical landscape tablet sizes or larger. A
   <TabItem value="page">
     <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true"
     caption="Themes Playground - Topic based page view, responsiveness demo."
-    alt="page view demo"/>
+    alt="page view demo" zoom />
   </TabItem>
   <TabItem value="masonry">
     <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
@@ -79,7 +97,7 @@ Whenever you want the code, you can copy it to the clipboard with the copy butto
 
 You can also at any time, use the drawer, side rail or side menu action item "Copy theme code". This will open a dialog that shows the current theme setup code, with a copy icon button as well. This action button and dialog view can be practical on smaller sized media where you cannot see the code side-by-side with the configuration controls.
 
-[<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true" caption="Copy theme setup code, via side action or COPY button in code view." alt="Copy code" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true)
+<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-04-copy-code.png?raw=true" caption="Copy theme setup code, via side action or COPY button in code view." alt="Copy code" zoom />
 
 When you have copied the code for the setup you configured, you can paste it into your application and use it as-is, or use it as a base for further modifications. You can also paint and select only parts of the code, and copy just a few lines. This might be useful if you only modified a few settings from previous configuration.
 
@@ -99,14 +117,14 @@ When you enable component sub-themes, most controls are available. However, ther
     {label: 'Enabled when available', value: 'enabled'},
   ]}>
   <TabItem value="disabled">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true"
     caption="Controls that have no function in a given configuration are disabled."
-    alt="Unavailable controls" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-05-unavailable-controls.png?raw=true)
+    alt="Unavailable controls" zoom />
   </TabItem>
   <TabItem value="enabled">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true"
     caption="Most controls are available when component themes are enabled."
-    alt="Available controls" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-06-available-controls.png?raw=true)
+    alt="Available controls" zoom />
   </TabItem>
 </Tabs>
 
@@ -128,19 +146,19 @@ If you when using component sub-themes keep `defaultRadius` undefined, then each
     {label: 'Custom value', value: 'global-default'},
   ]}>
   <TabItem value="no-component">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true"
     caption="Defaults with no component themes, typically results in Flutter SDK M2 defaults, as here with border radius."
-    alt="Smart controls 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-07-smart-controls01.png?raw=true)
+    alt="Smart controls 1" zoom />
   </TabItem>
   <TabItem value="component-defaults">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true"
     caption="Border radius defaults with component themes, defaults per widget to its M3 radius specification."
-    alt="Smart controls 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-08-smart-controls02.png?raw=true)
+    alt="Smart controls 2" zoom />
   </TabItem>
   <TabItem value="global-default">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true"
     caption="Border radius using a given global default value."
-    alt="Smart controls 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-09-smart-controls03.png?raw=true)
+    alt="Smart controls 3" zoom />
   </TabItem>
 </Tabs>
 
@@ -165,24 +183,24 @@ You can swap primary and secondary colors, including their container colors. Red
     {label: 'Compute dark', value: 'compute-dark'},
   ]}>
   <TabItem value="given">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true"
     caption="Input colors used as given and defined."
-    alt="Input colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-10-input-01.png?raw=true)
+    alt="Input colors 1" zoom />
   </TabItem>
   <TabItem value="swap">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true"
     caption="Input colors with primary and secondary swapped, plus using Material 3 error colors instead of Material 2."
-    alt="Input colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true)
+    alt="Input colors 2" zoom />
   </TabItem>
   <TabItem value="reduce">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true"
     caption="Theme defining input colors reduced from 6 to 4, and undefined ones computed."
-    alt="Input colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-12-input-03.png?raw=true)
+    alt="Input colors 3" zoom />
   </TabItem>
     <TabItem value="compute-dark">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-13-input-04.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-13-input-04.png?raw=true"
     caption="Compute the dark theme from light theme mode colors."
-    alt="Input colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-13-input-04.png?raw=true)
+    alt="Input colors 4" zoom />
   </TabItem>
 </Tabs>
 
@@ -217,24 +235,24 @@ Below we can see the **Flutter Dash** theme:
     {label: 'Keep colors', value: 'keep-main'},
   ]}>
   <TabItem value="base">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-14-seeded-01.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-14-seeded-01.png?raw=true"
     caption="The Dash theme as defined and used as input for the seeded ColorScheme."
-    alt="Seed colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-14-seeded-01.png?raw=true)
+    alt="Seed colors 1" zoom />
   </TabItem>
   <TabItem value="seeded-primary">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-15-seeded-02.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-15-seeded-02.png?raw=true"
     caption="ColorScheme seeded from Dash light theme primary color."
-    alt="Seed colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-15-seeded-02.png?raw=true)
+    alt="Seed colors 2" zoom />
   </TabItem>
   <TabItem value="seeded-all">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-16-seeded-03.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-16-seeded-03.png?raw=true"
     caption="ColorScheme seeded from Dash light theme primary, secondary and tertiary colors."
-    alt="Seed colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-16-seeded-03.png?raw=true)
+    alt="Seed colors 3" zoom />
   </TabItem>
     <TabItem value="keep-main">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-17-seeded-04.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-17-seeded-04.png?raw=true"
     caption="Keeping primary, secondary and tertiary as defined by input, but use seeded results for all other colors."
-    alt="Seed colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-17-seeded-04.png?raw=true)
+    alt="Seed colors 4" zoom />
   </TabItem>
 </Tabs>
 
@@ -268,24 +286,24 @@ For example, tone 40 is used from primary Tonal Palette for the `ColorScheme.pri
     {label: 'All keys, Dark', value: 'tonal-all-dark'},
   ]}>
   <TabItem value="tonal-light">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-18-tonal-light.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-18-tonal-light.png?raw=true"
     caption="Flutter SDK one key color based Tonal Palette and primary light color tone mapping."
-    alt="Seed colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-18-tonal-light.png?raw=true)
+    alt="Seed colors 1" zoom />
   </TabItem>
   <TabItem value="tonal-dark">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-19-tonal-dark.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-19-tonal-dark.png?raw=true"
     caption="Flutter SDK one key color based Tonal Palette and primary dark color tone mapping."
-    alt="Seed colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-19-tonal-dark.png?raw=true)
+    alt="Seed colors 2" zoom />
   </TabItem>
   <TabItem value="tonal-all-light">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-20-tonal-light.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-20-tonal-light.png?raw=true"
     caption="All key colors based Tonal Palette and tertiary container light color tone mapping."
-    alt="Seed colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-20-tonal-light.png?raw=true)
+    alt="Seed colors 3" zoom />
   </TabItem>
     <TabItem value="tonal-all-dark">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-21-tonal-dark.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-21-tonal-dark.png?raw=true"
     caption="All key colors based Tonal Palette and tertiary container dark color tone mapping."
-    alt="Seed colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-21-tonal-dark.png?raw=true)
+    alt="Seed colors 4" zoom />
   </TabItem>
 </Tabs>
 
@@ -314,7 +332,7 @@ We can do even more than this, we can also modify the mapping of which tone is u
 
 Current version of Themes Playground "only" lets you change `FlexTone` settings between nine pre-made configurations. It is however very simple to make custom configurations with the API. The pre-made ones are mainly intended as examples. You can read more about `FlexTones` and its usage in the package **FlexSeedScheme** [API reference](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones-class.html). If you make a very nice one, please do share it in the FlexColorScheme GitHub discussions [show and tell](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) section, perhaps we can add it as another pre-made config.
 
-Maybe in some future version of the Themes Playground, custom interactive configuration of `FlexTones` will be added. For now let us compare some of the built-in ones we can swap between in the current version. When you select a pre-made `FlexTones` configuration, the Theme Playground app shows a brief summary of its configuration.
+Maybe in some future version of the Themes Playground, custom interactive configuration of `FlexTones` will be added. For now let us compare some of the built-in ones we can swap between in the current version. When you select a pre-made `FlexTones` configuration, the Theme Playground app shows a brief summary of its configuration, here are some examples:
 
 <Tabs
   defaultValue="flex-tones-m3"
@@ -326,29 +344,29 @@ Maybe in some future version of the Themes Playground, custom interactive config
     {label: 'High Contrast', value: 'flex-tones-contrast'},
   ]}>
   <TabItem value="flex-tones-m3">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-22-flex-tone.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-22-flex-tone.png?raw=true"
     caption="FlexTones.material, Flutter SDK Material 3 default chroma limits and tone mapping."
-    alt="Seed colors 1" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-22-flex-tone.png?raw=true)
+    alt="Seed colors 1" zoom />
   </TabItem>
   <TabItem value="flex-tones-soft">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-23-flex-tone.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-23-flex-tone.png?raw=true"
     caption="FlexTones.soft, softer and more muted colors chroma limits and tone mapping."
-    alt="Seed colors 2" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-23-flex-tone.png?raw=true)
+    alt="Seed colors 2" zoom />
   </TabItem>
   <TabItem value="flex-tones-vivid">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-24-flex-tone.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-24-flex-tone.png?raw=true"
     caption="FlexTones.vivid, more colorful chroma limits and tone mapping."
-    alt="Seed colors 3" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-24-flex-tone.png?raw=true)
+    alt="Seed colors 3" zoom />
   </TabItem>
   <TabItem value="flex-tones-surface">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-25-flex-tone.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-25-flex-tone.png?raw=true"
     caption="FlexTones.vividSurfaces, more colorful chroma limits, with more surface chroma and tone mapping."
-    alt="Seed colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-25-flex-tone.png?raw=true)
+    alt="Seed colors 4" zoom />
   </TabItem>
   <TabItem value="flex-tones-contrast">
-    [<Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-26-flex-tone.png?raw=true"
+    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-26-flex-tone.png?raw=true"
     caption="FlexTones.highContrast, chroma limits and tone mappings that increases contrast between a color and its onColor."
-    alt="Seed colors 4" zoom />](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-pg-26-flex-tone.png?raw=true)
+    alt="Seed colors 4" zoom />
   </TabItem>
 </Tabs>
 
