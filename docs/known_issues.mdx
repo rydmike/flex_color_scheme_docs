@@ -1,11 +1,17 @@
 # Known Issues
 
-Currently, all known issues **impacting FlexColorScheme** are rooted in **Flutter SDK issues** and typically cannot be fixed in the package. All known issues are being tracked, and status changes are updated below. A few of the below listed Flutter SDK theming issues have workarounds or fixes included in FlexColorScheme. Such workaround cases are also mentioned in the issues below. 
+Currently, all known issues **impacting FlexColorScheme** are rooted in **Flutter SDK issues** and typically cannot be fixed in the package. All known issues are being tracked, and status changes are updated below. A few of the below listed Flutter SDK theming issues have workarounds included in FlexColorScheme. Such workaround cases are also mentioned in the issues below. 
 
 ## Found an issue?
 
 Did you find an issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a **question about FlexColorScheme** and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions).
 
+
+## Flutter SDK: BottomAppBar background color cannot be changed in M3
+
+<Error>Applies only to Flutter 3.7.</Error>
+
+The background color of the `BottomAppBar` cannot be changed when enabling Material 3 in Flutter. This applies to using its color property and theme and any other mean of trying to change its background color. This is bug in Flutter 3.7, it has a fix [PR #117082](https://github.com/flutter/flutter/pull/117082) in master channel from December 16 2022, that did not get included in the Flutter 3.7 Jan 25, 2023 release. The issue is also reported in the FlexColorScheme repo here [FCS #115](https://github.com/rydmike/flex_color_scheme/issues/115).
 
 ## Flutter SDK: NavigationBar ink ripple moves with height changes (Regression)
 
@@ -45,7 +51,7 @@ The introduction of M3 and some newer theme factories/properties have led to inc
 
 The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on used theme creation factory and M2/M3 mode. See issue [117755](https://github.com/flutter/flutter/issues/117755). 
 
-FlexColorScheme includes custom theming for the divider to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds.
+FlexColorScheme includes custom theming for the divider to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With most default M3 ColorSchemes this is not a big problem, but even with them it may e.g. not work so well on tertiary and its container colors in a pure M3 design. 
 
 
 ## Flutter SDK: Chips in Material 3 mode do not follow the M3 specification
