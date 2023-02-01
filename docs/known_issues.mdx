@@ -1,6 +1,6 @@
 # Known Issues
 
-Currently, all known issues **impacting FlexColorScheme** are rooted in **Flutter SDK issues** and typically cannot be fixed in the package. All known issues are being tracked, and status changes are updated below. A few of the below listed Flutter SDK theming issues have workarounds included in FlexColorScheme. Such workaround cases are also mentioned in the issues below. 
+All currently known issues **impacting FlexColorScheme** are rooted in **Flutter SDK issues** and typically cannot be fixed in the package. The known issues are being tracked, and status changes are updated below. A few of the below-listed Flutter SDK theming issues have workarounds included in FlexColorScheme. Such workaround cases are also mentioned in the issues below. 
 
 ## Found an issue?
 
@@ -11,22 +11,22 @@ Did you find an issue? Please open it as a new issue in the project [GitHub repo
 
 <Error>Applies only to Flutter 3.7.</Error>
 
-The background color of the `BottomAppBar` cannot be changed when enabling Material 3 in Flutter. This applies to using its color property and theme and any other mean of trying to change its background color. This is bug in Flutter 3.7, it has a fix [PR #117082](https://github.com/flutter/flutter/pull/117082) in master channel from December 16 2022, that did not get included in the Flutter 3.7 Jan 25, 2023 release. The issue is also reported in the FlexColorScheme repo here [FCS #115](https://github.com/rydmike/flex_color_scheme/issues/115).
+The background color of the `BottomAppBar` cannot be changed when enabling Material 3 in Flutter. This applies to using its color property and theme and any other mean of trying to change its background color. This is bug in Flutter 3.7. There is a fix [PR #117082](https://github.com/flutter/flutter/pull/117082) in the master channel. It is from December 16, 2022, but it did not get included in the Flutter 3.7 Jan 25, 2023 release. The issue is also reported in the FlexColorScheme repo here [FCS #115](https://github.com/rydmike/flex_color_scheme/issues/115).
 
 ## Flutter SDK: NavigationBar ink ripple moves with height changes (Regression)
 
 <Error>Applies only to Flutter 3.7.</Error>
 
-If you change the `NavigationBar` from M3 default value of 80dp, the ink level moves up or down with same amount as the devation from the default 80dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue is caused by a regression in Flutter 3.7. It does not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473). This fix has now been cherry-picked (CP) via [# 119553](https://github.com/flutter/flutter/pull/119553) to be included in a future hot-fix for Flutter 3.7, hopefully it will arrive in the first hotfix 3.7.1.
+If you change the `NavigationBar` from M3 default value of 80dp, the ink level moves up or down with same amount as the deviation from the default 80dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue is caused by a regression in Flutter 3.7. It does not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473). This fix has now been cherry-picked (CP) via [# 119553](https://github.com/flutter/flutter/pull/119553) to be included in a future hot-fix for Flutter 3.7, hopefully it will arrive with the first hotfix 3.7.1.
 
 ## Flutter SDK: Known minor M3 specification deviations
 
-<Error>Applies to Flutter 3.7 and earlier, if widget with spec a issue supported M3 in earlier versions.</Error>
+<Error>Applies to Flutter 3.7 and earlier in cases where the widget with a spec deviation supported M3 in earlier versions.</Error>
 
 The following M3 themes in Flutter 3.7 have minor deviation errors from their Material 3 specification.
 
-- TimePicker clock-dial uses wrong spec color and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657). FCS7 includes a theme fix for this.
-- BottomSheet has incorrectly has a shadow. See issue [#118244](https://github.com/flutter/flutter/issues/118244).
+- TimePicker clock-dial uses wrong spec color, and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657). FCS7 includes a theme fix for this.
+- BottomSheet incorrectly has a shadow. See issue [#118244](https://github.com/flutter/flutter/issues/118244).
 - BottomAppBar does not match M3 spec, it incorrectly has a shadow. See issue [#118150](https://github.com/flutter/flutter/issues/118150).
 - Wrong selected and disabled InputChip color, see issue [#115826](https://github.com/flutter/flutter/issues/115826).
 - Missing state elevations on Chips. See issue  [#115825](https://github.com/flutter/flutter/issues/115825).
@@ -49,9 +49,9 @@ This is in conflict with their default themes where these buttons can use differ
 
 The introduction of M3 and some newer theme factories/properties have led to inconsistent divider colors that may cause theme color behavior confusion for developers. Some results are also not according to the M2 or M3 specification.
 
-The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on used theme creation factory and M2/M3 mode. See issue [117755](https://github.com/flutter/flutter/issues/117755). 
+The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on the used theme creation factory and M2/M3 mode. See issue [117755](https://github.com/flutter/flutter/issues/117755). 
 
-FlexColorScheme includes custom theming for the divider to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With most default M3 ColorSchemes this is not a big problem, but even with them it may e.g. not work so well on tertiary and its container colors in a pure M3 design. 
+FlexColorScheme includes theming for the divider, to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With default M3 ColorSchemes this is not a big problem, but even with it, the default `Divider` color may not work so well on tertiary and its container color in a pure M3 design. 
 
 
 ## Flutter SDK: Chips in Material 3 mode do not follow the M3 specification
@@ -91,7 +91,7 @@ FlexColorScheme has always included a theme fix for this issue. It is thus a non
 
 <Error>Applies to Flutter 3.3 and earlier.</Error>
 
-The M3 `NavigationBar` has a Material 2 styled ink effects also when opting in on Material 3. This is not according to Material design specification. See issues [#113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information. Issue was fixed via [PR #115499](https://github.com/flutter/flutter/pull/115499).
+The M3 `NavigationBar` has a Material 2 styled ink effects also when opting in on Material 3. This is not according to Material design specification. See issues [#113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information. This issue was fixed via [PR #115499](https://github.com/flutter/flutter/pull/115499).
 
 ## Flutter SDK: TextField in Material 3 has wrong hovered and focused styles
 
@@ -122,7 +122,7 @@ A fix [PR #110870](https://github.com/flutter/flutter/pull/110870) for this issu
 
 <Success>Fixed in Flutter 3.7.</Success>
 
-The `TimePickerDialog` does however not yet have M3 support in Flutter 3.7. However, FCS 7.0 styles it correctly anyway, but the elevation can not be changed from its default value. The elevation property does not exist in Flutter 3.7 theme for `TimePickerDialog`, it does exist in master. Master `TimePickerDialog` M3 implementation still has some issues, see [118657](https://github.com/flutter/flutter/issues/118657), which is probably why it did not land in Flutter 3.7.
+The `TimePickerDialog` does however not yet have M3 support in Flutter 3.7. However, FCS 7.0 styles it correctly anyway, but the elevation can not be changed from its default value. The elevation property does not exist in Flutter 3.7 theme for `TimePickerDialog`, it does exist in master. The `TimePickerDialog` M3 implementation in master still has some issues, see [118657](https://github.com/flutter/flutter/issues/118657), which is probably why it did not land in Flutter 3.7.
 
 <Error>Applies to Flutter 3.3 and earlier.</Error>
 
@@ -187,4 +187,4 @@ The color branding is not applied in Material2 (M2) to Widgets using elevated `M
 
 FCS version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the surface and background colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
 
-This limitation in M2 will likely never be fixed in Flutter. It therefor here only documented as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in M3 does not have this equivalent limitation and removes the limitation when going forward with M3 theming.
+This limitation in Material2 will likely never be fixed in Flutter. It is only documented here as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in M3 does not have this equivalent limitation and thus removes the limitation when going forward with M3 theming.
