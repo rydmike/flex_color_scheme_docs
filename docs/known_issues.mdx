@@ -17,7 +17,7 @@ The background color of the `BottomAppBar` cannot be changed when enabling Mater
 
 <Error>Applies only to Flutter 3.7.</Error>
 
-If you change the `NavigationBar` from M3 default value of 80dp, the ink level moves up or down with same amount as the deviation from the default 80dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue is caused by a regression in Flutter 3.7. It does not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473). This fix has now been cherry-picked (CP) via [# 119553](https://github.com/flutter/flutter/pull/119553) to be included in a future hot-fix for Flutter 3.7. Sadly the fix did not arrive with the first hotfix 3.7.1. Maybe it will make it into the next one 3.7.2.
+If you change the `NavigationBar` from M3 default value of 80dp, the ink level moves up or down with same amount as the deviation from the default 80dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue is caused by a regression in Flutter 3.7. It does not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473). This fix has now been cherry-picked (CP) via [# 119553](https://github.com/flutter/flutter/pull/119553) to be included in a future hot-fix for Flutter 3.7. Sadly, the fix did not arrive with the first hotfix 3.7.1. Maybe it will make it into the next one 3.7.2.
 
 ## Flutter SDK: Known minor M3 specification deviations
 
@@ -25,12 +25,13 @@ If you change the `NavigationBar` from M3 default value of 80dp, the ink level m
 
 The following M3 themes in Flutter 3.7 have minor deviation errors from their Material 3 specification.
 
-- TimePicker clock-dial uses wrong spec color, and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657). FCS7 includes a theme fix for this.
-- BottomSheet incorrectly has a shadow. See issue [#118244](https://github.com/flutter/flutter/issues/118244).
-- BottomAppBar does not match M3 spec, it incorrectly has a shadow. See issue [#118150](https://github.com/flutter/flutter/issues/118150).
-- Wrong selected and disabled InputChip color, see issue [#115826](https://github.com/flutter/flutter/issues/115826).
-- Missing state elevations on Chips. See issue  [#115825](https://github.com/flutter/flutter/issues/115825).
-- No Ink Splash on Actionable Chips when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824).
+- `SegmentedButton` uses wrong default color for unselected item color, it uses `primary` color, it should be `onSurface`. See issue [# 119733](https://github.com/flutter/flutter/issues/119733) for more information. FCS7 includes a theme fix for this. 
+- `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657). FCS7 includes a theme fix for this.
+- `BottomSheet` incorrectly has a shadow. See issue [#118244](https://github.com/flutter/flutter/issues/118244).
+- `BottomAppBar` does not match M3 spec, it incorrectly has a shadow. See issue [#118150](https://github.com/flutter/flutter/issues/118150).
+- Wrong selected and disabled `InputChip` color, see issue [#115826](https://github.com/flutter/flutter/issues/115826).
+- Missing state elevations on `Chips`. See issue  [#115825](https://github.com/flutter/flutter/issues/115825).
+- No Ink Splash on actionable `Chips` when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824).
 
 
 ## Flutter SDK: FilledButton theming limitation
@@ -129,7 +130,7 @@ The `TimePickerDialog` does however not yet have M3 support in Flutter 3.7. Howe
 In Flutter 3.0 and 3.3, when opting in on `useMaterial3:true`, the `Material` widget and other SDK widgets built on it, gets no elevation when only the `elevation` property is defined. It is required to also define `shadowColor` and/or `surfaceTintColor` to get any elevation effect. When using the `Material` widget itself this is easy to address. However, widgets like `Drawer`, `PopupMenuButton`, `BottomNavigationBar`, `NavigationRail`, `Dialog`, `AlertDialog`, `TimePickerDialog`, `DatePickerDialog`, `MaterialBanner` and `BottomSheet` do not expose these `Material` properties and cannot be elevated.
 
 The issue is reported and tracked here [#107190](https://github.com/flutter/flutter/issues/107190) and also mentioned in the `FlexColorScheme` repo here
-[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3. However, if such elevations are important to your app design, one working fix is to wrap those widgets in a theme where `useMaterial3` is false, the rest of your app can still use it. This is a rather tedious workaround. Due to this current SDK `Material` elevation issue when `useMaterial3` is true, it is recommended to avoid opting in on Material 3 if correctly elevated Material on Dialogs, Drawers, BottomSheet and PopupMenuButton are critical for the app's design. Dialogs and Drawers use a scrim, so the issue was not so bas when using them, but it was very problematic on e.g. BottomSheet and PopupMenuButton. FlexColorScheme 6.1 release included a theme fix to to apply elevation color to the themed backgrounds of these two widgets as a workaround this issue. This workaround has been removed in FlexColorScheme 7 and later as no longer needed in Flutter 3.7.
+[#54](https://github.com/rydmike/flex_color_scheme/issues/54). There are no good workarounds for using elevation on these widgets when `useMaterial3` is true. The options are to not use M3. However, if such elevations are important to your app design, one working fix is to wrap those widgets in a theme where `useMaterial3` is false, the rest of your app can still use it. This is a rather tedious workaround. Due to this current SDK `Material` elevation issue when `useMaterial3` is true, it is recommended to avoid opting in on Material 3 if correctly elevated Material on Dialogs, Drawers, BottomSheet and PopupMenuButton are critical for the app's design. Dialogs and Drawers use a scrim, so the issue was not so bas when using them, but it was very problematic on e.g. BottomSheet and PopupMenuButton. FlexColorScheme 6.1 release included a theme fix to apply elevation color to the themed backgrounds of these two widgets as a workaround this issue. This workaround has been removed in FlexColorScheme 7 and later as no longer needed in Flutter 3.7.
 
 This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the default elevation issue for `Material`, but it is not yet available in Flutter 3.3. It also does not fully solve the poor dark mode `PopupMenuButton` style, that needs widget level support for it to work properly.
 
