@@ -1,36 +1,80 @@
 # What Is New?
 
-This chapter features recent news and updates in **FlexColorScheme**. For a more complete list, and older updates, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
+This chapter features recent news and information about updates in **FlexColorScheme**. For a more complete list, and older updates, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
-This documentation site was launched together with version 5.0.0. It is constantly updated and improved. Suggestions and corrections to improve the documentation are welcome contributions.
+## Version 7.0.0-dev.3
 
-## Version 7.0.0-dev.2
+**March 18, 2023**
 
-Jan 25, 2023.
+This is the final beta v7 release before stable v7 is out. There will be no new features or API changes in the FlexColorScheme package from this version to stable version 7.0.0. The only changes to stable will be potential bug fixes, typo corrections, API doc comment improvements and adding more tests.
 
-Version 7.0.0-dev.2 is a not yet fully tested development, or beta version of **FlexColorScheme** 7.0.0. It is now using Flutter stable 3.7.0.
+The companion app **Themes Playground**, may get label improvements plus spelling and grammar corrections. Layouts in it may also be modified and improved as needed. It will not get any new features, but it may of course receive bug fixes.
+
+The **Themes Playground** app built for this **beta** release is unfortunately not a SKIA renderer build, it is using the HTML renderer. This makes it less performant than the app would otherwise be. Additionally, scaled content, like the **Themes Simulator** panel in the **Playground**, is also fuzzier than it would be with the SKIA renderer. Due to an issue in Flutter stable (3.7.7), builds made with the SKIA renderer performs very poorly and crashes quite quickly. For more information see Flutter [issue #122189](https://github.com/flutter/flutter/issues/122189). Hopefully, before the stable v7.0.0 release, a fix will be available. If not, a new build using the same package version will be made later and released when a fix is available.
 
 **Why version 7.0.0? Are there breaking APIs?**
 
-There are actually no breaking APIs in version 7 compared to version 6. You can upgrade to the new version without any changes. However, some past styles have been slightly tuned to align things better with M3. Some tests broke due to this, so the major version has been bumped.
+There are a few minor breaking APIs in version 7 compared to version 6. Most likely you will not run into them. However, some past styles and defaults have been slightly tuned to align things better with M3. For a detailed list of changes from version 7.0.0-dev.2 to this final beta 7.0.0-dev.3, please see the [package changelog](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.3/changelog), the number of new features in **FlexColorScheme** and **Themes Playground** from previous beta are significant.  
 
-FCS v7 includes theming support for new Material 3 widgets in the next Flutter version. It also comes with 12 new M3 ColorScheme themes, for a total of 52, so now it holds all the cards :D. The additional color schemes can be used as such, and provide a good M3 color system fit as they are. For an even better M3 aligned style, enable seeded ColorScheme in FlexColorScheme. They work well with only primary key color as seed, but are also tuned to work if you enable their secondary and tertiary colors as key colors for seeding the ColorScheme. For a more conservative seed-generated ColorScheme, don't use secondary color as a seed color. This applies generally to seeded ColorScheme generation.
+**Twelve new ColorSchemes**
 
-With FCS can as before customize how the seeded ColorScheme is generated from key colors. The default option is the Material 3 and Flutter standard `ColorScheme.fromSeed` used settings, but FCS allows you to completely customize how it behaves. To ease the burden of trying this, it comes with many preconfigured options. A new thing is that if you use a custom surface blend color in FCS surface color blending. This same color is now used as seed for the neutral colors (surfaces and backgrounds) when you use M3 ColorScheme seed generation. Normally, in M3 default design, the primary color is always used for the slightly tinted surface colors. With FCS, you can now customize this to any other color. Go easy on it though, not everything will look good. But you can certainly create interesting unique looking apps with it.
+FCS v7 includes theming support for new Material 3 widgets in Flutter 3.7. It also comes with **12 new M3 ColorScheme themes**, for a **total of 52**, so now it holds all the cards. The additional color schemes can be used as such, and provide a good M3 color system fit as they are. For an even better M3 aligned style, enable seeded ColorScheme in FlexColorScheme. They work well with only primary key color as seed, but are also tuned to work if you enable their secondary and tertiary colors as key colors for seeding the ColorScheme. For a more conservative seed-generated ColorScheme, do not use secondary color as a seed color. This applies generally to seeded ColorScheme generation.
 
-**New M3 Components**
+**Flexible Seeded ColorSchemes**
 
-The new filled and tonal buttons are now available. The theming capabilities of these new buttons are a bit limited. Theming their colors, changes the colors of both buttons and you no longer get two different button styles. This is a [limitation](https://github.com/flutter/flutter/issues/115827) in current (new) version of Flutter. The situation may be improved in later Flutter versions. I recommend keeping their colors as they are. Changing other parts of their time in sync, like e.g. border radius is often desired, so that is still usable. Together with Elevated, Filled and Text buttons, you now get a pretty complete button set out of the box, using most of the common colors in the ColorScheme.
+You can customize how the seeded ColorScheme is generated from key colors. The default option is the Material 3 and Flutter standard `ColorScheme.fromSeed` used settings, but FCS allows you to completely customize how it behaves. To ease the burden of trying this, it comes with many preconfigured options. A new thing is that if you use a custom surface blend color in FCS surface color blending. This same color is now used as seed for the neutral colors (surfaces and backgrounds) when you use M3 ColorScheme seed generation. Normally, in M3 default design, the primary color is always used for the slightly tinted surface colors. With FCS, you can now customize this to any other color. Go easy on it though, not everything will look good. But you can certainly create interesting unique looking apps with it.
 
-The new menus are one of my personal favorites in the new Flutter version. The same underlying component is used for the menu in `DropDownMenu`, `MenuBar` and `MenuAnchor`. We now have a lovely dropdown menu in Flutter. The `MenuBar` is great for desktop apps, it supports nested menus and keyboard shortcuts deep into the nested menus. The `MenuAnchor` is like one menu from a `MenuBar` that you can attach to any widget. Common use case could be right- or control-click context menus. For the new menus, FCS7 offers theming of menu part. More quick styling options may be added in later versions.
+**Platform Adaptive Themes**
 
-The `DropdownMenu` has a `TextField` input part, it follows the general `TextField` input decoration you defined in FCS. In version 7 there are more quick config options available for the `TextField` and its `InputDecoratior`. Another neat synergy with menus is that for the menu options in the bar and the menu selections, the same `ButtonStyle` button that the normal Material button use is used as their building block. If you are familiar with raw custom theming the `ButtonStyle` Material buttons, with their complex but versatile MaterialState, you already know how to theme menu selection options. FCS may offer some simpler quick styling of the menu selections in later versions. 
+An exciting new feature, FlexColorScheme now supports something it calls **platform adaptive themes**. This means that there are a few features and properties that can have a platform adaptive response. You can, for example, give your apps widget a different general border radius on iOS and macOS, and still keep M3 styles on Android. There are not so many platform adaptive properties in this release, but they hit where it counts to make it possible to make Material 3 mode less opinionated on e.g. iOS. For each platform adaptive feature, you can completely customize on what platform the adaptive optional theming value should be used. Each platform's web usage is also considered as a separate platform. Learn more about this feature in the API docs about the [FlexAdaptive](https://pub.dev/documentation/flex_color_scheme/7.0.0-dev.3/flex_color_scheme/FlexAdaptive-class.html) class used to configure when the adaptive behavior for each platform adaptive setting gets applied.
 
-There are many other new components and configurable component sub-theme settings in FCS7 for you to explore. You can do so easily in version 7 of the [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7). 
+**Color expressive interaction and disabled controls**
 
-The FlexColorscheme documentation site has otherwise not been updated with any more information about FCS7. Updates to the doc site will follow in stages after the stable version of FCS 7.0 is released.
+For some combinations of colors, M3 does a decent job of making interactions like pressed, focus, hovered, more color expressive than before. But for some widgets, M3 does not do so. Also, when you deviate in color choices for widgets from defaults, especially if their brightness is different, interaction effects may become invisible or too weak. With FlexColorScheme you can use more consistently color expressive interaction effects, and you can also separately opt-in on, color tinted disabled controls. These changes are often quite subtle, and give you a more refined consistently color expressive theme. On larger surface areas, like clickable [ListTile] the differences are much more obvious. 
 
-<Info>For full details of what is new check the [changelog for version 7.0.0-dev.2](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.2/changelog).</Info>
+**Support for new M3 Components**
+
+The new filled and tonal buttons are now available. The theming capabilities of these new buttons are a bit limited. Theming their colors, changes the colors of both buttons and you no longer get two different button styles. This is a [limitation](https://github.com/flutter/flutter/issues/115827) in current version of Flutter. The situation may be improved in later Flutter versions. I recommend keeping their colors as they are. Changing other parts of their theme in sync, like e.g. border radius is often desired, so that is still usable. Together with **Elevated**, **Outlined** and **Text** buttons, you now get a pretty complete button set out of the box, using most of the common colors in the ColorScheme.
+
+The new menus are one of my personal favorites in Flutter 3.7. The same underlying component is used for the menu in `DropDownMenu`, `MenuBar` and `MenuAnchor`. We now have a lovely dropdown menu in Flutter. The `MenuBar` is great for desktop apps, it supports nested menus and keyboard shortcuts deep into the nested menus. The `MenuAnchor` is like one menu from a `MenuBar` that you can attach to any widget. Common use case could be right- or control-click context menus. For the new menus, FCS7 offers quite extensive theming options. There are some still some styling limitations due to a few lacking features and bugs in Flutter, but a lot can be done to them already. 
+
+The `DropdownMenu` has a `TextField` input part, it follows the general `TextField` input decoration you defined in FCS. In version 7 there are more quick config options available for the `TextField` and its `InputDecoratior`. Another neat synergy with menus is that for the menu options in the bar and the menu selections, the same `ButtonStyle` button that the normal Material button use is used as their building block. If you are familiar with raw custom theming the `ButtonStyle` Material buttons, with their complex but versatile MaterialState, you already know how to theme menu selection options. 
+
+**Themes Playground v7**
+
+There are many other new components and configurable component sub-theme settings in FCS7 for you to explore. You can do so easily in version 7 of the [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7).
+
+Version 7 of the **Themes Playground** has so many new and exciting features that its chapter will need to be completely rewritten. Things like:
+
+* **Premade designs**: Use them to learn more about what FlexColorScheme can do and as starting points for your theme designs. The premade designs do not change the used color scheme. They only change how widget designs, like which colors from the color scheme they use, their border radius, is adaptive feature used, is seeding used or not, etc.
+ 
+* **Theme preview**: Use this to see how your design looks on few built-in example applications. You can try them on different devices. One of the built-in examples is the official Material-3 demo app from the Flutter team. When you change your theme design, the demo apps are modified according as well.
+
+* **New layouts**: The page view is now much more useful. You can choose which two panels you want to see side-by-side. Great for checking how a setting impacts things in API code, or on colors, or the design of the demo apps. There is also a **compact** mode for smaller desktops, so you can see more of the things that matters. Great if you are not using a 4k monitor at native resolution.
+
+**Links to V7 Web App Builds**
+
+- Example 1: [Basic Theme](https://rydmike.com/flexcolorscheme/basictheme-v7)
+- Example 2: [Custom Theme](https://rydmike.com/flexcolorscheme/customtheme-v7)
+- Example 3: [Four Themes](https://rydmike.com/flexcolorscheme/fourthemes-v7)
+- Example 4: [All Themes](https://rydmike.com/flexcolorscheme/allthemes-v7)
+- Example 5: [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7)
+
+**Documentation Site**
+
+This **FlexColorScheme** documentation site has otherwise not yet been updated with much information about FCS7. Updates to the doc site are in progress now that final beta release of v7 has been released.
+
+<Info>For full details of what is new check the [changelog for version 7.0.0-dev.3](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.3/changelog).</Info>
+
+**Future of Themes Playground**
+
+The **Themes Playground** is example number 5 in the package repository, originally included as the last step in a "how to use FlexColorScheme" training tutorial. Since its humble introduction it has grown into a notable and quite extensive application of its own, and is too extensive to serve as a very helpful tutorial step anymore. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is architecturally identical to steps and examples 3 and 4 in the tutorial.
+
+The application has an architecture that is a bit too simplistic to be extended to offer all features users are asking for. There is a plan to refactor it and make it into a proper stand-alone application developed in its own repo. This is potentially the last major release of the **Themes Playground** in its current form, and as being included with the **FlexColorScheme** package as "just an example" of how to use the package to build a dynamically themed app, which is how it started. It will still remain in minor and fix versions of v7, but will likely be removed in a future v8 version of the **FlexColorScheme** package.
+
+As a tutorial and example app, the **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package has and always aims for 100% test coverage in its stable releases.
+
+Despite **Themes Playground** not having any formal guarantees, it is extensively used and user tested during development of **FlexColorScheme** releases. In addition to being a very useful tool to configure and experiment with different themes for Flutter apps, and to quickly copy needed API configuration to get the same theme in your app. It is also an excellent tool to use during development of the **FlexColorScheme** package. It is used to visually see and verify that all features in the package **actually** do what is expected of them. The changes to the **Themes Playground** app are also generally already quite thoroughly tracked, going back many releases. Changes to version v7.0.0-dev.3, from v7.0.0-dev.2 can be found the [package changelog](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.3/changelog).
 
 ## Version 6.1.0
 
