@@ -22,7 +22,7 @@ The Flutter SDK built-in function `VisualDensity.adaptivePlatformDensity` was ad
 
 One feature on the `HomePage` of examples 1 to 4 is the `FlexThemeModeSwitch`. It is the UI Widget used for the 3-way theme mode switch used in these examples to change the active theme mode.
 
-<img src="https://rydmike.com/assets_fcsv4/theme_mode_switch.png?raw=true" alt="theme mode switch" width="350"/>
+<img src="https://rydmike.com/assets_fcsv4/theme_mode_switch.png" alt="theme mode switch" width="350"/>
 
 Using the switch is simple, give it the currently selected and active theme mode, the current `FlexSchemeData` scheme, so it can color its buttons correctly. Then use the `onThemeModeChanged` callback for changes to its mode, and change the `themeMode` property in the `MaterialApp` accordingly, to actually change the used theme mode.
 
@@ -38,11 +38,11 @@ Using the `FlexThemeModeSwitch` 3-way theme mode switch is optional and not requ
 
 In the **Flexfold** demo app the switch was originally a fairly fixed design. This `FlexThemeModeSwitch` has many properties that allow you to customize it extensively. You can find its [API reference here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeModeSwitch-class.html) and its companion, the `FlexThemeModeOptionButton` [API reference here](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexThemeModeOptionButton-class.html). With the API you can customize the look of the `FlexThemeModeSwitch`, here are some examples:
 
-<img src="https://rydmike.com/assets_fcsv4/ThemeSwitchCustomize.png?raw=true" alt="theme mode customize"/>
+<img src="https://rydmike.com/assets_fcsv4/ThemeSwitchCustomize.png" alt="theme mode customize"/>
 
 The `FlexThemeModeOptionButton` is typically used by the `FlexThemeModeSwitch`, but it can also be used as a part of other theme related indicator widgets. Like the scrolling horizontal list used in example 5, where it is used as a theme indicator and selector in a horizontal scrolling list. 
 
-<img src="https://rydmike.com/assets_fcsv4/ThemeIndicatorList.png?raw=true" alt="theme indicator list"/>
+<img src="https://rydmike.com/assets_fcsv4/ThemeIndicatorList.png" alt="theme indicator list"/>
 
 ## Computed Dark Theme
 
@@ -52,9 +52,9 @@ When using the **Deep blue sea** scheme, the computed dark theme colors are a bi
 
 <table>
   <tr>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true" alt="ColorScheme example 5 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png" alt="ColorScheme example 5 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png?raw=true" alt="ColorScheme example 5 dark computed" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png" alt="ColorScheme example 5 dark computed" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-to-black.png)</td>
   </tr>
   <tr>
     <td colspan="3">_Designed dark **Deep blue see** theme (left) versus computed dark theme (right) from its light theme._</td>
@@ -65,9 +65,9 @@ With some other color schemes, like the **Aqua blue** one, there is only a minor
 
 <table>
   <tr>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png?raw=true" alt="ColorScheme example 5a2 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png" alt="ColorScheme example 5a2 dark" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png?raw=true" alt="ColorScheme example 5 dark computed" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png" alt="ColorScheme example 5 dark computed" width="250"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5a2d-to-black.png)</td>
   </tr>
   <tr>
     <td colspan="3">_Designed dark **Aqua blue** theme (left) versus computed dark theme (right) from its light theme._</td>
@@ -84,7 +84,7 @@ If you use the even darker dark-mode, **true black**, you may want to have a dif
 
 This screen recording compares the computed `toDark` theme result, to the built-in hand-picked one. It does this by toggling the mode a few times, so you can compare the different results. It also uses the level slider to adjust the `toDark` theme result. A sharp eye might notice that this recording does not use the `defaultError` error color modifier, the changing dark error color does not look so nice when tuning the computed scheme colors. The bundled example 5 and live web version of it uses the modifier.
 
-<img src="https://rydmike.com/assets/fcs_v1-1-0-phone1.gif?raw=true" alt="Dark scheme calc level"/>
+<img src="https://rydmike.com/assets/fcs_v1-1-0-phone1.gif" alt="Dark scheme calc level"/>
 
 
 So that you can find the same setup in the new version 5 of the **Themes Playground**, here is an image of it when using the same `brandBlue` scheme and computing the dark theme from light one at level 35%. You can see the code in the image too. The key part is this:
@@ -95,7 +95,7 @@ darkTheme: FlexThemeData.dark(
       .light.defaultError.toDark(35, false),
 ```
 
-[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-01-toDark.png?raw=true" alt="V5 toDark-1"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-01-toDark.png?raw=true)
+[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-deep-01-toDark.png" alt="V5 toDark-1"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-deep-01-toDark.png)
 
 In FlexColorScheme V5 that has container colors for each main color in the `ColorScheme`, a new way to produce the computed dark mode colors was added. If you in dark mode, swap main and container colors, the colors will usually work well as they are in dark mode, at least if you followed the design principle for the main color and its container color in light theme mode.
 
@@ -107,7 +107,7 @@ darkTheme: FlexThemeData.dark(
       .light.defaultError.toDark(5, true),
 ```
 
-[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-02-toDark.png?raw=true" alt="V5 toDark-2"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-deep-02-toDark.png?raw=true)
+[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-deep-02-toDark.png" alt="V5 toDark-2"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-deep-02-toDark.png)
 
 If your light theme mode colors follow the M3 design intent, then always use the `toDark(level, true)` API. If you on the other have colors that are designed with older M2 design intent, then using `toDark(level)` as before, which defaults to `toDark(level, false)` is usually a better choice.
 
@@ -127,13 +127,13 @@ Below you can see some different primary color blend level using background colo
 
 <table>
   <tr>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png?raw=true" alt="ColorScheme example 5d light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png" alt="ColorScheme example 5d light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5dl.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png?raw=true" alt="ColorScheme example 5e light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png" alt="ColorScheme example 5e light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5el.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png?raw=true" alt="ColorScheme example 5f light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png" alt="ColorScheme example 5f light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5fl.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png?raw=true" alt="ColorScheme example 5g light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png" alt="ColorScheme example 5g light" width="220"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5gl.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Using background colored AppBar theme, that includes the primary color blend at different levels in the background_</td>
@@ -151,11 +151,11 @@ If you intend to use `TabBar` widgets in both AppBars and on surface and backgro
 
 Which `tabBarStyle` style and resulting `TabBarTheme` actually works best, depends on the background color. Here we see TabBars used on surfaces and in an `AppBar`, when the AppBar is using primary color. As can be seen, the tab bar theme that goes well in an app bar in such a case, does not fit on the surfaces at all, and wise versa.
 
-[<img src="https://rydmike.com/assets_fcsv4/TabBar-on-primary.png?raw=true" alt="tab bar on primary"/>](https://rydmike.com/assets_fcsv4/TabBar-on-primary.png?raw=true)
+[<img src="https://rydmike.com/assets_fcsv4/TabBar-on-primary.png" alt="tab bar on primary"/>](https://rydmike.com/assets_fcsv4/TabBar-on-primary.png)
 
 If you plan to use only surface or background (also the branded ones) colored AppBars, you can see that both TabBar styles, and their resulting themes, work for both situations. The difference is minor, and it is a matter of opinion which one is preferable. Both style options can be used if you restrict your AppBar color to background and surface colors, or their primary branded variants. In such a use case, you can use just one of the built-in style options, even when you use TabBars in the AppBar and on other surfaces.
 
-[<img src="https://rydmike.com/assets_fcsv4/TabBar-on-surface.png?raw=true" alt="tab bar on surface"/>](https://rydmike.com/assets_fcsv4/TabBar-on-surface.png?raw=true)
+[<img src="https://rydmike.com/assets_fcsv4/TabBar-on-surface.png" alt="tab bar on surface"/>](https://rydmike.com/assets_fcsv4/TabBar-on-surface.png)
 
 ## True Black
 
@@ -167,9 +167,9 @@ Here is an example of a branded dark theme with true black OFF (default) and tru
 
 <table>
   <tr>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png?raw=true" alt="ColorScheme example 5c dark" width="280"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png" alt="ColorScheme example 5c dark" width="280"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5cd.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png?raw=true" alt="ColorScheme example 5b dark" width="280"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png" alt="ColorScheme example 5b dark" width="280"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5bd.png)</td>
   </tr>
   <tr>
     <td colspan="3">_Comparing true black OFF (left) and ON (right), with the **Red red wine** scheme._</td>
@@ -181,9 +181,9 @@ a primary-colored AppBar in dark-mode.
 
 <table>
   <tr>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true" alt="ColorScheme example 5 dark" width="320"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png" alt="ColorScheme example 5 dark" width="320"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png?raw=true" alt="ColorScheme example 5 true black" width="320"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png" alt="ColorScheme example 5 true black" width="320"/>](https://rydmike.com/assets_fcsv4/fcs_phone_ex5ad-true-black.png)</td>
   </tr>
   <tr>
     <td colspan="3">_Comparing true black OFF (left) and ON (right), with the **Deep blue sea** scheme._</td>
@@ -213,9 +213,9 @@ Above the `systemNavBarStyle`, `useDivider` and `opacity` are tied the theme con
 
 <table>
   <tr>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif?raw=true" alt="AppBar StatusBar" width="280"/>](https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif" alt="AppBar StatusBar" width="280"/>](https://rydmike.com/assets_fcsv4/FlexSchemeAppBar.gif)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif?raw=true" alt="SysNavBar Style" width="280"/>](https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif?raw=true)</td>
+    <td>[<img src="https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif" alt="SysNavBar Style" width="280"/>](https://rydmike.com/assets_fcsv4/FlexSchemeNavBar.gif)</td>
   </tr>
   <tr>
     <td colspan="3">_Changing Android system status bar and navigation bar._</td>
@@ -238,7 +238,7 @@ The Flutter issue [#100027](https://github.com/flutter/flutter/issues/100027) "U
 
 You can also use the `FlexColorScheme.themedSystemNavigationBar` to hide the top status icons if you are not using an app bar at all. This can be useful on a splash or on-boarding page. Example 5 contains three different examples, each with their own limitations, read more in example 5 source code comments on how it can be used, here what they look like. The last example, SplashPage 2 would be the ideal version, and it works well on some versions of Android, but it seems to fail on newer ones, so you may prefer 1b instead.
 
-[<img src="https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true" alt="ColorScheme Splash pages"/>](https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png?raw=true)
+[<img src="https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png" alt="ColorScheme Splash pages"/>](https://rydmike.com/assets_fcsv4/FlexColorScheme-Splash-half-Size.png)
 
 ### Transparent System Navigation Bar
 
@@ -250,13 +250,13 @@ If you build example 5, the **Themes Playground** on an Android device, you can 
 
  <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-13.png?raw=true" alt="SysNav-1" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-13.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-13.png" alt="SysNav-1" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-13.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-15.png?raw=true" alt="SysNav-2" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-15.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-15.png" alt="SysNav-2" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-15.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-19.png?raw=true" alt="SysNav-3" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-19.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-19.png" alt="SysNav-3" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-19.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-23.png?raw=true" alt="SysNav-4" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-tut5-23.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-23.png" alt="SysNav-4" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-tut5-23.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Android System Navigation Bar: Light theme mode white, primary blended ColoScheme.background themed, partially transparent, and fully transparent_</td>

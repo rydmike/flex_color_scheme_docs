@@ -102,12 +102,12 @@ The above enables easy copy/paste of the ColorScheme, but to show the colors for
     {label: 'Dark M3 Baseline', value: 'dark'},
   ]}>
   <TabItem value="light">
-    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-a-scheme-light.png?raw=true"
+    <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-00-a-scheme-light.png"
     caption="Used M3 Baseline light ColorScheme for ThemeData results difference comparison"
     alt="M3 Baseline light" zoom />
   </TabItem>
   <TabItem value="dark">
-    <Image src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-b-scheme-dark.png?raw=true"
+    <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-00-b-scheme-dark.png"
     caption="Used M3 Baseline dark ColorScheme for ThemeData results difference comparison"
     alt="M3 Baseline dark" zoom />
   </TabItem>
@@ -121,11 +121,11 @@ The older `ThemeData` creation methods are `ColorSwatch` based, or actually `Mat
 
 FlexColorScheme and FlexColorPicker both contain a helper that can create a `MaterialColor` swatch from a single selected color. The algorithm is simple, it is not the actual `MaterialColor` algorithm used to create the built-in `MaterialColor` colors. Its results depend a lot on the used input color, as it assumes that the provided color is roughly the mid-point 500 shade. We can use the light theme mode's primary color from the above `ColorScheme` and create a `MaterialColor` swatch from it, like so:
 
-<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-c-swatch.png?raw=true" alt="Flex purple swatch"/>
+<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-00-c-swatch.png" alt="Flex purple swatch"/>
 
 What does this custom `MaterialColor` look like? The `FlexColorPicker` in the **Themes Playground** app can show it to us. Copy the "M3 Baseline" theme to the customizable theme and then tap the input primary color, having color value **0xff6750a4**. Tapping this color will open the color picker where the wheel picker will draw a **Material Color** swatch created using this color, using this same `createPrimarySwatch` function. Below it, you will also see the primary tonal palette for the same input color.
 
-<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-00-d-swatch-image.png?raw=true" alt="Swatch picker image"/>
+<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-00-d-swatch-image.png" alt="Swatch picker image"/>
 
 
 ### Swatch Based
@@ -269,22 +269,22 @@ Let's now compare and analyze the different results.
 </table>
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true" alt="TD Swatch1 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-01-td-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-01-td-light.png" alt="TD Swatch1 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-01-td-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light.png?raw=true" alt="TD Swatch2 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light.png" alt="TD Swatch2 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch.png?raw=true" alt="TD Swatch3 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch.png" alt="TD Swatch3 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png?raw=true" alt="TD Swatch4 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png" alt="TD Swatch4 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch.png)</td>
   </tr>
     <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark.png?raw=true" alt="TD Swatch1 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-02-td-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-02-td-dark.png" alt="TD Swatch1 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-02-td-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true" alt="TD Swatch2 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png" alt="TD Swatch2 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png?raw=true" alt="TD Swatch3 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png" alt="TD Swatch3 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png?raw=true" alt="TD Swatch4 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png" alt="TD Swatch4 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Comparing old ThemeData ColorSWatch based ways to make `ThemeData` objects_</td>
@@ -379,22 +379,22 @@ What is interesting to see in both cases, is that we get our swatch colors assig
 </table>
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light.png?raw=true" alt="TD Swatch2 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light.png" alt="TD Swatch2 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light-flex.png?raw=true" alt="TD flex Swatch4 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-03-td-brightness-light-flex.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light-flex.png" alt="TD flex Swatch4 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light-flex.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch-flex.png?raw=true" alt="TD flex Swatch3 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch-flex.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch-flex.png" alt="TD flex Swatch3 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch-flex.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch-flex.png?raw=true" alt="TD flex Swatch4 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch-flex.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch-flex.png" alt="TD flex Swatch4 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch-flex.png)</td>
   </tr>
     <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true" alt="TD Swatch2 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png" alt="TD Swatch2 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-04-td-brightness-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark-flex.png?raw=true" alt="TD Swatch2 flex dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-04-td-brightness-dark-flex.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-04-td-brightness-dark-flex.png" alt="TD Swatch2 flex dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-04-td-brightness-dark-flex.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch-flex.png?raw=true" alt="TD flex Swatch3 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch-flex.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch-flex.png" alt="TD flex Swatch3 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-06-td-brightness-dark-swatch-flex.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch-flex.png?raw=true" alt="TD Swatch4 flex dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch-flex.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch-flex.png" alt="TD Swatch4 flex dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-08-td-dark-fromSwatch-flex.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Comparing old ThemeData ColorSWatch based ways to make `ThemeData` objects, default swatch and custom swatch_</td>
@@ -527,22 +527,22 @@ Lots of differences here, let's look at them closer and analyze them one by one.
 </table>
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png?raw=true" alt="TD Scheme5 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png" alt="TD Scheme5 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-11-td-from-Scheme-light.png?raw=true" alt="TD Scheme6 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-11-td-from-Scheme-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-11-td-from-Scheme-light.png" alt="TD Scheme6 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-11-td-from-Scheme-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-13-td-colorScheme-light.png?raw=true" alt="TD Scheme7 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-13-td-colorScheme-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-13-td-colorScheme-light.png" alt="TD Scheme7 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-13-td-colorScheme-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-15-td-ColorScheme-fromSeed-light.png?raw=true" alt="TD Scheme8 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-15-td-ColorScheme-fromSeed-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-15-td-ColorScheme-fromSeed-light.png" alt="TD Scheme8 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-15-td-ColorScheme-fromSeed-light.png)</td>
   </tr>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-10-td-dark-colorScheme.png?raw=true" alt="TD Scheme5 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-10-td-dark-colorScheme.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-10-td-dark-colorScheme.png" alt="TD Scheme5 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-10-td-dark-colorScheme.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-12-td-from-Scheme-dark.png?raw=true" alt="TD Scheme6 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-12-td-from-Scheme-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-12-td-from-Scheme-dark.png" alt="TD Scheme6 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-12-td-from-Scheme-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-14-td-colorScheme-dark.png?raw=true" alt="TD Scheme7 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-14-td-colorScheme-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-14-td-colorScheme-dark.png" alt="TD Scheme7 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-14-td-colorScheme-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-16-td-ColorScheme-fromSeed-dark.png?raw=true" alt="TD Scheme8 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-16-td-ColorScheme-fromSeed-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-16-td-ColorScheme-fromSeed-dark.png" alt="TD Scheme8 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-16-td-ColorScheme-fromSeed-dark.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Comparing ThemeData and ColorScheme options 5 to 8 for defining `ThemeData`_</td>
@@ -771,22 +771,22 @@ Let us now compare the Flutter SDK option 9) ThemeData.from(colorScheme: ColorSc
 </table>
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png?raw=true" alt="TD Scheme9 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png" alt="TD Scheme9 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png?raw=true" alt="TD FlexScheme10 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png" alt="TD FlexScheme10 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-21-flexTD-ColorScheme-light-seed.png?raw=true" alt="TD FlexScheme11 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-21-flexTD-ColorScheme-light-seed.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-21-flexTD-ColorScheme-light-seed.png" alt="TD FlexScheme11 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-21-flexTD-ColorScheme-light-seed.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-23-flexTD-ColorScheme-light-seed-sub.png?raw=true" alt="TD FlexScheme12 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-23-flexTD-ColorScheme-light-seed-sub.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-23-flexTD-ColorScheme-light-seed-sub.png" alt="TD FlexScheme12 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-23-flexTD-ColorScheme-light-seed-sub.png)</td>
   </tr>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-18-td-from-ColorScheme-fromSeed-dark.png?raw=true" alt="TD Scheme9 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-18-td-from-ColorScheme-fromSeed-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-18-td-from-ColorScheme-fromSeed-dark.png" alt="TD Scheme9 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-18-td-from-ColorScheme-fromSeed-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png?raw=true" alt="TD FlexScheme10 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png" alt="TD FlexScheme10 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-22-flexTD-ColorScheme-dark-seed.png?raw=true" alt="TD FlexScheme11 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-22-flexTD-ColorScheme-dark-seed.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-22-flexTD-ColorScheme-dark-seed.png" alt="TD FlexScheme11 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-22-flexTD-ColorScheme-dark-seed.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-24-flexTD-ColorScheme-dark-seed-sub.png?raw=true" alt="TD FlexScheme12 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-24-flexTD-ColorScheme-dark-seed-sub.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-24-flexTD-ColorScheme-dark-seed-sub.png" alt="TD FlexScheme12 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-24-flexTD-ColorScheme-dark-seed-sub.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Comparing ThemeData and ColorScheme option 9 and FlexColorScheme ways to define `ThemeData` objects_</td>
@@ -953,13 +953,13 @@ Below we compare this custom setup to FlexColorScheme case 10, which it with res
 </table>
 <table>
   <tr>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png?raw=true" alt="TD FlexScheme10 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png" alt="TD FlexScheme10 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-19-flexTD-ColorScheme-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-25-custom-TD-light.png?raw=true" alt="TD FlexScheme10 light" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-25-custom-TD-light.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-25-custom-TD-light.png" alt="TD FlexScheme10 light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-25-custom-TD-light.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png?raw=true" alt="TD FlexScheme10 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png" alt="TD FlexScheme10 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-20-flexTD-ColorScheme-dark.png)</td>
     <td>&nbsp;</td>
-    <td>[<img src="https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-26-custom-TD-dark.png?raw=true" alt="TD FlexScheme10 dark" width="220"/>](https://github.com/rydmike/flex_color_scheme_docs/blob/master/docs/images/fcs-v5-wt-26-custom-TD-dark.png?raw=true)</td>
+    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-26-custom-TD-dark.png" alt="TD FlexScheme10 dark" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-26-custom-TD-dark.png)</td>
   </tr>
   <tr>
     <td colspan="7">_Comparing custom ThemeData+ColorScheme to FlexColorScheme option 10 produced ThemeData colors_</td>
