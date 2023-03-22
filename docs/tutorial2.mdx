@@ -69,7 +69,7 @@ const FlexSchemeData _myFlexScheme = FlexSchemeData(
 
 We could also have stored the light and dark scheme only in their own `FlexSchemeColor` objects, and added them directly in their respective `colors` property in `FlexThemeData.light` and `FlexThemeData.dark`. However, we will also use this information on the `HomePage` for the theme switch widget and to display the scheme name and description. Putting them in a `FlexSchemeData` object that bundles the light and dark scheme color `FlexSchemeColor`, plus a name and description, is a convenient way to pass it along and re-use the information on the `HomePage`.
 
-We use the `FlexSchemeData` instance `_myFlexScheme` instance `light` and `dark` properties, as `colors` value for our `FlexThemeData.light` and `FlexThemeData.dark`, that we then assign to the `MaterialApp` light theme property `theme` and `darkTheme` property respectively.
+We use the `FlexSchemeData` instance `_myFlexScheme` instance `light` and `dark` properties, as the `colors` value for our `FlexThemeData.light` and `FlexThemeData.dark`, that we then assign to the `MaterialApp` light theme property `theme` and `darkTheme` property respectively.
 
 The setup is similar to how we used one of the built-in predefined `FlexSchemeData` objects in example 1 via its enum selection property, but in this case we defined our own custom `FlexSchemeData` in `_myFlexScheme` and used the `colors` property in `FlexSchemeData` to tell it to use those colors instead of a built-in scheme.
 
@@ -77,14 +77,15 @@ The setup is similar to how we used one of the built-in predefined `FlexSchemeDa
 
 Based on the Flutter Skeleton template architecture we glue the `ThemeController` to the MaterialApp. The Flutter standard `AnimatedBuilder` Widget listens to the `ThemeController` for changes.
 
-The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here it serves the purpose of functioning as kind of a "`ListenableBuilder`", that rebuilds its child once when its `Listenable` value, the `animation` changes. Which it does whenever our `ThemeController` calls `notifyListeners`, when we update any of its properties. Which we do in the `ThemeController` class when we have new updated data that requires the theme to update. The `ThemeController` values are typically changed by user interface widgets on the
-`HomePage`.
+The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here it serves the purpose of functioning as a "`ListenableBuilder`", that rebuilds its child once, when its `Listenable` value, the `animation` changes. Which it does whenever our `ThemeController` calls `notifyListeners`, when we update any of its properties. We call `notifyListeners` in the `ThemeController` class when we have new updated data that requires the theme to update. The `ThemeController` values are typically changed by user interface widgets on the `HomePage`.
 
 ## AnimatedBuilder
 
-The usage of the `AnimatedBuilder` does not have anything to do with the fact that the theme changes animate from current `ThemeData` and colors in it, to the new values and colors it changes to. This is a built-in feature in `ThemeData` and its inherited `Theme` in Flutter SDK. You can change the `ThemeData` with call-backs or other state management solutions too, and still get the nice theme change lerp animation from previous property values to new ones.
+The usage of the `AnimatedBuilder` does not have anything to do with the fact that the theme change animates from current `ThemeData` and colors in it, to the new values and colors it changes to. This is a built-in feature in `ThemeData` and its inherited `Theme` in Flutter SDK. You can change the `ThemeData` with call-backs or other state management solutions too, and still get the nice theme change lerp animation from previous property values to new ones.
 
-The `AnimatedBuilder` is a poor name when it is used here as a `ListenableBuilder`, that does not exist in Flutter SDK with that name. It should, just for a better and more logical name, but the `AnimatedBuilder`  serves the exact same purpose here as a `ListenableBuilder` would.
+The `AnimatedBuilder` is a poor name when it is used here as a `ListenableBuilder`, that does not exist in Flutter SDK with that name. It should, just for a better and more logical name, but the `AnimatedBuilder`  serves the exact same purpose here as a `ListenableBuilder` would. 
+
+<Info>In the Flutter master channel, a `ListenableBuilder` has been added via [PR #116543](https://github.com/flutter/flutter/pull/116543), but it is not available in stable Flutter 3.7. It will most likely land in the next stable release.</Info>
 
 The result of this setup is that whenever you update any theme settings managed by the `ThemeController`, the `MaterialApp` is rebuilt with the new ThemeData that depends on the `ThemeController`'s property values.
 
