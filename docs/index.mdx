@@ -21,12 +21,6 @@ When you theme a Flutter application correctly, all built-in widgets use the col
 
 **FlexColorScheme** ensures that all Flutter SDK UI components get themed completely by its color schemes and custom colors you provide. It applies effective `ColorScheme` colors to all color properties in `ThemeData`. This ensures that all the direct colors properties in `ThemeData` match your `ColorScheme`. There are no surprises in `ThemeData` that do not match your `ColorScheme`.
 
-You can opt in on using opinionated component sub-themes. By doing so, you can, for example, adjust the border radius on all UI widgets with a single property value. Flutter's Material UI widgets still default to the Material 2 design, and thus use 4 dp corner radius on most widgets.
-
-When you opt in on using the component sub-themes, border radius on widgets defaults to the new Material 3 rounded corner design. In it, the radius varies by widget type, as specified by the [Material 3 guide](https://m3.material.io/). You can keep this or set the shared global widget radius to a value you prefer. You can also easily set the themed border radius per widget, and override the Material 3 default or the global radius value you defined.
-
-You can also opt in on using Material 3. The Material 3 mode component sub-theming is far less opinionated, using mostly Material 3 defaults. One could say that opting in on using FlexColorScheme component sub themes in the Material 2 mode, is a way of getting a Material 2 design of Material 3. In Flutter 3.7 and later, using Material 3 design is ready for production use. Some minor issues do still exist, please refer to the FlexColorScheme docs [known issues](https://docs.flexcolorscheme.com/known_issues) chapter for more information on the status of known theming issues in Flutter.
-
 <table>
   <tr>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-39.png" zoom alt="Verdun green light" /> </td>
@@ -36,7 +30,34 @@ You can also opt in on using Material 3. The Material 3 mode component sub-themi
   </tr>
 </table>
 
+You can opt in on using opinionated component sub-themes. By doing so, you can, for example, adjust the border radius on all UI widgets with a single property value. Flutter's Material UI widgets still default to the Material 2 design, and thus use 4 dp corner radius on most widgets.
+
+When you opt in on using the component sub-themes, border radius on widgets defaults to the new Material 3 rounded corner design. In it, the radius varies by widget type, as specified by the [Material 3 guide](https://m3.material.io/). One could say that opting in on using FlexColorScheme component sub themes in the Material 2 mode, is a way of getting a Material 2 design of Material 3. You can keep this or set the shared global widget radius to a value you prefer. You can also easily set the themed border radius per widget, and override the Material 3 default or the global radius value you defined.
+
+### Material 3 Support
+
+You can also opt in on using Material 3. The Material 3 mode component sub-theming is far less opinionated, using mostly Material 3 defaults. In Flutter 3.7 and later, using Material 3 design is ready for production use. Some minor issues do still exist, please refer to the FlexColorScheme docs [known issues](https://docs.flexcolorscheme.com/known_issues) chapter for more information on the status of known theming issues in Flutter.
+
+<table>
+  <tr>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-50.png" zoom alt="Yukon gold light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-50.png" zoom alt="Yukon gold dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-52.png" zoom alt="Rust light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-52.png" zoom alt="Rust dark" /> </td>
+  </tr>
+</table>
+
+**FlexColorScheme** has many advanced coloring features, like using surface alpha blends. It also fully supports Material 3 based color schemes, including seed generated `ColorSchemes`. It offers different configuration options that you can use when you generate your `ColorScheme` from key colors. Customization features that are currently not available in Flutter. This includes using multiple key colors as seeds, custom minimum chroma levels and customized tone mapping to ColorScheme colors. Starting from version 7, FlexColorScheme also has a few important platform adaptive theming features. You can for example remove elevation tint and use different default border radius on other platforms than Android.
+
+<table>
+  <tr>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-44.png" zoom alt="Indigo San Marino light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-44.png" zoom alt="Indigo San Marino dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-42.png" zoom alt="Lipstick pink light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-42.png" zoom alt="Lipstick pink dark" /> </td>
+  </tr>
+</table>
+
 With **FlexColorScheme** component themes, you use simple flat property values. No need for verbose Flutter SDK component sub-themes, with `ShapeBorder` definitions on multiple widget themes to change their border radius. The component theming provides a large number of easy to configure options via simple flat properties. In many cases you can avoid the both complicated and confusing `MaterialState` theming properties.
 
-**FlexColorScheme** has many advanced coloring features, like using surface alpha blends. It also fully supports Material 3 based color schemes, including seed generated `ColorSchemes`. It offers different configuration options that you can use when you generate your `ColorScheme` from
-key colors. Customization features that are currently not available in Flutter. This includes using multiple key colors as seeds, custom minimum chroma levels and customized tone mapping to ColorScheme colors. Starting from version 7, FlexColorScheme also has a few important platform adaptive theming features.
+

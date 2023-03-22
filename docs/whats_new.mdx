@@ -20,6 +20,16 @@ There are a few minor breaking APIs in version 7 compared to version 6. Most lik
 
 FCS v7 includes theming support for new Material 3 widgets in Flutter 3.7. It also comes with **12 new M3 ColorScheme themes**, for a **total of 52**, so now it holds all the cards. The additional color schemes can be used as such, and provide a good M3 color system fit as they are. For an even better M3 aligned style, enable seeded ColorScheme in FlexColorScheme. They work well with only primary key color as seed, but are also tuned to work if you enable their secondary and tertiary colors as key colors for seeding the ColorScheme. For a more conservative seed-generated ColorScheme, do not use secondary color as a seed color. This applies generally to seeded ColorScheme generation.
 
+
+<table>
+  <tr>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-50.png" zoom alt="Yukon gold light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-50.png" zoom alt="Yukon gold dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-52.png" zoom alt="Rust light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-52.png" zoom alt="Rust dark" /> </td>
+  </tr>
+</table>
+
 **Flexible Seeded ColorSchemes**
 
 You can customize how the seeded ColorScheme is generated from key colors. The default option is the Material 3 and Flutter standard `ColorScheme.fromSeed` used settings, but FCS allows you to completely customize how it behaves. To ease the burden of trying this, it comes with many preconfigured options. A new thing is that if you use a custom surface blend color in FCS surface color blending. This same color is now used as seed for the neutral colors (surfaces and backgrounds) when you use M3 ColorScheme seed generation. Normally, in M3 default design, the primary color is always used for the slightly tinted surface colors. With FCS, you can now customize this to any other color. Go easy on it though, not everything will look good. But you can certainly create interesting unique looking apps with it.
@@ -31,6 +41,15 @@ An exciting new feature, FlexColorScheme now supports something it calls **platf
 **Color expressive interaction and disabled controls**
 
 For some combinations of colors, M3 does a decent job of making interactions like pressed, focus, hovered, more color expressive than before. But for some widgets, M3 does not do so. Also, when you deviate in color choices for widgets from defaults, especially if their brightness is different, interaction effects may become invisible or too weak. With FlexColorScheme you can use more consistently color expressive interaction effects, and you can also separately opt-in on, color tinted disabled controls. These changes are often quite subtle, and give you a more refined consistently color expressive theme. On larger surface areas, like clickable [ListTile] the differences are much more obvious. 
+
+<table>
+  <tr>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-44.png" zoom alt="Indigo San Marino light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-44.png" zoom alt="Indigo San Marino dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-l-42.png" zoom alt="Lipstick pink light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v7-d-42.png" zoom alt="Lipstick pink dark" /> </td>
+  </tr>
+</table>
 
 **Support for new M3 Components**
 
@@ -218,34 +237,26 @@ There are, of course, new built-in color schemes in version 5. Four new themes, 
 <table>
   <tr>
     <td><b>&nbsp;Flutter Dash</b></td>
-    <td>&nbsp;</td>
     <td><b>&nbsp;M3 Baseline</b></td>
-    <td>&nbsp;</td>
     <td><b>&nbsp;Verdun Green</b></td>
-    <td>&nbsp;</td>
     <td><b>&nbsp;Dell Genoa Green</b></td>
   </tr>
   <tr>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-37.png" alt="Dash light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-37.png)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-38.png" alt="M3 baseline" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-38.png)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-39.png" alt="Verdun green" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-39.png)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-40.png" alt="Dell genoa" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-40.png)</td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-37.png" zoom alt="Dash light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-38.png" zoom alt="M3 baseline light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-39.png" zoom alt="Verdun green light" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-l-40.png" zoom alt="Dell genoa light" /> </td>
   </tr>
   <tr>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-37.png" alt="Dash light" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-37.png)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-38.png" alt="M3 baseline" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-38.png)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-39.png" alt="Verdun green" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-39.png)</td>
-    <td>&nbsp;</td>
-    <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-40.png" alt="Dell genoa" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-40.png)</td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-37.png" zoom alt="Dash dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-38.png" zoom alt="M3 baseline dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-39.png" zoom alt="Verdun green dark" /> </td>
+    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-d-40.png" zoom alt="Dell genoa dark" /> </td>
   </tr>
-  <tr>
-    <td colspan="7">_New FlexColorScheme themes in version 5_</td>
-  </tr>
+</table>
+
+<table>
+
 </table>
 
 ## Version 4.0.0
