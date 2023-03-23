@@ -6,9 +6,9 @@ All currently known issues **impacting FlexColorScheme** are rooted in **Flutter
 
 Did you find a new issue? Is it a **FlexColorScheme** issue? Please open it as a new issue in the project [GitHub repo](https://github.com/rydmike/flex_color_scheme/issues). If you have a **question about FlexColorScheme** and its usage, you can post it as a question in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions). If it is a theming issue caused by the Flutter SDK framework, please report it directly in [Flutter issues](https://github.com/flutter/flutter/issues/new/choose).
 
-## Not fixed
+## Not Fixed
 
-Issues below have not fix landed even master yet. 
+Issues below have not been fixed yet, or if it has a fix, it has not yet been merged in Flutter master. 
 
 ### Flutter: Height of SegmentedButton does not match Material3 spec and cannot be changed
 <Error>Applies to Flutter 3.7.</Error>
@@ -36,7 +36,7 @@ Cannot theme `FilledButton` and `FilledButton.tonal` variants separately, see is
 The new Material 3 buttons `FilledButton` and `FilledButton.tonal` cannot be themed separately to use different styles from each other. This is in conflict with their default themes where these buttons can use different styles and do look different. However, if you use `FilledButtonThemeData` in `ThemeData` to try to color style the buttons, both variants will become identical since they share the same `FilledButtonThemeData`. This effectively renders theming of the `FilledButton` less usable, since e.g. theming its color properties makes the variants look identical.
 
 
-## Flutter: Divider color inconsistencies
+### Flutter: Divider color inconsistencies
 <Error>Applies to Flutter 3.7 and earlier.</Error>
 
 The introduction of M3 and some newer theme factories/properties have led to inconsistent divider colors that may cause theme color behavior confusion for developers. Some results are also not according to the M2 or M3 specification.
@@ -100,7 +100,7 @@ The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mis
 When the primary color of the theme requires dark contrast color, the `primaryTextTheme` gets the wrong contrast color in dark mode. See issue [#118146](https://github.com/flutter/flutter/issues/118146) for more information. FlexColorScheme has always included a theme fix for this issue. It is thus a none issue in FCS. The issue is included here as information and for tracking purposes.
 
 
-## Flutter: Dark mode M2 elevation limitation
+### Flutter: Dark mode M2 elevation limitation
 <Warning>Applies to Flutter 3.7 and earlier.</Warning>
 
 The color branding is not applied in Material2 (M2) to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) "Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353".
@@ -110,9 +110,9 @@ FCS version 4.0.0 and later addresses this limitation by introducing more color 
 This limitation in Material2 will likely **never be fixed in Flutter**. It is documented here as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in M3 does not have this equivalent limitation and thus removes the limitation when going forward with M3 theming.
 
 
-## Fixed in master
+## Fixed in Master
 
-Issues below have a fix that has been **merged** in latest Flutter master channel, but it has not landed in any version of stable Flutter 3.7.
+Issues below have a fix that has been **merged** in latest Flutter master channel, but it has not yet landed in any stable version Flutter.
 
 ### Flutter: A disabled selected InputChip has wrong color in M3
 <Error>Applies to Flutter 3.7.</Error>
