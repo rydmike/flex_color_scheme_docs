@@ -10,10 +10,39 @@ Did you find a new issue? Is it a **FlexColorScheme** issue? Please open it as a
 
 Issues below have not been fixed yet, or if it has a fix, it has not yet been merged into Flutter master.
 
-### Flutter: NavigationDrawer indicator overlay does not use shape
+### Flutter: NavigationDrawer indicator is centered when sized
 <Error>Applies to Flutter 3.7.</Error>
 
-If the `NavigationDrawer` shape is modified via `indicatorShape` by widget or theme, from its default M3 `StadiumBorder` shape, the indicator correctly gets the new shape, but `InkWell` used by overlay color for focus, hover and pressed state do not use the specified shape. For more info see issue [#123324](https://github.com/flutter/flutter/issues/123324), it has an unmerged fix proposal via [PR #123325](https://github.com/flutter/flutter/pull/123325).
+See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+
+### Flutter: NavigationDrawer ink size does not follow indicator size
+<Error>Applies to Flutter 3.7.</Error>
+
+See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+### Flutter: NavigationDrawer ink effects do not follow M3 spec
+<Error>Applies to Flutter 3.7.</Error>
+
+See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+
+### Flutter: NavigationDrawer ink effect colors cannot be changed
+<Error>Applies to Flutter 3.7.</Error>
+
+See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+
+### Flutter: NavigationDrawer drawer size change animation overflows
+<Error>Applies to Flutter 3.7.</Error>
+
+See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+
+### Flutter: NavigationDrawer Label is not truncated to fit
+<Error>Applies to Flutter 3.7.</Error>
+
+See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 
 ### Flutter: Height of SegmentedButton does not match Material3 spec and cannot be changed
@@ -119,6 +148,13 @@ This limitation in Material2 will likely **never be fixed in Flutter**. It is do
 ## Fixed in Master Channel
 
 Issues below have a fix that has been **merged** in the latest Flutter master channel, but has not yet landed in any stable version Flutter.
+
+### Flutter: NavigationDrawer indicator overlay does not use shape
+<Error>Applies to Flutter 3.7.</Error>
+<Success>Has a **fix** [PR #123325](https://github.com/flutter/flutter/pull/123325) in master, not yet landed in stable.</Success>
+
+If the `NavigationDrawer` shape is modified via `indicatorShape` by widget or theme, from its default M3 `StadiumBorder` shape, the indicator correctly gets the new shape, but `InkWell` used by overlay color for focus, hover and pressed state do not use the specified shape. For more info see issue [#123324](https://github.com/flutter/flutter/issues/123324), it has a merged fix in master via [PR #123325](https://github.com/flutter/flutter/pull/123325).
+
 
 ### Flutter: A disabled selected InputChip has wrong color in M3
 <Error>Applies to Flutter 3.7.</Error>
