@@ -10,39 +10,57 @@ Did you find a new issue? Is it a **FlexColorScheme** issue? Please open it as a
 
 Issues below have not been fixed yet, or if it has a fix, it has not yet been merged into Flutter master.
 
+### Flutter: DropdownMenu themed focused item broken
+<Error>Applies to Flutter 3.7.</Error>
+
+The style indication of the found and focused/selected item in a `DropdownMenu` does not use `MenuButtonThemeData`. Its simulation of the focused state omits the theme.  This makes it impossible to provide a consistent style for the focused/selected item when using a custom theme in a `DropdownMenu`. One have to live with the default style for the entire menu, or accept a deviant and out of style looking focused/selected item.  For more information see issue [#123736](https://github.com/flutter/flutter/issues/123736).
+
+
+### Flutter: DropdownMenu's menu overlay size issue
+<Error>Applies to Flutter 3.7.</Error>
+
+If you a place a `DropdownMenu` in a `ListView`, the menu overlay expands to fill the width of the layout. This is a minor issue, you can workaround it by placing `DropdownMenu` e.g. in a `Column` in the `ListView`. Interstingly, when opening a menu overlay from a `MenuBar` or the `MenuAnchor`, even when they are placed in a `ListView`, they do not exhibit this behavior. Neither does `DropdownMenu`, if it is in a `Column`. For more information see issue [#123631](https://github.com/flutter/flutter/issues/123631).
+
+
+### Flutter: Menu button text animates on hover/focus/press state
+<Error>Applies to Flutter 3.7.</Error>
+
+A menu selection label is not supposed to animate when it is highlighted, nor does it do so on icons in the menu, only on text. For more information see issue [# 23615](https://github.com/flutter/flutter/issues/123615).
+
+
 ### Flutter: NavigationDrawer indicator is centered when sized
 <Error>Applies to Flutter 3.7.</Error>
 
-See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 
 ### Flutter: NavigationDrawer ink size does not follow indicator size
 <Error>Applies to Flutter 3.7.</Error>
 
-See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 ### Flutter: NavigationDrawer ink effects do not follow M3 spec
 <Error>Applies to Flutter 3.7.</Error>
 
-See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 
 ### Flutter: NavigationDrawer ink effect colors cannot be changed
 <Error>Applies to Flutter 3.7.</Error>
 
-See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 
 ### Flutter: NavigationDrawer drawer size change animation overflows
 <Error>Applies to Flutter 3.7.</Error>
 
-See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 
 ### Flutter: NavigationDrawer Label is not truncated to fit
 <Error>Applies to Flutter 3.7.</Error>
 
-See umbrella issue [123507](https://github.com/flutter/flutter/issues/123507) for more information.
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 
 ### Flutter: Height of SegmentedButton does not match Material3 spec and cannot be changed
