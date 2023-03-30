@@ -10,10 +10,16 @@ Did you find a new issue? Is it a **FlexColorScheme** issue? Please open it as a
 
 Issues below have not been fixed yet, or if it has a fix, it has not yet been merged into Flutter master.
 
+### Flutter: IconButton theming destroys variant styles
+<Error>Applies to Flutter master 3.9, the feature this issue concerns does not exist in stable 3.7.</Error>
+
+If we add theming to IconButton's IconButtonThemeData, we loose the style of all the variant IconButtons `IconButton.filled`, `IconButton.filledTonal` and `IconButton.outlined`. They all get the same style as IconButton. For more information see issue [#123829](https://github.com/flutter/flutter/issues/123829).
+
+
 ### Flutter: DropdownMenu themed focused item broken
 <Error>Applies to Flutter 3.7.</Error>
 
-The style indication of the found and focused/selected item in a `DropdownMenu` does not use `MenuButtonThemeData`. Its simulation of the focused state omits the theme.  This makes it impossible to provide a consistent style for the focused/selected item when using a custom theme in a `DropdownMenu`. One have to live with the default style for the entire menu, or accept a deviant and out of style looking focused/selected item.  For more information see issue [#123736](https://github.com/flutter/flutter/issues/123736).
+The style indication of the found and focused/selected item in a `DropdownMenu` does not use `MenuButtonThemeData`. Its simulation of the focused state omits the theme.  This makes it impossible to provide a consistent style for the focused/selected item when using a custom theme in a `DropdownMenu`. One have to live with the default style for the entire menu, or accept a deviant and out of style looking focused/selected item. For more information see issue [#123736](https://github.com/flutter/flutter/issues/123736).
 
 
 ### Flutter: DropdownMenu's menu overlay size issue
