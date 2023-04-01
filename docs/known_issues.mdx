@@ -19,7 +19,7 @@ If we add theming to IconButton's IconButtonThemeData, we lose the style of all 
 ### Flutter: SliverAppBar.medium and SliverAppBar.large Theming and Defaults Issue
 <Error>Applies to Flutter 3.7.</Error>
 
-The `AppBar`'s foreground theme color, from theme or widget foreground color properties are **not applied** to action icon color for `SliverAppBar.medium` and `SliverAppBar.large`. The defaults for M2 foreground color on a `SliverAppBar.medium` and `SliverAppBar.large` are **incorrect** in **light theme** mode when using **Material 2**.. For more information, see issue [#123943](https://github.com/flutter/flutter/issues/123943).
+The `AppBar`'s foreground theme color, from theme or widget foreground color properties are **not applied** to action icon color for `SliverAppBar.medium` and `SliverAppBar.large`. The defaults for M2 foreground color on a `SliverAppBar.medium` and `SliverAppBar.large` are **incorrect** in **light theme** mode when using **Material-2**. For more information, see issue [#123943](https://github.com/flutter/flutter/issues/123943).
 
 
 ### Flutter: DropdownMenu themed focused item broken
@@ -248,9 +248,9 @@ When defining `foregroundColor` for the new Material 3 style `SliverAppBar.large
 The `SegmentedButton` uses wrong default color for unselected item color, it uses `primary` color, it should be `onSurface`. See issue [# 119733](https://github.com/flutter/flutter/issues/119733) for more information. FCS7 includes a theme fix for this.
 
 
-## Fix is in Stable
+## Fixed in Stable
 
-Issues below have a fix that has **landed in the latest stable hotfix or earlier** version of Flutter 3.7. 
+The issues below have a fix that has **landed in the latest stable hotfix or earlier** version of Flutter. This list is included here since it also shows when past issues apply, if you use another version of Flutter then the latest stable version, with its latest hotfix applied. 
 
 ### Flutter: NavigationBar ink ripple moves with height changes (Regression)
 <Success>**Fixed** via [PR #117473](https://github.com/flutter/flutter/pull/117473) and cherry-picked via [CP #119553](https://github.com/flutter/flutter/pull/119553) to 3.7.2.</Success>
