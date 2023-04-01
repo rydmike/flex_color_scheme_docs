@@ -165,14 +165,14 @@ The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mis
 When the primary color of the theme requires dark contrast color, the `primaryTextTheme` gets the wrong contrast color in dark mode. See issue [#118146](https://github.com/flutter/flutter/issues/118146) for more information. FlexColorScheme has always included a theme fix for this issue. It is thus a none issue in FCS. The issue is included here as information and for tracking purposes.
 
 
-### Flutter: Dark mode M2 elevation limitation
+### Flutter: Dark mode M2 elevation overlay limitation
 <Warning>Applies to Flutter 3.7 and earlier.</Warning>
 
-The color branding is not applied in Material2 (M2) to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) "Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal #90353".
+The overlay color or color branding is not applied in Material2 (M2) to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) "Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal".
 
-FCS version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the surface and background colors equal in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
+FCS version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the surface and background colors equal, in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
 
-This limitation in Material2 will likely **never be fixed in Flutter**. It is documented here as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in M3 does not have this equivalent limitation and thus removes the limitation when going forward with M3 theming.
+This limitation in Material-2 will likely **never be fixed in Flutter**. It is documented here as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in Material-3 does not have this equivalent limitation and thus removes the limitation when going forward with Material-3 theming.
 
 
 ## Fixed in Master Channel
