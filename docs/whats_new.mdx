@@ -2,9 +2,9 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, and older updates, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
-## Version 7.0.0-dev.3
+## Version 7.0.0
 
-**March 18, 2023**
+**April 2, 2023**
 
 **TLDR**
 
@@ -12,15 +12,11 @@ For a slideshow tour of what is new in version 7, check out this [Tweet and its 
 
 <Tweet id="1637228788139302914" cards="show" />
 
-**Final Beta**
-
-This is the final beta release before stable v7 is out. There will be no new features or API changes in the FlexColorScheme package from this version to stable version 7.0.0. The only changes to stable will be potential bug fixes, typo corrections, API doc comment improvements and adding more tests. The companion app **Themes Playground**, may get label improvements plus spelling and grammar corrections. It will not get any new features, but it may of course receive bug fixes.
-
-The **Themes Playground** app built for this **beta** release is unfortunately **not a SKIA renderer** build, it is using the HTML renderer. This makes it less performant than the app would otherwise be. Additionally, scaled content, like the **Themes Simulator** panel is also fuzzier than it would be with the SKIA renderer. Due to an issue in Flutter 3.7, a build made with the SKIA renderer performs very poorly and crashes quickly. For more information see Flutter [issue #122189](https://github.com/flutter/flutter/issues/122189). Hopefully, before the stable release, a fix will be available. If not, a SKIA build using the same package version will be made later and released when a fix is available.
+The **Themes Playground** app built for this release is unfortunately **not a SKIA renderer** build, it is using the HTML renderer. This makes it less performant than the app would otherwise be. Additionally, scaled content, like the **Themes Simulator** panel is also fuzzier than it would be with the SKIA renderer. Due to an issue in Flutter 3.7, a build made with the SKIA renderer performs very poorly and crashes quickly. For more information see Flutter [issue #122189](https://github.com/flutter/flutter/issues/122189). When the issue has been fixed and is available in the Flutter stable channel, a new version of the Themes Playground will be built and released using the SKIA renderer.
 
 **Breaking APIs?**
 
-There are a few minor breaking APIs in version 7 compared to version 6. Most likely you will not run into them. However, some past styles and defaults have been slightly tuned to align themes with Material-3 design. For a detailed list of changes from version 7.0.0-dev.2 to this final beta 7.0.0-dev.3, please see the [package changelog](https://pub.dev/packages/flex_color_scheme/versions/7.0.0-dev.3/changelog), the number of new features in **FlexColorScheme** and **Themes Playground** from previous beta are significant.  
+There are a few minor breaking APIs in version 7 compared to version 6. Most likely you will not run into them. However, some past styles and defaults have been slightly tuned to align themes with Material-3 design. For a detailed list of changes from version 6.1.2 to version 7.0.0, please see the [package changelog](https://pub.dev/packages/flex_color_scheme/changelog). The number of new features in **FlexColorScheme** and **Themes Playground** from previous beta are significant.  
 
 **Twelve New ColorSchemes**
 
