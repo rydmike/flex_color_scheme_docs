@@ -24,7 +24,7 @@ To learn about using the Themes Playground and its more advanced features, pleas
 
 Can I use custom themes with FlexColorScheme?
 
-Yes, FlexColorScheme creates a ThemeData object. You can `copyWith` "modify" it, just like any `ThemeData` object.
+Yes, FlexColorScheme creates a ThemeData object. You can use `copyWith` "modify" it, just like any `ThemeData` object.
 
 When you make a theme with `FlexThemeData.light` or `dark`, it returns a normal Flutter `ThemeData` object that you can use like any other `ThemeData` object.
 
@@ -41,9 +41,9 @@ Often when you add component themes they need to share `ColorScheme` color value
 
 ## Can I use the ColorScheme FlexColorScheme creates in custom component themes?
 
-If you need color values that `FlexColorScheme` has created, maybe some auto calculated colors, typically the blended surface and onColors for your sub-themes, or a computed Material 3 Colorscheme, you can get them from FlexColorScheme.
+If you need color values that `FlexColorScheme` has created, maybe some auto calculated colors, typically the blended surface and onColors for your sub-themes, or a computed seed generated Material 3 Colorscheme, you can get the entire ColorScheme from FlexColorScheme.
 
-For this advanced use case, it is recommended to use FlexColorScheme with the factory constructor `FlexColorScheme.light` and `FlexColorScheme.dark`, to first create the light and dark `FlexColorScheme` objects. Then get the `ColorScheme` they define with its `toScheme` method, and use this `ColorScheme` data as input for your custom component themes.
+For this use case, it is recommended to use FlexColorScheme with the factory constructor `FlexColorScheme.light` and `FlexColorScheme.dark`, to first create the light and dark `FlexColorScheme` objects. Then get the `ColorScheme` they define with its `toScheme` method, and use this `ColorScheme` and its colors, as input for your custom component themes.
 
 When you make custom component themes, you often need access to the colors the main `ThemeData` is using and storing in its `colorScheme` property. This step gives you that before even creating the `ThemeData` object from your FlexColorScheme object. You can then pass the `ColorScheme` you got from `toScheme`, or just one or some of its color values, along to your methods that define your component theme data.
 
@@ -57,7 +57,7 @@ When you enable opinionated component themes, FlexColorScheme adds a large numbe
 
 This will completely override the component theme FlexColorScheme produced with a default one, where all the properties are null. Flutter will then use default theming for the component theme in question.
 
-For example, if you want to restore the look of the `ElevatedButton` from FlexColorScheme's opinionated design, you could do this for the light theme:
+For example, if you want to restore the look of the `ElevatedButton` in M2 mode, from FlexColorScheme's opinionated M2 design, you could do this for the light theme:
 
 ```dart
 final ThemeData lightTheme = FlexThemeData.light(
@@ -69,7 +69,6 @@ final ThemeData lightTheme = FlexThemeData.light(
 
 Remember to do the same for your dark theme as well.
 
-A future version of the Themes Playground application may add these "resets", to selected component themes, but you can add them manually to any component theme as shown above.
 
 ## How do I modify the component themes with custom features?
 
@@ -91,26 +90,35 @@ If you are not opting in on the opinionated component themes, then the component
 
 The changes made in the vanilla FlexColorScheme based `ThemeData` component themes are fairly small, but the above component themes are not null, like they are by default in Flutter SDK. You can read more about these changes `FlexColorScheme` makes in the [core defaults](/core_defaults) chapter.
 
-When you opt in on using the opinionated component themes, the above component themes are typically further modified. Additionally, the following component themes are also no longer null, which they are in the vanilla core version:
+When you opt in on using the opinionated component themes, the above component themes are typically further modified. Additionally, the following component themes may also no longer be null, which they are in the vanilla core version:
 
 - `ThemeData.bottomSheetTheme`
 - `ThemeData.cardTheme`
 - `ThemeData.checkboxTheme`
 - `ThemeData.dialogTheme`
+- `ThemeData.drawerTheme`
+- `ThemeData.dropdownMenuTheme`
 - `ThemeData.elevatedButtonTheme`
+- `ThemeData.filledButtonTheme`
 - `ThemeData.floatingActionButtonTheme`
-- `ThemeData.iconTheme`
+- `ThemeData.iconButtonTheme`
+- `ThemeData.menuBarTheme`
+- `ThemeData.menuButtonTheme`
+- `ThemeData.menuTheme`
 - `ThemeData.navigationBarTheme`
 - `ThemeData.navigationRailTheme`
 - `ThemeData.outlinedButtonTheme`
 - `ThemeData.popupMenuTheme`
 - `ThemeData.primaryIconTheme`
 - `ThemeData.radioTheme`
+- `ThemeData.segmentedButtonTheme`
+- `ThemeData.sliderTheme`
 - `ThemeData.snackBarTheme`
 - `ThemeData.switchTheme`
 - `ThemeData.textButtonTheme`
 - `ThemeData.timePickerTheme`
 - `ThemeData.toggleButtonsTheme`
+
 
 If you want to add custom component themes and keep the already existing modified properties in `ThemeData` created by FlexColorScheme intact, you cannot use just a `copyWith` using a component theme constructor. You have to use the component theme instance from the `ThemeData` created by FlexColorScheme, and a `copyWith` on it. Then assign it to the component theme with a `copyWith` to the new `ThemeData`, with the modified properties.
 
@@ -177,7 +185,7 @@ No promise is made about its eventual inclusion, but if it is a nice, unique, an
 
 ## Can I use different built-in color schemes for my light and dark themes?
 
-Yes, this is possible. Simply use different `FlexScheme` enum values for the light and dark `FlexThemeData.light` and `FlexThemeData.dark` factories' `scheme` property. If the colors used by the selected schemes are a bit related, this can be used to create nice and unique light and dark combinations of the predefined schemes.
+Yes, this is possible. The Themes Playground does not support this, but the API does. Simply use different `FlexScheme` enum values for the light and dark `FlexThemeData.light` and `FlexThemeData.dark` factories' `scheme` property. If the colors used by the selected schemes are a bit related, this can be used to create nice and unique light and dark combinations of the predefined schemes.
 
 By using the `colors` property you could even apply a `FlexSchemeColor` that has data that was designed for a light theme, to the `FlexThemeData.dark` factory, and wise versa. For example, using the `FlexThemeData.dark` factory, you could to its `colors` property assign the `FlexSchemeColors` from `FlexColor.schemes[FlexScheme.mandyRed].light` that are designed and intended to be used with the light mode factory.
 
@@ -189,16 +197,16 @@ If you are making custom color schemes and would just like to re-use one or two 
 
 ## Why are some sub-theme properties in the main class and not it `FlexSubThemesData`?
 
-Legacy! 
+**TLDR:** Legacy! 
 
 When development of FCS was started, it was mostly used for colors and to fix a few glaring issues that always needed tuning in Flutter themes. All such properties were then included in the main class.
 
-This concerns mostly theming related to the `AppBar`, `TabBar` and `Tooltips`. When the `subThemesData` property was added to support more extensive pre-configuration of a lot of component sub-themes via `FlexSubThemesData`, we did not want to break past API and kept them there. Today this is a bit inconsistent and may well be considered technical debt. We plan to later gradually deprecate the direct none color related properties in the main class and move them to `FlexSubThemesData`, in a none-breaking manner for a few releases. 
+This concerns mostly theming related to the `AppBar`, `TabBar` and `Tooltips`. When the `subThemesData` property was added to support more extensive configuration of a lot of component sub-themes via `FlexSubThemesData`, we did not want to break past API and kept them there. Today this is a bit inconsistent and may well be considered technical debt. We may later gradually deprecate the direct none color related properties in the main class and move them to `FlexSubThemesData`, in a none-breaking manner for a few releases. 
 
 ## Sometimes FlexColorScheme does not have a perfect pub score, why not?
 
 Currently, FlexColorScheme has a perfect pub score, but it may at times be lower, typically 130/140 [score](https://pub.dev/packages/flex_color_scheme/score). This happens when it is being nice and documents self-deprecated members and references them in doc comments. It may also internally use self-deprecated members to provide a nicer transition using past deprecated members as fallbacks. This is done in cases where it is possible and makes sense to not unnecessarily break things, while transition you to newer APIs.
 
-In situations like this, if FlexColorScheme were to document things more poorly, and not be nice with API transitions, but prefer to just totally break things, it would have a perfect pub score. The current pana analyzer used by pub.dev is a bit peculiar in this case. It basically tells me it would be better to make things worse for you. I prefer to not do that.
+In situations like this, if FlexColorScheme were to document things more poorly, and not be nice with API transitions, but prefer to just totally break things, it would have a perfect pub score. The current pana analyzer used by pub.dev is a bit peculiar in this case. It basically says it would be better to make things worse for you, we prefer to not do that.
 
-I did open an issue about pana analyzer's current behavior though [#1055](https://github.com/dart-lang/pana/issues/1055). A change [PR #1057](https://github.com/dart-lang/pana/pull/1057) to allow using self-deprecated members without a score penalty was in the works, but got closed without being merged.
+An issue about pana analyzer's current behavior was opened [#1055](https://github.com/dart-lang/pana/issues/1055). A change [PR #1057](https://github.com/dart-lang/pana/pull/1057) to allow using self-deprecated members without a score penalty was in the works, but got closed without being merged.
