@@ -2,11 +2,8 @@
 
 This chapter lists potential new features. They may be planned or even just idea phase future features. They are listed as polls in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions). Feel free to add additional ideas and requests there, and to up or down vote existing ones. 
 
-When features are being worked on you can find them as tasks in the repo [project](https://github.com/rydmike/flex_color_scheme/projects/1).
+When features are being worked on, you can find them as tasks in the repo [project](https://github.com/rydmike/flex_color_scheme/projects/1).
 
-Adding new ideas as polls is a new practice that was started during 5.1.0 release. 
-
-All internally recorded ideas have not yet been listed as polls in discussions, only a few so for to test the viability of this practice. This comment will be removed when currently elsewhere recorded ideas have been added to discussions as polls.
 
 ## Proposed Features
 
@@ -18,6 +15,22 @@ All internally recorded ideas have not yet been listed as polls in discussions, 
 
 * [#69 Add CupertinoTheme support](https://github.com/rydmike/flex_color_scheme/discussions/69)
 
+* [#126 Add Squircle (hyper ellipses as border radius) as a border shape option](https://github.com/rydmike/flex_color_scheme/discussions/126) 
+  * This will likely be added when Flutter supports the correct iOS squircle shape. Currently, Flutter does not have the correct Squircle shape support built-in. Adding a custom algo may have performance implications if it is not implemented in a way that is also supported by the GPU. Cupertino/iOS widgets in Flutter should use the Squircle shape, but they do not, never have. This is one reason why they look a bit off.
+
+* [#127 Add a theme extension to store the tonal palettes used to generate a seed generated ColorScheme](https://github.com/rydmike/flex_color_scheme/discussions/127)
+  * This would make all the colors in the tonal palettes available in both the light and dark theme mode.
+
+* [#128 Add system font scaling to the playground, for testing purposes only](https://github.com/rydmike/flex_color_scheme/discussions/128)
+
+* [#129 Add LTR/RTL UI toggle for testing purposes in the Theme Playground](https://github.com/rydmike/flex_color_scheme/discussions/129) 
+
+* [#130 Add images as color sources for themes in the Themes Playground](https://github.com/rydmike/flex_color_scheme/discussions/130)
+
+
+## Long term
+
+Build a totally new Themes Playground, that is more designer and team work friendly. Maybe a "Pro" version of the Themes Playground? The current version is still after all "only" a developer's FlexColorScheme API configurator.
 
 ## Out of Scope
 
@@ -27,6 +40,6 @@ Including built-in serialization of FlexColorScheme, and its key classes has bee
 
 Our recommendation for saving the state of a `FlexColorScheme` is to include values for its settings that you use in your implementation in other models in your application, like an "AppSettings" model or similar.
 
-You probably serialize and store such data already, perhaps with shared preferences, hive, get_storage or some other solution. Include the values you need for your `FlexColorScheme` implementation in your stored settings and then use those values to restore your `FlexColorScheme` configuration and theme. This way, your implementation also remains in control of what it needs to store and restore.
+You probably serialize and store such data already, perhaps with shared preferences, hive, isar, get_storage or some other solution. Include the values you need for your `FlexColorScheme` implementation in your stored settings and then use those values to restore your `FlexColorScheme` configuration and theme. This way, your implementation also remains in control of what it needs to store and restore.
 
-From version 4.0.0 a simple approach using the architecture introduced via the Flutter "skeleton" template in Flutter version 2.5 was used together with Shared Preferences and Hive to persist and load FlexColorScheme on start. This is just one example, other implementations together with Riverpod, Provider, Flutter Bloc, GetX etc., and completely different local persistence packages work well too.
+From version 4.0.0, a simple approach using the architecture introduced via the Flutter "skeleton" template in Flutter version 2.5 was used together with Shared Preferences and Hive to persist and load FlexColorScheme on start. This is just one example, other implementations together with Riverpod, Provider, Flutter Bloc, GetX etc., and completely different local persistence packages work well too.
