@@ -40,6 +40,14 @@ If a `DropdownMenu` is placed in a `ListView`, the menu overlay expands to the w
 A menu selection label is not supposed to animate when it is highlighted, nor does it do so on icons in the menu, only on the text. For more information, see issue [# 23615](https://github.com/flutter/flutter/issues/123615).
 
 
+### Flutter: NavigationDrawer wrong default width in M3
+<Error>Applies to Flutter 3.7.</Error>
+<Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme. However, using the M3 spec width is problematic in many cases.</Info>
+
+The `NavigationDrawer` drawer width does not follow Material-3 specification. Reference: Material 3 Design Navigation Drawer [specification](https://m3.material.io/components/navigation-drawer/specs#ce8bfbcf-3dec-45d2-9d8b-5e10af1cf87d). It might, however, not be such a good design to use the M3 360 dp spec as width. For more information, see issue [#123380](https://github.com/flutter/flutter/issues/123380). 
+
+It remains unknown what the response and view from the Google Material design team on the matter is. 
+
 ### Flutter: NavigationDrawer indicator is centered when sized
 <Error>Applies to Flutter 3.7.</Error>
 
@@ -81,12 +89,6 @@ See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) f
 The Material-3 specification gives a height of 40 dp for Segmented buttons and a recommended `TapTargetSize` of 48 dp. This cannot be achieved in Flutter since the `minimumSize` style-property does not affect the widget. The correct minimumSize was actually set as default value in [PR #120095](https://github.com/flutter/flutter/pull/120095), but is not honored, see issue [#121493](https://github.com/flutter/flutter/issues/121493).
 
 
-### Flutter: SegmentedButton segments background cannot be made transparent
-<Error>Applies to Flutter 3.7.</Error>
-
-The Material 3 specification depicts `SegmentedButton` unselected button segments, as having transparent color, used to show background color of surface it is placed upon. This is needed for it to work well on elevation-tinted surfaces in Material 3 design. See issue [#123292](https://github.com/flutter/flutter/issues/123292), it has an unmerged fix proposal via [PR #123293](https://github.com/flutter/flutter/pull/123293).
-
-
 ### Flutter: SegmentedButton OverlayColor MaterialState incorrectly set
 <Error>Applies to Flutter 3.7.</Error>
 
@@ -103,6 +105,7 @@ The new Material 3 buttons `FilledButton` and `FilledButton.tonal` cannot be the
 
 ### Flutter: Divider color inconsistencies
 <Error>Applies to Flutter 3.7 and earlier.</Error>
+<Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
 
 The introduction of M3 and some newer theme factories/properties have led to inconsistent divider colors that may cause theme color behavior confusion for developers. Some results are also not according to the M2 or M3 specification.
 
@@ -160,7 +163,7 @@ The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mis
 
 ### Flutter: Wrong contrast color on ThemeData.primaryTextTheme in dark mode
 <Error>Applies to Flutter 3.7 and earlier.</Error>
-<Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
+<Info>This has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
 
 When the primary color of the theme requires dark contrast color, the `primaryTextTheme` gets the wrong contrast color in dark mode. See issue [#118146](https://github.com/flutter/flutter/issues/118146) for more information. FlexColorScheme has always included a theme fix for this issue. It is thus a none issue in FCS. The issue is included here as information and for tracking purposes.
 
@@ -178,6 +181,14 @@ This limitation in Material-2 will likely **never be fixed in Flutter**. It is d
 ## Fixed in Master Channel
 
 Issues below have a fix that has been **merged** in the latest Flutter master channel, but have not yet landed in any stable version of Flutter.
+
+
+### Flutter: SegmentedButton segments background cannot be made transparent
+<Error>Applies to Flutter 3.7.</Error>
+<Success>Has a **fix** [PR #123293](https://github.com/flutter/flutter/pull/123293) in master, not yet landed in stable.</Success>
+
+The Material 3 specification depicts `SegmentedButton` unselected button segments, as having transparent color, used to show background color of surface it is placed upon. This is needed for it to work well on elevation-tinted surfaces in Material 3 design. See issue [#123292](https://github.com/flutter/flutter/issues/123292), it has a merged fix in master via [PR #123293](https://github.com/flutter/flutter/pull/123293).
+
 
 ### Flutter: NavigationDrawer indicator overlay does not use shape
 <Error>Applies to Flutter 3.7.</Error>
