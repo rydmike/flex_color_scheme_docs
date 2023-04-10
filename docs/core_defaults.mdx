@@ -2,6 +2,8 @@
 
 This chapter describes the `ThemeData` modifications `FlexColorScheme` core does when you use it without opting in on the opinionated component themes.
 
+<Info>This chapter has not yet been updated to cover version 7. Read more about version 7 in the [what's new](/whats_new) chapter. The documentation site is still undergoing updates to cover all the new features. When completed, this notice will be removed.</Info>
+
 **FlexColorScheme** does not use the `ThemeData.from` factory with a passed in `ColorScheme` to make its `ThemeData` object. It uses the `ThemeData` factory directly, with many additional custom theming tweaks.
 
 It of course defines a `ColorScheme` that it uses in its `ThemeData`.  FlexColorScheme uses color calculations for the primary color branded/blended surfaces, and for the lazy schemes that do not specify all colors in a color scheme. It utilizes the [Material Color Utilities](https://pub.dev/packages/material_color_utilities) from the Google Material theme that Flutter SDK also uses to make key colors seed-generated computational color schemes. It extends the new M3 `CorePalette` in the Material Color Utilities to be able to tweak the `ColorScheme` generation parameters in it. It also uses its own custom mid-layer Scheme implementation, with customizable Tones to ColorScheme mapping.

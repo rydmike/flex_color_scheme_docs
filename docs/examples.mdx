@@ -2,6 +2,8 @@
 
 FlexColorScheme comes bundled with seven different examples. A **default example** that is built if you build `main.dart` in the example lib folder.
 
+<Info>This chapter has not yet been updated to cover version 7. Read more about version 7 in the [what's new](/whats_new) chapter. The documentation site is still undergoing updates to cover all the new features. When completed, this notice will be removed.</Info>
+
 The default example, also called "Hot Reload Playground", is a template that is heavily commented to guide you and encourage you to play around with different options using the **FlexColorScheme** API, then use Flutter's hot reload feature and see the results at once.
 
 The other five examples are a part of a [tutorial](/tutorial) path, with increasing complexity. We walk through them all in the [tutorial](/tutorial). It ends with the complete [Themes Playground](/playground) app included as [tutorial step 5](/tutorial5).
@@ -196,7 +198,7 @@ There is a separate chapter with more info and a guide on [how to use the Themes
 
 ### Riverpod [ThemeDemo](https://github.com/rydmike/theme_demo) App
 
-A stand-alone public project, called **ThemeDemo** shows how to use [**FlexColorScheme V6**](https://pub.dev/packages/flex_color_scheme) together with [**Riverpod V2**](https://pub.dev/packages/flutter_riverpod) to dynamically change the application theme. It uses Riverpod providers to watch light `theme` and `darkTheme` changes in a [`MaterialApp`](https://api.flutter.dev/flutter/material/MaterialApp-class.html), and to change the used [`themeMode`](https://api.flutter.dev/flutter/material/MaterialApp/themeMode.html). All theme settings are persisted locally as they are modified. The used local settings persistence implementation can be changed dynamically using the application's user interface.
+A stand-alone public project, called **ThemeDemo** shows how to use [**FlexColorScheme V7**](https://pub.dev/packages/flex_color_scheme) together with [**Riverpod V2**](https://pub.dev/packages/flutter_riverpod) to dynamically change the application theme. It uses Riverpod providers to watch light `theme` and `darkTheme` changes in a [`MaterialApp`](https://api.flutter.dev/flutter/material/MaterialApp-class.html), and to change the used [`themeMode`](https://api.flutter.dev/flutter/material/MaterialApp/themeMode.html). All theme settings are persisted locally as they are modified. The used local settings persistence implementation can be changed dynamically using the application's user interface.
 
 This demo is available in its own [repo here](https://github.com/rydmike/theme_demo). To guide you, it has an extensive article like readme file, that you can also find and read in this [blog post](https://rydmike.com/blog_theme_demo). You can try a live WEB version of the application here [**www.rydmike/themedemo**](https://rydmike.com/themedemo).
 
