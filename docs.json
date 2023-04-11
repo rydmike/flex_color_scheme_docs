@@ -10,7 +10,7 @@
     ],
     "socialPreview": "/images/fcs_v5_site_rounded.png",
     "theme": "#0x29B6F6",
-    "zoomImages": "false",
+    "zoomImages": "true",
     "docsearch": {
         "appId": "S07ZRASQDD",
         "apiKey": "3833d611da1ccda24eed033f4670fc0a",
