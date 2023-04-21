@@ -208,7 +208,7 @@ A fix exists in master, but based on an initial view of the fix, the fix may sti
 
 ### Flutter: TabBar bottom divider, used in M3, does not use its theme property color value
 <Error>Applies to stable Flutter 3.7.</Error>
-<Success>Has a **fix** [PR #119690](https://github.com/flutter/flutter/pull/119690) in master, not yet landed in stable.</Success>
+<Success>Has a **fix** [PR #119690](https://github.com/flutter/flutter/pull/119690) in beta 3.10 and master, not yet landed in stable, will be in next stable after 3.7.</Success>
 
 The `dividerColor` in the `TabBarThemeData` was never applied to the used divider on the bottom of the `TabBar` that is part of the [M3 spec](https://m3.material.io/components/tabs/specs). It was used when passed via widget `dividerColor`, but ignored when set via `TabBarThemeData`. There is no report submitted for this issue. The fix was added in master without any reported issue, or at least there is no linked issue.
 
