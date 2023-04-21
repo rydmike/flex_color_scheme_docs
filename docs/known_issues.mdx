@@ -104,12 +104,12 @@ The new Material 3 buttons `FilledButton` and `FilledButton.tonal` cannot be the
 
 
 ### Flutter: Divider color inconsistencies
-<Error>Applies to Flutter 3.7 and earlier.</Error>
+<Error>Applies to Flutter 3.10, 3.7 and earlier.</Error>
 <Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
 
 The introduction of M3 and some newer theme factories/properties have led to inconsistent divider colors that may cause theme color behavior confusion for developers. Some results are also not according to the M2 or M3 specification.
 
-The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on the used theme creation factory and M2/M3 mode. See issue [117755](https://github.com/flutter/flutter/issues/117755). 
+The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on the used theme creation factory and M2/M3 mode. For more information, please see issue [117755](https://github.com/flutter/flutter/issues/117755). 
 
 FlexColorScheme includes theming for the divider, to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With default M3 ColorSchemes this is not a big problem, but even with it, the default `Divider` color may not work so well on tertiary and its container color in a pure M3 design. 
 
