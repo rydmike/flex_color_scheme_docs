@@ -26,15 +26,16 @@ As a tutorial and example app, the **Themes Playground** has never had any funct
 
 Despite **Themes Playground** not having any formal guarantees, it is extensively used and user tested during development of **FlexColorScheme** releases. In addition to being a very useful tool to configure and experiment with different themes for Flutter apps, and to quickly copy needed API configuration to get the same theme in your app. It is also an excellent tool to use during development of the **FlexColorScheme** package. It is used to visually see and verify that all features in the package **actually** do what is expected of them. The changes to the **Themes Playground** app are also generally already quite thoroughly tracked in the [changelog](https://pub.dev/packages/flex_color_scheme/changelog), going back many releases.
 
-### Future
+### Future plans
 
 Due to its background the Themes Playground application has an architecture that is a bit too simplistic to be extended to offer all features users are asking for. There is a plan to refactor it and make it into a proper **stand-alone application**, developed in its **own repo**.
 
-If that happens, this is potentially the last major release of the **Themes Playground** in its current form and as being included with the **FlexColorScheme** package as "just an example" of how to use the package to build a dynamically themed app. This version will still remain in minor and fix versions of FlexColorScheme v7, but may be removed in a future version 8 of the **FlexColorScheme** package.
+If that happens, this is potentially the last major release of the **Themes Playground** in its current form and as being included with the **FlexColorScheme** package as "just an example and tutorial" on how to use the package to build a dynamically themed app. The Playground will still remain in all minor and fix versions of FlexColorScheme v7, but may be removed in a future major version. Earliest removal point would be version 8 of the **FlexColorScheme** package, but it might also happen much later.
 
-There are many features considered for a proper Themes Playground app, like using a back-end to store and share multiple theme configurations privately among teams or publicly. Distribution of precompiled executables for Windows and macOS, in addition to the web build, may also be included then. 
+There are many features that could be considered for a professional version of the **Themes Playground** app. For example, using a back-end to store and share multiple theme configurations, privately in a team or publicly. Features could also be made more designer friendly, currently it is mainly focused on being an API config tool for developers. Export and import of theme configurations could also be supported. Distribution of precompiled executables for Windows and macOS, in addition to the web build, may also be included then. This version of the **Themes Playground** would probably no longer be open source. It would remain free to use at a feature level far exceeding current features, but also offer a paid tier for development teams.
 
 ## Versions
+
 To use the **Themes Playground** together with the **FlexColorScheme** package, you should use the same major version of the Playground as the package. Minor later versions of the package may have added new properties and latest version of Playground will include those properties in generated code. If you are using a lower minor version of the package than the current same major Playground version release is on, the generated Themes Playground config code may include APIs not supported be the lower minor version of the package you use. You can then just delete those rows in the API config, or even better, update your FCS package to the same minor release that the Themes Playground web app build is on.
 
 ### Version 7 
