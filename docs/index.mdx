@@ -6,7 +6,7 @@
 
 <Info>**Version 7** is now available on [pub.dev](https://pub.dev/packages/flex_color_scheme). It supports new Material-3 features in [Flutter 3.7](https://medium.com/flutter/whats-new-in-flutter-3-7-38cbea71133c). A new version of the [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7) companion app has also been released. Read more in the [what's new](/whats_new) chapter. This documentation site is still undergoing updates to cover all the new features. When completed, this notice will be removed.</Info>
 
-Use **FlexColorScheme** to make beautiful Material-2 and Material-3 design themes. Apply optional surface blends, or use Material-3 style seeded color schemes. The returned themes are standard `ThemeData` objects, but **very** sophisticated ones. They are based on the same idea as Flutter's `ThemeData.from(ColorScheme)` themes, but with many additional features. Choose from numerous pre-made designs or make your own. You can also use optional component sub theming, that are quick and easy to configure.
+Use **FlexColorScheme** to make beautiful Flutter Material Design based themes. Apply optional surface blends, or use Material-3 style seeded color schemes. The returned themes are standard `ThemeData` objects, but **very** sophisticated ones. They are based on the same idea as Flutter's `ThemeData.from(ColorScheme)` themes, but with many additional features. Choose from numerous pre-made designs or make your own. You can also use optional component sub theming, that are quick and easy to configure.
 
 <table>
   <tr>
@@ -36,7 +36,9 @@ When you opt in on using the component sub-themes, border radius on widgets defa
 
 ### Material 3 Support
 
-You can also opt in on using Material-3 design. The Material-3 mode component sub-theming is far less opinionated, using mostly Material-3 defaults. In Flutter 3.7 and later, using Material-3 design is ready for production use. Some minor issues do still exist, please refer to the FlexColorScheme docs [known issues](https://docs.flexcolorscheme.com/known_issues) chapter for more information on the status of known theming issues in Flutter.
+You can also opt in on using Material-3 design. The Material-3 mode component sub-theming is far less opinionated, using mostly Material-3 defaults. It offers many quick settings to customize Material-3 to fit your custom design goals.
+
+In Flutter 3.7 and later, using Material-3 design is ready for production use. Some minor issues still exist, please refer to the FlexColorScheme docs [known issues](https://docs.flexcolorscheme.com/known_issues) chapter for more information on status of known **theming** issues in Flutter.
 
 <table>
   <tr>
@@ -47,7 +49,9 @@ You can also opt in on using Material-3 design. The Material-3 mode component su
   </tr>
 </table>
 
-**FlexColorScheme** has many advanced coloring features, like using surface alpha blends. It also fully supports Material 3 based color schemes, including seed generated `ColorSchemes`. It offers different configuration options that you can use when you generate your `ColorScheme` from key colors. Customization features that are currently not available in Flutter. This includes using multiple key colors as seeds, custom minimum chroma levels and customized tone mapping to ColorScheme colors. Starting from version 7, FlexColorScheme also has a few important platform adaptive theming features. You can for example remove elevation tint and use different default border radius on other platforms than Android.
+**FlexColorScheme** has many advanced coloring features, like using surface alpha blends. It also fully supports Material 3 based color schemes, including seed generated `ColorSchemes`. It offers different configuration options that you can use when you generate your `ColorScheme` from key colors. You can use this to make more saturated seed generated themes and themes with higher contrast. The advanced seeded `ColorScheme` features are currently not available in Flutter directly. This includes using multiple key colors as seeds, custom minimum chroma levels and customized tone mapping to ColorScheme colors.
+
+In Material-3 mode theming you can disable its surface elevation tint and even bring back elevation shadows where they are removed in M3. You can choose to do this adaptively on only selected platforms, like iOS and macOS, where surface tint elevation may seem foreign, while still keeping the M3 tinted elevation styles when the app is used on Android.
 
 <table>
   <tr>
