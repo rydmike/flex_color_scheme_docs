@@ -105,7 +105,7 @@ The introduction of M3 and some newer theme factories/properties have led to inc
 
 The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on the used theme creation factory and M2/M3 mode. For more information, please see issue [117755](https://github.com/flutter/flutter/issues/117755). 
 
-FlexColorScheme includes theming for the divider, to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2 styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With default M3 ColorSchemes this is not a big problem, but even with it, the default `Divider` color may not work so well on tertiary and its container color in a pure M3 design. 
+FlexColorScheme includes theming for the divider, to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity based M2 divider style in Material 3 mode. The M2-styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With default M3 ColorSchemes this is not a big problem, but even with it, the default `Divider` color may not work so well on tertiary and its container color in a pure M3 design. 
 
 
 ### Flutter: Chips umbrella issue
@@ -174,7 +174,7 @@ This limitation in Material-2 will likely **never be fixed in Flutter**. It is d
 
 ## Fixed in Beta or Master
 
-Issues below have a fix that has been **merged** in the latest Flutter master channel, some may also be in latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in current beta 3.10, it will also land in next stable version of Flutter, that may be called 3.10 or who knows, maybe it for marketing purposes will be called Flutter 4.0 with Dart 3.0. But in next stable none "hot-fix" release anyway. If the fix is only in master channel, it may not make the cut to next stable release.
+Issues below have a fix that has been **merged** in the latest Flutter master channel, some may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in current beta 3.10, it will also land in next stable version of Flutter. This version might be called 3.10 or who knows, maybe for marketing purposes Flutter 4.0 with Dart 3.0, but in the next stable none "hot-fix" release anyway. If the fix is only in master channel, it may not make the cut to next stable release.
 
 ### Flutter: SliverAppBar.medium and SliverAppBar.large Theming and Defaults Issue
 <Error>Applies to Flutter 3.7.</Error>

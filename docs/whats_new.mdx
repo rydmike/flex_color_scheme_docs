@@ -2,7 +2,23 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
-## Version 7.0.0
+## Beta 7.1
+
+**April 24, 2023**
+
+This beta-1 of FlexColorScheme v7.1.0, is a dev release using Flutter 3.10 beta channel. It requires Flutter version 3.10.0-1.3.pre or later. This beta version is a first preparation version of FlexColorScheme for the next stable Flutter release after version 3.7.x. The SKIA canvaskit renderer is again being used to build all the web examples, including the Themes Playground.
+
+The [**Themes Playground**]((https://rydmike.com/flexcolorscheme/themesplayground-v7-1)) tutorial and example apps built and using FlexColorScheme v7.1.0-dev.1 can be found here:
+
+- Example 1: [Basic Theme](https://rydmike.com/flexcolorscheme/basictheme-v7-1)
+- Example 2: [Custom Theme](https://rydmike.com/flexcolorscheme/customtheme-v7-1)
+- Example 3: [Four Themes](https://rydmike.com/flexcolorscheme/fourthemes-v7-1)
+- Example 4: [All Themes](https://rydmike.com/flexcolorscheme/allthemes-v7-1)
+- Example 5: [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7-1)
+
+Read more in the 7.1 beta-1 [changelog](https://pub.dev/packages/flex_color_scheme/versions/7.1.0-dev.1/changelog).
+
+## Version 7.0
 
 **April 2, 2023**
 
@@ -12,7 +28,7 @@ For a slideshow tour of what is new in version 7, check out this [Tweet and its 
 
 <Tweet id="1642621032744775682" cards="show" />
 
-The **Themes Playground** app built for this release is unfortunately **not a SKIA renderer** build, it is using the HTML renderer. This makes it less performant than the app would otherwise be. Additionally, scaled content, like the **Themes Simulator** panel, is also fuzzier than it would be with the SKIA renderer. Due to an issue in Flutter 3.7, a build made with the SKIA renderer performs very poorly and crashes quickly. For more information see Flutter [issue #122189](https://github.com/flutter/flutter/issues/122189). When the issue has been fixed and is available in the Flutter stable channel, a new version of the Themes Playground will be built and released using the SKIA renderer.
+The **Themes Playground** app built for this release is unfortunately **not a SKIA canvaskit renderer** build, it is using the **HTML** renderer. This makes it less performant than the app would otherwise be. Additionally, scaled content, like the **Themes Simulator** panel, is also fuzzier than it would be with the SKIA renderer. Due to an issue in Flutter 3.7, a build made with the SKIA renderer performs very poorly and crashes quickly. For more information see Flutter [issue #122189](https://github.com/flutter/flutter/issues/122189). When the issue has been fixed and is available in the Flutter stable channel, a new version of the Themes Playground will be built and released using the SKIA renderer.
 
 **Breaking APIs?**
 
@@ -107,7 +123,7 @@ The tutorial and example apps built and using FlexColorScheme v7 can be found he
 - Example 5: [Themes Playground](https://rydmike.com/flexcolorscheme/themesplayground-v7)
 
 
-## Version 6.1.0
+## Version 6.1
 
 **FlexColorScheme** version 6.1.0 contains many new features, more component sub-themes and configurable properties. It improves seed-generated color scheme capabilities by adding more pre-configured seed generation configurations and color contrast accessibility options.
 
@@ -122,7 +138,7 @@ where Flutter Dash talks you through the major new features.
 
 <Tweet id="1594165376102944768" cards="show" />
 
-## Version 6.0.0
+## Version 6.0
 
 This is a **breaking** release. For a complete list of all changes, see [change log](https://pub.dev/packages/flex_color_scheme/versions/6.0.0/changelog). Generated [API docs](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) are available and up to date with version 6. This release **requires** at least **Flutter 3.3.0** and **Dart 2.18.0**. It uses theming features in Flutter SDK that do not exist in earlier versions.
 
@@ -186,7 +202,7 @@ All previously deprecated members have been removed from version 6.0.0. FCS no l
   `textSchemeColor`, `unselectedTextSchemeColor`, `mutedUnselectedText`, `iconSchemeColor`,
   `highlightSchemeColor`.
 
-## Version 5.1.0
+## Version 5.1
 
 Updated to support latest Flutter package dependencies in example apps. Supports and requires at least **Flutter 3.0.0** and **Dart 2.17.0**.
 
@@ -208,7 +224,7 @@ Updated to support latest Flutter package dependencies in example apps. Supports
 
 * Default color of toggles (`Switch`, `Checkbox` and `Radio`) are now using `primary` color as their default theme color, when opting in on opinionated component themes or setting `ThemeData.useMaterial3` to true. The `Switch`, `Checkbox` and `Radio` themes then use a style that match the M3 color design intent. In it, switches and toggles are mostly primary color based. In M3 color design, the secondary color is a poor choice for switches and toggles, and it is therefore not used as their default color. It does not look nice with M3-based ColorSchemes, created e.g. using M3 color seeding. If you use a custom M3 color design, where secondary color is still prominent, you can, of course, still use it.
 
-## Version 5.0.0
+## Version 5.0
 
 FlexColorScheme [Version 5](https://pub.dev/packages/flex_color_scheme/versions/5.0.0) is a large upgrade from version 4, with deprecation of previous `variant` based color names in favor of `container` ones that were added to updated Material 3 based `ColorScheme` in Flutter 2.10.0. The same additions and changes are now also introduced in FlexColorScheme. Despite being a big release, with many new features, actual breaking changes are very few and mostly concerns in version 4 already deprecated members, and requiring minimum Flutter 2.10.0 to work.
 
@@ -271,7 +287,7 @@ There are, of course, new built-in color schemes in version 5. Four new themes, 
 
 </table>
 
-## Version 4.0.0
+## Version 4.0
 
 There are two major new features. The first one is that FlexColorScheme now comes with **opinionated widget sub themes** that you can opt in on. By default, these Flutter UI component widget sub-themes follow the [Material 3 guide](https://m3.material.io/). This is done as far as reasonably possible while still using standard Material 2 theming features available in Flutter 2.8. There is a Material 3 TextTheme as well. By default, this text theme is also slightly color tinted using the color scheme's primary color. You can turn these styles on and off, based on your own preferences when you opt in on the sub themes.
 
