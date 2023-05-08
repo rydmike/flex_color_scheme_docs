@@ -56,9 +56,7 @@ They still use Material design and widgets, may partially also use Material them
 
 Using custom wrappers to style basic Material UI widgets is a common practice in Flutter apps. It is not a good practice, it has some critical **drawbacks**. All members of a development team have to know how and when to use these custom wrapper widgets. With such a setup, you cannot use default Flutter UI widgets and get styles that match the intended design. If you don't you use the wrappers, you get no custom "design language" styled widgets. Depending on how you have defined and used those custom styling properties and wrappers, you may also lose all or most theme transition animations. Especially when switching between different theme colors in the same theme mode. 
 
-<Success>
-Prefer using Flutter theming to define the custom style for your application. Avoid using wrapped widgets with none theme driven defaults.
-</Success>
+<Success>Prefer using Flutter theming to define the custom style for your application. Avoid using wrapped widgets with none theme driven defaults.</Success>
 
 You can and should still define constants in core static classes, that you use as input definitions to properties in your `ThemeData` definitions. This makes it easy to change shared values in your `ThemeData` objects in a single place. You can potentially also reuse your setup and modify it for other projects and designs, by just tweaking these definitions. Basically this is how **FlexColorScheme** got started, it just takes it to another level.
 
