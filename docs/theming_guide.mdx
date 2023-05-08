@@ -10,9 +10,11 @@ If you are not experienced in theming Flutter applications, then **FlexColorSche
 
 ## ColorScheme and ThemeData
 
-The Flutter `ThemeData` object defines the look of your application, and to a degree also how it behaves. In section [Defining ThemeData](/theming_guide#defining-themedata) and chapter ["Roads to ThemeData"](/theming_roads), we take a closer look at it and some of its pitfalls.
+The Flutter `ThemeData` object defines the look of your application, and to a degree also how it behaves. In section [Defining ThemeData](/theming_guide#defining-themedata) and chapter [Roads to ThemeData](/theming_roads), we take a closer look at it and some of its pitfalls.
 
-The `ColorScheme` class is a data class that in **Flutter** currently holds 30 `Color` properties. Flutter's built-in **Material** UI components use these colors in predefined ways. How each Material component and corresponding Flutter UI widget use the colors in the `ColorScheme`, is specified in the components part of the [Material 3 Guide](https://m3.material.io/components). Likewise, the older [Material 2 design](https://m2.material.io/components) contains specification for how Material 2 components uses these color properties. The property name for the used `ColorScheme` in `ThemeData` is `colorScheme`. 
+The `ColorScheme` class is a data class that in **Flutter** currently holds 30 `Color` properties. Flutter's built-in **Material** UI components use these colors in predefined ways. 
+
+How each Material component and corresponding Flutter UI widget use the colors in the `ColorScheme`, is specified in the components part of the [Material 3 Guide](https://m3.material.io/components). Likewise, the older [Material 2 design](https://m2.material.io/components) contains specification for how Material 2 components uses these color properties. The property name for the used `ColorScheme` in `ThemeData` is `colorScheme`. 
 
 The introduction of Material 3 makes defining a color system correct `ColorScheme` more complex than it was in Material 2. There are new features and tooling that can help with the complex color design. For more information about the color system, see the [Material 3 color system](https://m3.material.io/styles/color/overview). 
 
@@ -34,7 +36,7 @@ MaterialApp(
   home: ...
 ```
 
-<Info>You can also make high-contrast versions of the light and dark `ThemeData` objects and apply them to `MaterialApp` properties `highContrastTheme` and `highContrastDarkTheme`. In Flutter, until at least version 3.10, they only have any automatic device depending effect when using accessibility settings on **iOS platform**, via Settings -> Accessibility -> Increase Contrast. These `ThemeData` objects then get used instead of the normal light and dark themes. The way they are applied is that `MediaQuery.of(context).highContrast` becomes **true** when high contrast is requested in the device system settings and the `MaterialApp` will then, if `ThemeData` objects for `highContrastTheme` and `highContrastDarkTheme` have been defined, use them instead in light and dark theme mode.</Info>
+You can also make high-contrast versions of the light and dark `ThemeData` objects and apply them to `MaterialApp` properties `highContrastTheme` and `highContrastDarkTheme`. In Flutter, until at least version 3.10, they only have any automatic device depending effect when using accessibility settings on **iOS platform**, via Settings -> Accessibility -> Increase Contrast. These `ThemeData` objects then get used instead of the normal light and dark themes. The way they are applied is that `MediaQuery.of(context).highContrast` becomes **true** when high contrast is requested in the device system settings and the `MaterialApp` will then, if `ThemeData` objects for `highContrastTheme` and `highContrastDarkTheme` have been defined, use them instead in light and dark theme mode.
 
 Like the name suggests, the `ThemeData` object is basically a plain data Dart object containing data values and callback functions defining the theme. The values are given either as direct properties in the `ThemeData` object or as additional component sub-theme data objects, that in some cases even contain additional sub-themes. 
 
@@ -50,9 +52,7 @@ A very involved and elaborate custom `ThemeData` object can get very large. A de
 
 You should strive to make the built-in widgets in Flutter look as close as you can to the look and design you want them to have in your application. You do this by defining an application theme that gets you as close as possible to it. By doing this, you are using Flutter's theming features to do the work for you, and not work against you. When you theme your Flutter app properly, all or at least most of your application's design will fall into place almost automagically. You just use the Material UI widgets and do not have to style them on widget level as you build your app, or wrap them in custom style wrapper.
 
-<Info>Many Flutter software teams refer to using custom wrappers for Flutter Material Widgets that use values defined in other style-defining classes as defaults, as their custom in-house design language or style. 
-
-They still use Material design and widgets, may partially also use Material theming. This is really only using new defaults for Material, not really a new design language, it is just a use case and design based on Material Design.</Info>
+<Info>Many Flutter software teams refer to using custom wrappers for Flutter Material Widgets that use values defined in other style-defining classes as defaults, as their custom in-house design language or style. They still use Material design and widgets, may partially also use Material theming. This is really only using new defaults for Material, not really a new design language, it is just a use case and design based on Material Design.</Info>
 
 Using custom wrappers to style basic Material UI widgets is a common practice in Flutter apps. It is not a good practice, it has some critical **drawbacks**. All members of a development team have to know how and when to use these custom wrapper widgets. With such a setup, you cannot use default Flutter UI widgets and get styles that match the intended design. If you don't you use the wrappers, you get no custom "design language" styled widgets. Depending on how you have defined and used those custom styling properties and wrappers, you may also lose all or most theme transition animations. Especially when switching between different theme colors in the same theme mode. 
 
