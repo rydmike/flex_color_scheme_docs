@@ -96,34 +96,34 @@ There are 6 different constructors in Flutter to make a `ThemeData` object. All 
 
 This is nice, but it also big source of confusion, as the factory contrustors contain lot of logic to deal with legacy ways in none breaking manners with past methods.
 
-### `ThemeData.raw(...)`
+### ThemeData.raw(...)
 
 This is the actual const constructor of the `ThemeData` object. It requires all its none deprecated properties to be specified. Normally you would not use this constructor directly. It is of course possible to do so, but very tedious.
 
 
-### `ThemeData(...)` 
+### ThemeData(...) 
 
 This is the main factory used to construct a `ThemeData` object. This is the only practical constructor to use if you also want to modify a lot of properties, even if it is just to correct some of the things it does not do very well. It contains a lot of logic dealing with color assignments, constructing the text themes, etc. It ends by assigning all its results to all the properties in `ThemeData.raw(...)` and returning it.
 
 
-### `ThemeData.light(...)`
+### ThemeData.light(...)
   
 This just returns `ThemeData(brightness: Brightness.light)` with the optional `useMaterial3` flag set to **true** or **false**. Not really a big shortcut, you might as well use `ThemeData(brightness: Brightness.light)` and have the convenience of adding other properties when needed. I don't know why this API exists, it is not needed.
 
 
-### `ThemeData.dark(...)`
+### ThemeData.dark(...)
 
 This just returns `ThemeData(brightness: Brightness.dark)` with the optional `useMaterial3` flag set to **true** or **false**. If `useMaterial3` is **false**, this factory and consequently also the version `ThemeData(brightness: Brightness.dark)` returns a **horrible** looking dark theme. It is a grey dark theme, not really dark at all. This dark theme is also not following the **Material 2** dark mode specification. This theme is based on a poor Flutter dark theme implementation and default that was made before it implemented a way to make an actually decent looking Material 2 dark mode theme. **DO NOT** use this if you want a decent looking dark theme when `useMaterial3` is **false**. If `useMaterial3` is **true**, it produces a decent default dark mode theme suitable for Material 3.
 
 As with its `light` companion, this factory is not really a big shortcut, you might as well use `ThemeData(brightness: Brightness.light)` and have the convenience of adding other properties when needed. I don't know why this API exists, it is not needed and its result when `useMaterial3` is false is mostly useless.
 
 
-### `ThemeData.fallback(...)`
+### ThemeData.fallback(...)
   
 This is defined as `factory ThemeData.fallback({bool? useMaterial3}) => ThemeData.light(useMaterial3: useMaterial3);`. It is used in some cases by the framework to guarantee a none null valid default fallback `ThemeData` object. If you are not writing a theming package, you probably won't need it.  
 
 
-### `ThemeData.from(...)`
+### ThemeData.from(...)
   
 This factory creates a `ThemeData` from the passed in `ColorScheme` using better logic than `ThemeData` normally uses when `useMaterial3` flag is set to **false**. Better, here refers to that colors for the `ColorScheme` are applied to important legacy colors in the direct `ThemeData` color properties. This ensures that many Material 2 widgets and surfaces will actually use the colors in the `ColorsScheme`. Ideally, this factory should not be needed either. It was added to not break what happened when you just pass in a `ColorScheme` to the `colorScheme` property in the `ThemeData` factory. For less confusion it would have been better the break the past result when passing in a `ColorScheme` to `ThemeData` factory and instead introduce the result the `ThemeData.from` produces, into it when a `colorScheme` is assigned.
 
@@ -137,34 +137,34 @@ The `ColorScheme` in `ThemeData`, provides the colors to all the different eleme
 
 Defining 30 colors for each theme mode `ColorScheme` that follow the M2 or M3 guidelines is no small task. Threfore in addition to the default constructor `ColorScheme(...)` there are factories that can help you create M2/M3 mode suitable `ColorScheme`s. We go though them briefly below. 
 
-### `ColorScheme(...)`
+### ColorScheme(...)
 
 This is the default `const` constructor, you can use it to construct a `ColorScheme` manually suitable a theme that uses either M2 or M3. It requires 10 of its 30 properties to be defined. The rest of the color properties will use the given required properties as fallbacks to give them appropriate, but not necessary ideal color values from the required values. This constructor offers no default or help in defining the `ColorScheme`. It is often used if you have used external tooling that have generated the `ColorScheme` for you, fully populated with all its `Color` values. 
 
 
-### `ColorScheme.light(...)`
+### ColorScheme.light(...)
  
 This `const` constructor will give you a default **Material-2** based light theme mode `ColorScheme` if you do specify any color values. It includes the M2 correct, `surface`, `background`, `error` colors and contrasting **onColors** for them. It also has default for `primary`, `onPrimary`, `secondary` and `onSecondary` colors. You can override these color values with your M2 theme colors. To make a correct custom M2 `ColorScheme` you only need to specify those 4 colors, often not even the onColors, if your `primary` and `secondary` colors happen to have the same brightness as the M2 defaults. You can override any of the defaults and also assign color values to all the other color properties, although, when using M2 theme mode, the colors are not used by default by UI widgets. You can of course still use them in M2-mode as custom theme-accessible colors, and also use them as custom colors default colors in component themes.
 
 You can also manually create M3 compatible `ColorScheme` with this constructor, but it does not help you anymore than the default constructor ColorScheme(...)` does, basically not at all.
 
  
-### `ColorScheme.dark(...)`
+### ColorScheme.dark(...)
  
 This `const` constructor is the M2 default dark theme mode equivalent of `ColorScheme.light(...)`. Same usage guidance applies to it as for the light version.
 
 
-### `ColorScheme.highContrastLight(...)`
+### ColorScheme.highContrastLight(...)
 
 This `const` constructor is an M2 equivalent of `ColorScheme.light(...)` but with default fallback colors that offer higher contrast than `ColorScheme.light(...)`, it is used as an example of making a theme with higher contrast for improved visual accessibility. 
 
 
-### `ColorScheme.highContrastDark(...)`
+### ColorScheme.highContrastDark(...)
 
-  This is the dark mode equivalent of `ColorScheme.highContrastLight(...)`.
+This is the dark mode equivalent of `ColorScheme.highContrastLight(...)`.
 
 
-### `ColorScheme.fromSeed(...)`
+### ColorScheme.fromSeed(...)
  
 This is the factory constructor you should use to create a **Material 3** Color System based `ColorScheme`. The Material 3 color system uses a new color space and algorithm developed by Google to calculate color palettes with visually consistent and pleasing color gradients. The color space is called HCT for Hue, Chroma and Tone. You can read more about it in the [Material-3 guide](https://m3.material.io/styles/color/overview). This developement blog post also offers more insights [add link]().
 
@@ -180,12 +180,12 @@ When you make your dark mode `ColorScheme` you would typically use the same colo
 * If there is a brand color for dark mode that has a totally different hue than the light mode brand color, then do use that as both seed and primary override color when making the dark mode scheme. Like this: `ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: darkBrandColor, primary: darkBrandColor)`.
 
 
-### `ColorScheme.fromSwatch(...)`
+### ColorScheme.fromSwatch(...)
 
 This is a very bad and old way of making a `ColorScheme` from a `MaterialColor` based color swatch. It produces horrific results by default in both light and dark mode. **Don't use it.** You will see and find out why later. If you want to make a `ColorScheme` from `MaterialColor` swatch colors, consider using any of the above constructors instead and assigning the required swatch colors to desired `ColorScheme` properties, in the way that fits your need. This factory constructor needs to be deprecated, it produces results that are totally useless.
 
 
-### `SeedColorScheme.fromSeeds(...)` (Third party) 
+### SeedColorScheme.fromSeeds(...) *(Third party)* 
 
 To make a Material-3 mode compatible seed generated `ColorScheme`, with much more configuration options and control over the result than `ColorScheme.fromSeed(...)` offers, consider using the replacement `SeedColorScheme.fromSeeds(...)` from the package [FlexSeedScheme](https://pub.dev/packages/flex_seed_scheme). **FlexColorScheme** also uses this package internally to offer more control over seed generated color schemes.
 
