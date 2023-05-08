@@ -1,42 +1,42 @@
 # Theming Guide
 
-This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion mentions it.
+This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion mentions it. It is also not about how to make beautiful theme designs. Its focus is on the technicalities of why and how to define your `ThemeData` object in Flutter. How to make the theme work for you. 
 
-This guide is also not about how to make beautiful theme designs. Its focus is on the technicalities of why and how to define your `ThemeData` object in Flutter. How to make the theme work for you. In the ["Roads to ThemeData"](/theming_roads) chapter, we look at different ways to make a `ThemeData` object and analyze what their differences are.
+The chapter [ThemeData and ColorScheme](/themedata_colorscheme) goes through different concepts and key aspect of **ThemeData** and **ColorScheme** and provides inisights in which constructors to use to make correct M2 and M3 theme with them. In the [Roads to ThemeData](/theming_roads) chapter, we look deeper at different ways to make a `ThemeData` object and analyze what their differences are, and demonstrate why the suggested methods produce the best results. 
 
 If you prefer to watch a live recorded talk about all these topics, there is also my talk from the Flutter Vikings event, August 31, 2022. You can find links to the recording of my presentation [Deep Dive Into Theming here](https://rydmike.com/blog_vikings_2022_talk). In the talk, I present many of the same topics as those that are explained in this chapter and in the chapter ["Roads to ThemeData"](/theming_roads).
 
 If you are not experienced in theming Flutter applications, then **FlexColorScheme** can assist you in many ways. FlexColorScheme does not do everything that is possible with theming in Flutter. Its goal is to make often used designs quicker and easier to achieve. Give you a starting point, with many quick configurable options. It should get you close to where you want to be with your custom theme design, or even fully there.
 
-## ColorScheme and ThemeData
+## Basic concepts
 
-The Flutter `ThemeData` object defines the look of your application, and to a degree also how it behaves. In section [Defining ThemeData](/theming_guide#defining-themedata) and chapter [Roads to ThemeData](/theming_roads), we take a closer look at it and some of its pitfalls.
+The Flutter `ThemeData` object defines the look of your application, and to a degree also how it behaves. The `ColorScheme` class is a data class that in **Flutter** currently holds 30 `Color` properties. Flutter's built-in **Material** UI components use these colors in predefined ways. Among a large amount of properties, the `colorScheme` property in `ThemeData` defines the colors for the active theme. 
 
-The `ColorScheme` class is a data class that in **Flutter** currently holds 30 `Color` properties. Flutter's built-in **Material** UI components use these colors in predefined ways. 
+How each **Material** component and corresponding Flutter UI widgets use the colors in the `ColorScheme`, is specified in the components part of the [Material 3 Guide](https://m3.material.io/components). Likewise, the older [Material 2 design](https://m2.material.io/components) contains specification for how Material 2 components use these color properties. 
 
-How each Material component and corresponding Flutter UI widget use the colors in the `ColorScheme`, is specified in the components part of the [Material 3 Guide](https://m3.material.io/components). Likewise, the older [Material 2 design](https://m2.material.io/components) contains specification for how Material 2 components uses these color properties. The property name for the used `ColorScheme` in `ThemeData` is `colorScheme`. 
+The introduction of Material-3 makes defining a color system correct `ColorScheme` more complex than it was in Material-2. There are new features and tooling that can help with the complex color design. For more information about the color system, see the [Material 3 color system](https://m3.material.io/styles/color/overview). 
 
-The introduction of Material 3 makes defining a color system correct `ColorScheme` more complex than it was in Material 2. There are new features and tooling that can help with the complex color design. For more information about the color system, see the [Material 3 color system](https://m3.material.io/styles/color/overview). 
-
-### ColorScheme Tweet 
+### ColorScheme tweet 
 
 This tweet, with 15 slides, offers an intro to the wondrous world of the Material 3 ColorScheme and color system.
 
 <Tweet id="1518201439780282370" cards />
 
-## Flutter Theming
+In the chapter
+
+## Flutter theming
 
 What is theming a Flutter app? Theming a Flutter `MaterialApp` refers to defining custom `ThemeData` objects for your application, typically at least one `ThemeData` for the **light theme** mode and another one for the **dark theme** mode, and assigning them to `theme`  and `darkTheme` in `MaterialApp`.
 
 ```dart
-return MaterialApp( 
+MaterialApp( 
   themeMode: ThemeMode.system, // or ThemeMode.light or ThemeMode.dark,
   theme: ThemeData(...), // Your light ThemeData object.
   darkTheme: ThemeData(...), // Your dark ThemeData object. 
   home: ...
 ```
 
-You can also make high-contrast versions of the light and dark `ThemeData` objects and apply them to `MaterialApp` properties `highContrastTheme` and `highContrastDarkTheme`. In Flutter, until at least version 3.10, they only have any automatic device depending effect when using accessibility settings on **iOS platform**, via Settings -> Accessibility -> Increase Contrast. These `ThemeData` objects then get used instead of the normal light and dark themes. The way they are applied is that `MediaQuery.of(context).highContrast` becomes **true** when high contrast is requested in the device system settings and the `MaterialApp` will then, if `ThemeData` objects for `highContrastTheme` and `highContrastDarkTheme` have been defined, use them instead in light and dark theme mode.
+<Info>You can also make high-contrast versions of the light and dark `ThemeData` objects and apply them to `MaterialApp` properties `highContrastTheme` and `highContrastDarkTheme`. In Flutter, until at least version 3.10, they only have any automatic device depending effect when using accessibility settings on **iOS platform**, via Settings -> Accessibility -> Increase Contrast. These `ThemeData` objects then get used instead of the normal light and dark themes. The way they are applied is that `MediaQuery.of(context).highContrast` becomes **true** when high contrast is requested in the device system settings and the `MaterialApp` will then, if `ThemeData` objects for `highContrastTheme` and `highContrastDarkTheme` have been defined, use them instead in light and dark theme mode.</Info>
 
 Like the name suggests, the `ThemeData` object is basically a plain data Dart object containing data values and callback functions defining the theme. The values are given either as direct properties in the `ThemeData` object or as additional component sub-theme data objects, that in some cases even contain additional sub-themes. 
 
@@ -66,7 +66,7 @@ Component themes in `ThemeData` also keep getting more features, what did not ex
 
 The introduction of **Material 3 Design** and its support in Flutter actually introduced a lot more theming customization options to many UI widgets when they got support for M3. Many UI widgets needed more configuration options than they had in M2, to support M3 design. Theming when using Material 3 in Flutter is thus actually more flexible and capable than it was in Material 2. Material 3 Design does however have much more opinionated starting points, and you may have to do a lot more adjustments to make it fit your custom design. **FlexColorScheme**, together with the **Themes Playground**, make such adjustments quick and easy.
 
-### Custom Widgets
+### Custom widgets
 
 When it comes to simple custom-composed UI Widgets that you make yourself, you should aim to base their default styles on properties in the theme as well. 
 
@@ -97,12 +97,13 @@ If your application supports different themes that the user can switch between i
 
 You can go even further than this and create a custom theme extension for your custom widgets and their properties. This is discussed in [Theme Extensions](/theming_guide#theme-extensions) further below.
 
+## Colors
 
-## ColorScheme
+The `ColorScheme` in `ThemeData` is the main source for color styling your UI in a Flutter `MaterialApp`. The primary way to define colors that your Flutter app will use on its UI components and widgets, is via the `ColorScheme` in `ThemeData`.
 
-With Flutter 2.10 and later, we have the new Material 3 based `ColorScheme`, that contains more theme colors than before. Consider first how you can use the `ColorScheme` colors in your application and design. Also look into if you can compute some additional color shades from the colors in the `ColorScheme`, in case none of them is of the right shade.
+With Flutter 2.10 and later, we have a revised Material-3 based `ColorScheme` that contains many more theme colors than it had before when only Material-2 design existed in Flutter's `MaterialApp`. There are no 30 color properties in `ColorScheme`. Since there are so many colors available, consider first how you can use the `ColorScheme` colors in your application and design. 
 
-There are many ways to do this with different results. Here is a simple way that uses white and black colors as overlays with an alpha blend:
+Sometimes you may need a shade of color that is not in the `ColorScheme`, but before adding more shades of existing colors, consider if you can compute some additional shades from the colors in the `ColorScheme`. There are many ways to do this. Here is a simple way that uses white and black colors as overlays with an alpha blend:
 
 ```dart
 // Using alpha blends is a simple way to make a lighter shade of an existing
@@ -117,18 +118,15 @@ final Color darkerPrimary = Color.alphaBlend(
     Colors.black.withAlpha(0x66), Theme.of(context).colorScheme.primary);
 ```
 
-As mentioned in the introduction, in both M2 and M3 theming mode, UI widgets map colors for things like foreground, background, text, borders and other elements in the Material UI widget, to predefined color properties in the `ThemeData`'s `ColorScheme`.
+As mentioned in the introduction, in both M2 and M3 theming mode, the UI widgets map colors for things like foreground, background, text, borders and other elements in the Material UI widget, to predefined color properties in the `ThemeData`'s `ColorScheme`.
 
-By using and defining custom component themes in `ThemeData`, you can override these themed default colors to **any** color you want. Typically, this is a bad idea. Unless you are a very skilled designer, you will probably create an app that does not have a cohesive color design. 
+By using and defining custom component themes in `ThemeData`, you can override these themed default colors to **any** color you want. Often this is a bad idea, if you are not a skilled designer you may create an app that does not have a cohesive color design. Instead, consider using other colors from the `ColorScheme`, and assign another color property than the one that is used by default to component theme color properties. This will keep the app's colors to the colors defined in your `ColorScheme` and keep things cohesive. This does not totally prevent creating poor designs, but makes it less likely. 
 
-You can, however, use other colors from the `ColorScheme` and assign another value than the one that is used by default, to these properties. This will keep the app's colors to the colors defined in your `ColorScheme` and at least keep things cohesive. Still, even doing that is not without its limits. The Material UI components use a design that expects certain relations between colors they use on different elements in each widget. This is even more important in Material 3 than it was in Material 2 mode. 
-
-This is also why understanding the Material color system is important, and why there are certain rules for how color should be by applied to each color in the `ColorScheme`. To learn more about the current color system in Material design, please see this chapter in the [Material 3 Guide](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
-
-
-The primary way to define colors that your Flutter app should use on its UI components and widgets is via the `ColorScheme` in `ThemeData`. Since there are **30** colors in `ColorScheme` and when using light and dark theme, this is **60** colors to define. Plus, you have to understand their intended usage and internal relations. It is clearly too much to fiddle with for most developers that just want to code their app. 
+The Material UI components use a design that expects certain relations between colors they use on different elements in each widget. This is even more important in Material-3 than it was in Material-2. This is also why understanding the Material color system is important, and why there are certain rules for how color should be applied to each color in the `ColorScheme`. To learn more about the current color system in Material design, please see this chapter in the [Material 3 Guide](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
 
 ### ColorScheme tooling
+
+Since there are **30** colors in `ColorScheme` and when using light and dark theme, this gives us **60** color values to define. Plus, you have to understand their intended usage and internal relations. It is clearly too much to fiddle with for most developers that just want to build their app.
 
 This is why there is tooling available to help you produce you light and dark `ColorScheme`. One such official tooling is the [Material Theme Builder](https://m3.material.io/theme-builder#/custom), that you can use to produce and export a `ColorScheme` object. The [ThemesPlayground](https://rydmike.com/flexcolorscheme/themesplayground-v7) also allows you to export just the Flutter code for the `ColorScheme` you are looking at, or have defined in the **Themes Playground**.  
 
@@ -140,15 +138,15 @@ The package [FlexSeedScheme](https://pub.dev/packages/flex_seed_scheme) also all
 
 ### More colors?
 
-Sometimes you might indeed need a lot of different colors not found in `ThemeData`, its `Colorscheme` or any of its sub-themes. This is common e.g. for statuses, legends on charts or maps. For those cases, using a collection of const colors that define them and using them globally is often an acceptable and pragmatic solution. Beware that if you do that, such colors will not lerp-animate when you change themes.
+Sometimes you might need a lot of different colors not suited to be stored in `ThemeData` or its `colorScheme` or any of its sub-themes. This is common e.g. for statuses, legends on charts or maps. For those cases, using a collection of const colors that define them and using them globally is often an acceptable and pragmatic solution. Beware that if you do that, such colors will not lerp-animate when you change themes.
 
-These are typically not application design colors. They are often **semantic** colors, attributes that represent certain properties in the real world, or at least a studied data set of it. Such colors depend more on how you want, or users expect, the visualized data to be presented, not on how the application design should look. These colors are typically outside the core application design theming.
+These colors are not application design colors. They are typically **semantic** colors, attributes that represent certain properties in the real world, or at least a studied data set of it. Such colors depend more on how you want, or users expect, the visualized data to be presented, not on how the application design should look. These colors are typically outside the core application design theming.
 
-If you only need few such colors and are not using all the colors in the `ColorScheme` for your application's design, then nothing really prevents you from tucking in 3 to 4 colors in the `ColorScheme` for this purpose. If you do so, you may need to set colors of some component themes to some other `colorScheme` based color values, if they used those colors. In Material 2 this is not big challenge as most Flutter UI Widgets typically only use `ColorScheme.primary` or `secondary` color by default.
+If you only need few such colors and are not using all the colors in the `ColorScheme` for your application's design, then nothing really prevents you from tucking in 3 to 4 colors in the `ColorScheme` for this purpose. If you do so, you may need to set colors of some component themes to some other `colorScheme` based color values, if they used those colors. In Material 2 this is not big challenge as most Flutter UI Widgets typically only use `ColorScheme.primary` or `secondary` color by default. Still doing this is messy and not really recommended. Using theme extensions is a better way, we will look at that later. 
 
-You can of course in component themes use defined const color values that are not from your `ThemeData.colorScheme` color set. If you change these colors in our component theme interactively, their transition will also be nicely animated when you change the theme. They are still themed color values but not just defined via the ambient `ColorScheme`. The Flutter's Material components are designed to use a coherent shared `ColorScheme` based design, so if you do this, you should verify that your alternative design looks pleasing too.
+In component themes, you can despire previous design warning, technically use any `Color` value that is not from your `ThemeData.colorScheme` color set. If you change these colors in a component theme interactively, their transition will also be nicely animated when you change the theme. They are still themed color values, but not just defined via the ambient `ColorScheme`. The Flutter's Material components are designed to use a coherent shared `ColorScheme` based design, so if you do this, you should verify that your alternative design looks pleasing too.
 
-**FlexColorScheme** on purpose only allows you to select colors from the theme's `ColorScheme` based colors when you customize what colors its opinionated component themes should use on themed components. If you make completely custom component themes, you can of course use whatever colors you prefer in them.
+<Info>**FlexColorScheme** on purpose only allows you to select colors from the theme's `ColorScheme` based colors when you customize what colors its opinionated component themes should use on themed components. If you make completely custom component themes, you can of course use whatever colors you prefer in them.</Info>
 
 ### Default colors?
 
@@ -217,17 +215,17 @@ A still reasonably new and excellent theme feature that arrived with Flutter 3.0
 
 _Flutter Theme Extensions_
 
-Theme Extensions finally solves the limitation of not being able to easily hook into the Flutter theming engine and extend it with properties your custom widgets need. 
+Theme Extensions finally solves the limitation of not being able to easily hook into the Flutter theming engine and extend it with properties your custom theme and widgets need. 
 
-A basic use case is adding more colors to the theme that your application needs. There is no need to limit yourself to that though. You can add any other property values your custom widgets need, and custom text styles too.
+A basic use case is adding more colors to the theme that your application needs, it is a very handy way to add semantic colors to your theme. There is no need to limit yourself to that though. You can add any other property values your custom widgets need and custom text styles too.
 
-With theme extensions, there is no reason why your custom widgets should not have its own theme if it is complex enough to warrant it. Going forward, we may see that user interface packages come with their own theme extensions, this is still not very common though.
+With theme extensions, there is no reason why your custom widgets should not have its own theme if it is complex enough to warrant it. Going forward, we may see that user interface packages come with their own theme extensions. This is still not very common though.
 
-Theme extensions completely change what you can do with theming in Flutter. You can finally build a design system that uses the Flutter theming engine. This may speed up your development and ensure easy to reuse design consistency across development teams.
+Theme extensions completely change what you can do with theming in Flutter. You can finally build a design system that uses the Flutter theming engine. This may speed up your development and ensure reusable design consistency across development teams.
 
-Starting from version 5.1.0, **FlexColorScheme** also supports the Theme Extensions API directly. It is a convenience pass-through to the `ThemeData` API, so you don't have to add it with an extra `copyWith`. You use it exactly the same way as the extensions in `ThemeData`. The [default example](/examples#theme-extensions) includes a simple demonstration on how to use it. 
+Starting from version 5.1.0, **FlexColorScheme** also supports the **Theme Extensions** API directly. It is a convenience pass-through to the `ThemeData` API, so you don't have to add it with an extra `copyWith`. You use it exactly the same way as the extensions in `ThemeData`. The [default example](/examples#theme-extensions) includes a simple demonstration on how to use it. 
 
-Starting from version 6, the [Themes Playground](/tutorial5) also contains a nice example of Theme Extensions. Where it is used to define the code highlight colors, used as semantic colors in the app. It also harmonizes them towards the selected theme in the Playground. To learn more about why harmonizing semantic colors towards the users active theme is a good idea, see [Material 3 guide and custom colors](https://m3.material.io/styles/color/the-color-system/custom-colors). You can find the theme extension for the code theme highlighter [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example5_themes_playground/theme/code_theme.dart).
+Starting from version 6, the [Themes Playground](/tutorial5) also contains a nice example of Theme Extensions. Where it is used to define the **code highlight colors**, they are a form of semantic colors in the Playground app. The used extension also harmonizes the code highlight colors towards the selected theme in the Playground. To learn more about why harmonizing semantic colors towards the users active theme is a good idea, see [Material 3 guide and custom colors](https://m3.material.io/styles/color/the-color-system/custom-colors). You can find the theme extension for the code theme highlighter [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example5_themes_playground/theme/code_theme.dart).
 
 ## TextTheme
 
@@ -293,104 +291,3 @@ FlexColorScheme only has a few component level `TextStyle` properties included i
 
 FlexColorScheme may in later versions add more convenience `TextStyle` configuration options to its opinionated components themes. At least if a particular one is frequently asked for. Where would you like to see them? Drop your thoughts and request on this in the repo [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/ideas). Remember, you can add them with `copyWith` already now.
 
-## Defining ThemeData
-
-The Flutter `ThemeData` object is a very large theme style and behavior controlling data class. It can change the look and feel of your Flutter application completely. It is not really that difficult to use, but it has many quirks and oddities, especially when it comes to colors. This is mostly due to past legacy and things that were not considered early on. Some parts were done differently first, later things changed, but those earlier ways are still supported in order to not break past behavior.
-
-With many new ways to define and setup colors added later, it can all become a bit confusing. This is further amplified since the official documentation, and most theming guides, still use the old factories that do not produce nicely colored and color-consistent themes.
-
-When you make themed Flutter applications, you should base the colors of your application on a light theme mode suitable `ColorScheme`, and a dark theme mode suitable `ColorScheme`. Then create your light and dark `ThemeData` using these color schemes, by assigning the `ColorScheme` for each mode to the `colorScheme`
-property in `ThemeData`.
-
-In your `MaterialApp` you then assign the `ThemeData` for your light, and dark theme to the `theme` and `darkTheme` properties respectively in the `MaterialApp`.
-
-```dart
-void main() => runApp(const DemoApp());
-
-class DemoApp extends StatelessWidget {
-  const DemoApp({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Custom ThemeData',
-      theme: ThemeData.from(colorScheme: mySchemeLight),
-      darkTheme: ThemeData.from(colorScheme: mySchemeLight),
-      themeMode: ThemeMode.system,
-      home: HomePage(),
-    );
-  }
-}
-```
-
-### Legacy Complexity
-
-In theory, this gives you an application that uses the defined color schemes on all the Flutter SDK built-in Material UI widgets. Well it should, and it almost does, especially if you used Flutter's `ThemeData.from` a `ColorScheme` factory, used above. However, even it has a few gaps. The used color scheme is not consistently applied on all built-in Flutter SDK Material UI Widgets. To get it completely covered, you also have to assign a few colors from your `ColorScheme` to a few color properties that still only exist as direct color properties in `ThemeData`. The situation is a lot better when your `ThemeData` sets `useMaterial3: true`, but it is not perfect either. 
-
-This is all further complicated by the fact that under the hood many Flutter SDK UI widgets still use the original direct color properties in `ThemeData`. These properties are now mostly assigned color values via `ThemeData.colorScheme`. Exactly which colors will end up where, depends on which `ThemeData` factory constructor you use, as mentioned the factory `ThemeData.from` does the best job, and Material 3 mode uses mostly the same assignments as well.
-
-Some older components still do not use the `ThemeData.colorScheme` properties for their default color values directly, they still use color property values from `ThemeData`, that may have gotten values assigned from `ThemeData.colorScheme`, this behavior varies depending on used `ThemeData` creation factory!
-
-Very basic and old widgets, like for example `Material` and `Card` fall into the category of widgets that actually still use `ThemeData` color properties as their default color values. While some newer widgets use colors from `ThemeData.colorScheme` directly. Additionally, the colors in the `ColorScheme` held by the `colorScheme` property in `ThemeData` can actually not represent all the colors that exist in `ThemeData`'s color properties. Thus, some color properties never get any `ColorScheme` based values assigned to them. They are left to default values assigned by the `ThemeData` factory, unless you explicitly assign them color values that fit with your color scheme. If this is not done, it can then look odd when some widgets use the factory default colors, while the rest of your app's widgets correctly use the `ColorScheme` based colors. 
-
-Luckily there are not so many widgets left that this still applies to, but there are a few, for example `CircleAvatar` in M2 mode. It can all be confusing and a bit frustrating to fight with `ThemeData` and its direct color properties. If not done correctly, it may result in themes with color schemes that are not entirely consistent or logical across all standard SDK widgets in your application. Even more so if you expect `ThemeData` colors like `primaryColor`, `primaryColorLight` and `primaryColorDark` be derived from your `colorScheme.primary` color, that is just not always the case.
-
-In the chapter [Roads to ThemeData](/theming_roads) we will look at all the different ways to define a `ThemeData` object. We will then see different results, like the ones below. Depending on how we create our `ThemeData`, the results can vary a lot, even if we use the same input colors.
-
-<table>
-  <tr>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light-flex.png" zoom alt="TD flex Swatch2 light" /></td>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch-flex.png" zoom alt="TD flex Swatch3 light" /></td>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch-flex.png" zoom alt="TD flex Swatch4 light" /></td>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png" zoom alt="TD Scheme5 light" /></td>
-  </tr>
-  <tr>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-11-td-from-Scheme-light.png" zoom alt="TD Scheme6 light" /></td>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-13-td-colorScheme-light.png" zoom alt="TD Scheme7 light" /></td>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-15-td-ColorScheme-fromSeed-light.png" zoom alt="TD Scheme8 light" /></td>
-    <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png" zoom alt="TD Scheme9 light" /></td>
-  </tr>
-  <tr>
-    <td colspan="4">Many ways to make ThemeData using same ColorScheme or same seed color</td>
-  </tr>
- </table>
-
-### Light and Dark Themes
-
-In some older apps and theming guides you might see setups where the light and dark themes are both assigned to `theme` in `MaterialApp`, by using a ternary operator based on desired `Brightness` to select used `ThemeData`. Don't do this!
-
-<Error>Do not use ternary operator to switch between a light `ThemeData` and dark one, on only the `theme` property in `MaterialApp`.</Error>
-
-This is something that was used before there was a `darkTheme` property in the `MaterialApp`. Prefer to assign your theme mode appropriate `ThemeData` to the correct properties in the `MaterialApp`.
-
-If your app does not offer a way to toggle the theme mode via the `themeMode` property, then keep `themeMode` at its default `ThemeMode.system`, so that the app theme automatically follows the device theme mode.
-
-If you do offer a way to override and set the app to light or dark theme independently of the system settings, then always also include in the settings, an option to use the system mode that follows the system setting too. This should even be your default value for it. Now you have covered all options, and users can set the theme mode as they prefer.
-
-### High Contrast Themes
-
-The `ThemeData` assignment also applies to the `highContrastTheme` and `highContrastDarkTheme` theme. If your app has dedicated designs for high-contrast accessibility themes, do assign them to these properties. These properties are all there to give you the right device system settings driven behavior. So your app can follow the device system theme mode and its high-contrast accessibility settings.
-
-<Warning>Currently, only iOS platform in Flutter supports system settings based switching to theme provided via the `highContrastTheme` and `highContrastDarkTheme` theme properties.</Warning>
-
-### ThemeData Deprecations
-
-There is a Flutter development plan in progress to **deprecate most** direct color properties in the `ThemeData` class. Flutter SDK widgets will after that only use `ColorScheme` based colors that are in the ThemeData `colorScheme` property, as default colors for colors on their elements. 
-
-This design [document](https://flutter.dev/go/material-theme-system-updates) describes the plan and reasoning. There is also a color property deprecation check list in [issue 91772](https://github.com/flutter/flutter/issues/91772) to mirror this plan. It has taken a while, but there is activity and progress being made continuously in the Flutter master channel. Many of them have already dropped into stable releases.
-
-For **FlexColorScheme** the progress of these actions is monitored closely. Needed changes and updates to FlexColorScheme are always implemented when relevant changes in `ThemeData` reach the Flutter stable channel. The typical maintenance need is removing deprecated `ThemeData` properties and to check if some new sub-theme color property needs to be modified or added, in order to replicate past **FlexColorScheme** theming behavior, when its corresponding color property is removed from `ThemeData`.
-
-## FlexColorScheme and ThemeData
-
-At its core `FlexColorScheme.toTheme` only creates a `ThemeData` object. You can think of it as super fancy **ThemeData** object factory. It helps you make a consistent `ColorScheme` based theme, and to produce a more refined Flutter `ThemeData` object. Since its output is a standard `ThemeData` object, you can adjust it further as much as desired by using normal `ThemeData.copyWith` on it and all its component themes. If some detail is not to your liking and its API does not support changing a particular part, you can still use it for everything else and just adjust that part in the result it produces with `copyWith`, before you assign it to you app's theme.
-
-One of the fundamental things FlexColorScheme does, is that it fixes minor inconsistencies and gaps that exist with Flutter's `ThemeData` and `ThemeData.from` factories. It also handles the complexity of using the `ThemeData` factory directly. It releases you from the burden of knowing what colors in it affect which widgets how. The messy state of `ThemeData` and all its legacy is a more obvious issue in **Material 2** mode, when using the newer **Material 3** mode, the issues with poor defaults and colors not using **ColorScheme** colors are much fewer, but they still exist when it comes to some legacy colors in `ThemeData` and legacy widgets as well.
-
-FlexColorScheme makes a few opinionated, but subtle theme modifications compared to the `ThemeData.from` themes created from a `ColorScheme`. By default, FlexColorScheme theming refrains from touching component theme properties not related to making the colors more consistent. Some minor adjustments are needed. This is covered in detail in the API guide section in [Core defaults](/core_defaults).
-
-When you **opt in** on using its **opinionated component themes**, the story changes. It then does significant customization using Flutter's component themes if you are using **Material 2** mode. In fact, its **M2** mode emulates **M3** to a large degree when it comes to the border radius of widgets. When you use **Material 3** mode, and activate its **opinionated component themes** the components mostly default to **Material 3** defaults. Some component themes with a long legacy in **FlexColorScheme** have a slightly different style than **M3** defaults, in order to not break their past established FCS M2 mode styles that existed before the components supported **M3**. The **Themes Playground** offers some quick settings buttons to toggle such default to match **Material 3** default, when component themes are opted in on in FlexColorScheme. It is still useful to recall that both its M2 and M3 modes do come with some opinionated default style over M2 and M3 defaults, that said M2, and even more so M3, are both also very opinionated styles, the **Material** style. 
-
-The sub-theme definitions for both M2 and M3 component themes are still all done within the standard `ThemeData` object. FlexColorScheme cannot make themes that you cannot repeat yourself by defining the same `ThemeData` object and all its component themes manually.
-
-It is, however, very tedious and verbose to do all the things it can do manually. Personally, I don't even attempt it anymore, even if I could. It is so much quicker and simpler to use **FlexColorScheme** to accomplish many of the complex theme definitions it does.
