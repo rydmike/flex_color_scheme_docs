@@ -1,6 +1,6 @@
 # Theming Guide
 
-This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion mentions it. When it does, it mostly explains theming choices made in FlexColorScheme. 
+This chapter gives you general guidance to application theming in Flutter. It is not about using **FlexColorScheme**, even if it on occasion mentions it.
 
 This guide is also not about how to make beautiful theme designs. Its focus is on the technicalities of why and how to define your `ThemeData` object in Flutter. How to make the theme work for you. In the ["Roads to ThemeData"](/theming_roads) chapter, we look at different ways to make a `ThemeData` object and analyze what their differences are.
 
@@ -29,7 +29,7 @@ This tweet, with 15 slides, offers an intro to the wondrous world of the Materia
 What is theming a Flutter app? Theming a Flutter `MaterialApp` refers to defining custom `ThemeData` objects for your application, typically at least one `ThemeData` for the **light theme** mode and another one for the **dark theme** mode, and assigning them to `theme`  and `darkTheme` in `MaterialApp`.
 
 ```dart
-MaterialApp(
+return MaterialApp( 
   themeMode: ThemeMode.system, // or ThemeMode.light or ThemeMode.dark,
   theme: ThemeData(...), // Your light ThemeData object.
   darkTheme: ThemeData(...), // Your dark ThemeData object. 
@@ -351,24 +351,18 @@ In the chapter [Roads to ThemeData](/theming_roads) we look at all the different
 <table>
   <tr>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-03-td-brightness-light-flex.png" zoom alt="TD flex Swatch2 light" /></td>
-    <td>&nbsp;</td>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-05-td-brightness-light-swatch-flex.png" zoom alt="TD flex Swatch3 light" /></td>
-    <td>&nbsp;</td>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-07-td-light-fromSwatch-flex.png" zoom alt="TD flex Swatch4 light" /></td>
-    <td>&nbsp;</td>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-09-td-light-colorScheme.png" zoom alt="TD Scheme5 light" /></td>
   </tr>
   <tr>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-11-td-from-Scheme-light.png" zoom alt="TD Scheme6 light" /></td>
-    <td>&nbsp;</td>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-13-td-colorScheme-light.png" zoom alt="TD Scheme7 light" /></td>
-    <td>&nbsp;</td>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-15-td-ColorScheme-fromSeed-light.png" zoom alt="TD Scheme8 light" /></td>
-    <td>&nbsp;</td>
     <td><Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-17-td-from-ColorScheme-fromSeed-light.png" zoom alt="TD Scheme9 light" /></td>
   </tr>
   <tr>
-    <td colspan="7">_Many ways to make **ThemeData** using same **ColorScheme** or same seed color_</td>
+    <td colspan="4">Many ways to make ThemeData using same ColorScheme or same seed color</td>
   </tr>
  </table>
 
