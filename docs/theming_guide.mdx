@@ -36,9 +36,9 @@ MaterialApp(
   home: ...
 ```
 
-<Info>You can also make high-contrast versions of the light and dark `ThemeData` objects and apply them to `MaterialApp` properties `highContrastTheme` and `highContrastDarkTheme`. In Flutter, until at least version 3.10, they only have any automatic device depending effect when using accessibility settings on **iOS platform**, via Settings -> Accessibility -> Increase Contrast. 
+<Info>You can also make high-contrast versions of the light and dark `ThemeData` objects and apply them to `MaterialApp` properties `highContrastTheme` and `highContrastDarkTheme`. These `ThemeData` objects then get used instead of the normal light and dark themes. The way they are applied is that `MediaQuery.of(context).highContrast` becomes **true** when high contrast mode is requested in the device system settings. The `MaterialApp` will then, if `ThemeData` objects for `highContrastTheme` and `highContrastDarkTheme` have been defined, use them instead in light and dark theme mode.</Info>
 
-These `ThemeData` objects then get used instead of the normal light and dark themes. The way they are applied is that `MediaQuery.of(context).highContrast` becomes **true** when high contrast is requested in the device system settings and the `MaterialApp` will then, if `ThemeData` objects for `highContrastTheme` and `highContrastDarkTheme` have been defined, use them instead in light and dark theme mode.</Info>
+<Warning>In Flutter, until at least version 3.10, properties `highContrastTheme` and `highContrastDarkTheme` only have any automatic device depending effect when using accessibility settings on **iOS platform**. On iOs it is set via: Settings -> Accessibility -> Increase Contrast.</Warning>
 
 Like the name suggests, the `ThemeData` object is basically a plain Dart data object containing data values and callback functions defining the theme. The values are given either as direct properties in the `ThemeData` object or as additional component sub-theme data objects, that in some cases even contain additional sub-themes. 
 
