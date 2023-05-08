@@ -4,7 +4,7 @@ This chapter gives you general guidance to application theming in Flutter. It is
 
 The chapter [ThemeData and ColorScheme](/themedata_colorscheme) goes through different concepts and key aspect of **ThemeData** and **ColorScheme** and provides inisights in which constructors to use to make correct M2 and M3 theme with them. In the [Roads to ThemeData](/theming_roads) chapter, we look deeper at different ways to make a `ThemeData` object and analyze what their differences are, and demonstrate why the suggested methods produce the best results. 
 
-If you prefer to watch a live recorded talk about all these topics, there is also my talk from the Flutter Vikings event, August 31, 2022. You can find links to the recording of my presentation [Deep Dive Into Theming here](https://rydmike.com/blog_vikings_2022_talk). In the talk, I present many of the same topics as those that are explained in this chapter and in the chapter ["Roads to ThemeData"](/theming_roads).
+If you prefer to watch a live recorded talk about all these topics, there is also my talk from the Flutter Vikings event, August 31, 2022. You can find links to the recording of my presentation [Deep Dive Into Theming here](https://rydmike.com/blog_vikings_2022_talk). In the talk, I present many of the same topics as those that are explained in this chapter and in the chapter [Roads to ThemeData](/theming_roads).
 
 If you are not experienced in theming Flutter applications, then **FlexColorScheme** can assist you in many ways. FlexColorScheme does not do everything that is possible with theming in Flutter. Its goal is to make often used designs quicker and easier to achieve. Give you a starting point, with many quick configurable options. It should get you close to where you want to be with your custom theme design, or even fully there.
 
@@ -21,8 +21,6 @@ The introduction of Material-3 makes defining a color system correct `ColorSchem
 This tweet, with 15 slides, offers an intro to the wondrous world of the Material 3 ColorScheme and color system.
 
 <Tweet id="1518201439780282370" cards />
-
-In the chapter
 
 ## Flutter theming
 
@@ -287,7 +285,7 @@ A simple and naive approach is to just add const `TextStyle` for your content. L
 
 If the default `TextTheme` and its `TextStyle`s also work for your content, you can certainly go ahead and use them as you see fit on any content in your app. If you do, you may still want to consider giving them some more app-specific semantic alias names that you use instead. Later if you need to modify them, you can then do so by changing them to use custom `TextStyle`s instead.
 
-### FCS and TextTheme
+### FlexColorScheme and TextTheme
 
 FlexColorScheme only has a few component level `TextStyle` properties included in its opinionated component themes. None of them are included as settings in the **Themes Playground**. FCS supports `textTheme`, `primaryTextTheme` and `fontFamily` as pass along properties to `ThemeData`, for the global app TextThemes. It also offers easy `Typography` switching between 2018 (M2) and 2021 (M3) Typography, and optional color tinted text using the theme's `ColorScheme.surfaceTint` as its tint color. The tint is very subtle, but might be an acquired style. M3 already does a bit of tinting on its text theme color via the `onSurface` color, that when using the Material Color System, gets a hint of `ColorScheme.primary` via the neutral tonal palette that includes low chroma from the used primary seed color. 
 
