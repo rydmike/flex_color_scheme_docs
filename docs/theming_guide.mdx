@@ -323,6 +323,8 @@ class DemoApp extends StatelessWidget {
 }
 ```
 
+### Legacy Complexity
+
 In theory, this gives you an application that uses the defined color schemes on all the Flutter SDK built-in Material UI widgets. Well it should, and it almost does, especially if you used Flutter's `ThemeData.from` a `ColorScheme` factory, used above. However, even it has a few gaps. The used color scheme is not consistently applied on all built-in Flutter SDK Material UI Widgets. To get it completely covered, you also have to assign a few colors from your `ColorScheme` to a few color properties that still only exist as direct color properties in `ThemeData`. The situation is a lot better when your `ThemeData` sets `useMaterial3: true`, but it is not perfect either. 
 
 This is all further complicated by the fact that under the hood many Flutter SDK UI widgets still use the original direct color properties in `ThemeData`. These properties are now mostly assigned color values via `ThemeData.colorScheme`. Exactly which colors will end up where, depends on which `ThemeData` factory constructor you use, as mentioned the factory `ThemeData.from` does the best job, and Material 3 mode uses mostly the same assignments as well.
@@ -333,7 +335,7 @@ Very basic and old widgets, like for example `Material` and `Card` fall into the
 
 Luckily there are not so many widgets left that this still applies to, but there are a few, for example `CircleAvatar` in M2 mode. It can all be confusing and a bit frustrating to fight with `ThemeData` and its direct color properties. If not done correctly, it may result in themes with color schemes that are not entirely consistent or logical across all standard SDK widgets in your application. Even more so if you expect `ThemeData` colors like `primaryColor`, `primaryColorLight` and `primaryColorDark` be derived from your `colorScheme.primary` color, that is just not always the case.
 
-In the chapter [Roads to ThemeData](/theming_roads) we look at all the different ways to define a `ThemeData` object. We will then see different results, like the ones below, depending on how we create our **ThemeData**. The results can vary a lot, even if we use the same input colors.
+In the chapter [Roads to ThemeData](/theming_roads) we will look at all the different ways to define a `ThemeData` object. We will then see different results, like the ones below. Depending on how we create our `ThemeData`, the results can vary a lot, even if we use the same input colors.
 
 <table>
   <tr>
@@ -353,31 +355,31 @@ In the chapter [Roads to ThemeData](/theming_roads) we look at all the different
   </tr>
  </table>
 
-## Deprecation Road-map
+### Light and Dark Themes
+
+In some older apps and theming guides you might see setups where the light and dark themes are both assigned to `theme` in `MaterialApp`, by using a ternary operator based on desired `Brightness` to select used `ThemeData`. Don't do this!
+
+<Error>Do not use ternary operator to switch between a light `ThemeData` and dark one, on only the `theme` property in `MaterialApp`.</Error>
+
+This is something that was used before there was a `darkTheme` property in the `MaterialApp`. Prefer to assign your theme mode appropriate `ThemeData` to the correct properties in the `MaterialApp`.
+
+If your app does not offer a way to toggle the theme mode via the `themeMode` property, then keep `themeMode` at its default `ThemeMode.system`, so that the app theme automatically follows the device theme mode.
+
+If you do offer a way to override and set the app to light or dark theme independently of the system settings, then always also include in the settings, an option to use the system mode that follows the system setting too. This should even be your default value for it. Now you have covered all options, and users can set the theme mode as they prefer.
+
+### High Contrast Themes
+
+The `ThemeData` assignment also applies to the `highContrastTheme` and `highContrastDarkTheme` theme. If your app has dedicated designs for high-contrast accessibility themes, do assign them to these properties. These properties are all there to give you the right device system settings driven behavior. So your app can follow the device system theme mode and its high-contrast accessibility settings.
+
+<Warning>Currently, only iOS platform in Flutter supports system settings based switching to theme provided via the `highContrastTheme` and `highContrastDarkTheme` theme properties.</Warning>
+
+### ThemeData Deprecations
 
 There is a Flutter development plan in progress to **deprecate most** direct color properties in the `ThemeData` class. Flutter SDK widgets will after that only use `ColorScheme` based colors that are in the ThemeData `colorScheme` property, as default colors for colors on their elements. 
 
 This design [document](https://flutter.dev/go/material-theme-system-updates) describes the plan and reasoning. There is also a color property deprecation check list in [issue 91772](https://github.com/flutter/flutter/issues/91772) to mirror this plan. It has taken a while, but there is activity and progress being made continuously in the Flutter master channel. Many of them have already dropped into stable releases.
 
-For **FlexColorScheme** the progress of these actions is monitored closely. Needed changes and updates to FlexColorScheme are always implemented when relevant changes in `ThemeData` reach the Flutter stable channel.
-
-FlexColorScheme already defines complete `ColorScheme` for `ThemeData` that can also be M3 design compliant. The typical maintenance need is removing deprecated `ThemeData` properties and to check if some new sub-theme color property needs to be modified or added, in order to replicate past **FlexColorScheme** theming behavior, when its corresponding color property is removed from `ThemeData`.
-
-## ThemeMode
-
-In some older apps and theming guides you might see setups where the light and dark themes are both assigned to `theme` in `MaterialApp` using a ternary operator based on desired `Brightness` to select used `ThemeData`. Don't do this!
-
-<Error>Do not use ternary operator to switch between a light `ThemeData` and dark one, on only the `theme` property in `MaterialApp`.</Error> 
-
-This is something that was used before there was a `darkTheme` property in the `MaterialApp`. Prefer to assign your theme mode appropriate `ThemeData` to the correct properties in the `MaterialApp`. 
-
-This also applies to the `highContrastTheme` and `highContrastDarkTheme` theme. If your app has dedicated designs for high-contrast accessibility themes, do assign them to these properties. These properties are all there to give you the right device system settings driven behavior. So your app can follow the device system theme mode and its high-contrast accessibility settings. 
-
-<Warning>Currently, only iOS platform in Flutter supports system settings based switching to theme provided via the `highContrastTheme` and `highContrastDarkTheme` theme properties.</Warning> 
-
-If your app does not offer a way to toggle the theme mode via the `themeMode` property, then keep `themeMode` at its default `ThemeMode.system`, so that the app theme automatically follows the device theme mode. 
-
-If you do offer a way to override and set the app to light or dark theme independently of the system settings, then always also include in the settings, an option to use the system mode that follows the system setting too. This should even be your default value for it. Now you have covered all options, and users can set the theme mode as they prefer.
+For **FlexColorScheme** the progress of these actions is monitored closely. Needed changes and updates to FlexColorScheme are always implemented when relevant changes in `ThemeData` reach the Flutter stable channel. The typical maintenance need is removing deprecated `ThemeData` properties and to check if some new sub-theme color property needs to be modified or added, in order to replicate past **FlexColorScheme** theming behavior, when its corresponding color property is removed from `ThemeData`.
 
 ## FlexColorScheme and ThemeData
 
