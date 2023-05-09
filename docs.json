@@ -52,7 +52,7 @@
         ["Theming Guide",
             [
                 ["Flutter Theming", "/theming_guide"],
-                ["Theme and Scheme", "/themedata_colorscheme"],
+                ["Theme and Scheme", "/theme_scheme"],
                 ["Roads to ThemeData", "/theming_roads"],
                 ["FAQ", "/faq"]
             ]
