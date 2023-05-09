@@ -1,27 +1,36 @@
 # Roads to ThemeData
 
-In this chapter we compare different ways to define and create a `ThemeData` object and look at the differences we get in effective colors in the theme. We examine 13 different ways, or roads to make a ThemeData object.
+In this chapter we compare different ways to define and create a `ThemeData` object and look at the differences we get in effective colors in the theme. We examine 13 different ways, or roads to make a `ThemeData` object.
 
-1. **a.** ThemeData.light/dark, and **b.** ThemeData(brightness: Brightness.light/dark)
-2. ThemeData(primarySwatch: ...)
-3. ThemeData(colorScheme: ColorScheme.fromSwatch(...))
-4. ThemeData.from(colorScheme: ColorScheme.fromSwatch(...))
-5. ThemeData(colorScheme: ColorScheme(...))
-6. ThemeData.from(colorScheme: ColorScheme(...))
-7. ThemeData(colorSchemeSeed: Color(...))
-8. ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color(...))),
-9. ThemeData.from(colorScheme: ColorScheme.fromSeed(seedColor: Color(...)))
+#### ColorSwatch based
+1. **a.** ThemeData.**light/dark**, and **b.** ThemeData(brightness: Brightness.**light/dark**)
+2. ThemeData(**primarySwatch**: ...)
+3. ThemeData(colorScheme: ColorScheme.**fromSwatch**(...))
+4. ThemeData.from(colorScheme: ColorScheme.**fromSwatch**(...))
+
+#### ColorScheme based
+5. ThemeData(**colorScheme**: ColorScheme(...))
+6. ThemeData.**from**(**colorScheme**: ColorScheme(...))
+7. ThemeData(**colorSchemeSeed**: Color(...))
+8. ThemeData(**colorScheme**: ColorScheme.**fromSeed**(seedColor: Color(...))),
+9. ThemeData.**from**(**colorScheme**: ColorScheme.**fromSeed**(seedColor: Color(...)))
+
+#### FlexColorScheme based
 10. FlexThemeData.light/dark(colorScheme)
 11. FlexThemeData.light/dark(colorScheme, keyColors)
 12. FlexThemeData.light/dark(colorScheme, keyColors, subThemesData)
 
-In all cases, we will see the results for both light and dark theme mode, compare the different methods and analyze the results. Yes that's a lot of methods and roads to make a `ThemeData` object. The last three ones are **FlexColorScheme** methods, with a few significant different parameters. Recommendations on what to use will also be given.
+In all cases, we will see the results for both light and dark theme mode, compare the different methods and analyze the results. Yes that's a lot of methods and roads to make a `ThemeData` object. 
+
+Just for comparison, the last three ones are **FlexColorScheme** based, with a few significant different theming options used. 
+
+Recommendations on what to use and why is also be given.
 
 ## Used ColorScheme
 
-To make it interesting, we will use a `ColorScheme` very similar to the M3 Guide Baseline as input for a fully qualified `ColorScheme`. We use the `FlexColorScheme` input colors version of it. It has less colorful onColors. When we use a seeded ColorScheme based on it, we will get the more colorful onColors as specified and used in the M3 guide. 
+To make it interesting, we will use a `ColorScheme` very similar to the **M3 Guide Baseline** as input for a fully qualified `ColorScheme`. We use the `FlexColorScheme` input version of it. It has less colorful onColors. When we use a seeded ColorScheme based on it, we will get the more colorful onColors as specified and used in the M3 guide. 
 
-This ColorScheme is very useful for this study, because when we use its `primary` color as seed color, the M3 algorithm produces the same `ColorScheme` as the Material 3 guide's specified version of this ColorScheme. This happens because the colors used in the guide design for the M3 Baseline `ColorScheme`, have been produced using the same input Color and same algorithm. This helps us spot differences in the result, since we will not be focused on the color generation differences, but rather on where the colors end up in the produced `ThemeData`.
+This ColorScheme is useful for this study, because when we use its `primary` color as seed color, the M3 algorithm produces the same `ColorScheme` as the Material 3 guide's specified version of this ColorScheme. This happens because the colors used in the guide design for the M3 Baseline `ColorScheme`, have been produced using the same input Color and same algorithm. This helps us spot differences in the result, since we will not be focused on the color generation differences, but rather on where the colors end up in the produced `ThemeData`.
 
 For reference, here is the used M3 baseline light theme mode `ColorScheme` without M3's colorful onColors.
 
@@ -40,21 +49,24 @@ const ColorScheme flexSchemeLight = ColorScheme(
   onTertiary: Color(0xffffffff),
   tertiaryContainer: Color(0xffffd8e4),
   onTertiaryContainer: Color(0xff000000),
-  error: Color(0xffb00020),
+  error: Color(0xffba1a1a),
   onError: Color(0xffffffff),
-  errorContainer: Color(0xfffcd8df),
+  errorContainer: Color(0xffffdad6),
   onErrorContainer: Color(0xff000000),
-  outline: Color(0xff4d4d4d),
   background: Color(0xffffffff),
   onBackground: Color(0xff000000),
   surface: Color(0xffffffff),
   onSurface: Color(0xff000000),
-  surfaceVariant: Color(0xffffffff),
+  surfaceVariant: Color(0xffeeeeee),
   onSurfaceVariant: Color(0xff000000),
+  outline: Color(0xff737373),
+  outlineVariant: Color(0xffbfbfbf),
+  shadow: Color(0xff000000),
+  scrim: Color(0xff000000),
   inverseSurface: Color(0xff121212),
   onInverseSurface: Color(0xffffffff),
   inversePrimary: Color(0xfff0e9ff),
-  shadow: Color(0xff000000),
+  surfaceTint: Color(0xff6750a4),
 );
 ```
 
@@ -75,24 +87,27 @@ const ColorScheme flexSchemeDark = ColorScheme(
   onTertiary: Color(0xff000000),
   tertiaryContainer: Color(0xff633b48),
   onTertiaryContainer: Color(0xffffffff),
-  error: Color(0xffcf6679),
+  error: Color(0xffffb4ab),
   onError: Color(0xff000000),
-  errorContainer: Color(0xffb1384e),
+  errorContainer: Color(0xff93000a),
   onErrorContainer: Color(0xffffffff),
-  outline: Color(0xffb3b3b3),
   background: Color(0xff121212),
   onBackground: Color(0xffffffff),
   surface: Color(0xff121212),
   onSurface: Color(0xffffffff),
-  surfaceVariant: Color(0xff121212),
+  surfaceVariant: Color(0xff323232),
   onSurfaceVariant: Color(0xffffffff),
+  outline: Color(0xff8c8c8c),
+  outlineVariant: Color(0xff404040),
+  shadow: Color(0xff000000),
+  scrim: Color(0xff000000),
   inverseSurface: Color(0xffffffff),
   onInverseSurface: Color(0xff000000),
   inversePrimary: Color(0xff635b70),
-  shadow: Color(0xff000000),
+  surfaceTint: Color(0xffd0bcff),
 );
 ```
-These `ColorScheme`s can also be copied from the **Themes Playground** by selecting the "Material 3 purple" theme and keeping all seed generation disabled, and blend level at zero, in the Playground. From the above code views you can copy/paste the color schemes. To show the colors for all the `Color` values, below are image copied from a code editor that can show the actual colors too. 
+These above `ColorScheme`s can also be copied from the **Themes Playground** by selecting the "Material 3 purple" theme and keeping all seed generation disabled, and blend level at zero, in the Playground. From the above code views you can copy/paste the color schemes. To show the colors for all the `Color` values, below are image copied from a code editor that can show the actual colors too. 
 
  <Tabs
   defaultValue="light"
