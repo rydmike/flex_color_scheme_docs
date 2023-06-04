@@ -21,7 +21,7 @@
         ["Welcome",
             [
                 ["About","/"],
-                ["Tweet Summaries", "/tweets"],
+                ["Tweet summaries", "/tweets"],
                 ["All themes", "/all_themes"],
                 ["Showcases", "/showcases"]
             ]
