@@ -1,8 +1,8 @@
 # History in Tweets
 
-Over the years, a number of Tweet threads have been created to present new release of **FlexColorScheme** and **Themes Playground**. You can find them below. They are useful as a summary of new features and changes in releases. The tweet threads also serve as a nice historic log that shows how FlexColorScheme has evolved over time. 
+Over the years, a number of Tweet threads have been created to present new release of **FlexColorScheme** and **Themes Playground**. You can find them below. They are useful as a summary of new features and changes in releases. The tweet threads also serve as a history that shows how FlexColorScheme has evolved over time. 
 
-Some threads are not release related, but useful general theming guides. You can also use the last few threads as a feature update about what is new in FlexColorScheme world. Together from start to finnish, they also work as TLDR for learning how to use FlexColorScheme and what you can do with it. 
+Some threads are not release related, but useful general theming guides. You can also use the last few threads as a feature update about what is new in the FlexColorScheme world. Reading them from start to finnish, they also work as a TLDR story for learning what you can do with FlexColorScheme and Themes Playground. 
 
 ## Version 1
 _December 21, 2020_
@@ -39,7 +39,7 @@ This version should have been called 1.5.0, since it added new features in the f
 ## Version 2
 _March 15, 2021_
 
-Version 2.0 was the step of going to sound-null safety and Dart 2.0. Test coverage also reached 99.78%. Feature wise it did not bring anyhing new, but it was a needed and significant chore update.
+Version 2.0 was the step of going to sound-null safety and Dart 2.0. Test coverage also reached 99.78%. Feature wise it did not bring anything new, but it was a needed and significant chore update.
 
 <Tweet id="1371358515286147072" cards />
 
@@ -58,6 +58,8 @@ _November 14, 2021_
 
 In version 4, the feature to opt-in on using opinionated component theming was first introduced. It offered the first take on what is still available as a very opinionated optional style for Material-2. To make it look, and to a degree emulate coming Material-3 design. The release was a major step forward in features. It only had a few minor style breaking changes. APIs were actually unbroken, but the minor breakage in a few past theme styles and major new feature warranted and new major release bump. 
 
+Version 4 again adds four new color themes, **Blue whale**, **San Juan blue**, **Rosewood red** and **Blumine**, bring the total up from 32 to 36.
+
 <Tweet id="1459984929631215618" cards />
 
 ### Version 4.1
@@ -72,22 +74,24 @@ _January 24, 2022_
 
 In version 4.2, support for Flutter 2.8 was added. The release required using minimum Flutter 2.8.0 and Dart 2.15. FlexColorScheme also received its [Flutter Favorite](https://docs.flutter.dev/packages-and-plugins/favorites) status in conjunction with [Flutter 2.8 release on December 9, 2021](https://medium.com/flutter/whats-new-in-flutter-2-8-d085b763d181). 
 
-This release is also one where it first became necessary to start limiting new FlexColorScheme releases Flutter backwards compatibility, to latest releases. This is simply due to constant additions and changes in theming properties offered and changed in the Flutter SDK. This mode is still going on today with new Material3 features being added, and ThemeData color properties constantly being deprecated. 
+This release is also the one where it first became necessary to start limiting new FlexColorScheme releases' Flutter backwards compatibility to the latest release. This is simply due to constant additions and changes in theming properties offered and changed in the Flutter SDK. This phase is still going on today with new Material-3 features being added and ThemeData color properties constantly being deprecated. 
 
-Version 4.2 also added many new features, one of them being changing `ColorScheme` color mappings on component theme level. It also added support for the first real Material-3 style component, the `NavigationBar`.
+Version 4.2 also added many new features, one of them being features that allow changing `ColorScheme` color mappings on component theme level. It also added support for the first real Material-3 style component, the `NavigationBar`.
 
 <Tweet id="1485684767249125378" cards />
 
 ## Version 5
 _April 21, 2022_
 
-This major release got four new built-in color schemes, for a total of 40 matched light and dark pairs. The release was also one of the biggest new feature additions made in a single major release. It was style wise also a big breaking change, since all the built-in produced ColorSchemes the themes used were revised to follow the new Flutter 2.10.0 Material-3 based ColorScheme. Seed generated ColorScheme using more than one seed color and custom chroma config limits were also introduced.
+This major release got four new built-in color theme, **Flutter Dash** , **M3 baseline**, **Verdun green** and **Dell genoa green**, bringing the number of themes from 36 to **40 matched** light and dark pairs. 
+
+The release was also one of the biggest new feature additions made in a single major release. It also contained breaking style and API changes. All the built-in color schemes the themes used, were revised to follow the new **Flutter 2.10.0** Material3 based `ColorScheme`, that added many new color properties and deprecated some. Seed generated `ColorScheme`, using more than one seed color and custom chroma config limits, were also introduced.
 
 This version also included the launch of the documentation web-site that you are reading now.
 
 <Tweet id="1517005624814493696" cards />
 
-The actual meat and info about version 5 was tweeted already a week earlier, in its 5.0.0-dev1 release. The dev or beta release thread is valid also for the final 5.0.0 released features. It presents all the new features with much detail in 24 tweeted slides.
+The actual meat and info about version 5 was tweeted already a week before the launch, in the 5.0.0-dev1 release. This dev or beta release thread is also valid for the final 5.0.0 released features. It presents all the new features in detail, in a tweet thread with 24 slides.
 
 Version 5 is also where the **Themes Playground** started getting its current form and many of the features it has today.
 
@@ -103,30 +107,54 @@ Slightly after the version 5 release, a tweet slide deck with 15 slides was rele
 ## Version 6
 _August 31, 2022_
 
-There seems to be no Tweet thread on version 6.0, but there is one for version 6.1.
+There is no Tweet thread about version 6.0. It is a very big release that came out during [Flutter Vikings conference](https://rydmike.com/blog_vikings_2022_talk). Due to participation and speaking at the conference and releasing a big new version at the same time, there was no time to make a nice Tweet slide deck presentation. However, the above-linked talk from the conference presents the new Material-3 features it added support for. The release also requires minimum **Flutter 3.3**, that was released at the same time.
+
+This version also moved the advanced ColorScheme generation features into a separate package called [**FlexSeedScheme**](https://pub.dev/packages/flex_seed_scheme) and stopped using the [Material Color Utilities](https://pub.dev/packages/material_color_utilities) package directly. 
+
 
 ### Version 6.1 
 _November 20, 2022_
 
-There seems to be no thread on version 6.0, but there is one for version 6.1.
+There is a Tweet presentation slide deck for version 6.1. Despite being only a minor release, it contains more new features for **FlexColorScheme** and the **Themes Playground** than version 6.0 did.
 
 <Tweet id="1594165376102944768" cards />
 
 ## Version 7
 _April 2, 2023_
 
+Version 7 is a very big release, requiring minimum **Flutter 3.7** and containing massive updates to the **Themes Playground**, like a theme simulator to show the impact of selected themes on a few demo apps, including the official Flutter Material 3 demo app. It also includes many preconfigured component theming examples. They can be used as theming capability examples, or starting points for custom themes.
+
+Flutter version 3.7 is also the first **Flutter** release where using Material-3 in a production Flutter app is recommended and endorsed by FlexColorScheme author.
+
+In version 7, **twelve** new color themes were added. Now there is a total of **52** built-in color themes. 
+
 <Tweet id="1642621032744775682" cards />
 
+**Version 7.0.1** was released four days later. No package changes, but it added several significant improvements to the **Themes Playground** user experience. It introduced a compacter UI more suitable on laptop screens and also made the user interface less chatty by hiding long explanations behind **more info** expands icons.
+
+<Tweet id="1644084312084557824" cards />
 
 ### Version 7.1 
 _May 12, 2023_
 
+In version 7.1, FlexColorScheme adds support for Flutter 3.10 and Dart 3.0.
+
+
 <Tweet id="1656877908038766593" cards />
 
 
-## Theme Creation Use Case 
+## A Theme Story
 _May 17, 2023_
 
-This thread story is the latest one and uses a fictive theming use case to demonstrate more advance feature in the current version of FlexColorScheme and Themes Playground.
+This tweet thread is the latest one. It uses a fictive theming use-case story to demonstrate more advance feature in the current version of FlexColorScheme and Themes Playground. Like how to use custom brand color, with seed generation using brighter color generation, while also locking down your brand colors to the fixed given colors.
+
+It also demonstrates how to use the in version 7.0 introduced platform adaptive theming properties, to create a theme that automatically looks less Material-3 opinionated on and more platform-agnostic on other platforms than Android. 
 
 <Tweet id="1658657667622248449" cards />
+
+
+## WIP
+
+Some sneak peeks into work in progress, selecting a shape type for the corner radius to be something else than circular. Most notably "squircle" shaped, which is used by Apple in HIG.
+
+<Tweet id="1659667064238350344" cards />
