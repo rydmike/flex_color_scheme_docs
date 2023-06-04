@@ -146,15 +146,17 @@ In version 7.1, FlexColorScheme adds support for Flutter 3.10 and Dart 3.0.
 ## A Theme Story
 _May 17, 2023_
 
-This tweet thread is the latest one. It uses a fictive theming use-case story to demonstrate more advance feature in the current version of FlexColorScheme and Themes Playground. Like how to use custom brand color, with seed generation using brighter color generation, while also locking down your brand colors to the fixed given colors.
+This tweet thread is the latest one. It uses a fictive theming use-case story to demonstrate more advanced features in the current version of **FlexColorScheme** and **Themes Playground**. It shows how to use custom brand colors, with a seed generation algorithm that gives brighter generated colors than the default M3 algorithm. The example locks down the brand colors to the fixed given brand colors. It uses the brand colors as seeds for all other supporting colors, except for critical ColorScheme colors. They use the exact given brand color values.
 
-It also demonstrates how to use the in version 7.0 introduced platform adaptive theming properties, to create a theme that automatically looks less Material-3 opinionated on and more platform-agnostic on other platforms than Android. 
+It also demonstrates how to use the in version 7.0 introduced platform adaptive theming properties. They are used in this example to create a theme that automatically looks less Material-3 opinionated and more platform-agnostic on other platforms than Android, while still using Material-3 on Android, where it is desired in this example. All this styling is done on theme level. The design changes are automatic depending on what platform the app is built for and run on.
+
+The impact of the adaptive theme changes can be simulated in Themes Playground by faking the used platform. The adaptive theme responses can then be observed in the mock apps in the built-in **Theme Simulator**.
 
 <Tweet id="1658657667622248449" cards />
 
 
 ## WIP
 
-Some sneak peeks into work in progress, selecting a shape type for the corner radius to be something else than circular. Most notably "squircle" shaped, which is used by Apple in HIG.
+Some sneak peeks into work in progress. Using a different shape type for the corner radius, something else than current circular corners. Most notably "Squircle" shaped corners, which is used by Apple in iOS. The Squircle is often seen and used in many Figma designs as well. The squircle or super ellipses border radius is generally perceived as looking a bit softer and friendlier than the circular border radius.
 
 <Tweet id="1659667064238350344" cards />
