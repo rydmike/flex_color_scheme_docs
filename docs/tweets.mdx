@@ -1,67 +1,124 @@
-# Tweet Summaries
+# History in Tweets
 
-Over the years, a number of Twitter threads have been created to present new release of FlexColorScheme and Themes Playground. You can find them below. They are useful as a summary of new features and changes in releases. The tweet threads also serve as a nice historic log that shows how FlexColorScheme has evolved over time. It starts with the oldest version.
+Over the years, a number of Tweet threads have been created to present new release of **FlexColorScheme** and **Themes Playground**. You can find them below. They are useful as a summary of new features and changes in releases. The tweet threads also serve as a nice historic log that shows how FlexColorScheme has evolved over time. 
 
-Some threads are not release related, but useful general theming guides.
+Some threads are not release related, but useful general theming guides. You can also use the last few threads as a feature update about what is new in FlexColorScheme world. Together from start to finnish, they also work as TLDR for learning how to use FlexColorScheme and what you can do with it. 
+
+## Version 1
+_December 21, 2020_
+
+First humble release of FlexColorScheme 1.0.0. There is not even a tweet about it. It launched with 20 different built-in color schemes. There is a tweet for the **version 1.1** released shortly after, on _December 29, 2020_. The tweet also shows the very modest version of example 5, that much later evolved into the **Themes Playground**.
+
+<Tweet id="1344171508692905984" cards />
+
+
+### Version 1.2
+_January 4, 2021_
+
+The journey to add more color schemes started in version 1.2, by adding 4 new ones. **Amber blue**, **Vesuvius burned**, **Deep purple** and **Ebony clay**, taking the number of built-in schemes from 20 to 24. 
+
+<Tweet id="1345928845334110208" cards />
+
+**Version 1.3** was released a few days later on _January 7, 2021_. It added more tests, made some internal improvements and marked `FlexSchemeSurfaceColors.themeSurface` as deprecated in favor of the correctly named `FlexSchemeSurfaceColors.surfaceStyle`. It was a silent fix without any tweet announcements.
+
+### Version 1.4
+_January 18, 2021_
+
+Version 1.4 added a simper API for using built-in schemes, the still used `schemes` property. It contained first experimental support for Android transparent system navigation bar. Added the reference table for built-in schemes. It also automated the test pipe using Codecov and hit 99% code test coverage.
+
+<Tweet id="1351060450218225664" cards />
+
+
+### Version 1.4.1
+_January 4, 2021_
+
+This version should have been called 1.5.0, since it added new features in the form of 4 new themes. This time **Barossa**, **Shark and orange**, **Big stone tulip** and **Damask and lunar**. The number of color themes now grew from 24 to 28.
+
+<Tweet id="1355730893499936771" cards />
+
+## Version 2
+_March 15, 2021_
+
+Version 2.0 was the step of going to sound-null safety and Dart 2.0. Test coverage also reached 99.78%. Feature wise it did not bring anyhing new, but it was a needed and significant chore update.
+
+<Tweet id="1371358515286147072" cards />
+
 
 ## Version 3 
 _June 26, 2021_
 
-Version 3 was the first release with a Tweet thread summary. It was also the first major release after the null-safety upgrade that came with version 2.0 a bit earlier, March 15, 2021. The only breaking change was removing `accentColor`, that was getting deprecated in Flutter SDK.
+Version 3 was the first release with a real Tweet thread summary. It was also the first major release after the null-safety upgrade. The only breaking change was removing `accentColor`, that was getting deprecated in Flutter SDK.
 
-[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v3-tweet.jpg" width="400"/>](https://twitter.com/RydMike/status/1408863960514895873)
-
-Version 3 also added four new color schemes **Bahama and trinidad**, **Mallard and valencia**, **Espresso and crema** and **Outer space stage**. A minor new feature allowing swapping primary and secondary colors in a scheme with a quick setting was also added.
+Version 3 also added four new built-in color themes, **Bahama and trinidad**, **Mallard and valencia**, **Espresso and crema** and **Outer space stage**, increasing the total number of color themes from 28 to 32. A minor new feature allowing swapping primary and secondary colors in a scheme with a quick setting, was also added.
 
 <Tweet id="1408863960514895873" cards />
 
-## Version 4.0.0
+## Version 4
 _November 14, 2021_
+
+In version 4, the feature to opt-in on using opinionated component theming was first introduced. It offered the first take on what is still available as a very opinionated optional style for Material-2. To make it look, and to a degree emulate coming Material-3 design. The release was a major step forward in features. It only had a few minor style breaking changes. APIs were actually unbroken, but the minor breakage in a few past theme styles and major new feature warranted and new major release bump. 
 
 <Tweet id="1459984929631215618" cards />
 
-## Version 4.1.1
+### Version 4.1
 _November 20, 2021_
+
+Version 4.1 release was when **Example 5** in the tutorial, started to take off and evolve into the **Themes Playground**. It got its feature that enables it to generate API config code, that can be copied and used to re-use the configured theme in an app. 
 
 <Tweet id="1461961956164874241" cards />
 
-## Version 4.2.0
+### Version 4.2
 _January 24, 2022_
+
+In version 4.2, support for Flutter 2.8 was added. The release required using minimum Flutter 2.8.0 and Dart 2.15. FlexColorScheme also received its [Flutter Favorite](https://docs.flutter.dev/packages-and-plugins/favorites) status in conjunction with [Flutter 2.8 release on December 9, 2021](https://medium.com/flutter/whats-new-in-flutter-2-8-d085b763d181). 
+
+This release is also one where it first became necessary to start limiting new FlexColorScheme releases Flutter backwards compatibility, to latest releases. This is simply due to constant additions and changes in theming properties offered and changed in the Flutter SDK. This mode is still going on today with new Material3 features being added, and ThemeData color properties constantly being deprecated. 
+
+Version 4.2 also added many new features, one of them being changing `ColorScheme` color mappings on component theme level. It also added support for the first real Material-3 style component, the `NavigationBar`.
 
 <Tweet id="1485684767249125378" cards />
 
-## Version 5.0.0
+## Version 5
 _April 21, 2022_
+
+This major release got four new built-in color schemes, for a total of 40 matched light and dark pairs. The release was also one of the biggest new feature additions made in a single major release. It was style wise also a big breaking change, since all the built-in produced ColorSchemes the themes used were revised to follow the new Flutter 2.10.0 Material-3 based ColorScheme. Seed generated ColorScheme using more than one seed color and custom chroma config limits were also introduced.
+
+This version also included the launch of the documentation web-site that you are reading now.
 
 <Tweet id="1517005624814493696" cards />
 
-The actual meat and info about the version was tweeted already during its dev release. The dev release thread is valid also for the final 5.0.0 release.
+The actual meat and info about version 5 was tweeted already a week earlier, in its 5.0.0-dev1 release. The dev or beta release thread is valid also for the final 5.0.0 released features. It presents all the new features with much detail in 24 tweeted slides.
 
-_March 14, 2022_
+Version 5 is also where the **Themes Playground** started getting its current form and many of the features it has today.
 
 <Tweet id="1503224831122321409" cards />
 
-## M3 ColorScheme Guide
+## ColorScheme Guide
 _April 24, 2022_
 
-This is an extensive guide to how the ColorScheme and Color System works in Material 3 in Flutter.
+Slightly after the version 5 release, a tweet slide deck with 15 slides was released. It is an extensive guide to how the new Material-3 ColorScheme and color system work in Material-3 and Flutter.
 
 <Tweet id="1518201439780282370" cards/>
 
-## Version 6.1 
+## Version 6
+_August 31, 2022_
+
+There seems to be no Tweet thread on version 6.0, but there is one for version 6.1.
+
+### Version 6.1 
 _November 20, 2022_
 
 There seems to be no thread on version 6.0, but there is one for version 6.1.
 
 <Tweet id="1594165376102944768" cards />
 
-## Version 7.0 
+## Version 7
 _April 2, 2023_
 
 <Tweet id="1642621032744775682" cards />
 
 
-## Version 7.1 
+### Version 7.1 
 _May 12, 2023_
 
 <Tweet id="1656877908038766593" cards />
