@@ -129,7 +129,7 @@ See issue [#111828](https://github.com/flutter/flutter/issues/111828).
 
 ### Chips theming limitation issues
 <Error>Applies to Flutter 3.10 and earlier.</Error>
-<Info>In master [PR #128584](https://github.com/flutter/flutter/pull/128584) closed the reported issue for this. However it probably does not solve the issue of not being able to theme variant chips independently of each other. Probably need to report the issue again with a new and more clear report of the issue. Previous report contained two issues.</Info>
+<Info>In master [PR #128584](https://github.com/flutter/flutter/pull/128584) closed the reported issue for this. However, it probably does not solve the issue of not being able to theme variant chips independently of each other. Probably need to report the issue again with a new and more clear report of the issue. Previous report contained two issues.</Info>
 
 Cannot make themed **Selected** and **disabled** `ChoiceChip`, `FilterChip` and `InputChip` follow M3 spec by using theming, see issue [#115827](https://github.com/flutter/flutter/issues/115827).
 
@@ -232,7 +232,9 @@ The `AppBar`'s foreground theme color, from theme or widget foreground color pro
 
 ## Fixed in Stable
 
-The issues below have a fix that has **landed in the latest stable hotfix or earlier** version of Flutter. This list is included here since it also shows when past issues apply, if you use another version of Flutter then the latest stable version, with its latest hotfix applied. 
+The issues below have a fix that has **landed in the latest stable hotfix or earlier** version of Flutter.
+This list is included to shows what older versions of Flutter, past theming fixes do not apply to.
+Prefer using latest stable version of Flutter to get all fixes listed below.
 
 
 ### DropdownMenu's menu overlay size issue
@@ -353,7 +355,7 @@ The above workaround was needed because the Playground app has toggles that swit
 Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are ignored when `useMaterial3` is true. This was not seen in Flutter stable 3.0.5, but is now in 3.3.0. See issue[#107305](https://github.com/flutter/flutter/issues/107305), that was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) in master. The fix did not land in Flutter 3.3.0, as mentioned in issue [#110878](https://github.com/flutter/flutter/issues/110878) it regressed into stable 3.3 release, even though it was fixed in master 28 days before stable 3.3 release.
 
 
-### Elevation issues when opting in on useMaterial3
+### Elevation issues when opting in on M3
 <Success>Fixed in Flutter 3.7.</Success>
 <Error>Applies to Flutter 3.3 and earlier.</Error>
 
