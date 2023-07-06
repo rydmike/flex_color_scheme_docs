@@ -14,7 +14,7 @@ Summary of reported amount Flutter theming issues, that impact or have impacted 
 | Status               | Amount    |
 |----------------------|-----------|
 | No fix               | 21 issues |
-| Fixed in Master/Beta | 7 issues  |
+| Fixed in Master/Beta | 8 issues  |
 | Fixed in stable      | 19 issues |
 
 _Last status review July 6, 2023_
@@ -165,6 +165,12 @@ The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mis
 When the primary color of the theme requires dark contrast color, the `primaryTextTheme` gets the wrong contrast color in dark mode. See issue [#118146](https://github.com/flutter/flutter/issues/118146) for more information. FlexColorScheme has always included a theme fix for this issue. It is thus a none issue in FCS. The issue is included here as information and for tracking purposes.
 
 
+### Slider and RangeSlider issues
+<Error>Applies to Flutter 3.10 and earlier.</Error>
+
+The `Slider` and `RangeSlider` components have a large number of known issues. They are however, typically not related to theming. Only a few are, like e.g. `RangeSlider` not having M3 style value indicator. For more information, see umbrella issue [#125329](https://github.com/flutter/flutter/issues/125329).
+
+
 ### Elevation overlay color limitation in M2 dark mode
 <Warning>Applies to Flutter 3.10 and earlier.</Warning>
 
@@ -178,6 +184,16 @@ This limitation in Material-2 will likely **never be fixed in Flutter**. It is d
 ## Fixed in Master or Beta
 
 Issues below have a fix that has been **merged** in the latest Flutter master channel, some may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in latest beta, it will typically also land in next stable version of Flutter when a new stable version is release. Typically don't expect to see fixes below arriving as hotfixes to the main stable channel. 
+
+
+### NavigationDrawer selected item has wrong icon color
+<Error>Applies to Flutter stable 3.10.</Error>
+<Success>Has fix [PR #129625](https://github.com/flutter/flutter/pull/129625) in master, but not yet in stable 3.10.</Success>
+
+The default color of the icon on a selected item in `NavigationDrawer` does not follow Material3 spec.
+Based on [published spec](https://m3.material.io/components/navigation-drawer/specs) the color should 
+in Flutter be `ColorScheme.onSecondaryContainer`. For more information, see issue [#129572](https://github.com/flutter/flutter/issues/129572).
+
 
 ### SearchBar InputDecorator issue
 <Error>Applies to Flutter stable 3.10.</Error>
