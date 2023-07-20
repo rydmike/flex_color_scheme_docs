@@ -2,6 +2,28 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
+## Version 7.2
+
+**July 20, 2023**
+
+FlexColorScheme v7.2 has been released. It contains many new features, like:
+
+- Visual density setting, with platform adaptive features.
+- Platform adaptive splash ink effects, keep Android's default Material splash effects on Android, but use instant splash on other platforms.
+- Platform adaptive theming of dialog border radius.
+- Switch with fixed thumb size in Material-3 mode.
+- Text selection theme customization.
+- Two new cool **ColorScheme** seed generation strategies called **Candy Pop** and **Chroma**.
+- Make any seed strategy use tone 100 (white) or tone 0 (black) as resulting surface and background tones.
+
+**Themes Playground**
+
+The Themes Playground continues to move forward. Its different theming topic panels have been broken down into smaller topics. Their order have been revised and related topics have received group-based color coded icons. This should make it easier to navigate around all the topics and available options. The icon colors are fixed semantic colors, but the colors are Material-3 harmonized to active theme surface tint color. This makes them fit nicely when the overall color theme of the app changes. It is also a nice additional demo of theme extensions, with many colors that are harmonized to the theme. The concept is the same as the one used on the code highlighter colors earlier.
+
+The Playground also continues improving its in-app documentation and offers more info and documentation that can be expanded via the (i) info icon on each setting and topics. Naturally, there is support in the Themes Playground for using all the above new FlexColorScheme features. New is also settings to use previously existing APIs to define own border radius on DatePicker and TimePicker dialogs. Useful in case you want them to be different from the general dialog border radius. By default, the TimePicker and DatePicker dialogs use the same border radius as the general dialog radius uses.
+
+Read more about what else is new, fixed and changed in the detailed FlexColorScheme 7.2 [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
+
 ## Version 7.1
 
 **May 12, 2023**
@@ -91,9 +113,9 @@ Some widgets have gaps in their theming capabilities or plain bugs that made it 
 
 Version 7 includes component theming support for new Material 3 design widgets in Flutter 3.7, and improved styling and settings for most Material UI widgets. They typically match Material-3 default style, when opting in on Material-3 and using sub-themes in FlexColorScheme. Some widgets had their own styles in Material 3 mode, already in previous versions of FlexColorScheme. Those styles were established long before Material-3 was available or very useful in Flutter. For these widgets, it was opted to not break their past default style when opting in on Material-3 and sub-themes. However, for the concerned widgets, `TextField` (`InputDecorator`), `NavigationBar` and `NavigationRail`, the **Themes Playground** offers a **Set to M3** button that configures them to match their Material-3 defaults as well, if so desired.
 
-The new filled `FilledButton` and tonal `FilledButton.tonal` buttons are now available. The theming capabilities of these new buttons are a bit limited. Theming their colors, changes the colors of both buttons, and you thus no longer get two different button styles. This is a [limitation](https://github.com/flutter/flutter/issues/115827) in current version of Flutter. The situation may be improved in later Flutter versions. It is recommended to keep their colors as they are by default. Changing other parts of their theme in sync, like e.g. border radius is often desired, this works and is still usable. Together with **Elevated**, **Outlined** and **Text** buttons, you now get a very complete set of buttons out-of-the-box, using most of the common colors in the theme's color scheme.
+The new filled `FilledButton` and tonal `FilledButton.tonal` buttons are now available. The theming capabilities of these new buttons are a bit limited. Theming their colors, changes the colors of both buttons, and you thus no longer get two different button styles. This is a [limitation](https://github.com/flutter/flutter/issues/115827) in current version of Flutter. The situation may be improved in later Flutter versions. It is recommended to keep their colors as they are by default. Changing other parts of their theme in sync, like e.g. border radius is often desired, this works and is still usable. Together with **Elevated**, **Outlined** and **Text** buttons, you now get a very complete button set out-of-the-box, using most of the common colors in the theme's color scheme.
 
-The new menus in Flutter 3.7 are a great additions to Flutter's component portfolio. The same underlying component is used for the menu in `DropDownMenu`, `MenuBar` and `MenuAnchor`. The `DropDownMenu` is a very capable dropdown menu, now available in Flutter SDK out-of-the box. The `MenuBar` is great for desktop apps. It supports nested menus and keyboard shortcuts deep into the nested menus. The `MenuAnchor` is like one menu from a `MenuBar`, that you can attach to any widget. A common use case is e.g. right- or control-click, based context menus. For the new menus, FlexColorScheme offers extensive theming customizations. There are still some styling limitations due to a few lacking features and bugs in Flutter, but a lot can be done to customize them already now. 
+The new menus in Flutter 3.7 are great additions to Flutter's component portfolio. The same underlying component is used for the menu in `DropDownMenu`, `MenuBar` and `MenuAnchor`. The `DropDownMenu` is a very capable dropdown menu, now available in Flutter SDK out-of-the box. The `MenuBar` is great for desktop apps. It supports nested menus and keyboard shortcuts deep into the nested menus. The `MenuAnchor` is like one menu from a `MenuBar`, that you can attach to any widget. A common use case is right- or control-click, based context menus. For the new menus, FlexColorScheme offers extensive theming customizations. There are still some styling limitations due to a few lacking features and bugs in Flutter, but a lot can be done to customize them already now. 
 
 The `DropdownMenu` has a `TextField` input part, it follows the general `TextField` input decoration you define in FlexColorScheme. In version 7, there are more quick config options available for the `TextField` and its `InputDecoratior`. Another neat synergy with menus is that for the menu options in the `MenuBar` and its menu options, the same `ButtonStyleButton` that the normal Material buttons use, is used as their building block. If you are familiar with raw custom theming of the `ButtonStyleButton` Material buttons, with their complex but versatile `MaterialState`, you already know how to theme or style the menu selection options. 
 
@@ -107,11 +129,11 @@ Version 7 of the **Themes Playground** has many new and exciting features, its c
 1. **Theme preview**: Use this feature to see how your design looks on a few built-in example applications. You can try them on different devices. One of the built-in preview example apps is the official Material-3 demo app from the Flutter team. When you change your theme design, the demo apps are modified according as well.
 
 
-2. **New layouts**: The page view is now more useful. You can choose which two panels you want to see side-by-side. Great for checking how a setting impacts things in API code, or on colors, or how settings change the design of the demo apps in **Theme preview**. There is also a more **compact** layout and toggling the theme color selector to be on the side, instead of on top. These new layouts are great for smaller desktops, so you can see more of things that matters. Useful if you are not using a 4k monitor at native resolution.
+2. **New layouts**: The page view is now more useful. You can choose which two panels you want to see side-by-side. Great for checking how a setting impacts things in API code, or on colors, or how settings change the design of the demo apps in **Theme preview**. There is also a more **compact** layout and toggling the theme color selector to be on the side, instead of on top. These new layouts are great for smaller desktops, so you can see more of things that matter. Useful if you are not using a 4k monitor at native resolution.
 
 
 
-3. **Premade designs**: Use them to learn what FlexColorScheme can do, or as starting points for your own theme designs. The premade designs do not change the used color scheme. They only change widget designs, like which colors from the color scheme they use, their border radius, adaptive feature usage, is seeded scheme used or not, etc. Try them to see how theming can completely change how an app looks. The **Theme preview** feature is great to set as a side view when selecting premade designs, to see what happens to their design as you toggle between premade configurations. As always, the **Themes Playground** app itself also reacts to all theming config changes applied by selected premade designs, plus the generated API code to use it, is also updated. 
+3. **Premade designs**: Use them to learn what FlexColorScheme can do, or as starting points for your own theme designs. The premade designs do not change the used color scheme. They only change widget designs, like which colors from the color scheme they use, their border radius, adaptive feature usage, is a seeded color scheme used or not, etc. Try them to see how theming can completely change how an app looks. The **Theme preview** feature is great to set as a side view when selecting premade designs, to see what happens to their design as you toggle between premade configurations. As always, the **Themes Playground** app itself also reacts to all theming config changes applied by selected premade designs, plus the generated API code to use it, is also updated. 
  
 
 **Links to V7 Web App Builds**
@@ -129,9 +151,9 @@ The tutorial and example apps built and using FlexColorScheme v7 can be found he
 
 **FlexColorScheme** version 6.1.0 contains many new features, more component sub-themes and configurable properties. It improves seed-generated color scheme capabilities by adding more pre-configured seed generation configurations and color contrast accessibility options.
 
-A criticism of Material 3's color system and seed-generated color schemes, is that using colored contrasting colors may be less accessible. FlexColorScheme offers a way to enable in-app modification of its M3-style seed-generated color schemes. Any seed generation configuration can optionally return results with plain white and black contrasting on colors. This can be applied separately for main on colors and surface on colors.
+A criticism of Material 3's color system and seed-generated color schemes, is that using colored contrasting colors may be less accessible. FlexColorScheme offers a way to enable in-app modification of its M3-style seed-generated color schemes. Any seed generation configuration can optionally return results with plain white and black contrasting on colors. This can be applied separately for main on-colors and surface on-colors.
 
-The **Themes Playground** application, has been updated to include most of the new features. It has been improved to make it easier to discover some of its previously existing features, like using custom colors in the Playground to define your own theme.
+The **Themes Playground** application has been updated to include most of the new features. It has been improved to make it easier to discover some of its previously existing features, like using custom colors in the Playground to define your own theme.
 
 Some minor style changes exist when opting in on opinionated component sub-themes, they bring the Material 2 mode component themes closer in alignment with Material 3 styles. For a detailed list of changes, please refer to the [package changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
@@ -222,9 +244,9 @@ Updated to support latest Flutter package dependencies in example apps. Supports
 
 * Default colors of `NavigationBar` when opting in on `useMaterial3` and not using opinionated component themes will now match M3 default colors. The background color will follow M3 style also by default when component themes are enabled and `useMaterial3` is true. This style is difficult to replicate with a single color otherwise. The difference is subtle for FCS surface tinted background colors. You can still set it to `background` color to replicate past FCS default color when sub-themes were enabled. For other properties, if opinionated component themes are not used, FCS will use default M3 theme styles on `NavigationBar` when `useMaterial3` is true. If opting in on opinionated component themes, FCS uses its own custom and opinionated default style. This can be modified to be the same as the default M3 style too. The change also includes a default font size change for FCS opinionated styled navigation bar, from 11 dp to 12 dp. This change was done to harmonize it with its M3 style.
 
-* Default colors of `NavigationRail` when opting in on `useMaterial3` and not using opinionated component themes will now match M3 default colors. If opinionated component themes are not used, FCS will use default M3 theme styles on `NavigationRail` when `useMaterial3` is true. If opting in on opinionated component themes, FCS uses its own custom and opinionated default style. That can be modified to be the same as the default M3 style too. The change also includes a default font size change for FCS opinionated styled rail, from 14dp to 12dp.  This change was done to harmonize it with its M3 style.
+* Default colors of `NavigationRail` when opting in on `useMaterial3` and not using opinionated component themes will now match M3 default colors. If opinionated component themes are not used, FCS will use default M3 theme styles on `NavigationRail` when `useMaterial3` is true. If opting in on opinionated component themes, FCS uses its own custom and opinionated default style. That can be modified to be the same as the default M3 style too. The change also includes a default font size change for FCS opinionated styled rail, from 14 dp to 12 dp.  This change was done to harmonize it with its M3 style.
 
-* Default color of toggles (`Switch`, `Checkbox` and `Radio`) are now using `primary` color as their default theme color, when opting in on opinionated component themes or setting `ThemeData.useMaterial3` to true. The `Switch`, `Checkbox` and `Radio` themes then use a style that match the M3 color design intent. In it, switches and toggles are mostly primary color based. In M3 color design, the secondary color is a poor choice for switches and toggles, and it is therefore not used as their default color. It does not look nice with M3-based ColorSchemes, created e.g. using M3 color seeding. If you use a custom M3 color design, where secondary color is still prominent, you can, of course, still use it.
+* Default color of toggles (`Switch`, `Checkbox` and `Radio`) are now using `primary` color as their default theme color, when opting in on opinionated component themes or setting `ThemeData.useMaterial3` to true. The `Switch`, `Checkbox` and `Radio` themes then use a style that match the M3 color design intent. In it, switches and toggles use primary color. In M3 color design, the secondary color is a poor choice for switches and toggles, and it is therefore not used as their default color. It does not look nice with M3-based ColorSchemes, created by e.g., using M3 color seeding. If you use a custom M3 color design, where secondary color is still prominent, you can, of course, still use it.
 
 ## Version 5.0
 
@@ -234,7 +256,7 @@ Version 5 has many new advanced coloring features and fully supports Material 3 
 
 The open source companion app, the [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v5) has been completely revised. It now has two view modes, the previous large masonry grid and also a convenient topic-based page view. In the new version, you can also see the generated theme setup code as you change your theming settings.
 
-This is a **breaking** release, with many new Material 3 ColorScheme features. See [change log](https://pub.dev/packages/flex_color_scheme/versions/5.0.0/changelog) for detailed change information. 
+This is a **breaking** release, with many new Material-3 ColorScheme features. See [change log](https://pub.dev/packages/flex_color_scheme/versions/5.0.0/changelog) for detailed change information. 
 
 The example apps have all been updated. New live web builds for v5 are available here:
 
@@ -257,12 +279,12 @@ The slides in the tweet thread is using the Themes Playground app from the 5.0.0
 
 **New Themes in Version 5**
 
-There are, of course, new built-in color schemes in version 5. Four new themes, are the de-facto standard for major new releases. The new color schemes are:
+There are, of course, new built-in color schemes in version 5. Four new themes are a de-facto standard for major new releases. The new color schemes are:
 
-* **Flutter Dash**, a blue Flutter Dash wallpaper based Material 3 theme.
-* **M3 baseline**, Material guide 3 baseline based theme.
-* **Verdun green** and mineral green with hemlock, based Material 3 theme.
-* **Dell genoa green**, a Material 3 theme with dell, axolotl and genoa greens.
+* **Flutter Dash**, a blue Flutter Dash wallpaper-based Material-3 theme.
+* **M3 baseline**, Material-3 guide baseline-based theme.
+* **Verdun green** and mineral green with hemlock, based Material-3 theme.
+* **Dell genoa green**, a Material-3 theme with dell, axolotl and genoa greens.
 
 <table>
   <tr>

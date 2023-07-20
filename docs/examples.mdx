@@ -109,7 +109,7 @@ If you want to take a quick look at all these tutorial example applications, you
 
 ### 1) Basic Theme
 
-[**Example 1**](https://rydmike.com/flexcolorscheme/basictheme-v7-1) represents the simplest use case. To use one of the built-in color schemes as your application theme. You can toggle between its light and dark variant, or allow device system theme mode setting to control if the dark or light theme is used.
+[**Example 1**](https://rydmike.com/flexcolorscheme/basictheme-v7-2) represents the simplest use case. To use one of the built-in color schemes as your application theme. You can toggle between its light and dark variant, or allow device system theme mode setting to control if the dark or light theme is used.
 
 <table>
   <tr>
@@ -133,7 +133,7 @@ If you want to take a quick look at all these tutorial example applications, you
 
 ### 2) Custom Theme
 
-[**Example 2**](https://rydmike.com/flexcolorscheme/customtheme-v7-1) is like example 1, but we use custom colors to make a custom color scheme and turn it into a theme. The architecture is also more advanced. It uses the approach introduced with the Flutter skeleton template, using a theme service and theme controller. Here we keep settings only in memory, using the in memory `ThemeServiceMem` theme service.
+[**Example 2**](https://rydmike.com/flexcolorscheme/customtheme-v7-2) is like example 1, but we use custom colors to make a custom color scheme and turn it into a theme. The architecture is also more advanced. It uses the approach introduced with the Flutter skeleton template, using a theme service and theme controller. Here we keep settings only in memory, using the in memory `ThemeServiceMem` theme service.
 
 <table>
   <tr>
@@ -157,7 +157,7 @@ If you want to take a quick look at all these tutorial example applications, you
 
 ### 3) Four Themes
 
-[**In example 3**](https://rydmike.com/flexcolorscheme/fourthemes-v7-1) we can toggle the active theme between 3 different predefined color schemes, plus the custom one we defined in example 2. We can also opt in and out of using FlexColorScheme's opinionated component sub-theming.
+[**In example 3**](https://rydmike.com/flexcolorscheme/fourthemes-v7-2) we can toggle the active theme between 3 different predefined color schemes, plus the custom one we defined in example 2. We can also opt in and out of using FlexColorScheme's opinionated component sub-theming.
 
 All the settings are persisted locally, using a theme service called `ThemeServicePrefs`. This service uses the package [SharedPreferences](https://pub.dev/packages/shared_preferences) to persist the theme settings locally as they are modified.
 
@@ -182,7 +182,7 @@ All the settings are persisted locally, using a theme service called `ThemeServi
 
 ### 4) All Themes
 
-[**In example 4**](https://rydmike.com/flexcolorscheme/allthemes-v7-1), we can select any of the different built-in color schemes plus three custom ones and use them as the application theme. In this example we persist the theme settings using a theme service called `ThemeServiceHive`. It persists the settings locally using a package called [Hive](https://pub.dev/packages/hive).
+[**In example 4**](https://rydmike.com/flexcolorscheme/allthemes-v7-2), we can select any of the different built-in color schemes plus three custom ones and use them as the application theme. In this example we persist the theme settings using a theme service called `ThemeServiceHive`. It persists the settings locally using a package called [Hive](https://pub.dev/packages/hive).
 
 <table>
   <tr>
@@ -205,13 +205,13 @@ All the settings are persisted locally, using a theme service called `ThemeServi
 
 ### 5) Themes Playground
 
-[**Example 5**](https://rydmike.com/flexcolorscheme/themesplayground-v7-1) is the last and most complex of the examples. It contains almost all configurations and settings available in FlexColorScheme. You can modify them interactively and the application changes theme as you modify any setting.
+[**Example 5**](https://rydmike.com/flexcolorscheme/themesplayground-v7-2) is the last and most complex of the examples. It contains almost all configurations and settings available in FlexColorScheme. You can modify them interactively and the application changes theme as you modify any setting.
 
 In this example, we also persist the theme settings as you change any value and parameter in the app. This is done using the same theme service `ThemeServiceHive` that was used in example 4. The settings can also be reset back to their default values.
 
 This example is best seen and tested on a tablet, desktop native or desktop web browser, rather than on a phone. The app certainly works well on a phone-sized canvas too. It is using two different **very** responsive designs. It is, however, a bit challenging to get a good overview of all the theming possibilities and their impact on different widgets on a phone, since you see only a few widgets at the same time when you change the theme.
 
-Starting from version 5, the topic-based swipe enabled page view is very nice on phones too, and mostly gets around this issue. When used on a canvas, about the size of a tablet in landscape mode, it can also show any two selected topic pages in a side-by-side view. Combine it with e.g. the code view, to see how the setup and config code changes and updates, as you modify settings. This is quite fascinating and a very convenient way to study the API. New in version 7 is a Theme simulator panel, that can show the active theme applied using a few example embedded applications, that you can view on a number of different devicess.
+Starting from version 5, the topic-based swipe enabled page view is very nice on phones too, and mostly gets around this issue. When used on a canvas, about the size of a tablet in landscape mode, it can also show any two selected topic pages in a side-by-side view. Combine it with e.g., the code view, to see how the setup and config code changes and updates, as you modify settings. This is quite fascinating and a very convenient way to study the API. New in version 7 is a Theme simulator. It can show the active theme applied on example embedded applications, that you can view on a number of different devices.
 
 Originally, this application was supposed to be only a slightly more complex example than example 4. However, it has since then grown into a complete companion application for FlexColorScheme.
 
@@ -242,7 +242,7 @@ There is a separate chapter with more info and a guide on [how to use the Themes
 
 A stand-alone public project, called **ThemeDemo** shows how to use [**FlexColorScheme V7**](https://pub.dev/packages/flex_color_scheme) together with [**Riverpod V2**](https://pub.dev/packages/flutter_riverpod) to dynamically change the application theme. 
 
-It uses Riverpod providers to watch light `theme` and `darkTheme` changes in a [`MaterialApp`](https://api.flutter.dev/flutter/material/MaterialApp-class.html), and to change the used [`themeMode`](https://api.flutter.dev/flutter/material/MaterialApp/themeMode.html). All theme settings are persisted locally as they are modified. The used local settings persistence implementation can be changed dynamically while the app iss running, using the application's user interface.
+It uses Riverpod providers to watch light `theme` and `darkTheme` changes in a [`MaterialApp`](https://api.flutter.dev/flutter/material/MaterialApp-class.html), and to change the used [`themeMode`](https://api.flutter.dev/flutter/material/MaterialApp/themeMode.html). All theme settings are persisted locally as they are modified. The used local settings persistence implementation can be changed dynamically while the app is running, using the application's user interface.
 
 This demo is available in its own [repo here](https://github.com/rydmike/theme_demo). To guide you, it has an extensive article like readme file, that you can also find and read in this [blog post](https://rydmike.com/blog_theme_demo). You can try a live WEB version of the application here [**www.rydmike/themedemo**](https://rydmike.com/themedemo). As an app it is not very useful, but it demonstrates many interesting concepts and possibilities.
 

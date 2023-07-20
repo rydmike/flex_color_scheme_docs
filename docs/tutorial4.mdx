@@ -2,9 +2,6 @@
 
 This example shows how you can use all the built-in color schemes, add three custom color schemes to them. How to select which one of these schemes is used to define the application's active theme.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
-
-
 The example also uses primary color blending on background and surface colors. A subpage is available that shows the same theme applied when opening another page, that in Flutter just inherits the same theme.
 
 We can activate an option that uses the selected scheme's colors, as input to generate a ColorScheme computed by the Material 3 ColorScheme generation tools. In example 3, we mentioned it being possible to keep primary, secondary and tertiary colors as defined by their inputs, while other colors are generated. In this example, we do can interactively toggle these settings and observe the differences.
@@ -184,10 +181,10 @@ class DemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Whenever the theme controller notifies the animation listener in the
-    // AnimatedBuilder, the MaterialApp is rebuilt.
-    return AnimatedBuilder(
-      animation: themeController,
+    // Whenever the theme controller notifies the listenable in the
+    // ListenableBuilder, the MaterialApp is rebuilt.
+    return ListenableBuilder(
+      listenable: themeController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -195,6 +192,7 @@ class DemoApp extends StatelessWidget {
           title: 'All Themes',
           // Define the light theme for the app, using current scheme index.
           theme: FlexThemeData.light(
+            useMaterial3: themeController.useMaterial3,
             // We use our list of color schemes, and a theme controller managed
             // index to change the index of used color scheme from the list.
             colors: AppColor.customSchemes[themeController.schemeIndex].light,
@@ -221,9 +219,12 @@ class DemoApp extends StatelessWidget {
             ),
             visualDensity: AppData.visualDensity,
             fontFamily: AppData.font,
+            // We use the nicer Material-3 Typography in both M2 and M3 mode.
+            typography: Typography.material2021(platform: defaultTargetPlatform),
           ),
           // We make an equivalent definition for the dark theme.
           darkTheme: FlexThemeData.dark(
+            useMaterial3: themeController.useMaterial3,
             colors: AppColor.customSchemes[themeController.schemeIndex].dark,
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,
             // We go with a slightly stronger blend in dark mode.
@@ -244,6 +245,7 @@ class DemoApp extends StatelessWidget {
                 : null,
             visualDensity: AppData.visualDensity,
             fontFamily: AppData.font,
+            typography: Typography.material2021(platform: defaultTargetPlatform),
           ),
           // Use the dark or light theme based on controller setting.
           themeMode: themeController.themeMode,
@@ -261,7 +263,7 @@ Below we go through the above theme setup in more detail.
 
 ## Selecting Theme
 
-To select which of the 43 themes in our list that we use as our active theme, becomes as simple as setting the `themeController.schemeIndex` index value, to the color scheme we want to use.
+To select which of the themes in our list that we use as our active theme, becomes as simple as setting the `themeController.schemeIndex` index value, to the color scheme we want to use.
 
 We do this with a simple popup menu button on the `HomePage`. This is a standard Flutter SDK UI widget. You can find how it is set up for this use case [here](https://github.com/rydmike/flex_color_scheme/blob/master/example/lib/example4_all_themes/widgets/theme_popup_menu.dart). It is used in a simple `StatelessWidget` called `ThemePopupMenu` with a current index value and call-back when a value is selected, that we use together with our `ThemeController` on the `HomePage`.
 
@@ -272,7 +274,7 @@ ThemePopupMenu(
 ),
 ```
 
-In the application, you can use the pop-up menu available in the ListTile, to change the active theme. You can choose any of the built-in 40 color schemes, plus the three custom color schemes we added.
+In the application, you can use the pop-up menu available in the ListTile, to change the active theme. You can choose any of the built-in 52 color schemes, plus the three custom color schemes we added.
 
 When you change the theme, you will notice that the active theme color changes are animated by interpolating from the active theme colors, to the new theme colors. This is a very nice standard feature when you modify the theme used by a Flutter Material application. As mentioned earlier in the second example and tutorial, the usage of the `AnimatedBuilder` has nothing to do with this.
 

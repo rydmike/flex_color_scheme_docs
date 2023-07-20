@@ -2,7 +2,7 @@
 
 In this chapter we compare different ways to define and create a `ThemeData` object and look at the differences we get in effective colors in the theme. We examine 13 different ways, or roads to make a `ThemeData` object.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
+<Info>This chapter has not yet been updated to fully cover some minor chnages brought by Flutter 3.10 when using Material-3. When it has been updated, this notice will be removed.</Info>
 
 #### ColorSwatch based
 1. **a.** ThemeData.**light/dark**, and **b.** ThemeData(brightness: Brightness.**light/dark**)
@@ -32,7 +32,7 @@ Recommendations on what to use and why is also be given.
 
 To make it interesting, we will use a `ColorScheme` very similar to the **M3 Guide Baseline** as input for a fully qualified `ColorScheme`. We use the `FlexColorScheme` input version of it. It has less colorful onColors. When we use a seeded ColorScheme based on it, we will get the more colorful onColors as specified and used in the M3 guide. 
 
-This ColorScheme is useful for this study, because when we use its `primary` color as seed color, the M3 algorithm produces the same `ColorScheme` as the Material 3 guide's specified version of this ColorScheme. This happens because the colors used in the guide design for the M3 Baseline `ColorScheme`, have been produced using the same input Color and same algorithm. This helps us spot differences in the result, since we will not be focused on the color generation differences, but rather on where the colors end up in the produced `ThemeData`.
+This ColorScheme is useful for this study, because when we use its `primary` color as seed color, the M3 algorithm produces the same `ColorScheme` as the Material-3 guide's specified version of this ColorScheme. This happens because the colors used in the guide design for the M3 Baseline `ColorScheme`, have been produced using the same input Color and same algorithm. This helps us spot differences in the result, since we will not be focused on the color generation differences, but rather on where the colors end up in the produced `ThemeData`.
 
 For reference, here is the used M3 baseline light theme mode `ColorScheme` without M3's colorful onColors.
 

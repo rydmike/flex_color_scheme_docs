@@ -1,8 +1,6 @@
 # Tutorial
 
-In this tutorial we go through all the bundled examples and explain main used `FlexColorScheme` features in each example. It starts simple, with increasing complexity and ends with the complete [**Themes Playground V7**](https://rydmike.com/flexcolorscheme/themesplayground-v7-1) app included as [tutorial example 5](/tutorial5).
-
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
+In this tutorial we go through all the bundled examples and explain main used `FlexColorScheme` features in each example. It starts simple, with increasing complexity and ends with the complete [**Themes Playground V7**](https://rydmike.com/flexcolorscheme/themesplayground-v7-2) app included as [tutorial example 5](/tutorial5).
 
 The key part, for each example, is always in the used `MaterialApp`, where the `FlexColorScheme` setup for the light and dark themes are made. The rest of the content in the examples is mainly there to make a visual presentation of the resulting theme from the used theme settings, and to allow you to control all settings interactively.
 
@@ -18,15 +16,17 @@ Only code highlights might be shown below. The complete code of this example can
 void main() => runApp(const DemoApp());
 
 class DemoApp extends StatefulWidget {
-  const DemoApp({Key? key}) : super(key: key);
+  const DemoApp({super.key});
 
   @override
-  _DemoAppState createState() => _DemoAppState();
+  State<DemoApp> createState() => _DemoAppState();
 }
 
 class _DemoAppState extends State<DemoApp> {
   // Used to select if we use the dark or light theme, start with system mode.
   ThemeMode themeMode = ThemeMode.system;
+  // Opt in/out on Material 3
+  bool useMaterial3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +42,18 @@ class _DemoAppState extends State<DemoApp> {
         scheme: usedScheme,
         // Use very subtly themed app bar elevation in light mode.
         appBarElevation: 0.5,
+        useMaterial3: useMaterial3,
+        // We use the nicer Material-3 Typography in both M2 and M3 mode.
+        typography: Typography.material2021(platform: defaultTargetPlatform),
       ),
       // Same definition for the dark theme, but using FlexThemeData.dark().
       darkTheme: FlexThemeData.dark(
         scheme: usedScheme,
         // Use a bit more themed elevated app bar in dark mode.
         appBarElevation: 2,
+        useMaterial3: useMaterial3,
+        // We use the nicer Material-3 Typography in both M2 and M3 mode.
+        typography: Typography.material2021(platform: defaultTargetPlatform),
       ),
       // Use the above dark or light theme based on active themeMode.
       themeMode: themeMode,
@@ -60,6 +66,13 @@ class _DemoAppState extends State<DemoApp> {
             themeMode = mode;
           });
         },
+        useMaterial3: useMaterial3,
+        // On the home page we can toggle theme Material 2/3 mode.
+        onUseMaterial3Changed: (bool material3) {
+          setState(() {
+            useMaterial3 = material3;
+          });
+        },
         flexSchemeData: FlexColor.schemes[usedScheme]!,
       ),
     );
@@ -69,7 +82,7 @@ class _DemoAppState extends State<DemoApp> {
 
 To the `HomePage` we pass in the current value of the `themeMode` and use a simple callback to get back its changed value. We then use it to update `themeMode` in a standard `setState` to make the app rebuild using the new value. We also pass in the `FlexSchemeData` for the `usedScheme` we selected as our custom theme to the `HomePage`. Not really needed, but we use it on the home page to show the active theme's name, description and colors in a theme mode switch.
 
-The key part to notice above is that `FlexThemeData.light` and `FlexThemeData.dark` return a standard Flutter `ThemeData` object to your application's `MaterialApp` `theme` and `darkTheme` properties. The `ThemeData` content returned is however highly refined, can be extensively and quickly customized using a simple API, that creates very elaborate `ThemeData` objects.
+The key part to notice above is that `FlexThemeData.light` and `FlexThemeData.dark` return a standard Flutter `ThemeData` object to your application's `MaterialApp` `theme` and `darkTheme` properties. The `ThemeData` content returned is however highly refined, can be customized using a simple API, that creates very elaborate `ThemeData` objects.
 
 This also puts limits on what `FlexColorScheme` can do, it can only modify your application's theme in ways that is supported by Flutter's `ThemeData`. This can also be reassuring, since you can be sure that all it does is help you define a fancy `ThemeData` object for your application, and that everything it does, you can do directly with `ThemeData` too, it might just be very verbose and time-consuming to do so.
 
@@ -107,4 +120,4 @@ When you build and run **example 1**, you get an application that looks like thi
   </tr>
  </table>
 
-Scroll down in the app to see the theme showcase further below. It presents the theme with common Material UI widgets. You can try this example as a Flutter web app [here](https://rydmike.com/flexcolorscheme/basictheme-v7-1).
+Scroll down in the app to see the theme showcase further below. It presents the theme with common Material UI widgets. You can try this example as a Flutter web app [here](https://rydmike.com/flexcolorscheme/basictheme-v7-2).

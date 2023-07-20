@@ -2,8 +2,6 @@
 
 This last tutorial is actually the complete **Themes Playground** application. For more info on the Themes Playground application and what it does, please refer to its own [Themes Playground](/playground) chapter in the documentation.
 
-<Info>This chapter has not yet been updated to cover version 7. Read more about version 7 in the [what's new](/whats_new) chapter. The documentation site is still undergoing updates to cover all the new features. When completed, this notice will be removed.</Info>
-
 The same custom color schemes as in example 4 are also used here, please see [example 4](/tutorial4#custom-colors) for more details on their setup.
 
 If you tried the previous examples on an Android device, you might have noticed that the system navigation bar on Android devices does not change. It is not themed to have a matching tinted background, or even a theme mode appropriate one that matches the active application theme as it changes. This example uses Flutter's `AnnotatedRegion`, with a helper called `FlexColorScheme.themedSystemNavigationBar` to make a `SystemUiOverlayStyle`, that adjusts the look of the Android system navigation bar as the theme is modified. You can read more about this in the [API guide's](/api_guide) deep dive into [`themedSystemNavigationBar`](/deep_dives#themed-system-navigation-bar-in-android).
@@ -48,17 +46,16 @@ class PlaygroundApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Whenever the theme controller notifies the animation listener in the
-    // AnimatedBuilder, the MaterialApp is rebuilt.
-    return AnimatedBuilder(
-      animation: controller,
+    // Whenever the theme controller notifies the listenable in the
+    // ListenableBuilder, the MaterialApp is rebuilt.
+    return ListenableBuilder(
+      listenable: controller,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          scrollBehavior: const AppScrollBehavior(),
           title: 'Themes Playground',
           // The Theme controller controls if we use FlexColorScheme made
-          // ThemeData or standard SDK ThemeData.from a ColorScheme. It also
+          // ThemeData or standard SDK ThemeData. It also
           // controls all the configuration parameters used to define the
           // FlexColorScheme object that produces the ThemeData object.
           theme: controller.useFlexColorScheme
@@ -67,15 +64,27 @@ class PlaygroundApp extends StatelessWidget {
           darkTheme: controller.useFlexColorScheme
               ? flexThemeDark(controller)
               : themeDataDark(controller),
-          // Use the dark or light theme based on controller setting.
+          // Use the dark/light theme based on controller setting.
           themeMode: controller.themeMode,
-          // Using SelectionArea here makes text selectable and copy enabled
-          // in entire app. How it actually behaves, depends on current
-          // platform.
-          home: SelectionArea(
+          home: GestureDetector(
+            // This allows us to un-focus a widget, typically a TextField
+            // with focus by tapping somewhere outside it. It is no longer
+            // needed on desktop builds, it is done automatically there for
+            // TextField, but not on tablet and phone app. In this app we
+            // want it on them too and to unfocus other widgets with focus
+            // on desktop too.
+            onTap: () => FocusScope.of(context).unfocus(),
             // Pass the controller to the HomePage where we use it to change
             // the theme settings that will cause themes above to change and
             // rebuild the entire look of the app based on modified theme.
+            //
+            // There are more than 270 properties in the controller that can
+            // be used to control the two light and dark mode themes.
+            // Every time one of them is modified, the themed app is rebuilt
+            // with the new ThemeData applied.
+            // The code that one need to use the same theme is also updated
+            // interactively for each change when the code gen panel is
+            // in view.
             child: HomePage(controller: controller),
           ),
         );
@@ -198,32 +207,56 @@ Normally you would probably only have a few properties offered as possible themi
 
 ## No FlexColorScheme Theme
 
-Let's take a look at what we do for the case when we turn OFF the usage of `FlexColorScheme`. In the [Roads to ThemeData](/theming_roads), we demonstrated the [`ThemeData.from`](/theming_roads#6-tdfrom-colorscheme) a `ColorScheme` option. We use that here too.
+Let's take a look at what we do for the case when we turn OFF the usage of `FlexColorScheme`. In the [Roads to ThemeData](/theming_roads), we demonstrated the [`ThemeData.from`](/theming_roads#6-tdfrom-colorscheme) a `ColorScheme` option. We use what it recommends here too.
 
-What we want to do is to produce `ThemeData` that will use all relevant `ColorScheme` generation selection and settings from the `FlexColorScheme` setup. Use this `ColorScheme` as input with `ThemeData.from` factory, so we can get a Flutter's default `ThemeData` using the identical `ColorScheme`.
+What we want to do is to produce `ThemeData` that will use all relevant `ColorScheme` generation selection and settings from the `FlexColorScheme` setup. Use this `ColorScheme` as input with a `ThemeData.from` "like" factory, so we can get a Flutter's default `ThemeData` using the identical `ColorScheme`.
 
 ```dart
-ThemeData themeDataFromLight(ThemeController controller) {
-  return ThemeData.from(
-    textTheme: ThemeData(
-      brightness: Brightness.light,
-      fontFamily: controller.useAppFont ? AppData.font : null,
-    ).textTheme,
+ThemeData themeDataLight(ThemeController controller) {
+  final ColorScheme colorScheme =
+      flexColorSchemeLight(controller, Colors.black).toScheme;
+
+  return ThemeData(
+    brightness: Brightness.light,
+    fontFamily: controller.useAppFont ? App.font : null,
+    textTheme: controller.useAppFont ? App.textTheme : null,
+    primaryTextTheme: controller.useAppFont ? App.textTheme : null,
     // The ColorScheme we get here is the same one you can also generate
-    // copy/paste code for in the ThemesPlayground UI, and it represents the
+    // Copy/paste code for in the ThemesPlayground UI, and it represent the
     // effective scheme in the Playground app.
-    colorScheme: flexColorSchemeLight(controller).toScheme,
-  ).copyWith(
-    // To our ThemeData we also apply the visual density, typography and
-    // selected platform, that we used in FlexColorScheme created
-    // ThemeData. We do this so created themes will be using the same features.
-    visualDensity: AppData.visualDensity,
-    typography: Typography.material2018(platform: controller.platform),
+    colorScheme: colorScheme,
+    // Use the colorScheme to make a nicer light theme.
+    primaryColor: colorScheme.primary,
+    canvasColor: colorScheme.background,
+    scaffoldBackgroundColor: colorScheme.background,
+    cardColor: colorScheme.surface,
+    dividerColor: colorScheme.outlineVariant,
+    dialogBackgroundColor: colorScheme.background,
+    indicatorColor: colorScheme.onPrimary,
+
+    // To our ThemeData we also apply the visual density, typography, selected
+    // platform and useMaterial3 flag, that we used in FlexColorScheme created
+    // ThemeData. We do this so created theme will be using the same features
+    // in the Playground app
+    visualDensity: controller.usedVisualDensity?.setting(controller.platform) ??
+        VisualDensityEnum.platform.setting(controller.platform),
     platform: controller.platform,
-    // The Flutter SDK new `useMaterial3` flag that is available in the UI,
-    // still does very little in Flutter 2.10, but in future versions we can
-    // use it to see what it changes.
     useMaterial3: controller.useMaterial3,
+    typography: controller.useMaterial3
+        ? Typography.material2021(
+        platform: controller.platform ?? defaultTargetPlatform)
+        : Typography.material2018(
+        platform: controller.platform ?? defaultTargetPlatform),
+    // Add a custom theme extension with light mode code highlight colors and
+    // light mode topic colors.
+    extensions: <ThemeExtension<dynamic>>{
+      CodeTheme.harmonized(colorScheme.surfaceTint, Brightness.light),
+      TopicTheme.harmonized(colorScheme.surfaceTint, Brightness.light),
+    },
+    // This is a fix to avoid the Flutter Drawer width bug and overflow bug
+    // when it animates via zero width in null default to widget default.
+    // See: https://github.com/flutter/flutter/issues/123507
+    drawerTheme: const DrawerThemeData(width: 304),
   );
 }
 ```
@@ -238,7 +271,7 @@ This concludes the review of **FlexColorScheme** using features part of the **Th
 
 At its core, the **Themes Playground** app is just a collection of simple UI controls. The UI controls are used to modify the theme controller values, that are used as inputs to properties in **FlexColorScheme**, that creates our `ThemeData` and the `MaterialApp` is rebuilt every time the applications `ThemeData` is modified.
 
-In case you somehow missed it, you can try the **FlexColorScheme Themes Playground** example as a Flutter web app [here](https://rydmike.com/flexcolorscheme/themesplayground-v7-1).
+In case you somehow missed it, you can try the **FlexColorScheme Themes Playground** example as a Flutter web app [here](https://rydmike.com/flexcolorscheme/themesplayground-v7-2).
 
 You can also build it as a native device app if you like. It is responsive and works great on phones too, both the masonry style grid view and the custom scroll page view work well. The side command menu turns into a rail, and prefers to stay auto hidden as a drawer on phones, but can with the menu button be toggled into a thin rail also in vertical phone layout.
 
@@ -318,7 +351,7 @@ The flag to not notify listeners is used in the `resetAllToDefaults()` function,
 
 Making the above setup for all the properties in the **Themes Playground** was a bit tedious, even if it is simple and mechanical.
 
-You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases, this approach is quite simple and convenient. In this particular case though, well maybe not with this large number of properties. There are **271** individual theming property key-value pairs managed by the same controller. This is a large number of controlled properties, but the setup is simple to make, even if it is quite repetitive.
+You would not normally have this many settings properties in an app that you want to persist locally (or remotely). In those cases, this approach is quite simple and convenient. In this particular case though, well maybe not with this large number of properties. There are **294** individual theming property key-value pairs managed by the same controller. This is a large number of controlled properties, but the setup is simple to make, even if it is quite repetitive.
 
 It works surprisingly well, despite the large number of controller properties, even if the values all share the same listener that rebuilds the app when something changes. This is of course because every property in the controller is of the nature that if we change it, then something in `ThemeData` changed, and we need to rebuild the entire app with the new `ThemeData` anyway.
 
@@ -332,9 +365,9 @@ This was quite simple to accomplish with the `ThemeServiceHive` implementation, 
 
 ## No State Management?
 
-The interactive theme manipulation done in the Themes Playground is very fancy, but the app itself is still quite simple and "smallish". So I thought this case would be suitable to still implement using the simple Flutter skeleton architecture using `ChangeNotifier` and a listenable builder in the form of the `AnimatedBuilder`.
+The interactive theme manipulation done in the Themes Playground is very fancy, but the app itself is still quite simple and "smallish". So I thought this case would be suitable to still implement using the simple Flutter skeleton architecture using `ChangeNotifier` and a listenable builder in the form of the `ListenableBuilder`.
 
-This then avoids the state management debate and there is no need to focus on it in the examples. The usage of the `AnimatedBuilder` is explained a bit more in [tutorial 2 here](/tutorial2#theme-setup).
+This then avoids the state management debate and there is no need to focus on it in the examples. The usage of the `ListenableBuilder` is explained a bit more in [tutorial 2 here](/tutorial2#theme-setup).
 
 Could the **Themes Playground** be made more efficient using Provider, Riverpod, Flutter Bloc, MobX etc.?
 

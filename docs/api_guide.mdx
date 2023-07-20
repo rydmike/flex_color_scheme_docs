@@ -2,8 +2,6 @@
 
 The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough. It should cover most questions you might have. An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
-
 You can create FlexColorScheme based `ThemeData` objects using two different APIs:
 
 1. **FlexThemeData** static extension on `ThemeData`.
@@ -117,6 +115,7 @@ You can also use properties like **inputColors**, **swapColors** and e.g. **useM
     4. Primary + container & Secondary + container
     5. Primary + container & Secondary + container & tertiary colors
     6. Primary + container & Secondary + container & tertiary + container
+    7. Primary + Secondary + Tertiary 
 
   Computed color values are used by the ones being left out, the computed colors are derived from included ones. You can create a theme that uses only different shades and tones derived from the input `primary` color, by setting `inputColors` to 1. **Defaults to 6**, always using all 6 main input colors if they are defined.
 
@@ -287,18 +286,34 @@ There are other predefined `FlexTones` configurations in addition to the default
 See API reference for more details on **FlexTones**:
 
 * Class [**FlexTones**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones-class.html)
+ 
 * Light mode default value factory [**FlexTones.light**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.light.html), default and the same as Flutter SDK M3 setup for a light ColorScheme.
+ 
 * Dark mode default value factory [**FlexTones.dark**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.dark.html), default and same as Flutter SDK M3 setup for a dark ColorScheme.
+ 
 * Material 3 spec tones constructor [**FlexTones.material**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.material.html), default and same as Flutter SDK M3 setup.
+ 
 * Vivid color tones constructor [**FlexTones.vivid**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.vivid.html), more vivid colors, or at least closer in chroma to the used seed key color, as it uses chroma from all key colors as given.
+ 
 * Vivid surfaces tones constructor [**FlexTones.vividSurfaces**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.vividSurfaces.html), like vivid, but with double the chroma in each surface tonal palette.
+ 
 * Vivid background tones constructor [**FlexTones.vividBackground**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.vividBackground.html), like vividSurfaces, but with tone mapping for surface and background color swapped.
+ 
 * Soft tones constructor [**FlexTones.soft**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.soft.html), softer and earthier tones than M3 FlexTones.material.
+ 
 * High contrast tones constructor [**FlexTones.highContrast**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.highContrast.html), can be used for more color-accessible themes. It offers more contrast between colors.
+ 
 * Ultra contrast tones constructor [**FlexTones.ultraContrast**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.ultraContrast.html), a tonal palette extraction setup that results in a very high contrast version of produced ColorsSchemes, it is less colorful and more focused a pure white or pure dark backgrounds and foreground colors.
+ 
 * Jolly tones constructor [**FlexTones.jolly**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.jolly.html), creates a tonal palette extraction setup that results in a more jolly and colorful ColorsSchemes.
+
 * One hue tones constructor [**FlexTones.oneHue**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.oneHue.html), Create a M3 tonal palette tones extraction, but with no hue rotation from primary if no ARGB key color is provided for tertiary palette.
  This setup will if only one seed color is used, produce a more chromatic color set than `FlexTones.material`. Since it does not rotate hue from primary to get hue for tertiary, it will also create a color scheme using tonal palettes that are based on the same hue, but with different chroma. In simple terms, all colors are shades of the provided key color to seed the tonal palettes. We can get a nice one hue toned theme with this configuration.
+
+* [**FlexTones.candyPop**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.candyPop.html) for a high contrast, candy popping theme. It has tone 100, which is white surface and background in light mode and very dark tone 6, dark mode. This FlexTones uses the paletteType extended via [FlexPaletteType.extended](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexPaletteType.html), for additional tone fidelity.
+  
+* [**FlexTones.chroma**]() for a theme where the chroma in each seed color is used as is with any min limitation. Chroma in passed in color can even be zero, producing a greyscale tonal palette as the palette. It has tone 100, which is white surface and background in light mode and very dark tone 6, dark mode. This FlexTones also uses the paletteType extended via [FlexPaletteType.extended](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexPaletteType.html), for additional tone fidelity.
+
 
 **Example: FlexColorScheme with keyColors and Tones**
 
@@ -396,17 +411,41 @@ API reference: [**FlexSubThemesData**](https://pub.dev/documentation/flex_color_
 
 In addition to all the actual component theme configuration parameters, the `FlexSubThemesData` configuration has a few extra settings that are also used to control the behavior of the opinionated overall theme.
 
-* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (**true**/false). When opting in on using the component sub-themes, this flag controls if the text theme uses Material 3 font sizes and letter spacing is used, which it is by default. Starting with version 5.1.0 native M3 typography that was released with Flutter 3.0.0 is used to enable this feature. This comes with its own issue concerning switching Typography dynamically, [see known issues](/known_issues#flutter-sdk-switching-typography-dynamically-causes-crash).  
-  * If you are using a FlexColorScheme version before 5.1.0, be aware that a custom [**m3TextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/m3TextTheme-constant.html) "internal" replica is used then. This temporary Material 3 TextTheme replica only supported "English like" text geometry/typography. If you are using a locale that does not use "English like" character types, then you may have to set this flag **false**, to opt-out of using this text theme and geometry in case letter spacing does not work satisfactory. This issue was resolved in version 5.1.0 that uses the real M3 Typography that landed in Flutter stable 3.0.0.
+* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (true/false/**null**). Determines if Material-3 TextTheme and Typography is used. When opting in on using the sub-theming, this flag controls if the TextTheme will use the new Material-3 `Typography.material2021` as specified in the [Material-3 Design Guide](https://m3.material.io). 
+  * If not defined, and `ThemeData.useMaterial3` is true, then it defaults to true. If not defined and `ThemeData.useMaterial3` is false, then it defaults to false.
+  
+  * This toggle works as an override toggle for using `Typography.material2021` in Material-2 mode and for using
+    `Typography.material2018` in Material-3 mode.
+  
+  * When using **FlexColorScheme** and `ThemeData.useMaterial3` is false and sub themes are not used, then default typography is
+    `Typography.material2018`. Note that if FlexColorScheme is not used at all, and your `ThemeData` has `ThemeData.useMaterial3` false, then Flutter defaults to using very old poor `Typography.material2014`.
+    In such cases consider defining your typography manually to
+    `Typography.material2018` or why not even `Typography.material2021`.
+    FlexColorScheme fully supports using any custom TextTheme and fonts, just
+    like ThemeData. You apply and use them just as you would with ThemeData.
+    This text theme is just a custom predefined TextTheme.
+    If you specify a custom `typography` to `FlexColorScheme` or
+    `FlexThemeData`, this property has no impact on used typography.
+    
+  * This property was originally used in `FlexColorScheme` to opt-in on using
+    a custom text theme defined internally by `FlexColorScheme` to look like
+    the typography and text theme used in Material-3, before such a text theme
+    and typography existed in Flutter. When Flutter started providing M3
+    text theme and typography, this property was converted into toggle to opt
+    in and out of using the text theme. Typically, you do not want to
+    opt-out of it, but in M2 mode you may want to opt-in and set it to true.
 
-* [**blendTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendTextTheme.html): (**true**/false). Used blend primary color into text themes for both `ThemeData.textTheme` and `ThemeData.primaryTextTheme`. The strength of the blend is affected by the general `blendLevel` of used FlexColorScheme. This feature does not look so good if you need to put text on a completely different colored container than the background color. If this is your use case, consider setting it to false.
+* [**blendTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendTextTheme.html): (true/**false**). Used blend primary color into text themes for both `ThemeData.textTheme` and `ThemeData.primaryTextTheme`. The strength of the blend is affected by the general `blendLevel` of used FlexColorScheme. This feature does not look so good if you need to put text on a completely different colored container than the background color. If this is your use case, consider setting it to false.
 
 * [**blendOnLevel**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendOnLevel.html): (int: **0**). Sets the blend level strength of container color, used in its onColor. Use `blendOnLevel` value to in FlexColorScheme themes to also blend in each corresponding `ColorScheme` color property's color into its onColors. If `blendOnColors` is false, the `blendOnLevel` setting only affects `onSurface`, `onBackGround`, `onPrimaryContainer`, `onSecondaryContainer` `onTertiaryContainer` and `onErrorContainer`. If `blendOnColors` is true, it also impacts `onPrimary`, `onSecondary`, `onTertiary` and `onError`.
 
 * [**blendOnColors**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/blendOnColors.html): (**true**/false). Set to true to enable `blendOnLevel` based onColor blending also on `onPrimary`, `onSecondary` and `onTertiary` colors. Use `blendOnLevel` value to in FlexColorScheme themes to also blend in each corresponding `ColorScheme` color property's color into its onColors. If `blendOnColors` is false, the `blendOnLevel` setting only affects `onSurface`, `onBackGround`, `onPrimaryContainer`, `onSecondaryContainer` `onTertiaryContainer` and `onErrorContainer`. If `blendOnColors` is true, it also impacts `onPrimary`, `onSecondary`, `onTertiary` and `onError`.
 
-* [**interactionEffects**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/interactionEffects.html): (**true**/false). Opt-in on using color branded hover, focus, highlight and splash interaction state effects. The standard colors on hover, focus, highlight and splash effects use greys, i.e. white or black with different opacity levels. To get a color-themed effect, set interactionEffects to true, and to false for the Flutter SDK Material 2 default ThemeData values. These effects apply to all Widgets that get them from ThemeData.
- 
+* [**interactionEffects**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/interactionEffects.html): (**true**/false). Flag used to enable color tinted hover, focus, highlight, selected, pressed and splash interaction state effects. The standard Flutter colors in both M2 and M3 mode for hover, focus, highlight, selected, pressed and splash state effects often look grey. They typically use surface or onSurface color with opacity. Often this is white or black with different opacity levels. This is not very color expressive and sometimes even look out of character in M3 mode.
+
+* [**tintedDisabledControls**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/tintedDisabledControls.html): (**true**/false). Set to true to make disabled controls use a slight color tint of their own main enabled color on their disabled state. Enabling this feature makes the theme even more color expressive than Material-3 is by default.
+
+
 **Example: FlexColorScheme with SubThemes**
 
 A very practical use case of `FlexSubThemes`, is to customize the default border radius on **all** Flutter UI components and elements, that supports border radius either via `ShapeBorder` or `BorderRadiusGeometry`. This can be done with a single property, the [`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).

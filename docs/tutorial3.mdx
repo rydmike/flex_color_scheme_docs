@@ -2,8 +2,6 @@
 
 The third tutorial example shows how we can use three built-in color schemes, add a custom scheme, using the same colors as in example 2. We then use these four color schemes as selectable `FlexColorScheme` based theme options. The example also uses surface colors with primary color blends.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
-
 Additionally, we can activate an option that uses the selected scheme's colors as input to generate a ColorScheme computed by the Material 3 based `ColorScheme` generation algorithms. We can also turn the opinionated component widget themes ON or OFF.
 
 Only code highlights might be shown below. The complete code of this example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example3_four_themes).
@@ -74,7 +72,7 @@ const FlexSchemeData _myFlexScheme = FlexSchemeData(
 
 ## Theme Setup
 
-The `AnimatedBuilder` and `MaterialApp` setup is as it was in the previous example. New in this example is that we set `surfaceMode` to `FlexSurfaceMode.highSurfaceLowScaffold` and `blendLevel` to 10. This gives us a higher primary color alpha blend level, on the theme's `ColorScheme` `surface` color than on its `background` color, while `scaffoldBackgroundColor` will use a much lower alpha blend than either of them.
+The `ListenableBuilder` and `MaterialApp` setup is as it was in the previous example. New in this example is that we set `surfaceMode` to `FlexSurfaceMode.highSurfaceLowScaffold` and `blendLevel` to 10. This gives us a higher primary color alpha blend level, on the theme's `ColorScheme` `surface` color than on its `background` color, while `scaffoldBackgroundColor` will use a much lower alpha blend than either of them.
 
 In dark mode we decided to use the inverted `surfaceMode` blend to this, the `highScaffoldLowSurfaces`, where surface and background colors have a lower and same primary color alpha blend, in relation to the Scaffold background color. We also set the used blend level a bit higher in dark mode, to 12 in this example.
 
@@ -85,16 +83,17 @@ class DemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Whenever the theme controller notifies the animation listener in the
-    // AnimatedBuilder, the MaterialApp is rebuilt.
-    return AnimatedBuilder(
-      animation: themeController,
+    // Whenever the theme controller notifies the listenable in the
+    // ListenableBuilder, the MaterialApp is rebuilt.
+    return ListenableBuilder(
+      listenable: themeController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           scrollBehavior: const AppScrollBehavior(),
           title: 'Four Themes',
           theme: FlexThemeData.light(
+            useMaterial3: themeController.useMaterial3,
             colors: themeController.usedScheme == FlexScheme.custom
                 ? _myFlexScheme.light
                 : FlexColor.schemes[themeController.usedScheme]!.light,
@@ -110,10 +109,13 @@ class DemoApp extends StatelessWidget {
             ),
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
             fontFamily: GoogleFonts.notoSans().fontFamily,
+            // We use the nicer Material-3 Typography in both M2 and M3 mode.
+            typography: Typography.material2021(platform: defaultTargetPlatform),
           ),
           // We make an equivalent definition for the dark theme, but using
           // FlexThemeData.dark() and the dark FlexSchemeColors instead.
           darkTheme: FlexThemeData.dark(
+            useMaterial3: themeController.useMaterial3,
             colors: themeController.usedScheme == FlexScheme.custom
                 ? _myFlexScheme.dark
                 : FlexColor.schemes[themeController.usedScheme]!.dark,
@@ -129,6 +131,7 @@ class DemoApp extends StatelessWidget {
             ),
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
             fontFamily: GoogleFonts.notoSans().fontFamily,
+            typography: Typography.material2021(platform: defaultTargetPlatform),
           ),
           // Use the dark or light theme, based on controller setting.
           themeMode: themeController.themeMode,
@@ -274,7 +277,7 @@ Below are the four resulting themes with their light and dark modes, that we can
 
 Scroll down in the app to see the theme showcase further below. It presents the
 theme with common Material UI widgets. You can try this example as a Flutter
-web app [here](https://rydmike.com/flexcolorscheme/fourthemes-v7-1).
+web app [here](https://rydmike.com/flexcolorscheme/fourthemes-v7-2).
 
 ## Seeded ColorScheme
 

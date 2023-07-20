@@ -2,8 +2,6 @@
 
 This chapter describes the `ThemeData` modifications `FlexColorScheme` core does when you use it without opting in on the opinionated component themes.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
-
 **FlexColorScheme** does not use the `ThemeData.from` factory with a passed in `ColorScheme` to make its `ThemeData` object. It uses the `ThemeData` factory directly, with many additional custom theming tweaks.
 
 It of course defines a `ColorScheme` that it uses in its `ThemeData`.  FlexColorScheme uses color calculations for the primary color branded/blended surfaces, and for the lazy schemes that do not specify all colors in a color scheme. It utilizes the [Material Color Utilities](https://pub.dev/packages/material_color_utilities) from the Google Material theme that Flutter SDK also uses to make key colors seed-generated computational color schemes. It extends the new M3 `CorePalette` in the Material Color Utilities to be able to tweak the `ColorScheme` generation parameters in it. It also uses its own custom mid-layer Scheme implementation, with customizable Tones to ColorScheme mapping.
@@ -12,7 +10,7 @@ Most other things it does are more basic, just more moving parts. However, when 
 
 ## Design Goals
 
-Flutter's default Theme and its ThemeData use a design where all the component theme's in the default ThemeData have properties that are all **null**. It is always the widget component that defines the default behavior and style when its theme and its properties are undefined. The widget colors for such cases are then typically defined by `ThemeData.colorScheme`.
+Flutter's default **Theme** and its **ThemeData** use a design where all the component theme's in the default ThemeData have properties that are all **null**. It is always the widget component that defines the default behavior and style when its theme and its properties are undefined. The widget colors for such cases are then typically defined by `ThemeData.colorScheme`.
 
 This Flutter theming design goal is described in this [document](https://docs.google.com/document/d/1kzIOQN4QYfVsc5lMZgy_A-FWGXBAJBMySGqZqsJytcE). It is partially implemented, but there are still components in Flutter remaining that do not adhere to this design, and there are also many color properties still remaining in `ThemeData`.
 
@@ -61,11 +59,7 @@ Here are all the component themes that core **FlexColorScheme** currently define
 
 * **BottomAppBarTheme** in `ThemeData.bottomAppBarTheme` is NOT null.
     * Color: `colorScheme.background`
-    * elevation: *As defined, default is 0*
-
-* **TextSelectionThemeData** in `ThemeData.bottomAppBarTheme` is NOT null.
-    * selectionColor: `dark ? primary.withOpacity(0.50) : primary.withOpacity(0.30)`
-    * selectionHandleColor: `primaryColorDark`
+    * elevation: *As defined, if undefined default is 3 in M3 and 8 in M2*
 
 * **InputDecorationTheme** in `ThemeData.inputDecorationTheme` is NOT null.
     * filled: `true`
@@ -203,16 +197,14 @@ The following lists the differences, compared to the standard `ThemeData.from` f
   `FlexColorScheme` definition with property value `appBarElevation`
   without creating a sub theme or using `copyWith`.
 
-* The **bottomAppBarColor** uses color scheme background color to match the
-  background color of the drawer, bottom navigation bar, possible side
-  menu and system navigation bar on android if theming of it is used.
-  This is a slight change from the ColorScheme default that uses
-  surface color.
-
-* The **BottomAppBarTheme** elevation defaults to `appBarElevation` or 0 if
-  it is null. It can easily be adjusted directly in the
-  `FlexColorScheme` definition with property value `bottomAppBarElevation`
-  without creating a sub theme or using `copyWith`.
+* For the `BottomAppBarTheme` when not using subThemes, we in M2 mode always get a
+  BottomAppBarTheme with at least background color defined to be
+  ColorScheme.surface, even if `bottomAppBarElevation` is null.
+  This is done to avoid issues with deprecation of
+  `ThemeData.bottomAppBarColor` that is still used in M2 mode defaults.
+  When using M3 mode and if `bottomAppBarElevation` is null, we
+  actually get a default `BottomAppBarTheme()` all null theme made by
+  `FlexSubThemes.bottomAppBarTheme`. 
 
 * In **TextSelectionThemeData**, the Flutter default for **selectionColor** is
   `colorScheme.primary` with opacity value `0.4` for dark-mode and `0.12`
@@ -318,9 +310,9 @@ FlexColorScheme also offers opinionated component themes that enable you to get 
 These component themes are as stated **opinionated** design choices. You may or may not like them. They can be modified and tuned, some of them only a bit, while others offer quite extensive quick configuration options. The intent
 is to keep the component themes visual results consistent from version to version. However, changes in the SDK and supporting new features may require minor style breaking changes to them from time to time.
 
-In Material 2 mode, the defaults for these component themes, draw inspiration from Material 3. They are inspired by the [Material 3 Design Guide](https://m3.material.io/), within reasonable limits of current Flutter Material 2 based theming capabilities. When you enable opinionated component themes and keep using Material 2, you get a design that is quite similar to Material 2, without actually committing to using Material 2.
+In Material-2 mode, the defaults for these component themes, draw inspiration from Material-3. They are inspired by the [Material-3 Design Guide](https://m3.material.io/), within reasonable limits of Flutter's Material-2 based theming capabilities. When you enable opinionated component themes and keep using Material-2, you get a design that is quite similar to Material-3, without actually committing to using Material-3.
 
-The component themes are modified and extended as Material 3 features reaches the Flutter stable channel, to use actual Material 3 implementations in Flutter when opting in on using Material 3, and enabling the FlexColorScheme component themes. Material 3 will eventually become the default and only Material theming in Flutter. FlexColorScheme component themes do make some opinionated design choices concerning them as well, but so far they are very minor. 
+The component themes are modified and extended as Material-3 features reaches the Flutter stable channel, to use actual Material-3 implementations in Flutter when opting in on using Material-3, and enabling the FlexColorScheme component themes. Material-3 will eventually become the default and only Material theming avilable in Flutter. FlexColorScheme component themes do make some opinionated design choices concerning them as well, but they are very minor. 
 
 To enable the optional component theming feature in `FlexColorScheme`, pass in a default `FlexSubThemesData()` to its `subThemesData` property. This gives you the `FlexColorScheme` default opinionated component theme setup. Naturally `FlexColorScheme` would not be "flex" if the [`FlexSubThemesData`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData-class.html) data class did not also contain many optional quick configuration parameters for the opinionated component themes.
 
@@ -338,27 +330,45 @@ The `FlexSubThemesData` configuration has no direct impact on these static helpe
 
 These are the component static theme helpers available in `FlexSubThemes`:
 
-* `ButtonThemeData` for old deprecated buttons, via `buttonTheme`.
+* `AppBarTheme` for `AppBar` via `appBarTheme`.
+* `BottomAppBarTheme` for `BottomAppBar` via `bottomAppBarTheme`.
 * `BottomNavigationBarThemeData` for `BottomNavigationBar` via
   `bottomNavigationBar`.
 * `BottomSheetThemeData` for `BottomSheet` via `bottomSheetTheme`.
+* `ButtonThemeData` for old deprecated buttons, via `buttonTheme`.
 * `CardTheme` for `Card` via `cardTheme`.
 * `CheckboxThemeData` for `Checkbox` via `checkboxTheme`.
 * `ChipThemeData` for `Chip` via `chipTheme`.
+* `DatePickerThemeData` for `DatePicker` via `datePickerTheme`.
 * `DialogTheme` for `Dialog` via `dialogTheme`.
+* `DrawerThemeData` for `Drawer` via `drawerTheme`.
+* `DropdownMenuThemeData` for `DropDownMenu` via `dropdownMenuTheme`.
 * `ElevatedButtonThemeData` for `ElevatedButton` via `elevatedButtonTheme`.
+* `FilledButtonThemeData` for `FilledButton` via
+  `FlexSubThemes.filledButtonTheme`.
 * `FloatingActionButtonThemeData` for `FloatingActionButton` via
   `floatingActionButtonTheme`.
+* `IconButtonThemeData` for `IconButton` via `iconButtonTheme`.
 * `InputDecorationTheme` for `InputDecoration` via `inputDecorationTheme`.
+* `MenuBarThemeData` for `MenuBar` via `menuBarTheme`.
+* `MenuButtonThemeData` for `MenuButton` via `menuButtonTheme`.
+* `MenuThemeData` for `MenuBar`, `MenuAnchor` and `DropDownMenu` via
+  `menuTheme`.
 * `NavigationBarThemeData` for `NavigationBar` via `navigationBarTheme`.
+* `NavigationDrawerThemeData` for `NavigationDrawer` via
+  `navigationDrawerTheme`.
 * `NavigationRailThemeData` for `NavigationRail` via `navigationRailTheme`.
 * `OutlinedButtonThemeData` for `OutlinedButton` via `outlinedButtonTheme`.
 * `PopupMenuThemeData` for `PopupMenuButton` via `popupMenuTheme`.
 * `RadioThemeData` for `Radio` via `radioTheme`.
-* `SliderThemeData` for `Slider` via `sliderTheme.
+* `SegmentedButtonThemeData` for `SegmentedButton` via
+  `segmentedButtonTheme`.
+* `SliderThemeData` for `Slider` via `sliderTheme`.
 * `SnackBarThemeData` for `SnackBar` via `snackBarTheme`.
 * `SwitchThemeData` for `Switch` via `switchTheme`.
+* `TabBarTheme` for `TabBar` via `tabBarTheme`.
 * `TextButtonThemeData` for `TextButton` via `textButtonTheme`.
+* `TextSelectionThemeData` for `TextField` via `textSelectionTheme`.
 * `TimePickerThemeData` for `TimePickerDialog` via `timePickerTheme`.
 * `ToggleButtonsThemeData` for `ToggleButtons` via `toggleButtonsTheme`.
 * `TooltipThemeData` for `Tooltip` via `tooltipTheme`.

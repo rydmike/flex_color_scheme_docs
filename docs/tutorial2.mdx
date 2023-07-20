@@ -2,8 +2,6 @@
 
 This example shows how you can define your own color schemes using `FlexSchemeColor` and `FlexSchemeData`, to create `FlexColorScheme` based application themes from them.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.1 and Flutter 3.10. When it has been fully updated, this notice will be removed.</Info>
-
 Only code highlights might be shown below. The complete code of this example can be found [here](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example2_custom_theme).
 
 ## Skeleton Template
@@ -16,7 +14,7 @@ In this example, and the ones after it, we use a `ThemeService` and `ThemeContro
 
 You can find a good article on GSkinner site blogs, doing a deep dive into the Flutter skeleton template architecture [here](https://blog.gskinner.com/archives/2021/11/flutter-deep-dive-into-the-new-skeleton-app-template.html).
 
-These examples do not use all parts of the skeleton architecture, only the theme service part and using the `AnimatedBuilder` as a listenable builder.
+These examples do not use all parts of the skeleton architecture, only the theme service part and using the `ListenableBuilder` as a listenable builder.
 
 ## ThemeServiceMem
 
@@ -81,19 +79,17 @@ Based on the Flutter Skeleton template architecture we glue the `ThemeController
 
 The Flutter `AnimatedBuilder` is a bit oddly named for this use case. Here it serves the purpose of functioning as a "`ListenableBuilder`", that rebuilds its child once, when its `Listenable` value, the `animation` changes. Which it does whenever our `ThemeController` calls `notifyListeners`, when we update any of its properties. We call `notifyListeners` in the `ThemeController` class when we have new updated data that requires the theme to update. The `ThemeController` values are typically changed by user interface widgets on the `HomePage`.
 
-## AnimatedBuilder
+## ListenableBuilder or AnimatedBuilder
 
-The usage of the `AnimatedBuilder` does not have anything to do with the fact that the theme change animates from current `ThemeData` and colors in it, to the new values and colors it changes to. This is a built-in feature in `ThemeData` and its inherited `Theme` in Flutter SDK. You can change the `ThemeData` with call-backs or other state management solutions too, and still get the nice theme change lerp animation from previous property values to new ones.
+Previously the skeleton architecture used the `AnimatedBuilder`, so did these tutorial apps. The usage of the `AnimatedBuilder` did not have anything to do with the fact that the theme change animates from current `ThemeData` and colors in it, to the new values and colors it changes to. This is a built-in feature in `ThemeData` and its inherited `Theme` in Flutter SDK. You can change the `ThemeData` with call-backs or other state management solutions too, and still get the nice theme change lerp animation from previous property values to new ones.
 
-The `AnimatedBuilder` is a poor name when it is used here as a `ListenableBuilder`, that does not exist in Flutter SDK with that name. It should, just for a better and more logical name, but the `AnimatedBuilder`  serves the exact same purpose here as a `ListenableBuilder` would. 
+The `AnimatedBuilder` was a poor name when used here as a `ListenableBuilder`, but it did not use to exist in Flutter SDK with that name. Flutter 3.10 brought same functionality as the `AnimatedBuilder`, but with the `ListenableBuilder` name, making it easier to discover the feature. The [`ListenableBuilder`](https://api.flutter.dev/flutter/widgets/ListenableBuilder-class.html) was added via [PR #116543](https://github.com/flutter/flutter/pull/116543).
 
-<Info>In the Flutter master channel, a `ListenableBuilder` has been added via [PR #116543](https://github.com/flutter/flutter/pull/116543), but it is not available in stable Flutter 3.7. It will most likely land in the next stable release.</Info>
-
-The result of this setup is that whenever you update any theme settings managed by the `ThemeController`, the `MaterialApp` is rebuilt with the new ThemeData that depends on the `ThemeController`'s property values.
+The result of this `ListenableBuilder` setup is that whenever you update any theme settings managed by the `ThemeController`, the `MaterialApp` is rebuilt with the new ThemeData that depends on the `ThemeController`'s property values.
 
 The entire application tree is actually rebuilt when any value in the `ThemeController` trigger a change via a `notifyListeners` call. This is reasonably fine in this use case, since all properties we use in the `ThemeController` are of the nature that the entire application UI needs to be redrawn anyway when they change, since they modify our `ThemeData` for the entire application.
 
-This approach works well for this particular use case, but may not work as well for some use cases as it is a bit suboptimal to always rebuild the entire subtree whenever anything bound to the same `ChangeNotifier` controller changes. You could of course use the same idea to add more/other controllers and in `StatefulWidget`s at right levels in the widget tree use e.g. `otherController.addListener(() => setState((){}))`. Then you do not need an `AnimatedBuilder` and you get a basic MVC like state management, where you bind a ChangeNotifier to the tree and trigger rebuilds in a simple way.
+This approach works well for this particular use case, but may not work as well for some use cases as it is a bit suboptimal to always rebuild the entire subtree whenever anything bound to the same `ChangeNotifier` controller changes. You could of course use the same idea to add more/other controllers and in `StatefulWidget`s at right levels in the widget tree use e.g. `otherController.addListener(() => setState((){}))`. Then you do not need an `ListenableBuilder` and you get a basic MVC like state management, where you bind a `ChangeNotifier` to the tree and trigger rebuilds in a simple way.
 
 ## Theming Code
 
@@ -107,16 +103,17 @@ class DemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Whenever the theme controller notifies the animation listener in the
-    // AnimatedBuilder, the MaterialApp is rebuilt.
-    return AnimatedBuilder(
-        animation: themeController,
+    // Whenever the theme controller notifies the listener in the
+    // ListenableBuilder, the MaterialApp is rebuilt.
+    return ListenableBuilder(
+        listenable: themeController,
         builder: (BuildContext context, Widget? child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             scrollBehavior: const AppScrollBehavior(),
             title: 'Custom Theme',
             theme: FlexThemeData.light(
+              useMaterial3: themeController.useMaterial3,
               colors: _myFlexScheme.light,
               // Opt in/out on using FlexColorScheme sub-themes.
               subThemesData: themeController.useSubThemes
@@ -125,9 +122,12 @@ class DemoApp extends StatelessWidget {
               appBarElevation: 0.5,
               visualDensity: VisualDensity.standard,
               fontFamily: GoogleFonts.notoSans().fontFamily,
+              // We use the nicer Material-3 Typography in both M2 and M3 mode.
+              typography: Typography.material2021(platform: defaultTargetPlatform),
             ),
             // Same setup for the dark theme, but using FlexThemeData.dark().
             darkTheme: FlexThemeData.dark(
+              useMaterial3: themeController.useMaterial3,
               colors: _myFlexScheme.dark,
               subThemesData: themeController.useSubThemes
                   ? const FlexSubThemesData()
@@ -135,6 +135,7 @@ class DemoApp extends StatelessWidget {
               appBarElevation: 1,
               visualDensity: VisualDensity.standard,
               fontFamily: GoogleFonts.notoSans().fontFamily,
+              typography: Typography.material2021(platform: defaultTargetPlatform),
             ),
             themeMode: themeController.themeMode,
             home: HomePage(
@@ -231,4 +232,4 @@ When we build this example, we can see our custom colors being used on all widge
  </table>
 
 
-Scroll down in the app to see the theme showcase further below. It presents the theme with common Material UI widgets. You can try this example as a Flutter web app [here](https://rydmike.com/flexcolorscheme/customtheme-v7-1).
+Scroll down in the app to see the theme showcase further below. It presents the theme with common Material UI widgets. You can try this example as a Flutter web app [here](https://rydmike.com/flexcolorscheme/customtheme-v7-2).
