@@ -217,9 +217,9 @@ The default value means the default style and behavior a component will use when
 
 The undefined defaults are different if FlexColorScheme is not used at all, then you are looking at Flutter SDK default behavior for the widget. If you turn ON FlexColorScheme, but keep component sub-themes OFF, then you are looking at the FlexColorScheme [core defaults](/core_defaults). Mostly they are the same as when not using FlexColorScheme at all, but for certain colors and elevations they differ. The FlexColorScheme [core defaults](/core_defaults) explains, how, when and why FlexColorScheme without component themes enabled, differs from Flutter SDK defaults.
 
-With component sub-themes ON, you again get different defaults, especially for border radius that default to Material 3 specifications where border radius varies per component type.
+With component sub-themes ON, you again get different defaults, especially for border radius that default to Material-3 specifications where border radius varies per component type.
 
-If you when using component sub-themes keep `defaultRadius` undefined, then each component widget will use its Material 3 default border radius value, and show that value when an individual widget border radius has not been specified with its slider.
+If you when using component sub-themes keep `defaultRadius` undefined, then each component widget will use its Material-3 default border radius value, and show that value when an individual widget border radius has not been specified with its slider.
 
 <Tabs
   defaultValue="no-component"
@@ -245,7 +245,7 @@ If you when using component sub-themes keep `defaultRadius` undefined, then each
   </TabItem>
 </Tabs>
 
-When you set a global default radius, component themes will show and use that value as their default border radius when not defined, and also state that it comes from the global border radius default. If a component widget has specified its own border radius, it shows that value. If you then turn OFF component sub-themes, it will get disabled and show Flutter SDK Material 2 default border radius (4 dp) again.
+When you set a global default radius, component themes will show and use that value as their default border radius when not defined, and also state that it comes from the global border radius default. If a component widget has specified its own border radius, it shows that value. If you then turn OFF component sub-themes, it will get disabled and show Flutter SDK Material-2 default border radius (4 dp) again.
 
 This type of logic applies so far to border radius, various differences in default colors and elevations, when FlexColorScheme is not used at all, is used, but component themes are not enabled, and when they are enabled.
 
@@ -272,7 +272,7 @@ You can swap primary and secondary colors, including their container colors. Red
   </TabItem>
   <TabItem value="swap">
     <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-11-input-02.png?raw=true"
-    caption="Input colors with primary and secondary swapped, plus using Material 3 error colors instead of Material 2."
+    caption="Input colors with primary and secondary swapped, plus using Material-3 error colors instead of Material-2."
     alt="Input colors 2" zoom />
   </TabItem>
   <TabItem value="reduce">
@@ -307,7 +307,7 @@ Below we can see the **Flutter Dash** theme:
 
 3. Using three key colors, from the built-in light theme mode **Flutter Dash** theme. Its primary, secondary and tertiary colors are used for each main generated Tonal Palette. This type of seed generated `ColorScheme` is not directly available in the Flutter SDK.
 
-4. In the last version we lock the main colors, primary, secondary and tertiary. To keep using their defined Flutter Dash "brand" colors, but let all the other colors for the ColorScheme be computed. Generally, they look very balanced and nice and will typically make an app using Material 3 color system look great, but you may often need to keep using main colors as defined by the brand or customer requirements.
+4. In the last version we lock the main colors, primary, secondary and tertiary. To keep using their defined Flutter Dash "brand" colors, but let all the other colors for the ColorScheme be computed. Generally, they look very balanced and nice and will typically make an app using Material-3 color system look great, but you may often need to keep using main colors as defined by the brand or customer requirements.
 
 <Tabs
   defaultValue="base"
@@ -341,7 +341,7 @@ Below we can see the **Flutter Dash** theme:
 
 ## Tonal Palettes
 
-What are Tonal Palettes? They are described in detail in the Material 3 color system guide [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones). The short version, a Material 3 ColorScheme uses six different Tonal Palettes, with 13 colors tones (shades) each:
+What are Tonal Palettes? They are described in detail in the Material-3 color system guide [here](https://m3.material.io/styles/color/the-color-system/key-colors-tones). The short version, a Material-3 ColorScheme uses six different Tonal Palettes, with 13 colors tones (shades) each:
 
 - Primary palette
 - Secondary palette
@@ -352,11 +352,11 @@ What are Tonal Palettes? They are described in detail in the Material 3 color sy
 
 The `ColorScheme` uses colors from these palettes for its colors, by using a predefined tone for each color from a given palettes. The light and matching dark mode ColorScheme use the same tonal palettes, they just use different tones from the same palette for corresponding colors.
 
-The Material 3 color system calculation algorithm produces the above tonal palettes based on given input color, and then colors from the palettes are assigned to the resulting ColorScheme.
+The Material-3 color system calculation algorithm produces the above tonal palettes based on given input color, and then colors from the palettes are assigned to the resulting ColorScheme.
 
 When you use seed generated ColorSchemes in the Themes Playground, you can see all the generated Tonal Palettes. They are shown in the order primary, secondary, tertiary, error, neutral and neutral variant.
 
-Below we can see the Tonal Palettes when using the Flutter SDK default Material 3 based ColorScheme tonal palette generation algorithm, using a single input key color. It is shown in both light and dark theme. We can see that the Tonal Palettes for both light and dark theme modes are identical, what varies is which tones are used for each color by the light and dark theme mode `ColorScheme`.
+Below we can see the Tonal Palettes when using the Flutter SDK default Material-3 based ColorScheme tonal palette generation algorithm, using a single input key color. It is shown in both light and dark theme. We can see that the Tonal Palettes for both light and dark theme modes are identical, what varies is which tones are used for each color by the light and dark theme mode `ColorScheme`.
 
 For example, tone 40 is used from primary Tonal Palette for the `ColorScheme.primary` color in light theme mode, while tone 80 is used in dark theme mode. On the web and a desktop build of the app, if you hover with the mouse over a seeded `ColorScheme` color, its source color will be highlighted in the computed Tonal Palette.
 
@@ -395,7 +395,7 @@ For comparison, we above see the same Flutter Dash theme based generated Tonal P
 
 ## Flex Tones
 
-Above, we saw that even when we used three input colors as keys, we did not get so much of the chroma in the used input color in the resulting Tonal Palettes for the secondary and tertiary colors. This is because the default Material 3 tonal palette calculation algorithm locks chroma for secondary tonal palette generation to 16, and it uses the hue from the same used key color.
+Above, we saw that even when we used three input colors as keys, we did not get so much of the chroma in the used input color in the resulting Tonal Palettes for the secondary and tertiary colors. This is because the default Material-3 tonal palette calculation algorithm locks chroma for secondary tonal palette generation to 16, and it uses the hue from the same used key color.
 
 For the tertiary tonal palette, chroma is locked to 24, so a bit more colorful than secondary, which can also be seen in the produced palettes. Additionally, hue is rotated +60 degrees from the input key color hue, effectively generating a new hue, based on the single input key color.
 
@@ -405,7 +405,7 @@ The neutral palettes are also using the same key color as input, but with very l
 
 Lastly, the error tonal palette is simply made from a fixed color value, having hue 25 and chroma 84.
 
-When we used key colors also for the secondary and tertiary tonal palette generation, it substituted the hue used for secondary and tertiary tonal palettes, to use the hue in their own input key colors, and no longer relied on the values derived from the single input main/primary seed color. We did, however, not do anything to the chroma limits, used by the default Material 3 design specification Tonal Palette color generation algorithm's parameters.
+When we used key colors also for the secondary and tertiary tonal palette generation, it substituted the hue used for secondary and tertiary tonal palettes, to use the hue in their own input key colors, and no longer relied on the values derived from the single input main/primary seed color. We did, however, not do anything to the chroma limits, used by the default Material-3 design specification Tonal Palette color generation algorithm's parameters.
 
 FlexColorScheme would not be "flex" if it did not allow us to modify chroma as well. We can define custom parameters for all key colors that define their chroma limits. Using them can modify the limits for the input colors when we generate their tonal palettes. We can lock it to a given value, or we can let it use whatever chroma it has, or we can say it can use whatever chroma it has, as long as it is over a certain limit. This is useful because if the chroma is very low in the input key color, we basically get an almost greyscale tonal palette, like the neutral tonal palette colors.
 
@@ -420,7 +420,7 @@ Maybe in some future version of the Themes Playground, custom interactive config
 <Tabs
   defaultValue="flex-tones-m3"
   values={[
-    {label: 'Material 3', value: 'flex-tones-m3'},
+    {label: 'Material-3', value: 'flex-tones-m3'},
     {label: 'Soft', value: 'flex-tones-soft'},
     {label: 'Vivid', value: 'flex-tones-vivid'},
     {label: 'Vivid Surface', value: 'flex-tones-surface'},
@@ -428,7 +428,7 @@ Maybe in some future version of the Themes Playground, custom interactive config
   ]}>
   <TabItem value="flex-tones-m3">
     <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-22-flex-tone.png?raw=true"
-    caption="FlexTones.material, Flutter SDK Material 3 default chroma limits and tone mapping."
+    caption="FlexTones.material, Flutter SDK Material-3 default chroma limits and tone mapping."
     alt="Seed colors 1" zoom />
   </TabItem>
   <TabItem value="flex-tones-soft">
@@ -459,7 +459,7 @@ The "Vivid" colors may actually not always be more "vivid" than the Material-3 F
 
 With surface blends, FlexColorScheme refers to using alpha blends to mix in a hint of a color, typically primary color, into different Material surface colors.
 
-The Material 2 guide also talks about using alpha blends to create branded surface colors, especially in dark mode. In this [tweet](https://twitter.com/RydMike/status/1281293363233390599) I show an example of how to create such color tinted background and surface colors, using the `Color.alphaBlend` function.
+The Material-2 guide also talks about using alpha blends to create branded surface colors, especially in dark mode. In this [tweet](https://twitter.com/RydMike/status/1281293363233390599) I show an example of how to create such color tinted background and surface colors, using the `Color.alphaBlend` function.
 
 <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-27-blends-tweet.png?raw=true" caption="Creating branded surfaces - tweet anno 2020, but still valid." alt="Tweet surface blends 2020" zoom/>
 
@@ -469,11 +469,11 @@ It mainly affects the two main `ColorScheme` surface colors `surface` and `backg
 
 In addition to being able to blend in primary color into surfaces, starting with version 5, the color of a container can be blended into its own contrasting "onColor" using a blend-level as well. This gives the onColor itself a hint of the color it is on, instead of being plain white or black/dark-gray. For onPrimary, onSecondary, onTertiary and onError, it can be turned OFF completely, while still being used by all the other onColors.
 
-This was added because Material 3 design keeps the onColors for the main colors white in light theme mode, but in dark theme mode that is not the case. With this setting, you can decide if you follow this principle or not, when not using Material-3 seed-generated ColorSchemes. When using the seed generated ColorScheme, this depends on the tone mapping in used FlexTones.
+This was added because Material-3 design keeps the onColors for the main colors white in light theme mode, but in dark theme mode that is not the case. With this setting, you can decide if you follow this principle or not, when not using Material-3 seed-generated ColorSchemes. When using the seed generated ColorScheme, this depends on the tone mapping in used FlexTones.
 
 Seed generated ColorSchemes can also use surface blends. Since Material-3 style generated color schemes already include a hint of primary color in all neutral tones, it means that they start with some primary color baked in. When you add surface blends to them, you further strengthen the Material-3 blend effect. Since they don't start at white and almost black, like pure Material-2 surfaces, it means they get much stronger primary color surface blends at same blend-level, compared to a none seed generated `ColorsScheme`. So be more gentle with the blend level, it is easy to overdo it.
 
-If you want a pure Material 3 guide design intent, keep blend level at zero with seed generated `ColorScheme`s. A bit more is pretty nice too though.
+If you want a pure Material-3 guide design intent, keep blend level at zero with seed generated `ColorScheme`s. A bit more is pretty nice too though.
 
 Seed color generated color schemes do not use onColor blending. This is because such themes already cover this design aspect by using tones from the Tonal Palettes that effectively accomplishes the same thing, and often with a better, or let's call it, with a more balanced looking result.
 
@@ -501,7 +501,7 @@ The above may sound complicated, but using it is not. You can just fiddle with s
 
 The second screen recording above shows the onColor blending options and levels. The onColor impacts the color you should use for text and icons on container surfaces when you use them on their none "on" colored container. The impact of this is not clearly seen above. Generally in an application, they still create a remarkable subtle toned difference. Most notice it, but might not be able to immediately explain what causes the difference in how the design is perceived.
 
-This is especially true for the Material 3 generated ColorSchemes, that use the matching lighter/darker tones for their onColors, which are often brighter and more impactful than the simpler alpha-blended version.
+This is especially true for the Material-3 generated ColorSchemes, that use the matching lighter/darker tones for their onColors, which are often brighter and more impactful than the simpler alpha-blended version.
 
 In both cases above, pay attention to effective surface, container colors and their onColors, and how they change. Also look at the app to see how it visually changes as blends are varied.
 
@@ -556,10 +556,10 @@ The challenge with many of the requested **pro** and **designer** features, is t
 To use the **Themes Playground** together with the **FlexColorScheme** package, you should use the same major version of the Playground as the package. Minor later versions of the package may have added new properties, and the latest version of Playground will include those properties in generated code. If you are using a lower minor version of the package than the current same major Playground version release is on, the generated Themes Playground config code may include APIs not supported be the lower minor version of the package you use. You can then just delete those rows in the API config, or even better, update your FCS package to the same minor release that the Themes Playground web app build is on.
 
 ### Version 7.1
-If you are using the **FlexColorScheme version 7.1**, you can go here to use [Themes Playground V7.1](https://rydmike.com/flexcolorscheme/themesplayground-v7-1) and generate API setup code for FCS version 7.1. It supports new Material 3 features in [Flutter stable 3.10](https://medium.com/flutter/whats-new-in-flutter-3-10-b21db2c38c73). Read more about it in the [what's new](/whats_new) chapter. You can also use this faster web version of the **Themes Playground** with **FlexColorScheme version 7.0**. There are only a few new APIs not supported by FCS 7.0 potentially generated by your Themes Playground 7.1 config. You can just remove them if you are using FCS 7.0. Which you may still be doing if you cannot update to Flutter 3.10 quite yet.
+If you are using the **FlexColorScheme version 7.1**, you can go here to use [Themes Playground V7.1](https://rydmike.com/flexcolorscheme/themesplayground-v7-1) and generate API setup code for FCS version 7.1. It supports new Material-3 features in [Flutter stable 3.10](https://medium.com/flutter/whats-new-in-flutter-3-10-b21db2c38c73). Read more about it in the [what's new](/whats_new) chapter. You can also use this faster web version of the **Themes Playground** with **FlexColorScheme version 7.0**. There are only a few new APIs not supported by FCS 7.0 potentially generated by your Themes Playground 7.1 config. You can just remove them if you are using FCS 7.0. Which you may still be doing if you cannot update to Flutter 3.10 quite yet.
 
 ### Version 7.0
-If you are using the **FlexColorScheme version 7.0**, you can go here to use [Themes Playground V7.0](https://rydmike.com/flexcolorscheme/themesplayground-v7) and generate API setup code for FCS version 7. It supports new Material 3 features in [Flutter stable 3.7](https://medium.com/flutter/whats-new-in-flutter-3-7-38cbea71133c). Read more about it in the [what's new](/whats_new) chapter.
+If you are using the **FlexColorScheme version 7.0**, you can go here to use [Themes Playground V7.0](https://rydmike.com/flexcolorscheme/themesplayground-v7) and generate API setup code for FCS version 7. It supports new Material-3 features in [Flutter stable 3.7](https://medium.com/flutter/whats-new-in-flutter-3-7-38cbea71133c). Read more about it in the [what's new](/whats_new) chapter.
 
 ### Version 6
 If you are using **FlexColorScheme version 6**, you can go here to use [Themes Playground V6](https://rydmike.com/flexcolorscheme/themesplayground-v6) and generate API setup code for FCS version 6.1. You can also use this version of the Playground with FlexColorScheme version 6.0. If you do, you may have to delete some generated API config setup code for properties only available in version 6.1 that are not supported by FlexColorScheme 6.0. You will see those as unsupported API errors when you copy/paste the Themes Playground code to Flutter if you use FCS 6.0 and not 6.1. Delete such rows, or you can of course upgrade the package to 6.1 to get those features.

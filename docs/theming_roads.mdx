@@ -2,7 +2,7 @@
 
 In this chapter we compare different ways to define and create a `ThemeData` object and look at the differences we get in effective colors in the theme. We examine 13 different ways, or roads to make a `ThemeData` object.
 
-<Info>This chapter has not yet been updated to fully cover some minor chnages brought by Flutter 3.10 when using Material-3. When it has been updated, this notice will be removed.</Info>
+<Info>This chapter has not yet been updated to fully cover some minor changes brought by Flutter 3.10 when using Material-3. When it has been updated, this notice will be removed.</Info>
 
 #### ColorSwatch based
 1. **a.** ThemeData.**light/dark**, and **b.** ThemeData(brightness: Brightness.**light/dark**)
@@ -109,7 +109,7 @@ const ColorScheme flexSchemeDark = ColorScheme(
   surfaceTint: Color(0xffd0bcff),
 );
 ```
-These above `ColorScheme`s can also be copied from the **Themes Playground** by selecting the "Material 3 purple" theme and keeping all seed generation disabled, and blend level at zero, in the Playground. From the above code views you can copy/paste the color schemes. To show the colors for all the `Color` values, below are image copied from a code editor that can show the actual colors too. 
+These above `ColorScheme`s can also be copied from the **Themes Playground** by selecting the "Material-3 purple" theme and keeping all seed generation disabled, and blend level at zero, in the Playground. From the above code views you can copy/paste the color schemes. To show the colors for all the `Color` values, below are image copied from a code editor that can show the actual colors too. 
 
  <Tabs
   defaultValue="light"
@@ -133,7 +133,7 @@ The used names `flexSchemeLight` and `flexSchemeDark` have nothing to do with **
 
 ## Used Swatch
 
-Older `ThemeData` creation methods are `ColorSwatch` based, or actually `MaterialColor` based, a super class of `ColorSwatch`. We cannot use a `ColorScheme` to create themes with those `ThemeData` factories. For the above `ColorScheme` there is no built-in `MaterialColor` swatch that is directly similar to the purple based Material 3 baseline `ColorScheme` that we could use with those mehtods directly. We will need to create a matching older `MaterialColor` based swatch.
+Older `ThemeData` creation methods are `ColorSwatch` based, or actually `MaterialColor` based, a super class of `ColorSwatch`. We cannot use a `ColorScheme` to create themes with those `ThemeData` factories. For the above `ColorScheme` there is no built-in `MaterialColor` swatch that is directly similar to the purple based Material-3 baseline `ColorScheme` that we could use with those mehtods directly. We will need to create a matching older `MaterialColor` based swatch.
 
 **FlexColorScheme** and **FlexColorPicker** both contain a helper that can create a `MaterialColor` swatch from a single input color. The used algorithm is simple, it is not the actual `MaterialColor` algorithm used to create the built-in `MaterialColor` colors. Its result depends a lot on the used input color. It assumes that the provided color is a useful mid-point 500 shade. We can use the light theme mode's primary color from the above `ColorScheme` and create a `MaterialColor` swatch from it.
 
@@ -144,7 +144,7 @@ Older `ThemeData` creation methods are `ColorSwatch` based, or actually `Materia
     FlexColorScheme.createPrimarySwatch(const Color(0xff6750a4));
 ```
 
-What does this custom `MaterialColor` look like? The `FlexColorPicker` in the **Themes Playground** app can show it to us. Copy the **Material 3 purple** theme to the customizable theme and then tap the input primary color, having color value **0xff6750a4**. Tapping this color will open the color picker where the wheel picker will draw a **Material Color** swatch created using this color, using this same `createPrimarySwatch` function. Below it, you will also see the primary tonal palette for the same input color.
+What does this custom `MaterialColor` look like? The `FlexColorPicker` in the **Themes Playground** app can show it to us. Copy the **Material-3 purple** theme to the customizable theme and then tap the input primary color, having color value **0xff6750a4**. Tapping this color will open the color picker where the wheel picker will draw a **Material Color** swatch created using this color, using this same `createPrimarySwatch` function. Below it, you will also see the primary tonal palette for the same input color.
 
 <img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-wt-00-d-swatch-image.png" alt="Swatch picker image"/>
 
@@ -193,7 +193,7 @@ Except with the above syntax we could have specified any of `ThemeData`'s myriad
 
 ### 2. ThemeData primarySwatch
 
-We could e.g. have specified a swatch. Let's do that, using both the above blue and our custom `flexSwatch` and see what that gives us.
+We could e.g., have specified a swatch. Let's do that, using both the above blue and our custom `flexSwatch` and see what that gives us.
 
 ```dart
 // 2) TD primarySwatch
@@ -662,7 +662,7 @@ The road forward is clear, and things will get more consistent out-of-the-box, o
 We are looking forward to the day when the entire `ThemeData` color confusion
 is cleaned up. Until then, we will see further below that **FlexColorScheme** can help you with the inconsistencies and give you a coherent color theme now and give an example of how you can work around it manually too.
 
-On a related note, if you are interested in how the support for Material 3 is
+On a related note, if you are interested in how the support for Material-3 is
 coming along in Flutter, then this umbrella [issue 91605](https://github.com/flutter/flutter/issues/91605) is the one to track for that.
 
 ### ElevationOverlayColor
@@ -673,11 +673,11 @@ One thing the `ThemeData.from` factory has going for it in dark theme mode, is t
 applyElevationOverlayColor: true,
 ```
 
-For dark themes, this is something one should do in Material 2 design. No other `ThemeData` factory turns this on by default, so if you are using them, you should make sure to set it to true for your dark theme.
+For dark themes, this is something one should do in Material-2 design. No other `ThemeData` factory turns this on by default, so if you are using them, you should make sure to set it to true for your dark theme.
 
-The Material 3 color system uses a new elevation color overlay algorithm that is not yet available in Flutter 2.10 stable channel, see [issue 91607](https://github.com/flutter/flutter/issues/91607). In Material 3 an elevation color overlay is used in both light and dark theme mode. We will return to looking at it when in lands in the stable channel. In this [PR 100036](https://github.com/flutter/flutter/pull/100036) you can learn and see what it does. Surfaces get more colored tinted when they are elevated, and you can do elevation with tint, shadow or both.
+The Material-3 color system uses a new elevation color overlay algorithm that is not yet available in Flutter 2.10 stable channel, see [issue 91607](https://github.com/flutter/flutter/issues/91607). In Material-3 an elevation color overlay is used in both light and dark theme mode. We will return to looking at it when in lands in the stable channel. In this [PR 100036](https://github.com/flutter/flutter/pull/100036) you can learn and see what it does. Surfaces get more colored tinted when they are elevated, and you can do elevation with tint, shadow or both.
 
-When working with elevation overlays in Material 2, it is important to know that it should be applied to dark Material surfaces that might get elevated. These surfaces might actually be using the `ColorScheme.surface` color, which may even be in the form of `ThemeData.cardColor` on the surface or `ColorScheme.background`, which again might be in the form of `ThemeData.canvasColor` this all depends on how the actual Material surface UI elements implement their default surface/background color, and they do vary. However, surfaces will only get an elevation overlay color if the color value is equal to the `ColorScheme.surface` color value. An implementation oversight perhaps, in the sense that it assumes they are all equal.
+When working with elevation overlays in Material-2, it is important to know that it should be applied to dark Material surfaces that might get elevated. These surfaces might actually be using the `ColorScheme.surface` color, which may even be in the form of `ThemeData.cardColor` on the surface or `ColorScheme.background`, which again might be in the form of `ThemeData.canvasColor` this all depends on how the actual Material surface UI elements implement their default surface/background color, and they do vary. However, surfaces will only get an elevation overlay color if the color value is equal to the `ColorScheme.surface` color value. An implementation oversight perhaps, in the sense that it assumes they are all equal.
 
 When you are working with blended surfaces, where `surface` and `background` may differ, this matters. Typically, with default Flutter SDK values, these colors all share the same color value, so the issue won't be noticed. In **FlexColorScheme** they may be different. FlexColorScheme addresses this issue by mostly using `ColorScheme.surface` as the themed color for surfaces that will typically be elevated, like Card and Dialogs. Dialogs otherwise default to background color in Flutter SDK M2 default values.
 
@@ -689,7 +689,7 @@ This one is surprising when it comes to the outline color. The new `ColorScheme.
 
 However, it is doubtful that this color should be applied directly as is to the current `ThemeData.dividerColor`. Most likely, it should indeed be this color, but with same or similar opacity as before. Which we get when we use options 8 and 9. The reason why this demo started looking very strange with this theme, is because the divider color is used for dividers on the custom rail and the rail and menu edge side border, and also used for what was a very faint border around the color boxes.
 
-The divider color is not mentioned in the Material 3 guide, not yet at least, but e.g. on the [menu design](https://m3.material.io/components/menus/overview) we can see a divider. It is not using the outline color directly, as it would be much stronger. It is perhaps the same color, but with the same alpha as before in M2 (0x1F), it could be some new opacity/alpha value too. This current divider color is perhaps an oversight with this theme creation method. If you use it you should consider adding alpha 0x1F to `ThemeData.dividerColor`.
+The divider color is not mentioned in the Material-3 guide, not yet at least, but e.g. on the [menu design](https://m3.material.io/components/menus/overview) we can see a divider. It is not using the outline color directly, as it would be much stronger. It is perhaps the same color, but with the same alpha as before in M2 (0x1F), it could be some new opacity/alpha value too. This current divider color is perhaps an oversight with this theme creation method. If you use it you should consider adding alpha 0x1F to `ThemeData.dividerColor`.
 
 When it comes to the ThemeData colors, `primaryColor`, `primaryColorLight` and `primaryColorDark`, plus the `toggleableActiveColor` in dark mode, things are as poorly supported as mentioned in previous analysis of them.
 
@@ -746,7 +746,7 @@ darkTheme: FlexThemeData.dark(
 ```
 ### 12. FlexThemeData.light (key sub)
 
-Finally, we will enable the opinionated component sub-themes, however to not get stuck on the differences in border radius and shape of the FAB, and custom text theme, let's make it look like Material 2 for this comparison.
+Finally, we will enable the opinionated component sub-themes, however to not get stuck on the differences in border radius and shape of the FAB, and custom text theme, let's make it look like Material-2 for this comparison.
 
 ```dart
 // 12) FlexThemeData.light(key sub)
@@ -835,7 +835,7 @@ This FlexColorScheme based theme is made from the same `ColorScheme` as used in 
 
 Again we can observe that it has no odd legacy `ThemeData` direct color properties that do not follow the color design in the used `ColorScheme`, and that it applies to both light and dark theme mode.
 
-This scheme also makes a Material 3 seed generated `ColorScheme` that is identical to the one produced by Flutter's only directly supported M3 `ColorScheme` generation algorithm. FlexColorScheme offers many ways to modify and tune `ColorScheme` seed generation algorithm, that go beyond what is available directly in the Flutter SDK.
+This scheme also makes a Material-3 seed generated `ColorScheme` that is identical to the one produced by Flutter's only directly supported M3 `ColorScheme` generation algorithm. FlexColorScheme offers many ways to modify and tune `ColorScheme` seed generation algorithm, that go beyond what is available directly in the Flutter SDK.
 
 ### Analysis of FlexThemeData.light/dark(colorScheme, keyColors, subThemesData) (12)
 
