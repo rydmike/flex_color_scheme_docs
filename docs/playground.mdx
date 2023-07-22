@@ -10,22 +10,64 @@ The most useful and popular feature of the **Themes Playground** is that it can 
 
 The latest stable version of **Themes Playground** can be used as a [web app here](https://rydmike.com/flexcolorscheme/themesplayground-v7-2).
 
-## Open Source
+## What is the Themes Playground?
 
-The **Themes Playground** application is open source and bundled with the `FlexColorScheme` package in the example sub-folder. In its GitHub repository you can find it here [/example/lib/example5_themes_playground](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground).
+The **Themes Playground** is a "what you see, is what you get" visual configuration tool for the **FlexColorScheme** package API. As you interactively modify the theme, that the Playground app itself uses and shows, it also generates the **FlexColorScheme** package API configuration needed to reproduce the same theme in a Flutter application.
 
-The playground is also the last step in the package tutorial series. The tutorial goes through its main used features that are relevant to using `FlexColorScheme`, and features that differ from the previous examples. It does not go through all the details of the Playground application, only highlights. You are welcome to study its source code for more insights. It is on purposes a bit excessively commented to guide you if you do. The tutorial also briefly talks about its background, design choices and limitations. 
+The **FlexColorScheme** package, then when given an API configuration produced by, and copy-pasted from the **Themes Playgrpound**, produces Flutter `ThemeData` object used as a theme in a `MaterialApp`. FlexColorScheme works as fancy `ThemeData` factory, with an often much shorter API for the features it supports.  
 
-All the example apps are built from the example folder source code included with the package. The web builds and deployments are automated using GitHub actions that are included in the GitHub repository as well.
+The **Themes Playground** app is primarily intended to be used by developers using the **FlexColorScheme** package. It can of course also be used to demonstrate a large number of **Material** theming features available in Flutter.
 
-## Two Layouts
+## Documentation
 
-The Themes Playground application offers two view modes.
+The Themes Playground app has a lot of in-application expandable documentation and information. Wherever you see an info icon (i), you can tap on it to expand it and read more about the feature.
 
-1. Topic-based page views.
-2. Topic-based collapsible panels, in a large masonry style grid view.
+<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-info-expand.png" alt="Playground info expand" caption="In-app documentaion and info expand icons"/>
 
-Both views have their pros and cons. On most smaller screens and phone devices, the topic-based page view is more practical to use.
+
+## Many Layouts
+
+The Themes Playground application offers several differnt layouts, some automatic responsive ones, and others that you can switch between manually.
+
+1. One theme topic single page view (phone)
+2. Two topics single page view (small tablet)
+3. Two topics side-by-side view colors on top (desktop, large tablet)
+4. Two topics side-by-side view colors on side (desktop, large tablet)
+5. Masonry style grid with collapsible theme topic panels.
+
+The views 1 to 4, are all part of the page view layout mode. This mode switches automatically, depending on screen media size, between layouts 1, 2 and 3 or 4. The choice between 3 and 4 is a manual user preference toggle in the side command bar. There is also a large and compact interface mode, making theme topic panel spacing as well as theme topic and color selection buttons smaller or larger. 
+
+### One theme topic single page view
+
+In this view, the theme topic panel can be swiped horizontally, with eg the thumb, to casually move to the next theme topic panel. When scrolling vertically, the theme topic selection buttons and theme colors selection also scroll away to reveal more contet.
+
+<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-phone.png" alt="Playground info expand" caption="View 1 - Phone sized single page view"/>
+
+### Two topics single page view
+
+In this view, the single page view shows two theme topic panels side-by-side in a tight layout. This size shows up on typical tablet sizes, on many sizes even in vertical mode. The layout can be toggled between compact and large UI. The right column can show any selected theme topic as well, but the secondary topic selection is done via a popup menu.
+
+<Tabs
+  defaultValue="tablet-compact"
+  values={[
+    {label: 'Tablet (compact)', value: 'tablet-compact'},
+    {label: 'Tablet side bar', value: 'tablet-compact-popup'},
+    {label: 'Tablet (large)', value: 'tablet-large'},
+  ]}> 
+  <TabItem value="tablet-compact">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact.png" alt="playground tablet compact" caption="View 2 - Compact UI tablet size view"/>
+  </TabItem>
+  <TabItem value="tablet-large">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact-topicmenu.png" alt="playground tablet compact topic menu" caption="View 2 - Expanded UI tablet size view, with topic popup"/>
+  </TabItem>
+  <TabItem value="tablet-sidebar">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact" alt="playground tablet compact" caption="View 2 - Expanded UI tablet size view"/>
+  </TabItem>
+</Tabs>
+
+
+---
+
 
 The masonry-based grid view is best experienced at as high resolution as possible, preferably even pixel native 4k. On the web, a full 4k render with all panels open is not so super smooth, on desktop builds it typically works well.
 
@@ -40,14 +82,14 @@ The page view becomes more useful at typical landscape tablet sizes or larger. A
     {label: 'Masonry Grid View', value: 'masonry'},
   ]}>
   <TabItem value="page">
-    <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true"
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true"
     caption="Themes Playground - Topic-based page view, responsiveness demo."
-    alt="page view demo" zoom />
+    alt="page view demo" />
   </TabItem>
   <TabItem value="masonry">
-    <Image src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
     caption="Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo."
-    alt="masonry view demo" zoom />
+    alt="masonry view demo" />
   </TabItem>
 </Tabs>
 
@@ -425,15 +467,18 @@ You can use this feature if you prefer to not use any of FlexColorScheme's themi
 
 ## Playground History
 
-The **Themes Playground** application started as just a single page, much like example 4, but with a few more controls to modify the actively viewed theme configured by **FlexColorScheme**, it was the final step in the tutorial. It was and still is included as example number 5 in the package repository. The Playground app is built and published as a web app from that example.
+The **Themes Playground** application started as just a single page, much like example 4, but with a few more controls to modify the actively viewed theme configured by **FlexColorScheme**, it was the final step in the tutorial. It was and still is included as example number 5 in the package repository.
+
+### Open Source
+
+The **Themes Playground** application is open source and bundled with the `FlexColorScheme` package in the example sub-folder. In its GitHub repository you can find it here [/example/lib/example5_themes_playground](https://github.com/rydmike/flex_color_scheme/tree/master/example/lib/example5_themes_playground). 
+All the example apps are built from the example folder source code included with the package. The web builds and deployments are automated using GitHub actions that are included in the GitHub repository as well.
 
 ### Background
 
-Originally **FlexColorScheme** was only intended to be the last step in the "how to use FlexColorScheme" training tutorial. After its humble introduction, it has grown into a notable and quite extensive application of its own. It has become too extensive to serve as a useful tutorial step. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is still architecturally identical to examples 3 and 4 in the tutorial.
+Originally **FlexColorScheme** was only intended to be the last step in the "how to use FlexColorScheme" training tutorial. After its humble introduction, it has grown into a notable and quite extensive application of its own. It has become too extensive to serve as a useful tutorial step. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is still architecturally identical to examples 3 and 4 in the tutorial. The **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package itself aims for 100% test coverage in its stable releases.
 
-As a tutorial and example app, the **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package has and always aims for 100% test coverage in its stable releases.
-
-Despite **Themes Playground** not having any formal guarantees, it is extensively used and user tested during development of **FlexColorScheme** releases. In addition to being a very useful tool to configure and experiment with different themes for Flutter apps, and to quickly copy needed API configuration to get the same theme in your app. It is also an excellent tool to use during development of the **FlexColorScheme** package. It is used to visually see and verify that all features in the package **actually** do what is expected of them. The changes to the **Themes Playground** app are also generally already quite thoroughly tracked in the [changelog](https://pub.dev/packages/flex_color_scheme/changelog), going back many releases.
+The **Themes Playground** is extensively used and tested during development of **FlexColorScheme** releases. In addition to being a useful tool to configure and experiment with different themes for Flutter apps, or used to quickly copy needed API configuration to get the same theme in your app, it is also an excellent tool to use during development of the **FlexColorScheme** package. It is used to visually see and verify that all features in the package, **actually** do what is expected of them. The changes to the **Themes Playground** app are also thoroughly tracked in the [changelog](https://pub.dev/packages/flex_color_scheme/changelog), going back many releases.
 
 ### Future plans
 
@@ -447,7 +492,7 @@ General export and import of theme configurations could be supported. Distributi
 
 Cloud storage of themes and sharing them within a team would be in the paid tier. Export/import of theme configs is touch and go, they might fall into the paid tier or not. Some new theming features that don't exist yet might also only be in the paid tier. The free tier would be better and also have more features than it currently has. Obviously, the open source free **FlexColorScheme** package API would always support anything the paid tier can do in the Playground, but some Playground theming features might only be in the paid tier.
 
-The challenge with many of the **pro** and **designer** leaning features asked for, are that most of them require a backend, which is not free. Delivering them would require a means to cover the costs. It is not expected that the app would bring any major income, nor would it be priced to aim for that. Theming a Flutter app is probably not a big business opportunity, but it would still need to generate revenue to cover the backend service costs. At this stage, it is unknown if there is enough interest to do that.
+The challenge with many of the requested **pro** and **designer** features, is that most of them require a backend, which is not free. Delivering them would require a means to cover the costs. It is not expected that the app would bring any major income, nor would it be priced to aim for that. Theming a Flutter app is probably not a big business opportunity, but it would still need to generate enough income to cover the backend service costs. At this stage, it is unknown if there is enough interest in it, for it to be able to do that.
 
 ## Versions
 
