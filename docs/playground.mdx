@@ -4,7 +4,7 @@ This chapter goes through the basics of how to use the Themes Playground. Genera
 
 <Info>This chapter may in some examples use screenshots from older versions of the Themes Playground, but the demonstrated features are in those cases still using the same principles.</Info>
 
-## What is the Themes Playground?
+## What is the Playground?
 
 The [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v7-2) is a useful tool to find **FlexColorScheme** themes and settings you like. You can use it to discover what you can do with FlexColorScheme. The playground persists all its settings, and you can reset them back to their default values, so don't be afraid to experiment.
 
@@ -67,7 +67,7 @@ In this view, the single page view shows two theme topic panels side-by-side in 
   defaultValue="tablet-compact"
   values={[
     {label: 'Tablet compact UI', value: 'tablet-compact'},
-    {label: 'Tablet compact UI, popup menu', value: 'tablet-compact-popup'},
+    {label: 'Tablet compact UI, popup', value: 'tablet-compact-popup'},
     {label: 'Tablet large UI', value: 'tablet-large'},
   ]}> 
   <TabItem value="tablet-compact">
@@ -112,9 +112,9 @@ This view shows up at desktop sizes or large tablets in landscape mode. The main
 <Tabs
   defaultValue="desktop-side-compact"
   values={[
-    {label: 'Desktop compact, side colors', value: 'desktop-side-compact'},
-    {label: 'Desktop large, side colors', value: 'desktop-side-large'},
-    {label: 'Desktop large, expanded menu', value: 'desktop-side-large-menu'},
+    {label: 'Desktop side compact', value: 'desktop-side-compact'},
+    {label: 'Desktop side large', value: 'desktop-side-large'},
+    {label: 'Desktop side large with menu', value: 'desktop-side-large-menu'},
   ]}>
   <TabItem value="desktop-side-compact">
     <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-side-compact.png" alt="playground side colors side compact" caption="View 4) Compact UI on desktop sized media, colors on the side"/>
@@ -524,7 +524,7 @@ You can use this feature if you prefer to not use any of FlexColorScheme's themi
 
 ## Playground History
 
-The **Themes Playground** application started as just a single page, much like example 4, but with a few more controls to modify the actively viewed theme configured by **FlexColorScheme**, it was the final step in the tutorial. It was and still is included as example number 5 in the package repository.
+The first version of **Themes Playground** was just example 4, but with a few more controls to modify the actively viewed theme configured by **FlexColorScheme**, it was the final step in the tutorial. It was and still is included as example number 5 in the package repository and step 5 in the package usage tutorial.
 
 ### Open Source
 
@@ -533,7 +533,7 @@ All the example apps are built from the example folder source code included with
 
 ### Background
 
-Originally, **FlexColorScheme** was only intended to be the last step in the "how to use FlexColorScheme" training tutorial. After its humble introduction, it has grown into a notable and quite extensive application of its own. It has become too extensive to serve as a useful tutorial step. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is still architecturally identical to examples 3 and 4 in the tutorial. The **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package itself aims for 100% test coverage in its stable releases.
+Originally, **FlexColorScheme** was only intended to be the last step in the "how to use FlexColorScheme" tutorial. After its humble introduction, it has grown into a notable and quite extensive application of its own. It has become too extensive to serve as a useful tutorial step. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is still architecturally identical to examples 3 and 4 in the tutorial. The **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package itself has and aims for 100% test coverage in its stable releases.
 
 The **Themes Playground** is extensively used and tested during development of **FlexColorScheme** releases. In addition to being a useful tool to configure and experiment with different themes for Flutter apps, or used to quickly copy needed API configuration to get the same theme in your app, it is also an excellent tool to use during development of the **FlexColorScheme** package. It is used to visually see and verify that all features in the package, **actually** do what is expected of them. The changes to the **Themes Playground** app are also thoroughly tracked in the [changelog](https://pub.dev/packages/flex_color_scheme/changelog), going back many releases.
 
