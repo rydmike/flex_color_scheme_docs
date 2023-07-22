@@ -67,7 +67,7 @@ In this view, the single page view shows two theme topic panels side-by-side in 
   defaultValue="tablet-compact"
   values={[
     {label: 'Tablet compact UI', value: 'tablet-compact'},
-    {label: 'Tablet popup menu', value: 'tablet-compact-popup'},
+    {label: 'Tablet compact UI, popup menu', value: 'tablet-compact-popup'},
     {label: 'Tablet large UI', value: 'tablet-large'},
   ]}> 
   <TabItem value="tablet-compact">
@@ -93,8 +93,8 @@ This view makes it quick and easy to select the desired theme topics for the lef
 <Tabs
   defaultValue="desktop-compact"
   values={[
-    {label: 'Desktop compact UI, top colors', value: 'desktop-compact'},
-    {label: 'Desktop large UI, top colors', value: 'desktop-large'},
+    {label: 'Desktop compact', value: 'desktop-compact'},
+    {label: 'Desktop large', value: 'desktop-large'},
   ]}>
   <TabItem value="desktop-compact">
     <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-top-compact.png" alt="playground side colors top compact" caption="View 3) Compact UI on desktop sized media, colors at the top"/>
@@ -112,9 +112,9 @@ This view shows up at desktop sizes or large tablets in landscape mode. The main
 <Tabs
   defaultValue="desktop-side-compact"
   values={[
-    {label: 'Desktop compact UI, side colors', value: 'desktop-side-compact'},
-    {label: 'Desktop large UI, side colors', value: 'desktop-side-large'},
-    {label: 'Desktop large UI, expanded menu, side colors', value: 'desktop-side-large-menu'},
+    {label: 'Desktop compact, side colors', value: 'desktop-side-compact'},
+    {label: 'Desktop large, side colors', value: 'desktop-side-large'},
+    {label: 'Desktop large, expanded menu', value: 'desktop-side-large-menu'},
   ]}>
   <TabItem value="desktop-side-compact">
     <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-side-compact.png" alt="playground side colors side compact" caption="View 4) Compact UI on desktop sized media, colors on the side"/>
@@ -143,6 +143,14 @@ alt="masonry view demo" />
 
 
 Be aware that the masonry grid layout will change column placement based on how the view itself optimizes the layout to fit in minimal space. The order of theme topic item may therefore seem to switch as you open and close panels, or if a panel changes size a lot when you enable/disable features in it.
+
+## Theme Topics
+
+The theming topics that you can act upon or use as views for more information and to see the results are displayed in theme topic panels. You select which theme topic to view and use, via the theme topic buttons.
+
+The theme topic panels are grouped into related topic groups that share the same color on their used theme topic icons. This provides visual ques when navigating all the different theme topics.
+
+<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-topic-groups.png" alt="Playground theme topics" caption="Theme topic groups with color coded icons"/>
 
 ## Interactive Theme
 
