@@ -123,21 +123,21 @@ You can also use properties like **inputColors**, **swapColors** and e.g. **useM
 
   This is useful if you want to do this with the pre-defined schemes for more theme options. If you are explicitly defining all your theme colors, you can define them in any desired order. Even if you do that, this feature, if used, will still swap whatever colors you defined for primary and secondary. You can also offer this feature as an easy end user modifiable theme option. Another usage possibility is to set `swapColors` to true only for the dark mode and use your color scheme primary and secondary the other way around in dark mode.
 
-* **useMaterial3** boolean value. Defaults to false. A flag used to opt in to new SDK Material 3 features. Same property as in `ThemeData`, see [API doc](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/useMaterial3.html) or [Flutter API docs](https://api.flutter.dev/flutter/material/ThemeData/useMaterial3.html) for more information.
+* **useMaterial3** boolean value. Defaults to false. A flag used to opt in to new SDK Material-3 features. Same property as in `ThemeData`, see [API doc](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexColorScheme/useMaterial3.html) or [Flutter API docs](https://api.flutter.dev/flutter/material/ThemeData/useMaterial3.html) for more information.
 
-* **useMaterial3ErrorColors** boolean value. Set it to true to use the new Material 3 error colors. If `useMaterial3ErrorColors` is false, the resulting `ColorScheme` and `ThemeData` will use Material 2 default error colors or error colors as defined by the built-in color schemes. Thus, using the same error colors as in FlexColorScheme versions before version 5.
+* **useMaterial3ErrorColors** boolean value. Set it to true to use the new Material-3 error colors. If `useMaterial3ErrorColors` is false, the resulting `ColorScheme` and `ThemeData` will use Material-2 default error colors or error colors as defined by the built-in color schemes. Thus, using the same error colors as in FlexColorScheme versions before version 5.
 
-   If `useMaterial3ErrorColors` is true, the resulting `ColorScheme` and `ThemeData` will use the Material 3 design guide error colors. Key color seed generated ColorSchemes always use the Material 3 design guide error colors, or error colors from its customized `TonalPalette` generation setup. **Defaults to false**.
+   If `useMaterial3ErrorColors` is true, the resulting `ColorScheme` and `ThemeData` will use the Material-3 design guide error colors. Key color seed generated ColorSchemes always use the Material-3 design guide error colors, or error colors from its customized `TonalPalette` generation setup. **Defaults to false**.
 
    The new M3 error colors are generally nicer looking. If your theme is using red color shades, you can try both options to see which option works better with your theme's red colors. That would be the red error color option that is more distinguishable from your main red theme colors.
 
-* **swapLegacyOnMaterial3** boolean value. Set it to true, to automatically swap secondary and tertiary colors on built-in color schemes, when `useMaterial3` is true, if the scheme benefits from it to better match the Material 3 color system design intent.
+* **swapLegacyOnMaterial3** boolean value. Set it to true, to automatically swap secondary and tertiary colors on built-in color schemes, when `useMaterial3` is true, if the scheme benefits from it to better match the Material-3 color system design intent.
    
-   Starting with FlexColorScheme version 6.1.0, built-in color schemes, defined via `FlexSchemeColor`, have a flag `swapOnMaterial3`. When defined to be true, the scheme will benefit if the `secondary` and `tertiary` colors, including their containers, are swapped when using Material 3. Most FlexColorScheme color schemes were designed with M2 usage in mind, before M3 existed. They may often have their `swapOnMaterial3` set to true. If this flag is false, it may mean that its `FlexSchemeColor` was designed for M3 or that it won't benefit from swapping its secondary and tertiary colors. In the [Scheme Reference](/scheme_reference), you can see which schemes have the flag defined to true. 
+   Starting with FlexColorScheme version 6.1.0, built-in color schemes, defined via `FlexSchemeColor`, have a flag `swapOnMaterial3`. When defined to be true, the scheme will benefit if the `secondary` and `tertiary` colors, including their containers, are swapped when using Material-3. Most FlexColorScheme color schemes were designed with M2 usage in mind, before M3 existed. They may often have their `swapOnMaterial3` set to true. If this flag is false, it may mean that its `FlexSchemeColor` was designed for M3 or that it won't benefit from swapping its secondary and tertiary colors. In the [Scheme Reference](/scheme_reference), you can see which schemes have the flag defined to true. 
     
    Using a seed-generated color scheme based on built-in FlexSchemeColor colors is another way to make them suitable for the M3 Color system. However, in some cases, the secondary color in their design may not be in-line with the M3 color system design intent, especially if you use the config that also uses the hue from the secondary color to make tonal palettes for it. In some legacy FlexSchemeColor color designs this can be fixed if we swap the secondary and tertiary colors.
 
-   To make FlexSchemeColor designs color designs that benefit from it automatically swap secondary and tertiary colors when `useMaterial3` is set to true, set `swapLegacyOnMaterial3` to true. It defaults to false, for backward compatibility, but it is recommended to turn it on when using Material 3 and its color system. If you use seeded color schemes with Material 2, `useMaterial3` flag is false, then it may be preferable to keep `swapOnMaterial3` false for more prominent colors on secondaries.
+   To make FlexSchemeColor designs color designs that benefit from it automatically swap secondary and tertiary colors when `useMaterial3` is set to true, set `swapLegacyOnMaterial3` to true. It defaults to false, for backward compatibility, but it is recommended to turn it on when using Material-3 and its color system. If you use seeded color schemes with Material-2, `useMaterial3` flag is false, then it may be preferable to keep `swapOnMaterial3` false for more prominent colors on secondaries.
 
    This color swap has higher priority than `swapColor`, using it will always happen on the effective result of `swapLegacyOnMaterial3` and `useMaterial3`, and value of `swapOnMaterial3` in currently used built-in scheme `FlexSchemeColor`. 
  
@@ -249,7 +249,7 @@ Above you could also create the entire `ThemeData` from the `FlexColorScheme` in
 
 ## Generated ColorScheme
 
-Flutter has `ColorScheme.fromSeed` to make delightful Material 3 specification based **computational** ColorSchemes. With **FlexColorScheme** you can use the identical algorithm that is used by `ColorScheme.fromSeed`. You can also completely customize it, while still be producing a `ColorScheme` that adheres to the Material 3 color system, but primes the color generation engine a bit differently.
+Flutter has `ColorScheme.fromSeed` to make delightful Material-3 specification based **computational** ColorSchemes. With **FlexColorScheme** you can use the identical algorithm that is used by `ColorScheme.fromSeed`. You can also completely customize it, while still be producing a `ColorScheme` that adheres to the Material-3 color system, but primes the color generation engine a bit differently.
 
 Since `ColorScheme.fromSeed` only uses one single color as seed color, and always the same `ColorScheme` generation parameters, the amount of variation it provides is a bit limited, and the results also tend to be soft pastel color oriented. As we get used to them, they will all start looking quite similar.
 
@@ -276,11 +276,11 @@ See API reference for details:
 * [**tertiaryChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/tertiaryChroma.html)
 * [**tertiaryMinChroma**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/tertiaryMinChroma.html)
 
-You can also modify which tone in the generated tonal palettes is mapped to what `ColorScheme` color, within the limits that it only allows mapping tones from each tonal palette to the colors in the ColorScheme that in Material 3 color system design use the tonal palette in question, but you can change used tone to be different from the Material 3 guide specification and values used in Flutter SDK.
+You can also modify which tone in the generated tonal palettes is mapped to what `ColorScheme` color, within the limits that it only allows mapping tones from each tonal palette to the colors in the ColorScheme that in Material-3 color system design use the tonal palette in question, but you can change used tone to be different from the Material-3 guide specification and values used in Flutter SDK.
 
-To make custom `FlexTones()`, prefer using the theme mode appropriate constructor `FlexTones.light()` or `FlexTones.dark()` that have defaults that create the setup for the Material 3 spec used in Flutter `ColorScheme.fromSeed`, but where each property can be changed from the default as preferred.
+To make custom `FlexTones()`, prefer using the theme mode appropriate constructor `FlexTones.light()` or `FlexTones.dark()` that have defaults that create the setup for the Material-3 spec used in Flutter `ColorScheme.fromSeed`, but where each property can be changed from the default as preferred.
 
-There are other predefined `FlexTones` configurations in addition to the default Material 3 guide spec matching one. You can use them as they are, or as examples of how to create your own custom `tones` configurations. Made a great one? Please share it in the FlexColorScheme GitHub repository's show and tell
+There are other predefined `FlexTones` configurations in addition to the default Material-3 guide spec matching one. You can use them as they are, or as examples of how to create your own custom `tones` configurations. Made a great one? Please share it in the FlexColorScheme GitHub repository's show and tell
 [discussions](https://github.com/rydmike/flex_color_scheme/discussions/categories/show-and-tell) forum. Maybe we can add it as another predefined option.
 
 See API reference for more details on **FlexTones**:
@@ -291,7 +291,7 @@ See API reference for more details on **FlexTones**:
  
 * Dark mode default value factory [**FlexTones.dark**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.dark.html), default and same as Flutter SDK M3 setup for a dark ColorScheme.
  
-* Material 3 spec tones constructor [**FlexTones.material**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.material.html), default and same as Flutter SDK M3 setup.
+* Material-3 spec tones constructor [**FlexTones.material**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.material.html), default and same as Flutter SDK M3 setup.
  
 * Vivid color tones constructor [**FlexTones.vivid**](https://pub.dev/documentation/flex_seed_scheme/latest/flex_seed_scheme/FlexTones/FlexTones.vivid.html), more vivid colors, or at least closer in chroma to the used seed key color, as it uses chroma from all key colors as given.
  
@@ -396,7 +396,7 @@ When we try the above `FlexThemeData` config, again in the [**Copy Playground**]
 
 A more opinionated theme and style can be created by passing in a default `FlexSubThemesData()` constructor to the `FlexColorScheme` or `FlexThemeData`, property `subThemesData`.
 
-By default, the component themes take inspiration from the Material 3 design guide [specification](https://m3.material.io) and uses its values as defaults when it is possible to do so in Flutter SDK theming, still having its Material 2 design theming limitations.
+By default, the component themes take inspiration from the Material-3 design guide [specification](https://m3.material.io) and uses its values as defaults when it is possible to do so in Flutter SDK theming, still having its Material-2 design theming limitations.
 
 The component themes can be configured further by configuring a large number of properties in `FlexSubThemesData`, that is passed into `subThemesData`. A commonly used feature is to adjust the default corner border radius on all sub-themes for widgets that support it.
 
@@ -534,7 +534,7 @@ API reference: [FlexSubThemes](https://pub.dev/documentation/flex_color_scheme/l
 * [**elevatedButtonTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/elevatedButtonTheme.html) used to create the component theme for the [ElevatedButton](https://api.flutter.dev/flutter/material/ElevatedButton-class.html) widget.
 * [**floatingActionButtonTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/floatingActionButtonTheme.html) used to create the component theme for the [FloatingActionButton](https://api.flutter.dev/flutter/material/FloatingActionButton-class.html) widget.
 * [**inputDecorationTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/inputDecorationTheme.html) used to create the component theme for [InputDecoration](https://api.flutter.dev/flutter/material/InputDecoration-class.html) configuration that describes the style of [TextField](https://api.flutter.dev/flutter/material/TextField-class.html) and [InputDecorator](https://api.flutter.dev/flutter/material/InputDecorator-class.html).
-* [**navigationBarTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/navigationBarTheme.html) used to create the component theme for the Material 3 [NavigationBar](https://api.flutter.dev/flutter/material/NavigationBar-class.html) widget.
+* [**navigationBarTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/navigationBarTheme.html) used to create the component theme for the Material-3 [NavigationBar](https://api.flutter.dev/flutter/material/NavigationBar-class.html) widget.
 * [**navigationRailTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/navigationRailTheme.html) used to create the component theme for the [NavigationRail](https://api.flutter.dev/flutter/material/NavigationRail-class.html) widget.
 * [**outlinedButtonTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/outlinedButtonTheme.html) used to create the component theme for the [OutlinedButton](https://api.flutter.dev/flutter/material/OutlinedButton-class.html) widget.
 * [**popupMenuTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemes/popupMenuTheme.html) used to create the component theme for the [PopupMenuButton](https://api.flutter.dev/flutter/material/PopupMenuButton-class.html) widget.
