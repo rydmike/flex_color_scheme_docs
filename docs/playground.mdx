@@ -1,8 +1,10 @@
 # Themes Playground
 
-This chapter goes through the basics of how to use the Themes Playground. Generally it is easy, and you probably don't need a guide, but if you get stuck on some finer points, you can find answers here.
+This chapter goes through the basics of how to use the Themes Playground. Generally it is easy, and you probably don't need a guide, but if you get stuck on some finer points, you may find answers here.
 
-<Info>This chapter has not yet been updated to fully cover FlexColorScheme version 7.2. When it has been fully updated, this notice will be removed.</Info>
+<Info>This chapter may in some examples use screenshots from older versions of the Themes Playground, but the demonstrated features are in those cases still using the same principles.</Info>
+
+## What is the Themes Playground?
 
 The [**Themes Playground**](https://rydmike.com/flexcolorscheme/themesplayground-v7-2) is a useful tool to find **FlexColorScheme** themes and settings you like. You can use it to discover what you can do with FlexColorScheme. The playground persists all its settings, and you can reset them back to their default values, so don't be afraid to experiment.
 
@@ -10,64 +12,126 @@ The most useful and popular feature of the **Themes Playground** is that it can 
 
 The latest stable version of **Themes Playground** can be used as a [web app here](https://rydmike.com/flexcolorscheme/themesplayground-v7-2).
 
-## What is the Themes Playground?
-
 The **Themes Playground** is a "what you see, is what you get" visual configuration tool for the **FlexColorScheme** package API. As you interactively modify the theme, that the Playground app itself uses and shows, it also generates the **FlexColorScheme** package API configuration needed to reproduce the same theme in a Flutter application.
 
-The **FlexColorScheme** package, then when given an API configuration produced by, and copy-pasted from the **Themes Playgrpound**, produces Flutter `ThemeData` object used as a theme in a `MaterialApp`. FlexColorScheme works as fancy `ThemeData` factory, with an often much shorter API for the features it supports.  
+The **FlexColorScheme** package, then when given an API configuration produced by, and copy-pasted from the **Themes Playground**, produces Flutter `ThemeData` object used as a theme in a `MaterialApp`. FlexColorScheme works as fancy `ThemeData` factory, with an often much shorter API for the features it supports.  
 
 The **Themes Playground** app is primarily intended to be used by developers using the **FlexColorScheme** package. It can of course also be used to demonstrate a large number of **Material** theming features available in Flutter.
 
-## Documentation
+## Quick Guides
 
 The Themes Playground app has a lot of in-application expandable documentation and information. Wherever you see an info icon (i), you can tap on it to expand it and read more about the feature.
 
-<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-info-expand.png" alt="Playground info expand" caption="In-app documentaion and info expand icons"/>
+<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-info-expand.png" alt="Playground info expand" caption="In-app documentation and info expand icons"/>
 
 
 ## Many Layouts
 
-The Themes Playground application offers several differnt layouts, some automatic responsive ones, and others that you can switch between manually.
+The Themes Playground application offers several different layouts, some automatic responsive ones, and others that you can switch between manually.
 
 1. One theme topic single page view (phone)
 2. Two topics single page view (small tablet)
-3. Two topics side-by-side view colors on top (desktop, large tablet)
-4. Two topics side-by-side view colors on side (desktop, large tablet)
-5. Masonry style grid with collapsible theme topic panels.
+3. Two topics side-by-side with colors at the top (desktop, large tablet)
+4. Two topics side-by-side with colors on the side (desktop, large tablet)
+5. Masonry style grid view, with collapsible theme topic panels
 
-The views 1 to 4, are all part of the page view layout mode. This mode switches automatically, depending on screen media size, between layouts 1, 2 and 3 or 4. The choice between 3 and 4 is a manual user preference toggle in the side command bar. There is also a large and compact interface mode, making theme topic panel spacing as well as theme topic and color selection buttons smaller or larger. 
+The views 1 to 4 are all part of the page view layout mode. This mode switches layout automatically depending on screen media size. It switches between layouts 1, 2 and 3 or 4. The choice between 3 and 4 is a manual user preference toggle in the side command bar. There is also a large and compact interface mode, making theme topic panel spacing as well as theme topic and color selection buttons smaller or larger. 
 
-### One theme topic single page view
+### 1) One theme topic single page view
 
-In this view, the theme topic panel can be swiped horizontally, with eg the thumb, to casually move to the next theme topic panel. When scrolling vertically, the theme topic selection buttons and theme colors selection also scroll away to reveal more contet.
+In this view, the theme topic panel can be swiped horizontally, with e.g., the thumb to casually move to the next theme topic panel. When scrolling vertically, the theme topic selection buttons and theme colors selection also scroll away to reveal more content.
 
-<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-phone.png" alt="Playground info expand" caption="View 1 - Phone sized single page view"/>
+<Tabs
+  defaultValue="phone"
+  values={[
+    {label: 'Phone', value: 'phone'},
+    {label: 'Phone scrolling, value: 'phone-scrolling'},
+    {label: 'Phone swiping', value: 'phone-swiping'},
+  ]}>
+  <TabItem value="phone">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-phone.png" alt="phone view" caption="View 1 - Phone sized single page view"/>
+  </TabItem>
+  <TabItem value="phone-scrolling">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-phone.png" alt="phone view scrolling" caption="View 1 - Phone sized single page view - scrolling"/>
+  </TabItem>
+  <TabItem value="phone-swiping">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-phone.png" alt="phone view swiping" caption="View 1 - Phone sized single page view - swiping to next panel"/>
+  </TabItem>
+</Tabs>
 
-### Two topics single page view
+### 2) Two topics single page view
 
-In this view, the single page view shows two theme topic panels side-by-side in a tight layout. This size shows up on typical tablet sizes, on many sizes even in vertical mode. The layout can be toggled between compact and large UI. The right column can show any selected theme topic as well, but the secondary topic selection is done via a popup menu.
+In this view, the single page view shows two theme topic panels side-by-side in a tight layout. This size shows up at typical tablet sizes, on some tablet sizes in vertical mode. The layout can be toggled between compact and large UI. The right column can show any selected theme topic as well, but the secondary topic selection is done via a popup menu.
 
 <Tabs
   defaultValue="tablet-compact"
   values={[
-    {label: 'Tablet (compact)', value: 'tablet-compact'},
-    {label: 'Tablet side bar', value: 'tablet-compact-popup'},
-    {label: 'Tablet (large)', value: 'tablet-large'},
+    {label: 'Tablet compact UI', value: 'tablet-compact'},
+    {label: 'Tablet popup menu, value: 'tablet-compact-popup'},
+    {label: 'Tablet large UI', value: 'tablet-large'},
   ]}> 
   <TabItem value="tablet-compact">
-    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact.png" alt="playground tablet compact" caption="View 2 - Compact UI tablet size view"/>
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact.png" alt="playground tablet compact" caption="View 2 - Compact UI on tablet sized media"/>
+  </TabItem>
+  <TabItem value="tablet-compact-popup">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact-topicmenu.png" alt="playground tablet compact topic menu" caption="View 2 - Compact UI on tablet sized media, with topic popup"/>
   </TabItem>
   <TabItem value="tablet-large">
-    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact-topicmenu.png" alt="playground tablet compact topic menu" caption="View 2 - Expanded UI tablet size view, with topic popup"/>
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-expanded.png" alt="playground tablet compact" caption="View 2 - Expanded UI on tablet sized media"/>
   </TabItem>
-  <TabItem value="tablet-sidebar">
-    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-tablet-compact" alt="playground tablet compact" caption="View 2 - Expanded UI tablet size view"/>
+</Tabs>
+
+In this view, you can still also swipe the topic panel to go the next one. The left one will change to the next topic, but the right one, that you select via the popup menu, remains the same. 
+
+
+### 3) Two topics side-by-side with colors at the top
+
+This view shows up at desktop sizes or large tablets in landscape mode. There are separate scrollable theme topic selectors on the left and right side of each viewed theme topic panel.
+
+This view makes it quick and easy to select the desired theme topics for the left and right side. The color selection is at the top. The UI mode can be toggled between large and compact.
+
+<Tabs
+  defaultValue="desktop-compact"
+  values={[
+    {label: 'Desktop compact UI, top colors', value: 'desktop-compact'},
+    {label: 'Desktop large UI, top colors', value: 'desktop-large'},
+  ]}>
+  <TabItem value="desktop-compact">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-top-compact.png" alt="playground side colors top compact" caption="View 3 - Compact UI on desktop sized media, colors at the top"/>
+  </TabItem>
+  <TabItem value="desktop-large">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-top-expanded.png" alt="playground side colors top expanded" caption="View 3 - Large UI on desktop sized media, colors at the top"/>
   </TabItem>
 </Tabs>
 
 
----
+### 4) Two topics side-by-side with colors on the side
 
+This view shows up at desktop sizes or large tablets in landscape mode. The main difference to the previous one is that the manually controlled option to place the colors on the side has been used. The purpose of this layout is to offer more usable vertical space on height-limited desktop resolutions that are width focused. This applies, for example, to typical 16:9 full HD screens (1920x1080 pixels).  
+
+<Tabs
+  defaultValue="desktop-side-compact"
+  values={[
+    {label: 'Desktop compact UI, side colors', value: 'desktop-side-compact'},
+    {label: 'Desktop large UI, side colors', value: 'desktop-side-large'},
+    {label: 'Desktop large UI, expanded menu, side colors', value: 'desktop-side-large-menu'},
+  ]}>
+  <TabItem value="desktop-side-compact">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-side-compact.png" alt="playground side colors side compact" caption="View 3 - Compact UI on desktop sized media, colors on the side"/>
+  </TabItem>
+  <TabItem value="desktop-side-large">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-side-expanded.png" alt="playground side colors side expanded" caption="View 3 - Large UI on desktop sized media, colors on the side"/>
+  </TabItem>
+  <TabItem value=desktop-side-large-menu">
+    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/playground-side-colors-side-expanded-menu.png" alt="playground side colors side expanded" caption="View 3 - Large UI on desktop sized media, colors on the side, menu expanded"/>
+  </TabItem>
+</Tabs>
+
+
+In all views, the side command menu can also be toggled. On larger media it toggles between a full-sized side command menu or side rail. On smaller media it toggles between side rail and hidden in a side drawer.
+
+
+### 5) Masonry grid view
 
 The masonry-based grid view is best experienced at as high resolution as possible, preferably even pixel native 4k. On the web, a full 4k render with all panels open is not so super smooth, on desktop builds it typically works well.
 
@@ -75,25 +139,13 @@ Both views are very responsive and work very well down to small phone media size
 
 The page view becomes more useful at typical landscape tablet sizes or larger. At those sizes, you can see the generated setup code in a side-by-side view with each page's configuration topic.
 
-<Tabs
-  defaultValue="page"
-  values={[
-    {label: 'Page View', value: 'page'},
-    {label: 'Masonry Grid View', value: 'masonry'},
-  ]}>
-  <TabItem value="page">
-    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-01-pageview-3.gif?raw=true"
-    caption="Themes Playground - Topic-based page view, responsiveness demo."
-    alt="page view demo" />
-  </TabItem>
-  <TabItem value="masonry">
-    <Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
-    caption="Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo."
-    alt="masonry view demo" />
-  </TabItem>
-</Tabs>
+<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
+caption="Themes Playground - Masonry grid view with collapsible topic panels, responsiveness demo."
+alt="masonry view demo" />
 
-With the masonry grid, you can open and close multiple panels, including the code view, and change settings across multiple panels and see the impact on all of them. Sometimes having the right combination of panels with different topics open at the same time is useful in order to see and understand the impact of different theme settings. While some settings are by their nature limited to only affecting the components shown on the same topic page. We will explore some examples of both cases.
+With the masonry grid, you can open and close multiple panels, including the code view, and change settings across multiple panels and see the impact on all of them. Sometimes having the right combination of panels with different topics open at the same time is useful in order to see and understand the impact of different theme settings.
+
+Be aware that the masonry grid layout will change column placement based on how the view itself optimizes the layout to fit in minimal space. The order of theme topic item may therefore seem to switch as you open and close panels, or if a panel changes size a lot when you enable/disable features in it.
 
 ## Interactive Theme
 
@@ -476,7 +528,7 @@ All the example apps are built from the example folder source code included with
 
 ### Background
 
-Originally **FlexColorScheme** was only intended to be the last step in the "how to use FlexColorScheme" training tutorial. After its humble introduction, it has grown into a notable and quite extensive application of its own. It has become too extensive to serve as a useful tutorial step. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is still architecturally identical to examples 3 and 4 in the tutorial. The **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package itself aims for 100% test coverage in its stable releases.
+Originally, **FlexColorScheme** was only intended to be the last step in the "how to use FlexColorScheme" training tutorial. After its humble introduction, it has grown into a notable and quite extensive application of its own. It has become too extensive to serve as a useful tutorial step. Despite having many advanced and useful features as a companion application to the **FlexColorScheme** package, it is still architecturally identical to examples 3 and 4 in the tutorial. The **Themes Playground** has never had any functional guarantees or even any tests at all of its own. This is still the case. The **FlexColorScheme** package itself aims for 100% test coverage in its stable releases.
 
 The **Themes Playground** is extensively used and tested during development of **FlexColorScheme** releases. In addition to being a useful tool to configure and experiment with different themes for Flutter apps, or used to quickly copy needed API configuration to get the same theme in your app, it is also an excellent tool to use during development of the **FlexColorScheme** package. It is used to visually see and verify that all features in the package, **actually** do what is expected of them. The changes to the **Themes Playground** app are also thoroughly tracked in the [changelog](https://pub.dev/packages/flex_color_scheme/changelog), going back many releases.
 
