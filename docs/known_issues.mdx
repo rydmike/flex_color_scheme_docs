@@ -11,11 +11,11 @@ Did you find a new issue? Is it a **FlexColorScheme** issue? Please open it as a
 
 Summary of reported Flutter theming issues, that impact or have impacted theming in Flutter, as well as features in **FlexColorScheme** and **Themes Playground**.
 
-| Status          | Amount    |
-|-----------------|-----------|
-| No fix          | 21 issues |
-| Fixed in master | 9 issues  |
-| Fixed in stable | 20 issues |
+| Status          | Amount     |
+|-----------------|------------|
+| No fix          | 22 issues  |
+| Fixed in master | 9 issues   |
+| Fixed in stable | 20 issues  |
 
 _Last status review July 24, 2023_
 
@@ -23,6 +23,13 @@ _Last status review July 24, 2023_
 
 The issues below have not been fixed yet, or if they have a fix, they have not yet been merged into the Flutter master channel.
 
+
+### Checkbox theme regression
+<Error>Applies to Flutter beta 3.13.0-0.2.pre and latest master channel.</Error>
+
+The Checkbox component has a theme and styling regression when comparing Flutter stable 3.10.6 (and earlier versions) in latest master channel. The issue has also regressed into latest **beta channel 3.13.0-0.2.pre** and may potentially land in next stable Flutter version. 
+
+This regression breaks all past expected `Checkbox` theming style, with zero notification or deprecation time. It will also break the current `Checkbox` theme in **FlexColorScheme** in a bad way if it lands in next stable version. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
 
 ### IconButton theming destroys variant styles
 <Error>Applies to Flutter stable 3.10.</Error>
