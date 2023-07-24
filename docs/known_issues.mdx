@@ -13,11 +13,11 @@ Summary of reported amount Flutter theming issues, that impact or have impacted 
 
 | Status          | Amount    |
 |-----------------|-----------|
-| No fix          | 20 issues |
-| Fixed in master | 8 issues  |
+| No fix          | 21 issues |
+| Fixed in master | 9 issues  |
 | Fixed in stable | 20 issues |
 
-_Last status review July 10, 2023_
+_Last status review July 24, 2023_
 
 ## No Fix
 
@@ -145,13 +145,6 @@ Cannot theme shape and iconSize differently for different sized FloatingActionBu
 Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
 
 
-### TimePicker clock-dial has wrong M3 defaults
-<Error>Applies to Flutter 3.7 and 3.10.</Error>
-<Info>Has a theme default **fix** in FlexColorScheme, this not an issue when using FlexColorScheme.</Info>
-
-The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657).
-
-
 ### PrimaryTextTheme has Wrong contrast color in ThemeData dark mode
 <Error>Applies to Flutter 3.10 and earlier.</Error>
 <Info>This has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
@@ -179,10 +172,17 @@ This limitation in Material-2 will likely **never be fixed in Flutter**. It is d
 
 Issues below have a fix that has been **merged** in the latest Flutter master channel, some may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in latest beta, it will typically also land in next stable version of Flutter when a new stable version is release. Typically don't expect to see fixes below arriving as hotfixes to the main stable channel. 
 
+### TimePicker clock-dial has wrong M3 defaults
+<Error>Applies to Flutter 3.7 and 3.10.</Error>
+<Success>Has fix [PR #131045](https://github.com/flutter/flutter/pull/131045) in master, but not yet in stable 3.10.</Success>
+<Info>Has a theme default **fix** in FlexColorScheme, this is not an issue when using FlexColorScheme.</Info>
+
+The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657).
 
 ### NavigationDrawer selected item has wrong icon color
 <Error>Applies to Flutter stable 3.10.</Error>
-<Success>Has fix [PR #129625](https://github.com/flutter/flutter/pull/129625) in master, but not yet in stable 3.10.</Success>
+<Success>Has fix [PR #129625](https://github.com/flutter/flutter/pull/129625) in master, but not yet in stable 3.10.
+ Fix is also in beta and will land in next stable.</Success>
 
 The default color of the icon on a selected item in `NavigationDrawer` does not follow Material3 spec.
 Based on [published spec](https://m3.material.io/components/navigation-drawer/specs) the color should 
@@ -191,7 +191,8 @@ in Flutter be `ColorScheme.onSecondaryContainer`. For more information, see issu
 
 ### SearchBar InputDecorator issue
 <Error>Applies to Flutter stable 3.10.</Error>
-<Success>Has fix [PR #127465](https://github.com/flutter/flutter/pull/127465) in master, but not yet in stable 3.10.</Success>
+<Success>Has fix [PR #127465](https://github.com/flutter/flutter/pull/127465) in master, but not yet in stable 3.10.
+Fix is also in beta and will land in next stable.</Success>
 
 SearchAnchor.bar picks up app InputDecorator theme and it cannot be removed.
 For more information, see issue [#126623](https://github.com/flutter/flutter/issues/126623).
@@ -199,7 +200,8 @@ For more information, see issue [#126623](https://github.com/flutter/flutter/iss
 
 ### DatePicker InputDecorator issue
 <Error>Applies to Flutter stable 3.10.</Error>
-<Success>Has fix [PR #127465](https://github.com/flutter/flutter/pull/127465) in master, but not yet in stable 3.10.</Success>
+<Success>Has fix [PR #127465](https://github.com/flutter/flutter/pull/127465) in master, but not yet in stable 3.10. 
+Not yet in beta, may not land in next stable, remains to be seen.</Success>
 
 DatePicker date entry InputDecorator cannot have own theme.
 For more information, see issue [#128950](https://github.com/flutter/flutter/pull/128950).
@@ -207,7 +209,8 @@ For more information, see issue [#128950](https://github.com/flutter/flutter/pul
 
 ### DatePicker divider issue
 <Error>Applies to Flutter stable 3.10.</Error>
-<Success>Has fix [PR #127197](https://github.com/flutter/flutter/pull/127197) in master, but not yet in stable 3.10.</Success>
+<Success>Has fix [PR #127197](https://github.com/flutter/flutter/pull/127197) in master, but not yet in stable 3.10.
+Fix is also in beta and will land in next stable.</Success>
 
 DatePicker Divider cannot be removed or styled, it does not fit with a custom header background.
 For more information, see issue [#126597](https://github.com/flutter/flutter/issues/126597).
@@ -215,28 +218,33 @@ For more information, see issue [#126597](https://github.com/flutter/flutter/iss
 
 ### Chips state elevation issues in M3
 <Error>Applies to Flutter 3.7 and 3.10.</Error>
-<Success>Has fix [PR #128049](https://github.com/flutter/flutter/pull/128049) in master, but not yet in stable 3.10.</Success>
+<Success>Has fix [PR #128049](https://github.com/flutter/flutter/pull/128049) in master, but not yet in stable 3.10.
+Fix is also in beta and will land in next stable. Unverified if the fix is 100% correct based on M3 Web spec and all the Chip variants elevations, but it is definitely better.</Success>
 
 Some `Chip` variants in M3 should have state elevations when interacted with, they do not. See issue [#115825](https://github.com/flutter/flutter/issues/115825). 
 
 
 ### Chips missing pressed/splash effects on actionable Chips in M3
 <Error>Applies to Flutter stable 3.7 and 3.10.</Error>
-<Success>Has fix [PR #124673](https://github.com/flutter/flutter/pull/124673) in master, but not yet in stable 3.10.</Success>
+<Success>Has fix [PR #124673](https://github.com/flutter/flutter/pull/124673) in master, but not yet in stable 3.10.
+Fix is also in beta and will land in next stable.</Success>
 
 No Ink Splash on actionable `Chips` when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824). The ink effects get covered by color on the used `Material` the button is constructed off. 
 
 
 ### Chips background cannot be state adaptive
 <Error>Applies to Flutter 3.7 and 3.10.</Error>
-<Success>Has fix [PR #128584](https://github.com/flutter/flutter/pull/128584) in master, but not yet in stable 3.10. It is uncertain if the fix can be used with themes for each Chip variant, it will work on Chip property level though.</Success>
+<Success>Has fix [PR #128584](https://github.com/flutter/flutter/pull/128584) in master, but not yet in stable 3.10.
+Fix is also in beta and will land in next stable. 
+It is uncertain if the fix can be used with themes for each Chip variant, it will work on Chip property level though.</Success>
 
 When creating a Chip, cannot set different background color for each different material state.
 
 
 ### SliverAppBar.medium and SliverAppBar.large Theming and Defaults Issue
 <Error>Applies to stable Flutter 3.7 and 3.10.</Error>
-<Success>Has a **fix** [PR #123293](https://github.com/flutter/flutter/pull/122542) in master, not yet landed in stable 3.7 or 3.10.</Success>
+<Success>Has a **fix** [PR #123293](https://github.com/flutter/flutter/pull/122542) in master, not yet landed in stable 3.7 or 3.10.
+Fix is also in beta and will land in next stable.</Success>
 
 The `AppBar`'s foreground theme color, from theme or widget foreground color properties are **not applied** to action icon color for `SliverAppBar.medium` and `SliverAppBar.large`. The defaults for M2 foreground color on a `SliverAppBar.medium` and `SliverAppBar.large` are **incorrect** in **light theme** mode when using **Material-2**. For more information, see issue [#123943](https://github.com/flutter/flutter/issues/123943).
 
@@ -352,7 +360,7 @@ If you change the `NavigationBar` from M3 default value of 80 dp, the ink level 
 The M3 `NavigationBar` has a Material-2 styled ink effects also when opting in on Material-3. This is not according to Material design specification. See issues [#113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information. This issue was fixed via [PR #115499](https://github.com/flutter/flutter/pull/115499).
 
 
-### Typography dynamically switching causes a crash
+### Typography switching causes a crash
 <Success>Fixed in Flutter 3.7.</Success>
 <Error>Applies to Flutter 3.3 and earlier.</Error>
 
