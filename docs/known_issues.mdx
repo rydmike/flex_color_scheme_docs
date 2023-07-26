@@ -13,27 +13,31 @@ Summary of reported Flutter theming issues, that impact or have impacted theming
 
 | Status          | Amount     |
 |-----------------|------------|
-| No fix          | 23 issues  |
+| No fix          | 24 issues  |
 | Fixed in master | 9 issues   |
 | Fixed in stable | 20 issues  |
 
-_Last status review July 25, 2023_
+_Last status review July 26, 2023_
 
 ## No Fix
 
 The issues below have not been fixed yet, or if they have a fix, they have not yet been merged into the Flutter master channel.
 
+### DropdownMenu leading icon usage layout issue
+<Error>Applies to Flutter stable 3.10.</Error>
+
+When using a leading icon in a `DropdownMenu` in the entry field, the menu nicely automatically aligns the text in the menu entry field, with the text part in the dropdown menu entries, shown when it is opened. However, if we also add a `leadingIcon` to a `DropdownMenuEntry`, we also get the extra leading space and things do not line up. For more information, see issue [#131350](https://github.com/flutter/flutter/issues/131350).
 
 ### DropdownButtonFormField input decorator focus/hover is not clipped
 <Error>Applies to Flutter stable 3.10.</Error>
 
-When using an input decorator theme in `ThemeData`, the form field of the `DropdownButtonFormField` gets the correct themed result, but the shape is not clipped based on used radius of the input decorator for focused and hovered states.  For more information, see issue [#131282](https://github.com/flutter/flutter/issues/131282).
+When using an input decorator theme in `ThemeData`, the form field of the `DropdownButtonFormField` gets the correct themed result, but the shape is not clipped based on used radius of the input decorator for focused and hovered states. For more information, see issue [#131282](https://github.com/flutter/flutter/issues/131282).
 
 
 ### Checkbox theme regression
 <Error>Applies to Flutter beta 3.13.0-0.2.pre and latest master channel.</Error>
 
-The Checkbox component has a theme and styling regression when comparing Flutter stable 3.10.6 (and earlier versions) in latest master channel. The issue has also regressed into latest **beta channel 3.13.0-0.2.pre** and may potentially land in next stable Flutter version. 
+The Checkbox component has a theme and styling regression when comparing Flutter stable 3.10.6 (and earlier versions) in the latest master channel. The issue has also regressed into the latest **beta channel 3.13.0-0.2.pre** and may potentially land in next stable Flutter version. 
 
 This regression breaks all past expected `Checkbox` theming style, with zero notification or deprecation time. It will also break the current `Checkbox` theme in **FlexColorScheme** in a bad way if it lands in next stable version. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
 
