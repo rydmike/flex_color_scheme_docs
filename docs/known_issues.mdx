@@ -13,25 +13,57 @@ Summary of reported Flutter theming issues, that impact or have impacted theming
 
 | Status          | Amount     |
 |-----------------|------------|
-| No fix          | 24 issues  |
+| No fix          | 29 issues  |
 | Fixed in master | 9 issues   |
 | Fixed in stable | 20 issues  |
 
-_Last status review July 26, 2023_
+_Last status review August 1, 2023_
 
 ## No Fix
 
 The issues below have not been fixed yet, or if they have a fix, they have not yet been merged into the Flutter master channel.
+
+### Cannot theme progress indicators, many properties missing
+<Error>Applies to Flutter stable 3.10.</Error>
+
+The `ProgressIndicatorThemeData` is missing many key properties from `LinearProgressIndicator` and `CircularProgressIndicator` making it impossible to theme their styles.. For more information, see issue [#131690](https://github.com/flutter/flutter/issues/131690).
+
+
+### TextStyles in Menus do not follow Material-3 spec
+<Error>Applies to Flutter stable 3.10.</Error>
+
+Based on Material-3 specification menus should use text style `labelLarge` (M3 14dp) for its menu items. For a `Textfield` part in a drop down menu, the default for `Textfield` should be used, which is `bodyLarge` (M3 16dp). They menus currently do not always use these correct Material-3 defaults. For more information, see issue [#131676](https://github.com/flutter/flutter/issues/131676).
+
+
+### Proposal: Make InputDecorationTheme usage in components consistent
+<Warning>Applies to Flutter stable 3.10.</Warning>
+
+The usage of `InputDecorationTheme` in component themes varies widely between component themes. This makes using components that use `InputDecoration` unpredictable and confusing. For more information, see proposal [#131666](https://github.com/flutter/flutter/issues/131666).
+
+
+### Switch proposal: Expose _SwitchConfig configuration
+<Warning>Applies to Flutter stable 3.10.</Warning>
+
+The `Switch` has many useful styling configuration options hidden in a private mixin class called `_SwitchConfig`. These configuration options would be very useful when creating custom `Switch` designs. For more information, see proposal [#131478](https://github.com/flutter/flutter/issues/131478).
+
 
 ### DropdownMenu leading icon usage layout issue
 <Error>Applies to Flutter stable 3.10.</Error>
 
 When using a leading icon in a `DropdownMenu` in the entry field, the menu nicely automatically aligns the text in the menu entry field, with the text part in the dropdown menu entries, shown when it is opened. However, if we also add a `leadingIcon` to a `DropdownMenuEntry`, we also get the extra leading space and things do not line up. For more information, see issue [#131350](https://github.com/flutter/flutter/issues/131350).
 
+
 ### DropdownButtonFormField input decorator focus/hover is not clipped
 <Error>Applies to Flutter stable 3.10.</Error>
 
 When using an input decorator theme in `ThemeData`, the form field of the `DropdownButtonFormField` gets the correct themed result, but the shape is not clipped based on used radius of the input decorator for focused and hovered states. For more information, see issue [#131282](https://github.com/flutter/flutter/issues/131282).
+
+
+### DropdownMenu does not inherit from inputDecorationTheme.
+<Error>Applies to Flutter stable 3.10.</Error>
+
+The `ThemeData.dropdownMenuTheme.inputDecorationTheme` does not inherit from `ThemeData.inputDecorationTheme`. 
+For more information, see issue [#131213](https://github.com/flutter/flutter/issues/131213).
 
 
 ### Checkbox theme regression
@@ -40,6 +72,12 @@ When using an input decorator theme in `ThemeData`, the form field of the `Dropd
 The Checkbox component has a theme and styling regression when comparing Flutter stable 3.10.6 (and earlier versions) in the latest master channel. The issue has also regressed into the latest **beta channel 3.13.0-0.2.pre** and may potentially land in next stable Flutter version. 
 
 This regression breaks all past expected `Checkbox` theming style, with zero notification or deprecation time. It will also break the current `Checkbox` theme in **FlexColorScheme** in a bad way if it lands in next stable version. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
+
+
+### Proposal: Add a static function to Material UI widgets exposing internal default values
+<Warning>Applies to Flutter stable 3.10.</Warning>
+
+When making custom widgets, it is often useful to use default values from standard Material UI widgets as default fall-back values for the custom widget from its equivalent standard version's theme properties. One possible way of doing this would be to add a static default theme value getter to each UI widget. For more information, see proposal [#130135](https://github.com/flutter/flutter/issues/130135).
 
 ### IconButton theming destroys variant styles
 <Error>Applies to Flutter stable 3.10.</Error>
