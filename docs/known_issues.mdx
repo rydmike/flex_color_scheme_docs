@@ -13,11 +13,11 @@ Summary of reported Flutter theming issues, that impact or have impacted theming
 
 | Status          | Amount     |
 |-----------------|------------|
-| No fix          | 29 issues  |
-| Fixed in master | 9 issues   |
+| No fix          | 30 issues  |
+| Fixed in master | 8 issues   |
 | Fixed in stable | 20 issues  |
 
-_Last status review August 1, 2023_
+_Last status review August 11, 2023_
 
 ## No Fix
 
@@ -78,6 +78,16 @@ This regression breaks all past expected `Checkbox` theming style, with zero not
 <Warning>Applies to Flutter stable 3.10.</Warning>
 
 When making custom widgets, it is often useful to use default values from standard Material UI widgets as default fall-back values for the custom widget from its equivalent standard version's theme properties. One possible way of doing this would be to add a static default theme value getter to each UI widget. For more information, see proposal [#130135](https://github.com/flutter/flutter/issues/130135).
+
+
+### DatePicker InputDecorator issue
+<Error>Applies to Flutter stable 3.10.</Error>
+<Warning>Has fix [PR 128950](https://github.com/flutter/flutter/pull/128950) in master, but not yet in stable 3.10.
+The fix is not very useful and is therefore not here considered fixed, see [comment in PR 128950](https://github.com/flutter/flutter/pull/128950#issuecomment-1657177393) which is further elaborated in addtional comments in same PR, as well as in issue [#131666](https://github.com/flutter/flutter/issues/131666).</Warning>
+
+DatePicker date entry InputDecorator cannot have own theme.
+For more information, see issue [#126617](https://github.com/flutter/flutter/issues/126617).
+
 
 ### IconButton theming destroys variant styles
 <Error>Applies to Flutter stable 3.10.</Error>
@@ -251,15 +261,6 @@ Fix is also in beta and will land in next stable.</Success>
 
 SearchAnchor.bar picks up app InputDecorator theme, and it cannot be removed.
 For more information, see issue [#126623](https://github.com/flutter/flutter/issues/126623).
-
-
-### DatePicker InputDecorator issue
-<Error>Applies to Flutter stable 3.10.</Error>
-<Success>Has fix [PR #127465](https://github.com/flutter/flutter/pull/127465) in master, but not yet in stable 3.10. 
-Not yet in beta, may not land in the next stable, remains to be seen.</Success>
-
-DatePicker date entry InputDecorator cannot have own theme.
-For more information, see issue [#128950](https://github.com/flutter/flutter/pull/128950).
 
 
 ### DatePicker divider issue
