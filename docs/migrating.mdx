@@ -4,11 +4,11 @@ This chapter contains guides for the minimum required changes to move from a low
 
 ## Migrating to version 7.2
 
-No migration needed from version 7.1. You may want to check the [change-log](https://pub.dev/packages/flex_color_scheme/changelog) for info on some minor default and style breaking changes, especailly when using Material-2.
+No migration needed from version 7.1. You may want to check the [changelog](https://pub.dev/packages/flex_color_scheme/changelog) for info on some minor default and style breaking changes, especially when using Material-2.
 
 ## Migrating to version 7.1
 
-No migration needed from version 7.0. Just upgrade **Flutter** to min version **3.10.0** and **FlexColorScheme** to min version **7.1.0**.
+No migration needed from version 7.0. Just upgrade **Flutter** to min version **3.10.0** and **FlexColorScheme** to version **7.1.0** or higher.
 
 ## Migrating to Version 7.0
 
@@ -76,10 +76,10 @@ The breaking styles below refer to changes where version 7 modifies how the defa
 
 
 - `ColorScheme.outline` and `ColorScheme.outlineVariant`.  
-  The FCS built-in computed none seeded values for `ColorScheme.outline` and `ColorScheme.outlineVariant` were modified. The new values are more in line with what you get with the M3 default seed algorithm, but plain grey-scale variants of them without any primary color blend. Technically light mode color for `outline` was changed from 30% lighten of light mode `onBackground` color to 45%, and `outlineVariant` from 60% lighten of `onBackground` to 75%. Likewise for the dark mode, but with darkening of the `onBackground` with the same percentage changes. The new values match the M3 design intent better.
+  The FCS built-in computed none seeded values for `ColorScheme.outline` and `ColorScheme.outlineVariant` were modified. The new values are more in line with what you get with the M3 default seed algorithm, but plain gray-scale variants of them without any primary color blend. Technically light mode color for `outline` was changed from 30% lighten of light mode `onBackground` color to 45%, and `outlineVariant` from 60% lighten of `onBackground` to 75%. Likewise for the dark mode, but with darkening of the `onBackground` with the same percentage changes. The new values match the M3 design intent better.
 
 
-- Version 7 introduces custom colors for `FlexColor.lightSurfaceVariant` and `FlexColor.darkSurfaceVariant` colors that are used when making none-seeded ColorSchemes. The colors are plain, not tinted light and greys, matching the grey level of the tinted versions you get with seed-generated M3 colors. The colors are used as defaults for light and dark `surfaceVariant` color in none-seeded versions of generated FlexColorScheme color schemes. In previous versions `surfaceVariant` was just white and black in light and dark theme mode. To be able to better match the M3 color system, without using seed generation, this surface color should not be just white or black. The new `surfaceVariant` corrects this past design to improve compatibility with the M3 color system when not using seed generated color schemes.
+- Version 7 introduces custom colors for `FlexColor.lightSurfaceVariant` and `FlexColor.darkSurfaceVariant` colors that are used when making none-seeded ColorSchemes. The colors are plain, not tinted light and grays, matching the gray level of the tinted versions you get with seed-generated M3 colors. The colors are used as defaults for light and dark `surfaceVariant` color in none-seeded versions of generated FlexColorScheme color schemes. In previous versions `surfaceVariant` was just white and black in light and dark theme mode. To be able to better match the M3 color system, without using seed generation, this surface color should not be just white or black. The new `surfaceVariant` corrects this past design to improve compatibility with the M3 color system when not using seed generated color schemes.
 
 
 - Changed the FCS default `NavigationBar` height from 62 dp to 80 dp. The 80 dp height is also the M3 spec default height for a Material-3 `NavigationBar` in Flutter. This makes the FCS default `NavigationBar` theme less opinionated compared to M3 spec. The FCS default background color is now using `surfaceVariant` in M2 mode, and defaults in M3 to its spec `surface` with elevation tint. The FCS M2 `surfaceVariant` default makes it look a bit more like the M3 mode surface with elevation tint. Especially if you use a seed-generated ColorScheme or FCS surface blends. This makes the FCS difference in style between M2 and M3 mode less than before. Since M2 does not support surface tint, it cannot match it exactly.
@@ -122,10 +122,10 @@ The breaking styles below refer to changes where version 7 modifies how the defa
 - The boolean `FlexSubThemesData.interactionEffects` no longer modifies `ThemeData.disabledColor`. This part of the control is now instead controlled separately by `FlexSubThemesData.tintedDisabledControls`.
 
 
-- The boolean `FlexSubThemesData.interactionEffects` now correctly control if color-tinted interaction effects for hover, focus, highlight, pressed and splash are used. The setting affects both M2 and M3 mode, and all in FCS covered component themes, to the extent that the Flutter SDK supports changing their interaction effects. All components have new tinted interaction effects that are used when setting this property to true. When it is false, all components use Flutter SDK default grey styles.
+- The boolean `FlexSubThemesData.interactionEffects` now correctly control if color-tinted interaction effects for hover, focus, highlight, pressed and splash are used. The setting affects both M2 and M3 mode, and all in FCS covered component themes, to the extent that the Flutter SDK supports changing their interaction effects. All components have new tinted interaction effects that are used when setting this property to true. When it is false, all components use Flutter SDK default gray styles.
 
 
-- The boolean `FlexSubThemesData.tintedDisabledControls` now correctly control if color-tinted disabled widgets are used. The setting affects both M2 and M3 mode, and all in FCS covered component themes, to the extent that the Flutter SDK supports changing their disabled color. All components have new tinted disabled styles that are used when setting this property to true. When it is false, all components use Flutter SDK default disabled grey styles.
+- The boolean `FlexSubThemesData.tintedDisabledControls` now correctly control if color-tinted disabled widgets are used. The setting affects both M2 and M3 mode, and all in FCS covered component themes, to the extent that the Flutter SDK supports changing their disabled color. All components have new tinted disabled styles that are used when setting this property to true. When it is false, all components use Flutter SDK default disabled gray styles.
 
 
 - In Material-2 mode the `InputDecorator`'s border radius default value was changed from 16 to 10, to be less rounded by default.
@@ -173,11 +173,11 @@ The breaking styles below refer to changes where version 7 modifies how the defa
 
 FlexColorScheme version 6 has some default style changes that are breaking with previous used defaults. All style changes concern FlexColorScheme defaults when opting in on Material-3. 
 
-Some widgets that in the Flutter SDK have received the correct Material-3 design, now also in FlexColorScheme when opting in on Material-3, default to their actual Material-3 default styles. Previously, they may have used a Material-2 style that was Material-3 inspired, but not entirely in-line with Material-3.
+Some widgets that in the Flutter SDK have received the correct Material-3 design, now also in FlexColorScheme when opting in on Material-3 default to their actual Material-3 default styles. Previously, they may have used a Material-2 style that was Material-3 inspired, but not entirely in-line with Material-3.
 
 ### ElevatedButton
 
-The most common breaking style change you may run into, is that the `ElevatedButton` has a completely new default color style in Material-3 compared to Material-2. This may surprise users of previous FlexColorScheme versions, that had opted in on using Material-3. The `ElevatedButton` in FCS previously did not use the correct default M3 style in M3 mode, it used the M2 style also in M3 mode. You can either adopt the new default Material-3 style or theme the `ElevatedButton` back to its M2 style in M3 mode, by setting background color to `primary` and the foreground color to `surface` or `onPrimary`, which you can do e.g. with:
+The most common breaking style change you may run into, is that the `ElevatedButton` has a completely new default color style in Material-3 compared to Material-2. This may surprise users of previous FlexColorScheme versions that had opted in on using Material-3. The `ElevatedButton` in FCS previously did not use the correct default M3 style in M3 mode, it used the M2 style also in M3 mode. You can either adopt the new default Material-3 style or theme the `ElevatedButton` back to its M2 style in M3 mode, by setting background color to `primary` and the foreground color to `surface` or `onPrimary`, which you can do e.g. with:
 
 ```dart
   subThemesData: const FlexSubThemesData(
@@ -280,7 +280,7 @@ The colors `primaryVariant` and `secondaryVariant` in FlexColorScheme are deprec
 
 The `ColorScheme` deprecated properties `primaryVariant` and `secondaryVariant` will always get their Flutter SDK default values, regardless of what input you give to them in FlexColorScheme. Flutter sets its deprecated `primaryVariant` equal to `primary` and `secondaryVariant` equal to `secondary`.
 
-This means that if your application used those color scheme values on any custom widgets, their colors will change if you upgrade from a previous version of FlexColorScheme and don't do any other changes. You need to migrate to use `primaryContainer`, `secondaryContainer`, `tertiary` or `tertiaryContainer` color, as replacement colors in your custom widgets. Which one to use depends on your color design.
+This means that if your application used those color scheme values on any custom widgets, their colors will change if you upgrade from a previous version of FlexColorScheme and don't do any other changes. You need to migrate to use `primaryContainer`, `secondaryContainer`, `tertiary` or `tertiaryContainer` color, as replacement colors in your custom widgets. The right one to use depends on your color design.
 
 If you use a `FlexColorScheme` setup made for a version before version 5.0,
 with version 5.0, and 
@@ -312,10 +312,10 @@ The new color values follow the same design intent the built-in scheme had befor
 
 In Material-2 color design, the variant color was typically a darker color of its primary or secondary counterpart. In M3 design in light theme mode, the container color is intended to be a lighter version of its none container color. In dark mode it is the reverse, container is a darker version of its none container version. If you are lazy when you make custom light and dark themes, you can get away with defining only the primary, secondary, tertiary and their container colors, for your light theme mode. If you follow the container's design intent to be a lighter version of its none container version, you can often for dark mode just swap light mode none container and container color values from your light mode, and you will get a fairly decent dark mode theme.
 
-Depending on your settings, FlexColorScheme computes different colors and shades for all the surface, background and onColors. You can also choose whether you use the new Material-3 error colors, instead of the Material-2 based error colors, even if you are not using seed-generated Material-3
+Depending on your settings, FlexColorScheme computes different colors and shades for all the surface, background, and onColors. You can also choose whether you use the new Material-3 error colors, instead of the Material-2 based error colors, even if you are not using seed-generated Material-3
 color schemes.
 
-The past Material-2 error colors have received some new for FlexColorScheme chosen color values to fill the gaps in the ColorScheme error colors when using their Material-2 version. So even it has proper color shades for all containers and onColors for both light and dark mode, they are slightly different from their Material-3 version and more inline with the Material-2 style.
+The past Material-2 error colors have received some new for FlexColorScheme chosen color values to fill the gaps in the ColorScheme error colors when using their Material-2 version. So even it has proper color shades for all containers and onColors for both light and dark mode, they are slightly different from their Material-3 versions and more inline with the Material-2 style.
 
 
 ## Migrating to Version 4.0
