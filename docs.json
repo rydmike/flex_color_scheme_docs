@@ -23,7 +23,8 @@
                 ["About","/"],
                 ["History in tweets", "/tweets"],
                 ["All themes", "/all_themes"],
-                ["Showcases", "/showcases"]
+                ["Showcases", "/showcases"],
+                ["Sponsors", "/sponsors"]
             ]
         ],
         ["Getting Started",
