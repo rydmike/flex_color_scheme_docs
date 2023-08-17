@@ -6,7 +6,7 @@
     "twitter": "rydmike",
     "anchors": [
         { "title": "Package pub.dev", "icon": "cube", "link": "https://pub.dev/packages/flex_color_scheme" },
-        { "title": "Themes Playground", "icon": "palette", "link": "https://rydmike.com/flexcolorscheme/themesplayground-v7-2" },
+        { "title": "Themes Playground", "icon": "palette", "link": "https://rydmike.com/flexcolorscheme/themesplayground-latest" },
         { "title": "GitHub source", "icon": "github", "link": "https://github.com/rydmike/flex_color_scheme" }
     ],
     "socialPreview": "/images/fcs_v5_site_rounded.png",
