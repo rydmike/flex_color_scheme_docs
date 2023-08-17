@@ -2,6 +2,26 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
+## Version 7.3
+
+**August 16, 2023**
+
+FlexColorScheme v7.3 has been released. It is a minor feature release, but it is required if you use **Flutter 3.13** for some theming features to work correctly.
+
+- To `FlexSubThemesData` **added** bool `alignedDropdown`. Setting it to true improves the style of the older `DropdownButton` and the `DropdownButtonFormField`. They no longer expand outside the width of the parent dropdown button, instead they are kept size aligned with the parent.
+- `FlexSubThemes.dropdownMenuTextStyle` now default to `TextTheme.bodyLarge` if not defined. Previously it used Flutter SDK default `TextTheme.bodyLarge`. The new style is the correct Material-3 default and makes it fit with other text inputs. For more information see [issue #131676](https://github.com/flutter/flutter/issues/131676).
+- The `FlexSubThemesData.useInputDecoratorThemeInDialogs` now also applies also to `DatePickerDialog` and not only to `TimePickerDialog`. This feature is not yet optimally supported by the framework. The current implementation has limitations. See additional info in [PR #128950 comment](https://github.com/flutter/flutter/pull/128950#issuecomment-1657177393). For more information about the differences in how `InputDecorationTheme` behaves in different component themes, read the proposal **"Make InputDecorationTheme usage in components consistent"** in [issue #131666](https://github.com/flutter/flutter/issues/131666).
+- Fixed the `FlexSubThemes.checkboxTheme` that broke due to an unexpected breaking change in **Flutter 3.13** caused by PR [#125643](https://github.com/flutter/flutter/pull/125643) that also impacts M2 theming. This undocumented Flutter breaking change (it is not mentioned [here](https://docs.flutter.dev/release/breaking-changes#released-in-flutter-313)) is discussed further in [issue #130295](https://github.com/flutter/flutter/issues/130295). The fix to the Checkbox theme incorporates the new behavior, to keep its custom styling working as before and expected. The new styling options are better and more flexible, but they could have been added without a silent breaking style change.
+
+**Themes Playground**
+
+- The **PopupMenu and Dropdowns** panel got a setting for older Material-2 based `DropdownButtonFormField` and `DropdownButton` to set the alignment property.
+- On the **TextField** panel, added a feature to set the input decoration style back to FlexColorScheme's own defaults, in addition to the M3 defaults.
+- Harmonized custom color activation settings on **Theme Colors** and **Seeded ColorScheme**.
+
+Read more about what else is new, fixed and changed in the detailed FlexColorScheme 7.3 [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
+
+
 ## Version 7.2
 
 **July 20, 2023**

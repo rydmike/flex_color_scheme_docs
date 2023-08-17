@@ -1,6 +1,6 @@
 # API Guide
 
-The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme, generated from code document comments is very thorough. It should cover most questions you might have. An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
+The [API reference documentation](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/flex_color_scheme-library.html) for FlexColorScheme generated from code document comments is very thorough. It should cover most questions you might have. An overview of key APIs is presented below. It may be extended with more information and examples in future updates. These updates will be influenced by what questions users raise about the API.
 
 You can create FlexColorScheme based `ThemeData` objects using two different APIs:
 
@@ -127,7 +127,7 @@ You can also use properties like **inputColors**, **swapColors** and e.g. **useM
 
 * **useMaterial3ErrorColors** boolean value. Set it to true to use the new Material-3 error colors. If `useMaterial3ErrorColors` is false, the resulting `ColorScheme` and `ThemeData` will use Material-2 default error colors or error colors as defined by the built-in color schemes. Thus, using the same error colors as in FlexColorScheme versions before version 5.
 
-   If `useMaterial3ErrorColors` is true, the resulting `ColorScheme` and `ThemeData` will use the Material-3 design guide error colors. Key color seed generated ColorSchemes always use the Material-3 design guide error colors, or error colors from its customized `TonalPalette` generation setup. **Defaults to false**.
+   If `useMaterial3ErrorColors` is true, the resulting `ColorScheme` and `ThemeData` will use the Material-3 design guide error colors. Key color seed generated ColorSchemes always uses the Material-3 design guide error colors, or error colors from its customized `TonalPalette` generation setup. **Defaults to false**.
 
    The new M3 error colors are generally nicer looking. If your theme is using red color shades, you can try both options to see which option works better with your theme's red colors. That would be the red error color option that is more distinguishable from your main red theme colors.
 
@@ -135,7 +135,7 @@ You can also use properties like **inputColors**, **swapColors** and e.g. **useM
    
    Starting with FlexColorScheme version 6.1.0, built-in color schemes, defined via `FlexSchemeColor`, have a flag `swapOnMaterial3`. When defined to be true, the scheme will benefit if the `secondary` and `tertiary` colors, including their containers, are swapped when using Material-3. Most FlexColorScheme color schemes were designed with M2 usage in mind, before M3 existed. They may often have their `swapOnMaterial3` set to true. If this flag is false, it may mean that its `FlexSchemeColor` was designed for M3 or that it won't benefit from swapping its secondary and tertiary colors. In the [Scheme Reference](/scheme_reference), you can see which schemes have the flag defined to true. 
     
-   Using a seed-generated color scheme based on built-in FlexSchemeColor colors is another way to make them suitable for the M3 Color system. However, in some cases, the secondary color in their design may not be in-line with the M3 color system design intent, especially if you use the config that also uses the hue from the secondary color to make tonal palettes for it. In some legacy FlexSchemeColor color designs this can be fixed if we swap the secondary and tertiary colors.
+   Using a seed-generated color scheme based on built-in FlexSchemeColor colors is another way to make them suitable for the M3 Color system. However, in some cases, the secondary color in their design may not be in-line with the M3 color system design intent, especially if you use the config that also uses the hue from the secondary color to make tonal palettes for it. In some legacy FlexSchemeColor color designs, this can be fixed if we swap the secondary and tertiary colors.
 
    To make FlexSchemeColor designs color designs that benefit from it automatically swap secondary and tertiary colors when `useMaterial3` is set to true, set `swapLegacyOnMaterial3` to true. It defaults to false, for backward compatibility, but it is recommended to turn it on when using Material-3 and its color system. If you use seeded color schemes with Material-2, `useMaterial3` flag is false, then it may be preferable to keep `swapOnMaterial3` false for more prominent colors on secondaries.
 
@@ -245,7 +245,7 @@ ToggleButtonsThemeData toggleButtonsTheme(ColorScheme colorScheme) =>
     );
 ```
 
-Above you could also create the entire `ThemeData` from the `FlexColorScheme` instance `flexScheme` above. Extract its `ColorScheme` and use it to make the component theme `toggleButtonsTheme`, and then use `copyWith` on the already created `ThemeData` that you return as `ThemeData`. Both work, the above should in theory be marginally more resource efficient, but it probably does not matter in practice.
+Above you could also create the entire `ThemeData` from the `FlexColorScheme` instance `flexScheme` above. Extract its `ColorScheme` and use it to make the component theme `toggleButtonsTheme`, and then use `copyWith` on the already created `ThemeData` that you return as `ThemeData`. Both work, the above should, in theory, be marginally more resource efficient, but it probably does not matter in practice.
 
 ## Generated ColorScheme
 
@@ -387,7 +387,7 @@ When we try the above `FlexThemeData` config, again in the [**Copy Playground**]
     <td>[<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-api-08-key.png" alt="API keyColor 8" width="220"/>](https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-api-08-key.png)</td>
   </tr>
   <tr>
-    <td colspan="7">_The **Copy Playground** theme presentation app, with above FlexThemeData setup, using **keyColors** generated ColorScheme with custom **tones**._</td>
+    <td colspan="7">_The **Copy Playground** theme presentation app, with the above FlexThemeData setup, using **keyColors** generated ColorScheme with custom **tones**._</td>
   </tr>
  </table>
 
@@ -411,7 +411,7 @@ API reference: [**FlexSubThemesData**](https://pub.dev/documentation/flex_color_
 
 In addition to all the actual component theme configuration parameters, the `FlexSubThemesData` configuration has a few extra settings that are also used to control the behavior of the opinionated overall theme.
 
-* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (true/false/**null**). Determines if Material-3 TextTheme and Typography is used. When opting in on using the sub-theming, this flag controls if the TextTheme will use the new Material-3 `Typography.material2021` as specified in the [Material-3 Design Guide](https://m3.material.io). 
+* [**useTextTheme**](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/useTextTheme.html): (true/false/**null**). Determines if Material-3 TextTheme and Typography is used. When opting in on using the sub-theming, this flag controls if the TextTheme use the new Material-3 `Typography.material2021` as specified in the [Material-3 Design Guide](https://m3.material.io). 
   * If not defined, and `ThemeData.useMaterial3` is true, then it defaults to true. If not defined and `ThemeData.useMaterial3` is false, then it defaults to false.
   
   * This toggle works as an override toggle for using `Typography.material2021` in Material-2 mode and for using
@@ -450,7 +450,7 @@ In addition to all the actual component theme configuration parameters, the `Fle
 
 A very practical use case of `FlexSubThemes`, is to customize the default border radius on **all** Flutter UI components and elements, that supports border radius either via `ShapeBorder` or `BorderRadiusGeometry`. This can be done with a single property, the [`defaultRadius`](https://pub.dev/documentation/flex_color_scheme/latest/flex_color_scheme/FlexSubThemesData/defaultRadius.html).
 
-In this example, we enable the opinionated component themes and decided we want all our components that have adjustable border radius, to use 12dp as their border radius. We also turned off the M3 text theme and want onColors in light mode to use blend level 20, and no blends on `onPrimary`, `onSecondary`, `onTertiary` and `onError`. In dark mode we wanted a stronger blend on the onColors, and we wanted in on all onColors and left `blendOnColors` to its default `true`value. Otherwise, we use the same property values as in the previous example. 
+In this example, we enable the opinionated component themes and decided we want all our components that have adjustable border radius, to use 12 dp as their border radius. We also turned off the M3 text theme and set onColors in light mode to use blend level 20, and no blends on `onPrimary`, `onSecondary`, `onTertiary` and `onError`. In dark mode we wanted a stronger blend on the onColors, and we wanted in on all onColors and left `blendOnColors` to its default `true`value. Otherwise, we use the same property values as in the previous example. 
 
 ```dart
 theme: FlexThemeData.light(
@@ -553,7 +553,7 @@ These helpers may sometimes be simpler to use than the raw component theme const
 
 ### Theme Extensions
 
-In version 5.1.0 FlexColorScheme added direct support for theme extensions to its API. You use it the same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes a simple demonstration of how to use it. In this example, it is only used to add a single extra theme color, that is used to give the heading a color based on this theme extension color. With theme extensions, you can add as many colors and other theme properties as you need, and you can add multiple different **ThemeExtension** subclasses as well.
+In version 5.1.0, FlexColorScheme added direct support for theme extensions to its API. You use it the same way as you use it with `ThemeData`. The default example, "The Hot Reload Playground" includes a simple demonstration of how to use it. In this example, it is only used to add a single extra theme color, that is used to give the heading a color based on this theme extension color. With theme extensions, you can add as many colors and other theme properties as you need, and you can add multiple different **ThemeExtension** subclasses as well.
 
 ```dart
 /// A theme Extension example with a single custom brand color property.
