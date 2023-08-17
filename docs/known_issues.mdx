@@ -19,7 +19,7 @@ Summary of reported Flutter theming issues, that impact or have impacted theming
 
 _Last status review August 16, 2023_
 
-If an issue is stated to apply to Flutter version stable 3.13, it means it also applies to earlier stable version, if the feature exists in earlier versions.
+If an issue is stated to apply to Flutter version stable 3.13, it typically means it also applies to earlier stable versions if the feature in question also exists in earlier versions.
 
 ## No Fix
 
@@ -69,7 +69,7 @@ When making custom widgets, it is often useful to use default values from standa
 ### DatePicker InputDecorator issue
 <Error>Applies to Flutter stable 3.13 and earlier.</Error>
 <Warning>Has a landed fix [PR 128950](https://github.com/flutter/flutter/pull/128950) in **Flutter stable 3.13**.
-The fix is not very useful and the issue is therefore not here considered fixed, see [comment in PR 128950](https://github.com/flutter/flutter/pull/128950#issuecomment-1657177393) which is further elaborated in additional comments in same PR, as well as in issue [#131666](https://github.com/flutter/flutter/issues/131666).</Warning>
+The fix is not very useful, and the issue is therefore not here considered fixed, see [comment in PR 128950](https://github.com/flutter/flutter/pull/128950#issuecomment-1657177393) which is further elaborated in additional comments in same PR, as well as in issue [#131666](https://github.com/flutter/flutter/issues/131666).</Warning>
 DatePicker date entry InputDecorator cannot have own theme.
 For more information, see issue [#126617](https://github.com/flutter/flutter/issues/126617).
 
@@ -234,7 +234,7 @@ in Flutter be `ColorScheme.onSecondaryContainer`. For more information, see issu
 ### SearchBar InputDecorator issue
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter stable 3.10.</Error>
-SearchAnchor.bar picks up app InputDecorator theme, and it cannot be removed.
+The `SearchAnchor.bar` picks up app InputDecorator theme, and it cannot be removed.
 For more information, see issue [#126623](https://github.com/flutter/flutter/issues/126623).
 Fixed via [PR #127465](https://github.com/flutter/flutter/pull/127465).
 
@@ -256,7 +256,7 @@ Some `Chip` variants in M3 should have state elevations when interacted with, th
 ### Chips missing pressed/splash effects on actionable Chips in M3
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter 3.7 and 3.10.</Error>
-No Ink Splash on actionable `Chips` when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824). The ink effects get covered by color on the used `Material` the button is constructed off.
+No ink splashes on actionable `Chips` when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824). The ink effects get covered by color on the used `Material` the button is constructed off.
 Fixed via [PR #124673](https://github.com/flutter/flutter/pull/124673).
 
 
