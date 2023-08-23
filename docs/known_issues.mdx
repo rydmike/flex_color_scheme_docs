@@ -11,11 +11,11 @@ Did you find a new issue? Is it a **FlexColorScheme** issue? Please open it as a
 
 Summary of reported Flutter theming issues, that impact or have impacted theming in Flutter, as well as features in **FlexColorScheme** and **Themes Playground**.
 
-| Status          | Amount     |
-|-----------------|------------|
-| No fix          | 29 issues  |
-| Fixed in master | 2 issues   |
-| Fixed in stable | 27 issues  |
+| Status          | Amount    |
+|-----------------|-----------|
+| No fix          | 28 issues |
+| Fixed in master | 3 issues  |
+| Fixed in stable | 27 issues |
 
 _Last status review August 16, 2023_
 
@@ -25,14 +25,10 @@ If an issue is stated to apply to Flutter version stable 3.13, it typically mean
 
 The issues below have not been fixed yet, or if they have a fix, they have not yet been merged into the Flutter master channel.
 
+
 ### Cannot theme progress indicators, many properties missing
 <Error>Applies to Flutter stable 3.13 and earlier.</Error>
 The `ProgressIndicatorThemeData` is missing many key properties from `LinearProgressIndicator` and `CircularProgressIndicator` making it impossible to theme their styles. For more information, see issue [#131690](https://github.com/flutter/flutter/issues/131690).
-
-
-### TextStyles in Menus do not follow Material-3 spec
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
-Based on Material-3 specification menus should use text style `labelLarge` (M3 14 dp) for its menu items. For a `Textfield` part in a dropdown menu, the default for `Textfield` should be used, which is `bodyLarge` (M3 16 dp). The menus currently do not always use these correct Material-3 defaults. For more information, see issue [#131676](https://github.com/flutter/flutter/issues/131676).
 
 
 ### Proposal: Make InputDecorationTheme usage in components consistent
@@ -56,9 +52,10 @@ The `ThemeData.dropdownMenuTheme.inputDecorationTheme` does not inherit from `Th
 For more information, see issue [#131213](https://github.com/flutter/flutter/issues/131213).
 
 
-### Checkbox theme regression
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
-The Checkbox component has a theme and styling regression when comparing Flutter stable 3.10.6 (and earlier versions) in Flutter stable 3.13.0. This regression and change breaks past expected `Checkbox` theming style, with zero notification or deprecation time. It also breaks the current `Checkbox` theme in **FlexColorScheme** in a bad way in version before FlexColorScheme 7.3.0 that includes a fix for this breaking change. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
+### Checkbox theme breaking style regression
+<Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
+<Info>This issue will never be fixed. There is as of Aug 23, 2023, a **breaking change** notice in Flutter documentation [here](https://docs.flutter.dev/release/breaking-changes/checkbox-fillColor). It was added a few days after the release of Flutter 3.13. FlexColorScheme 7.3.0 and later uses the new style, which is also the major reason why FCS 7.3.0 requires minimum Flutter version 3.13.0, since the new style does not work before that. The elaborate theming used in FCS meant that 175 lines of code in the Checkbox component theme had to be reviewed and updated to make it work as intended again. Additionally, 780 lines of test code had to be partially revised/updated/fixed for testing of its various config options.</Info> 
+The Checkbox component has a theme and styling regression when comparing Flutter stable **3.10.6** (and earlier versions) in Flutter stable **3.13.0**. This regression and change breaks past expected `Checkbox` theming style, with zero notification or deprecation time. It also breaks the current `Checkbox` theme in **FlexColorScheme** in a bad way in version before FlexColorScheme 7.3.0 that includes a fix for this breaking change. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
 
 
 ### Proposal: Add a static function to Material UI widgets exposing internal default values
@@ -202,6 +199,13 @@ This limitation in Material-2 will likely **never be fixed in Flutter**. It is d
 
 
 The issues below have a fix that has been **merged** in the latest Flutter master channel. Some fixes may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in the latest beta, it will typically also land in next stable version of Flutter when a new stable version is release. Typically, don't expect to see fixes below arriving as hotfixes to the main stable channel. 
+
+
+### TextStyles in Menus do not follow Material-3 spec
+<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+<Success>Has fix [PR #131930](https://github.com/flutter/flutter/pull/131930) in master, but not yet in stable 3.13.</Success>
+Based on Material-3 specification menus should use text style `labelLarge` (M3 14 dp) for its menu items. For a `Textfield` part in a dropdown menu, the default for `Textfield` should be used, which is `bodyLarge` (M3 16 dp). The menus currently do not always use these correct Material-3 defaults. For more information, see issue [#131676](https://github.com/flutter/flutter/issues/131676).
+
 
 ### DropdownButtonFormField input decorator focus/hover is not clipped
 <Error>Applies to Flutter 3.13 and earlier.</Error>
