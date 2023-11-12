@@ -2,7 +2,7 @@
 
 Over the years, a number of Tweet threads have been created to present new release of **FlexColorScheme** and **Themes Playground**. You can find them below. They are useful as a summary of new features and changes in releases. The tweet threads also serve as a history that shows how FlexColorScheme has evolved over time. 
 
-Some threads are not release related, but useful general theming guides. You can also use the last few threads as a feature update about what is new in the FlexColorScheme world. Reading them from start to finnish, they also work as a TLDR story for learning what you can do with FlexColorScheme and Themes Playground. 
+Some threads are not release related, but useful general theming guides. You can also use the last few tweet threads as an update about what is new in the FlexColorScheme world. Reading them from start to finnish, they also work as a TLDR story for learning what you can do with FlexColorScheme and Themes Playground. For most purposes, reading the last 2 to 3 release threads and the general guides, is a good way to get an overview of what you can do with FlexColorScheme and its companion web app, the Themes Playground.
 
 ## Version 1
 _December 21, 2020_
@@ -115,7 +115,7 @@ There is a Tweet presentation slide deck for version 6.1. Despite being only a m
 ## Version 7
 _April 2, 2023_
 
-Version 7 is a very big release, requiring minimum **Flutter 3.7** and containing massive updates to the **Themes Playground**, like a theme simulator to show the impact of selected themes on a few demo apps, including the official Flutter Material-3 demo app. It also includes many preconfigured component theming examples. They can be used as theming capability examples, or starting points for custom themes.
+Version 7 is a big release, requiring minimum **Flutter 3.7** and containing massive updates to the **Themes Playground**, like a theme simulator to show the impact of selected themes on a few demo apps, including the official Flutter Material-3 demo app. It also includes many preconfigured component theming examples. They can be used as theming capability examples, or starting points for custom themes.
 
 Flutter version 3.7 is also the first **Flutter** release where using Material-3 in a production Flutter app is recommended and endorsed by FlexColorScheme author.
 
@@ -187,6 +187,21 @@ This tweet thread uses screenshots to demonstrate how to make a platform-agnosti
 This example uses a blue color seed generated `ColorScheme`, where the resulting scheme only uses different blue tones. The scheme is generated from a single seed color that is also used as the main "brand" color in light theme mode. This is also the only defined color to make this expressive blue theme, using multiple matching shades of blue in light and dark mode. 
 
 <Tweet id="1672764806544146435" cards />
+
+### Theming Challenge
+_Nov 11, 2023_
+
+In this tweet thread we study how and what parts of the design in https://ui.shadcn.com/themes can be made with **Themes Playground**. What more can be done by using APIs in **FlexColorScheme** not exposed in the **Playground**. Where you can go even further by modifying the produced `ThemeData` using `.copyWith`, is also discussed.
+
+<Tweet id="1723423568107630868" cards />
+
+<Info>The Material widgets in Flutter are primarily designed to implement the Material components and currently focus on Material-3 design. The older Material-2 design will eventually be deprecated and removed from Flutter. 
+
+The Flutter implementation of Material components and their theming, allow you to customize component styles a lot, but not everything is easy to do and it cannot be used to make any arbitrary design. The starting point of the design is also Material-3 or Material-2, depending on used mode in Flutter. In both cases the styles are quite opininated, Material-3 even more so, and to make something very different you have to change a lot of theming properties from their default behavior.
+
+FlexColorScheme is at its core an advanced `ThemeData` factory. It makes customization of produced `ThemeData` simpler. It does not expose everything you can do with `ThemeData` via own APIs, its focus is on things that is complex and tedious to do. You can further tune the produced `ThemeData` by using `copyWith` and its own APIs.
+
+The **Themes Playground**, is a visual web configuration tool for the **FlexColorScheme** API. It allows you to play with different styles interactively and then copy the API setup code for the theme you are looking at. It does not cover all APIs offered by **FlexColorScheme**, but most of them, certainly the most commonly used ones.<Info>
 
 
 ### WIP
