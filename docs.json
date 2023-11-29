@@ -60,6 +60,14 @@
                 ["FAQ", "/faq"]
             ]
         ],
+        ["Known Issues",
+            [
+                ["Overview", "/known_issues"],
+                ["No fix", "/known_issues_no_fix"],
+                ["Fixed in master", "/known_issues_master_fix"],
+                ["Fixed in stable", "/known_issues_stable_fix"]
+            ]
+        ],
         ["Appendix",
             [
                 ["What's new?", "/whats_new"],

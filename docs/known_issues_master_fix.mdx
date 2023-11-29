@@ -1,0 +1,12 @@
+# Fixed in Master
+
+The issues below have a fix that has been **merged** in the latest Flutter master channel. 
+
+The status of fixes to known issues is typically reviewed when a new stable release lands.
+
+Some fixes may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in the latest beta, it will typically also land in the next stable version of Flutter when a new stable version is released. Typically, don't expect to see fixes below arriving as hotfixes to the main stable channel. On rare occasions, there may be a WIP fix that is not yet merged into the Flutter master channel.
+
+## Chips, passed in iconTheme is not applied
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+When passing in `iconTheme` to `Chip`, `ActionChip`, `ChoiceChip`, `FilterChip` or `InputChip`, it is not applied.
+See issue [#111828](https://github.com/flutter/flutter/issues/111828). Has a fix in master via [#PR 135751](https://github.com/flutter/flutter/pull/135751), but has not landed in Flutter 3.16.

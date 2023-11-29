@@ -1,0 +1,141 @@
+# No Fix
+
+The issues below have not been fixed yet in the current **Flutter stable** release. 
+
+The status of fixes to known issues is typically reviewed when a new stable release lands.
+Some of the listed issues below may have a fix in master or beta channel that has not yet been recorded as fixed below. In that case, the link to the issue will show that it is closed. On rare occasions, there may be a WIP fix that is not yet merged into the Flutter master channel.
+
+
+## Cannot theme progress indicators, many properties missing
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
+The `ProgressIndicatorThemeData` is missing many key properties from `LinearProgressIndicator` and `CircularProgressIndicator` making it impossible to theme their styles. For more information, see issue [#131690](https://github.com/flutter/flutter/issues/131690).
+
+## Proposal: Make InputDecorationTheme usage in components consistent
+<Warning>Applies to Flutter stable 3.16 and earlier.</Warning>
+The usage of `InputDecorationTheme` in component themes varies widely between component themes. This makes using components that use `InputDecoration` unpredictable and confusing. For more information, see proposal [#131666](https://github.com/flutter/flutter/issues/131666).
+
+## Switch proposal: Expose _SwitchConfig configuration
+<Warning>Applies to Flutter stable 3.16 and earlier.</Warning>
+The `Switch` has many useful styling configuration options hidden in a private mixin class called `_SwitchConfig`. These configuration options would be very useful when creating custom `Switch` designs. For more information, see proposal [#131478](https://github.com/flutter/flutter/issues/131478).
+
+## DropdownMenu does not inherit from inputDecorationTheme.
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
+The `ThemeData.dropdownMenuTheme.inputDecorationTheme` does not inherit from `ThemeData.inputDecorationTheme`.
+For more information, see issue [#131213](https://github.com/flutter/flutter/issues/131213).
+
+## Checkbox theme breaking style regression
+<Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
+<Info>This issue will never be fixed. There is as of Aug 23, 2023, a **breaking change** notice in Flutter documentation [here](https://docs.flutter.dev/release/breaking-changes/checkbox-fillColor). It was added a few days after the release of Flutter 3.13. FlexColorScheme 7.3.0 and later uses the new style, which is also the major reason why FCS 7.3.0 requires minimum Flutter version 3.13.0, since the new style does not work before that. The elaborate theming used in FCS meant that 175 lines of code in the Checkbox component theme had to be reviewed and updated to make it work as intended again. Additionally, 780 lines of test code had to be partially revised/updated/fixed for testing of its various config options.</Info>
+The Checkbox component has a theme and styling regression when comparing Flutter stable **3.10.6** (and earlier versions) in Flutter stable **3.13.0**. This regression and change breaks past expected `Checkbox` theming style, with zero notification or deprecation time. It also breaks the current `Checkbox` theme in **FlexColorScheme** in a bad way in version before FlexColorScheme 7.3.0 that includes a fix for this breaking change. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
+
+## Proposal: Add a static function to Material UI widgets exposing internal default values
+<Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
+When making custom widgets, it is often useful to use default values from standard Material UI widgets as default fall-back values for the custom widget from its equivalent standard version's theme properties. One possible way of doing this would be to add a static default theme value getter to each UI widget. For more information, see proposal [#130135](https://github.com/flutter/flutter/issues/130135).
+
+## DatePicker InputDecorator issue
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
+<Warning>Has a landed fix [PR 128950](https://github.com/flutter/flutter/pull/128950) in **Flutter stable 3.13**.
+The fix is not very useful, and the issue is therefore not here considered fixed, see [comment in PR 128950](https://github.com/flutter/flutter/pull/128950#issuecomment-1657177393) which is further elaborated in additional comments in same PR, as well as in issue [#131666](https://github.com/flutter/flutter/issues/131666).</Warning>
+**Original issue:** DatePicker date entry InputDecorator cannot have its own theme.
+For more information, see issue [#126617](https://github.com/flutter/flutter/issues/126617). This issue was closed, but it does not solve the problem in a usable way. This propsal was added with the hope that it might improve it some day [#131666](https://github.com/flutter/flutter/issues/131666).
+
+## IconButton theming destroys variant styles
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
+If we add theming to IconButton's IconButtonThemeData, we lose the style of all the variant IconButtons `IconButton.filled`, `IconButton.filledTonal` and `IconButton.outlined`. They all get the same style as IconButton. For more information, see issue [#123829](https://github.com/flutter/flutter/issues/123829).
+
+## DropdownMenu themed focused item broken
+<Error>Applies to Flutter 3.13 and earlier.</Error>
+The style indication of the found and focused/selected item in a `DropdownMenu` does not use `MenuButtonThemeData`. Its simulation of the focused state omits the theme. This makes it impossible to provide a consistent style for the focused/selected item when using a custom theme in a `DropdownMenu`. We have to use the default style for the entire menu, or accept a deviant and out-of-style looking focused/selected item. For more information, see issue [#123736](https://github.com/flutter/flutter/issues/123736).
+
+## NavigationDrawer wrong default width in M3
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+<Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme. However, using the M3 spec width is problematic in many cases.</Info>
+The `NavigationDrawer` drawer width does not follow Material-3 specification. Reference: Material-3 Design Navigation Drawer [specification](https://m3.material.io/components/navigation-drawer/specs#ce8bfbcf-3dec-45d2-9d8b-5e10af1cf87d). It might, however, not be such a good design to use the M3 360 dp spec as width. For more information, see issue [#123380](https://github.com/flutter/flutter/issues/123380).  It remains unknown what the response and view from the Google Material design team on the matter is.
+
+## NavigationDrawer indicator is centered when sized
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+## NavigationDrawer ink size does not follow indicator size
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+## NavigationDrawer ink effects do not follow M3 spec
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+## NavigationDrawer ink effect colors cannot be changed
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+## NavigationDrawer drawer size change animation overflows
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+## NavigationDrawer Label is not truncated to fit
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
+
+## SegmentedButton height does not match Material3 spec and cannot be changed
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+The Material-3 specification gives a height of 40 dp for Segmented buttons and a recommended `TapTargetSize` of 48 dp. This cannot be achieved in Flutter since the `minimumSize` style-property does not affect the widget. The correct minimumSize was actually set as default value in [PR #120095](https://github.com/flutter/flutter/pull/120095), but is not honored, see issue [#121493](https://github.com/flutter/flutter/issues/121493).
+
+## SegmentedButton OverlayColor MaterialState incorrectly set
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+The SegmentedButton sets its `MaterialState` incorrectly for `overlayColor` in its used `ButtonStyleButton` segments. See issue [123308](https://github.com/flutter/flutter/issues/123308).
+
+## FilledButton theming limitation issue
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+Cannot theme `FilledButton` and `FilledButton.tonal` variants separately, see issue [#118063](https://github.com/flutter/flutter/issues/118063).
+
+The new Material-3 buttons `FilledButton` and `FilledButton.tonal` cannot be themed separately to use different styles from each other. This is in conflict with their default themes where these buttons can use different styles and do look different. However, if you use `FilledButtonThemeData` in `ThemeData` to try to color style the buttons, both variants will become identical since they share the same `FilledButtonThemeData`. This effectively renders theming of the `FilledButton` less usable, since e.g., theming its color properties makes the variants look identical.
+
+## Divider color inconsistencies
+<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
+The introduction of M3 and some newer theme factories/properties have led to inconsistent divider colors that may cause theme color behavior confusion for developers. Some results are also not according to the M2 or M3 specification.
+
+The issue is seen as where `Theme.of(context).dividerColor` will have one color, but `Divider` widget will actually use another color. Which color they get, and what color is actually used where, depends on the used theme creation factory and M2/M3 mode. For more information, please see issue [117755](https://github.com/flutter/flutter/issues/117755).
+
+FlexColorScheme includes theming for the divider, to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity-based M2 divider style in Material-3 mode. The M2-styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With default M3 ColorSchemes this is not a big problem, but even with it, the default `Divider` color may not work so well on tertiary and its container color in a pure M3 design.
+
+## Chips theming limitation issues
+<Warning>Applies to Flutter 3.16 and earlier.</Warning>
+<Info>In master [PR #128584](https://github.com/flutter/flutter/pull/128584) closed the reported issue for this, it has landed in Flutter stable 3.13. **However,** it may not solve the issue of not being able to theme variant chips independently of each other. We may need to report the issue again with a new and clearer report of the issue, since the previous report contained two issues. The PR resolution needs further study first. The current fix has not been properly investigated in FCS yet, it may also be properly fixed.</Info>
+
+Cannot make themed **Selected** and **disabled** `ChoiceChip`, `FilterChip` and `InputChip` follow M3 spec by using theming, see issue [#115827](https://github.com/flutter/flutter/issues/115827).
+
+>**BACKGROUND:** The current a bit messy `Chip` theming situation and limitations was caused by the fact that Chip M3 implementation should probably not have re-used their old M2 base. It had too many limitations and lacked support for many features required by M3 Chips. In defense of the made choice, when it was decided to re-use their M2 base, the M3 Chip specification did not have all their individual states and interactions included in the M3 guide and specification, that now exist in it.
+>
+>Chips based on `ButtonStyleButton` and own theme for each M3 variant Chip, could solve all the issues and allow for flexible styling of the Chips. Currently, the Chips also have some hard coded features that can only be replicated by null theme default behavior via defaults the different M3 Chip variants. As long as you use only the defaults, you are mostly fine, but as soon as you try to theme them, you run into limitations and cross over effects between the different M3 Chip variants.
+
+## FloatingActionButton theming limitation issue
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+Cannot theme shape and iconSize differently for different sized FloatingActionButton, see issue [#107946](https://github.com/flutter/flutter/issues/107946). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
+
+## SnackBar theming limitation issue
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
+
+## GoogleFonts TextTheme styles have wrong color
+<Error>Applies to GoogleFonts 6.1 and earlier</Error>
+Using GoogleFonts TextThemes as input in ThemeData produces wrong default text colors. Caused by
+GoogleFonts TextTheme having their TextStyle colors hard coded to M2 light mode colors.
+For more info, see issue [GF #401](https://github.com/material-foundation/flutter-packages/issues/401)
+
+## PrimaryTextTheme has wrong color in ThemeData dark mode
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+<Info>This has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
+When the primary color of the theme requires dark contrast color, the `primaryTextTheme` gets the wrong contrast color in dark mode. See issue [#118146](https://github.com/flutter/flutter/issues/118146) for more information. FlexColorScheme has always included a theme fix for this issue. It is thus a none issue in FCS. The issue is included here as information and for tracking purposes.
+
+## Slider and RangeSlider issues
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+The `Slider` and `RangeSlider` components have a large number of known issues. They are typically not related to theming. Only a few are, like e.g. `RangeSlider` not having M3 style value indicator. For more information, see umbrella issue [#125329](https://github.com/flutter/flutter/issues/125329).
+
+## Elevation overlay color limitation in Material-2 dark mode
+<Warning>Applies to Flutter 3.13 and earlier.</Warning>
+The overlay color or color branding is not applied in Material2 (M2) to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) "Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal".
+
+FCS version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the surface and background colors equal, to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
+
+This limitation in Material-2 will likely **never be fixed in Flutter**. It is documented here as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in Material-3 does not have this equivalent limitation and thus removes the limitation when going forward with Material-3 theming.
