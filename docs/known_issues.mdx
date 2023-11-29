@@ -13,13 +13,14 @@ Summary of reported Flutter theming issues, that impact or have impacted theming
 
 | Status          | Amount    |
 |-----------------|-----------|
-| No fix          | 28 issues |
-| Fixed in master | 3 issues  |
-| Fixed in stable | 27 issues |
+| No fix          | 26 issues |
+| Fixed in master | 1 issue   |
+| Fixed in stable | 32 issues |
 
-_Last status review August 16, 2023_
+_Last status review November 29, 2023 (Flutter 3.16.1)_
 
 If an issue is stated to apply to Flutter version stable 3.13, it typically means it also applies to earlier stable versions if the feature in question also exists in earlier versions.
+
 
 ## No Fix
 
@@ -27,111 +28,88 @@ The issues below have not been fixed yet, or if they have a fix, they have not y
 
 
 ### Cannot theme progress indicators, many properties missing
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
 The `ProgressIndicatorThemeData` is missing many key properties from `LinearProgressIndicator` and `CircularProgressIndicator` making it impossible to theme their styles. For more information, see issue [#131690](https://github.com/flutter/flutter/issues/131690).
 
-
 ### Proposal: Make InputDecorationTheme usage in components consistent
-<Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
+<Warning>Applies to Flutter stable 3.16 and earlier.</Warning>
 The usage of `InputDecorationTheme` in component themes varies widely between component themes. This makes using components that use `InputDecoration` unpredictable and confusing. For more information, see proposal [#131666](https://github.com/flutter/flutter/issues/131666).
 
-
 ### Switch proposal: Expose _SwitchConfig configuration
-<Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
+<Warning>Applies to Flutter stable 3.16 and earlier.</Warning>
 The `Switch` has many useful styling configuration options hidden in a private mixin class called `_SwitchConfig`. These configuration options would be very useful when creating custom `Switch` designs. For more information, see proposal [#131478](https://github.com/flutter/flutter/issues/131478).
 
-
-### DropdownMenu leading icon usage layout issue
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
-When using a leading icon in a `DropdownMenu` in the entry field, the menu nicely automatically aligns the text in the menu entry field, with the text part in the dropdown menu entries, shown when it is opened. However, if we also add a `leadingIcon` to a `DropdownMenuEntry`, we also get the extra leading space and things do not line up. For more information, see issue [#131350](https://github.com/flutter/flutter/issues/131350).
-
-
 ### DropdownMenu does not inherit from inputDecorationTheme.
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
 The `ThemeData.dropdownMenuTheme.inputDecorationTheme` does not inherit from `ThemeData.inputDecorationTheme`. 
 For more information, see issue [#131213](https://github.com/flutter/flutter/issues/131213).
-
 
 ### Checkbox theme breaking style regression
 <Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
 <Info>This issue will never be fixed. There is as of Aug 23, 2023, a **breaking change** notice in Flutter documentation [here](https://docs.flutter.dev/release/breaking-changes/checkbox-fillColor). It was added a few days after the release of Flutter 3.13. FlexColorScheme 7.3.0 and later uses the new style, which is also the major reason why FCS 7.3.0 requires minimum Flutter version 3.13.0, since the new style does not work before that. The elaborate theming used in FCS meant that 175 lines of code in the Checkbox component theme had to be reviewed and updated to make it work as intended again. Additionally, 780 lines of test code had to be partially revised/updated/fixed for testing of its various config options.</Info> 
 The Checkbox component has a theme and styling regression when comparing Flutter stable **3.10.6** (and earlier versions) in Flutter stable **3.13.0**. This regression and change breaks past expected `Checkbox` theming style, with zero notification or deprecation time. It also breaks the current `Checkbox` theme in **FlexColorScheme** in a bad way in version before FlexColorScheme 7.3.0 that includes a fix for this breaking change. For more information, see issue [#130295](https://github.com/flutter/flutter/issues/130295).
 
-
 ### Proposal: Add a static function to Material UI widgets exposing internal default values
 <Warning>Applies to Flutter stable 3.13 and earlier.</Warning>
 When making custom widgets, it is often useful to use default values from standard Material UI widgets as default fall-back values for the custom widget from its equivalent standard version's theme properties. One possible way of doing this would be to add a static default theme value getter to each UI widget. For more information, see proposal [#130135](https://github.com/flutter/flutter/issues/130135).
 
-
 ### DatePicker InputDecorator issue
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
 <Warning>Has a landed fix [PR 128950](https://github.com/flutter/flutter/pull/128950) in **Flutter stable 3.13**.
 The fix is not very useful, and the issue is therefore not here considered fixed, see [comment in PR 128950](https://github.com/flutter/flutter/pull/128950#issuecomment-1657177393) which is further elaborated in additional comments in same PR, as well as in issue [#131666](https://github.com/flutter/flutter/issues/131666).</Warning>
-DatePicker date entry InputDecorator cannot have its own theme.
-For more information, see issue [#126617](https://github.com/flutter/flutter/issues/126617).
-
+**Original issue:** DatePicker date entry InputDecorator cannot have its own theme.
+For more information, see issue [#126617](https://github.com/flutter/flutter/issues/126617). This issue was closed, but it does not solve the problem in a usable way. This propsal was added with the hope that it might improve it some day [#131666](https://github.com/flutter/flutter/issues/131666).
 
 ### IconButton theming destroys variant styles
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+<Error>Applies to Flutter stable 3.16 and earlier.</Error>
 If we add theming to IconButton's IconButtonThemeData, we lose the style of all the variant IconButtons `IconButton.filled`, `IconButton.filledTonal` and `IconButton.outlined`. They all get the same style as IconButton. For more information, see issue [#123829](https://github.com/flutter/flutter/issues/123829).
-
 
 ### DropdownMenu themed focused item broken
 <Error>Applies to Flutter 3.13 and earlier.</Error>
 The style indication of the found and focused/selected item in a `DropdownMenu` does not use `MenuButtonThemeData`. Its simulation of the focused state omits the theme. This makes it impossible to provide a consistent style for the focused/selected item when using a custom theme in a `DropdownMenu`. We have to use the default style for the entire menu, or accept a deviant and out-of-style looking focused/selected item. For more information, see issue [#123736](https://github.com/flutter/flutter/issues/123736).
 
-
 ### NavigationDrawer wrong default width in M3
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 <Info>Has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme. However, using the M3 spec width is problematic in many cases.</Info>
 The `NavigationDrawer` drawer width does not follow Material-3 specification. Reference: Material-3 Design Navigation Drawer [specification](https://m3.material.io/components/navigation-drawer/specs#ce8bfbcf-3dec-45d2-9d8b-5e10af1cf87d). It might, however, not be such a good design to use the M3 360 dp spec as width. For more information, see issue [#123380](https://github.com/flutter/flutter/issues/123380).  It remains unknown what the response and view from the Google Material design team on the matter is. 
 
-
 ### NavigationDrawer indicator is centered when sized
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
-
 ### NavigationDrawer ink size does not follow indicator size
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
 ### NavigationDrawer ink effects do not follow M3 spec
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
-
 
 ### NavigationDrawer ink effect colors cannot be changed
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
-
 
 ### NavigationDrawer drawer size change animation overflows
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
-
 
 ### NavigationDrawer Label is not truncated to fit
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 See umbrella issue [#123507](https://github.com/flutter/flutter/issues/123507) for more information.
 
-
 ### SegmentedButton height does not match Material3 spec and cannot be changed
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 The Material-3 specification gives a height of 40 dp for Segmented buttons and a recommended `TapTargetSize` of 48 dp. This cannot be achieved in Flutter since the `minimumSize` style-property does not affect the widget. The correct minimumSize was actually set as default value in [PR #120095](https://github.com/flutter/flutter/pull/120095), but is not honored, see issue [#121493](https://github.com/flutter/flutter/issues/121493).
 
-
 ### SegmentedButton OverlayColor MaterialState incorrectly set
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 The SegmentedButton sets its `MaterialState` incorrectly for `overlayColor` in its used `ButtonStyleButton` segments. See issue [123308](https://github.com/flutter/flutter/issues/123308).
 
-
 ### FilledButton theming limitation issue
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 Cannot theme `FilledButton` and `FilledButton.tonal` variants separately, see issue [#118063](https://github.com/flutter/flutter/issues/118063).
 
 The new Material-3 buttons `FilledButton` and `FilledButton.tonal` cannot be themed separately to use different styles from each other. This is in conflict with their default themes where these buttons can use different styles and do look different. However, if you use `FilledButtonThemeData` in `ThemeData` to try to color style the buttons, both variants will become identical since they share the same `FilledButtonThemeData`. This effectively renders theming of the `FilledButton` less usable, since e.g., theming its color properties makes the variants look identical.
-
 
 ### Divider color inconsistencies
 <Error>Applies to Flutter 3.13 and earlier.</Error>
@@ -142,55 +120,44 @@ The issue is seen as where `Theme.of(context).dividerColor` will have one color,
 
 FlexColorScheme includes theming for the divider, to ensure consistent color on all divider theme related colors. There is also an optional quick setting to enable using opacity-based M2 divider style in Material-3 mode. The M2-styled divider is less prominent than using intended M3 `ColorScheme.outlineVariant` and may work better on backgrounds that do not have primary color-tinted backgrounds. The default M3 divider has no opacity and is color tinted by the theme's primary color. This may not be visually ideal on backgrounds that are not plain white/black or use primary color-tinted surfaces. With default M3 ColorSchemes this is not a big problem, but even with it, the default `Divider` color may not work so well on tertiary and its container color in a pure M3 design. 
 
-
-### Chips umbrella issue
-<Warning>Applies to Flutter 3.10 and earlier.</Warning>
-The `Chip` does not conform to Material3 design spec when `useMaterial3` is enabled. See umbrella issue [#115364](https://github.com/flutter/flutter/issues/115364) for details. The theme related issues listed in the Chips umbrella issue have been fixed in the master channel and now landed on Flutter 3.13. However, some of the **Chips theming limitation issue**, needs further verification, see below.
-
-
 ### Chips theming limitation issues
-<Warning>Applies to Flutter 3.10 and earlier.</Warning>
-<Info>In master [PR #128584](https://github.com/flutter/flutter/pull/128584) closed the reported issue for this, it has landed in Flutter stable 3.13. However, it may not solve the issue of not being able to theme variant chips independently of each other. We may need to report the issue again with a new and clearer report of the issue, since the previous report contained two issues. The PR resolution needs further study first, it may also be fixed.</Info>
+<Warning>Applies to Flutter 3.16 and earlier.</Warning>
+<Info>In master [PR #128584](https://github.com/flutter/flutter/pull/128584) closed the reported issue for this, it has landed in Flutter stable 3.13. **However,** it may not solve the issue of not being able to theme variant chips independently of each other. We may need to report the issue again with a new and clearer report of the issue, since the previous report contained two issues. The PR resolution needs further study first. The current fix has not been properly investigated in FCS yet, it may also be properly fixed.</Info>
 
 Cannot make themed **Selected** and **disabled** `ChoiceChip`, `FilterChip` and `InputChip` follow M3 spec by using theming, see issue [#115827](https://github.com/flutter/flutter/issues/115827).
 
-The current messy Chips theming situation and limitations was caused by the fact that `Chips` M3 implementation should probably not have re-used their old M2 base. It had too many limitations and lacked support for many features required by M3 Chips. In defense of the made choice, when it was decided to re-use their M2 base, the M3 Chip specification did not have all their individual states and interactions included in the M3 guide and specification, that now exist in it. 
-
-Chips based on `ButtonStyleButton` and own theme for each M3 variant Chip, could solve all the issues and allow for flexible styling of the Chips. Currently, the Chips also have some hard coded features that can only be replicated by null theme default behavior via defaults the different M3 Chip variants. As long as you use only the defaults, you are mostly fine, apart from state interactions, but as soon as you try to theme them, you run into limitations and cross over effects between the different M3 Chip variants.
-
-
-### Chips, passed in iconTheme is not applied
-<Error>Applies to Flutter 3.13 and earlier.</Error>
-When passing in `iconTheme` to `Chip`, `ActionChip`, `ChoiceChip`, `FilterChip` or `InputChip`, it is not applied.
-See issue [#111828](https://github.com/flutter/flutter/issues/111828).
-
+>**BACKGROUND:** The current a bit messy `Chip` theming situation and limitations was caused by the fact that Chip M3 implementation should probably not have re-used their old M2 base. It had too many limitations and lacked support for many features required by M3 Chips. In defense of the made choice, when it was decided to re-use their M2 base, the M3 Chip specification did not have all their individual states and interactions included in the M3 guide and specification, that now exist in it. 
+> 
+>Chips based on `ButtonStyleButton` and own theme for each M3 variant Chip, could solve all the issues and allow for flexible styling of the Chips. Currently, the Chips also have some hard coded features that can only be replicated by null theme default behavior via defaults the different M3 Chip variants. As long as you use only the defaults, you are mostly fine, but as soon as you try to theme them, you run into limitations and cross over effects between the different M3 Chip variants.
 
 ### FloatingActionButton theming limitation issue
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 Cannot theme shape and iconSize differently for different sized FloatingActionButton, see issue [#107946](https://github.com/flutter/flutter/issues/107946). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
 
-
 ### SnackBar theming limitation issue
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 Cannot theme SnackBar shape independently for its different behaviors, see issue [#108539](https://github.com/flutter/flutter/issues/108539). This issue does not yet (Nov 18, 2022) have any known corrective actions in the master channel.
 
+### GoogleFonts TextTheme styles have wrong color
+<Error>Applies to GoogleFonts 6.1 and earlier</Error>
+Using GoogleFonts TextThemes as input in ThemeData produces wrong default text colors. Caused by
+GoogleFonts TextTheme having their TextStyle colors hard coded to M2 light mode colors.
+For more info, see issue [GF #401](https://github.com/material-foundation/flutter-packages/issues/401)
 
-### PrimaryTextTheme has Wrong contrast color in ThemeData dark mode
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+### PrimaryTextTheme has wrong color in ThemeData dark mode
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 <Info>This has a theme **fix** in FlexColorScheme, so this is not an issue when using FlexColorScheme.</Info>
 When the primary color of the theme requires dark contrast color, the `primaryTextTheme` gets the wrong contrast color in dark mode. See issue [#118146](https://github.com/flutter/flutter/issues/118146) for more information. FlexColorScheme has always included a theme fix for this issue. It is thus a none issue in FCS. The issue is included here as information and for tracking purposes.
 
-
 ### Slider and RangeSlider issues
-<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
 The `Slider` and `RangeSlider` components have a large number of known issues. They are typically not related to theming. Only a few are, like e.g. `RangeSlider` not having M3 style value indicator. For more information, see umbrella issue [#125329](https://github.com/flutter/flutter/issues/125329).
-
 
 ### Elevation overlay color limitation in Material-2 dark mode
 <Warning>Applies to Flutter 3.13 and earlier.</Warning>
 The overlay color or color branding is not applied in Material2 (M2) to Widgets using elevated `Material` of type `canvas` in Flutter when using primary-colored surface and backgrounds, and the theme's `applyElevationOverlayColor` is `true`. This is caused by this Flutter SDK limitation and [issue #90353](https://github.com/flutter/flutter/issues/90353) "Dark mode elevation overlay color is only applied to Material of type canvas, when surface and background colors are equal".
 
-FCS version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the surface and background colors equal, in order to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
+FCS version 4.0.0 and later addresses this limitation by introducing more color blend modes that keep the surface and background colors equal, to not be affected by this limitation. If you are using heavy color branding in dark theme mode, the overlay color may not be necessary.
 
 This limitation in Material-2 will likely **never be fixed in Flutter**. It is documented here as something to be aware of. The work-around introduced in FCS is sufficient in most cases. The elevation tint in Material-3 does not have this equivalent limitation and thus removes the limitation when going forward with Material-3 theming.
 
@@ -200,24 +167,10 @@ This limitation in Material-2 will likely **never be fixed in Flutter**. It is d
 
 The issues below have a fix that has been **merged** in the latest Flutter master channel. Some fixes may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in the latest beta, it will typically also land in next stable version of Flutter when a new stable version is release. Typically, don't expect to see fixes below arriving as hotfixes to the main stable channel. 
 
-
-### TextStyles in Menus do not follow Material-3 spec
-<Error>Applies to Flutter stable 3.13 and earlier.</Error>
-<Success>Has fix [PR #131930](https://github.com/flutter/flutter/pull/131930) in master, but not yet in stable 3.13.</Success>
-Based on Material-3 specification menus should use text style `labelLarge` (M3 14 dp) for its menu items. For a `Textfield` part in a dropdown menu, the default for `Textfield` should be used, which is `bodyLarge` (M3 16 dp). The menus currently do not always use these correct Material-3 defaults. For more information, see issue [#131676](https://github.com/flutter/flutter/issues/131676).
-
-
-### DropdownButtonFormField input decorator focus/hover is not clipped
-<Error>Applies to Flutter 3.13 and earlier.</Error>
-<Success>Has fix [PR #131481](https://github.com/flutter/flutter/pull/131481) in master, but not yet in stable 3.13.</Success>
-When using an input decorator theme in `ThemeData`, the form field of the `DropdownButtonFormField` gets the correct themed result, but the shape is not clipped based on used radius of the input decorator for focused and hovered states. For more information, see issue [#131282](https://github.com/flutter/flutter/issues/131282).
-
-
-### TimePicker clock-dial has wrong M3 defaults
-<Error>Applies to Flutter 3.13 and earlier.</Error>
-<Success>Has fix [PR #131045](https://github.com/flutter/flutter/pull/131045) in master, but not yet in stable 3.10.</Success>
-<Info>Has a theme default **fix** in FlexColorScheme, this is not an issue when using FlexColorScheme.</Info>
-The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mistake. See issue [#118657](https://github.com/flutter/flutter/issues/118657).
+### Chips, passed in iconTheme is not applied
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+When passing in `iconTheme` to `Chip`, `ActionChip`, `ChoiceChip`, `FilterChip` or `InputChip`, it is not applied.
+See issue [#111828](https://github.com/flutter/flutter/issues/111828). Has a fix in master via [#PR 135751](https://github.com/flutter/flutter/pull/135751), but has not landed in Flutter 3.16.
 
 
 ## Fixed in Stable
@@ -227,13 +180,44 @@ The issues below have a fix that has **landed in the latest stable hotfix or ear
 This list is included to show what older versions of Flutter the theming fixes do not apply to.
 Prefer using the latest stable version of Flutter to benefit from all fixes listed below.
 
+### TextStyles in Menus do not follow Material-3 spec
+<Success>Fixed in Flutter 3.16.</Success>
+<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+Based on Material-3 specification menus should use text style `labelLarge` (M3 14 dp) for its menu items. For a `Textfield` part in a dropdown menu, the default for `Textfield` should be used, which is `bodyLarge` (M3 16 dp). The menus currently do not always use these correct Material-3 defaults. 
+For more information, see issue [#131676](https://github.com/flutter/flutter/issues/131676), fixed by [PR #131930](https://github.com/flutter/flutter/pull/131930).
+
+### DropdownButtonFormField input decorator focus/hover is not clipped
+<Success>Fixed in Flutter 3.16.</Success>
+<Error>Applies to Flutter 3.13 and earlier.</Error>
+When using an input decorator theme in `ThemeData`, the form field of the `DropdownButtonFormField` gets the correct themed result, but the shape is not clipped based on used radius of the input decorator for focused and hovered states.
+For more information, see issue [#131282](https://github.com/flutter/flutter/issues/131282), fixed via [PR #131481](https://github.com/flutter/flutter/pull/131481).
+
+### TimePicker clock-dial has wrong M3 defaults
+<Success>Fixed in Flutter 3.16.</Success>
+<Error>Applies to Flutter 3.13 and earlier.</Error>
+<Info>Always had a theme default **fix** in FlexColorScheme, this was never an issue when using FlexColorScheme.</Info>
+The `TimePicker` clock-dial uses wrong spec color, and its M3 web spec has a mistake.
+See issue [#118657](https://github.com/flutter/flutter/issues/118657), fixed by [PR #131045](https://github.com/flutter/flutter/pull/131045)
+
+### DropdownMenu leading icon usage layout issue
+<Success>Fixed in Flutter 3.16.</Success>
+<Error>Applies to Flutter stable 3.13 and earlier.</Error>
+When using a leading icon in a `DropdownMenu` in the entry field, the menu nicely automatically aligns the text in the menu entry field, with the text part in the dropdown menu entries, shown when it is opened. However, if we also add a `leadingIcon` to a `DropdownMenuEntry`, we also get the extra leading space and things do not line up.
+For more information, see issue [#131350](https://github.com/flutter/flutter/issues/131350), fixed by [PR #135004](https://github.com/flutter/flutter/pull/135004).
+
+### Chips umbrella issue
+<Success>Fixed in Flutter 3.16.</Success>
+<Warning>Applies to Flutter 3.13 and earlier.</Warning>
+The `Chip` does not conform to Material3 design spec when `useMaterial3` is enabled. See umbrella issue [#115364](https://github.com/flutter/flutter/issues/115364) for details.
+
+The theme related issues listed in the Chips umbrella issue have been fixed since **Flutter 3.13**. **However**, some of the **Chips theming limitation issues** will need further investigation and still appears to apply when theming Chips. New issue(s) demonstrating remaining theming limitations will need to be created to get them addressed. One of the issues listed issues in the `Chip` umbrella issue is still open, but considering the main issues in it closed and will track new specific issues via new issues.
+
 ### NavigationDrawer selected item has wrong icon color
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter stable 3.10 and earlier.</Error>
 The default color of the icon on a selected item in `NavigationDrawer` does not follow Material3 spec.
 Based on [published spec](https://m3.material.io/components/navigation-drawer/specs) the color should
 in Flutter be `ColorScheme.onSecondaryContainer`. For more information, see issue [#129572](https://github.com/flutter/flutter/issues/129572). Fixed via [PR #129625](https://github.com/flutter/flutter/pull/129625).
-
 
 ### SearchBar InputDecorator issue
 <Success>Fixed in Flutter 3.13.</Success>
@@ -242,7 +226,6 @@ The `SearchAnchor.bar` picks up app InputDecorator theme, and it cannot be remov
 For more information, see issue [#126623](https://github.com/flutter/flutter/issues/126623).
 Fixed via [PR #127465](https://github.com/flutter/flutter/pull/127465).
 
-
 ### DatePicker divider issue
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter stable 3.10.</Error>
@@ -250,19 +233,16 @@ DatePicker Divider cannot be removed or styled, it does not fit with a custom he
 For more information, see issue [#126597](https://github.com/flutter/flutter/issues/126597).
 Fixed via [PR #127197](https://github.com/flutter/flutter/pull/127197).
 
-
 ### Chips state elevation issues in M3
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter 3.7 and 3.10.</Error>
 Some `Chip` variants in M3 should have state elevations when interacted with, they do not. See issue [#115825](https://github.com/flutter/flutter/issues/115825). Fixed via [PR #128049](https://github.com/flutter/flutter/pull/128049). Unverified if the fix is 100% correct based on M3 Web spec (like dragged elevations) and all the Chip variants elevations, but it is definitely much better.
-
 
 ### Chips missing pressed/splash effects on actionable Chips in M3
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter 3.7 and 3.10.</Error>
 No ink splashes on actionable `Chips` when using color on them. See issue [#115824](https://github.com/flutter/flutter/issues/115824). The ink effects get covered by color on the used `Material` the button is constructed off.
 Fixed via [PR #124673](https://github.com/flutter/flutter/pull/124673).
-
 
 ### Chips background cannot be state adaptive
 <Success>Fixed in Flutter 3.13.</Success>
@@ -271,26 +251,21 @@ When creating a Chip, cannot set different background color for each different m
 Has fix [PR #128584](https://github.com/flutter/flutter/pull/128584) in **stable 3.13**.
 It is uncertain if the fix can be used with themes for each Chip variant, it will work well on Chip property level though.
 
-
 ### SliverAppBar.medium and SliverAppBar.large Theming and Default Values Issue
 <Success>Fixed in Flutter 3.13.</Success>
 <Error>Applies to Flutter 3.7 and 3.10.</Error>
 The `AppBar`'s foreground theme color, from theme or widget foreground color properties are **not applied** to action icon color for `SliverAppBar.medium` and `SliverAppBar.large`. The defaults for M2 foreground color on a `SliverAppBar.medium` and `SliverAppBar.large` are **incorrect** in **light theme** mode when using **Material-2**. For more information, see issue [#123943](https://github.com/flutter/flutter/issues/123943).
 Fixed via [PR #123293](https://github.com/flutter/flutter/pull/122542).
 
-
 ### MenuButton text animates on hover/focus/press state
 <Success>Not an issue, can be theme solved.</Success>
 This issue is actually not a Flutter issue. Turns out the text animation of `MenuButton` items when using inverse text color on selected item, compared to unselected items, **can** be removed with a `ButtonStyle` property on `MenuButtonThemeData`. FlexColorScheme version 7.2 added this setting to FIX this issue. In FCS 7.1 and earlier, the issue still exists.
-
-**Original issue text:** A menu selection label is not supposed to animate when it is highlighted, nor does it do so on icons in the menu, only on the text. For more information, see issue [#23615](https://github.com/flutter/flutter/issues/123615).
-
+**Original issue text was:** A menu selection label is not supposed to animate when it is highlighted, nor does it do so on icons in the menu, only on the text. For more information, see issue [#23615](https://github.com/flutter/flutter/issues/123615).
 
 ### DropdownMenu's menu overlay size issue
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to Flutter 3.7.</Error>
 If a `DropdownMenu` is placed in a `ListView`, the menu overlay expands to the width of the layout. This is a minor issue. You can work around it by placing the `DropdownMenu` e.g. in a `Column` in the `ListView`. Interestingly, when opening a menu overlay from a `MenuBar` or the `MenuAnchor`, even when they are placed in a `ListView`, they do not exhibit this behavior. Neither does `DropdownMenu`, if it is in a `Column`. For more information, see issue [#123631](https://github.com/flutter/flutter/issues/123631).
-
 
 ### InputChip, a disabled selected InputChip has wrong color in M3
 <Success>Fixed in Flutter 3.10.</Success>
@@ -298,12 +273,10 @@ If a `DropdownMenu` is placed in a `ListView`, the menu overlay expands to the w
 Wrong selected plus disabled `InputChip` color used in M3, see issue [#115826](https://github.com/flutter/flutter/issues/115826).
 A fix exists in master, but based on an initial view of the fix, the fix may still suffer from unexpected results when theming Chips. It will need to be further investigated, and a new issue opened if that is the case. Has a **fix** [PR #120192](https://github.com/flutter/flutter/pull/120192) in master, is now in 3.10 stable.
 
-
 ### SegmentedButton segments background cannot be made transparent
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to Flutter 3.7.</Error>
 The Material-3 specification depicts `SegmentedButton` unselected button segments, as having transparent color, used to show background color of surface it is placed upon. This is needed for it to work well on elevation-tinted surfaces in Material-3 design. See issue [#123292](https://github.com/flutter/flutter/issues/123292), it has a merged fix in beta 3.10 and master via [PR #123293](https://github.com/flutter/flutter/pull/123293).
-
 
 ### SegmentedButton has wrong M3 defaults
 <Success>Fixed in Flutter 3.10.</Success>
@@ -311,18 +284,15 @@ The Material-3 specification depicts `SegmentedButton` unselected button segment
 <Info>Has a theme default **fix** in FlexColorScheme v7, so this is not an issue when using FlexColorScheme.</Info>
 The `SegmentedButton` uses wrong default color for unselected item color, it uses `primary` color, it should be `onSurface`. See issue [# 119733](https://github.com/flutter/flutter/issues/119733) for more information. FCS7 includes a theme fix for this working already in Flutter 3.7. Has a **fix** [PR #120095](https://github.com/flutter/flutter/pull/120095) in beta 3.10 and master, not yet landed in stable, is in 3.10
 
-
 ### NavigationDrawer indicator overlay does not use shape
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to Flutter 3.7.</Error>
 If the `NavigationDrawer` shape is modified via `indicatorShape` by widget or theme, from its default M3 `StadiumBorder` shape, the indicator correctly gets the new shape, but `InkWell` used by overlay color for focus, hover and pressed state do not use the specified shape. For more information, see issue [#123324](https://github.com/flutter/flutter/issues/123324), it has a merged fix in master via [PR #123325](https://github.com/flutter/flutter/pull/123325).
 
-
 ### TabBar bottom divider, in M3, does not use its theme property color value
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to stable Flutter 3.7.</Error>
 The `dividerColor` in the `TabBarThemeData` was never applied to the used divider on the bottom of the `TabBar` that is part of the [M3 spec](https://m3.material.io/components/tabs/specs). It was used when passed via widget `dividerColor`, but ignored when set via `TabBarThemeData`. There is no report submitted for this issue. The fix was added in master without any reported issue, or at least there is no linked issue. Has a **fix** [PR #119690](https://github.com/flutter/flutter/pull/119690) in beta 3.10 and master, is now in stable 3.10.
-
 
 ### UnderlineInputBorder missing equality property
 <Success>Fixed in Flutter 3.10.</Success>
@@ -331,13 +301,11 @@ ShapeBorder on input decorator `UnderlineInputBorder` has gaps in its equality o
 
 This can be seen in the **Themes Playground** app where changing the controller value borderRadius on the used `UnderlineInputBorder` property does not trigger a rebuild of the Theme via Listenable in the AnimatedBuilder, since the value change is not observed because the property is not included in the object equality. Equality remains true, even though one of its property values has changed. Has a **fix** [PR #118284](https://github.com/flutter/flutter/pull/118284) in master, is now in 3.10 stable.
 
-
 ### BottomAppBar background color cannot be changed in M3
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to stable Flutter 3.7.</Error>
 The background color of the `BottomAppBar` cannot be changed when enabling Material-3 in Flutter. This applies to using its color property, theme, and any other means of trying to change its background color. This is bug in Flutter 3.7. There is a fix [PR #117082](https://github.com/flutter/flutter/pull/117082) in the master channel. It is from December 16, 2022, but it did not get included in the Flutter 3.7 Jan 25, 2023 release. The issue is also reported in the FlexColorScheme repo here [FCS #115](https://github.com/rydmike/flex_color_scheme/issues/115).
 Has a **fix** [PR #117082](https://github.com/flutter/flutter/pull/117082) in master, is now in 3.10 stable.
-
 
 ### BottomAppBar incorrectly has a shadow in M3, should not have based on M3 spec
 <Success>Fixed in Flutter 3.10.</Success>
@@ -345,30 +313,25 @@ Has a **fix** [PR #117082](https://github.com/flutter/flutter/pull/117082) in ma
 The `BottomAppBar` does not match M3 spec, it incorrectly has a shadow. See issue [#118150](https://github.com/flutter/flutter/issues/118150).
 Has a **fix** [PR #121406](https://github.com/flutter/flutter/pull/121406) in master, is in 3.10.
 
-
 ### BottomSheet incorrectly has a shadow in M3, should not have based on M3 spec
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to Flutter 3.7.</Error>
 The `BottomSheet` incorrectly has a shadow in M3 mode. See issue [#118244](https://github.com/flutter/flutter/issues/118244). Has a **fix** [PR #121406](https://github.com/flutter/flutter/pull/121406) in master, is in 3.10.
-
 
 ### SliverAppBar medium and large can not set foreground color
 <Success>Fixed in Flutter 3.10.</Success>
 <Error>Applies to Flutter 3.7 and earlier.</Error>
 When defining `foregroundColor` for the new Material-3 style `SliverAppBar.large` or `SliverAppBar.medium` either via an `AppBarTheme` or their properties, the defined color is not getting applied to the `AppBar`as it should. See issue [#110951](https://github.com/flutter/flutter/issues/110951). Has a **fix** [PR #118322](https://github.com/flutter/flutter/pull/118322) in master, is in 3.10.
 
-
 ### NavigationBar ink ripple moves with height changes (Regression)
 <Success>**Fixed** via [PR #117473](https://github.com/flutter/flutter/pull/117473) and cherry-picked via [CP #119553](https://github.com/flutter/flutter/pull/119553) to 3.7.2.</Success>
 <Error>Applies only to stable Flutter 3.7.0 and 3.7.1.</Error>
 If you change the `NavigationBar` from M3 default value of 80 dp, the ink level moves up or down with same amount as the deviation from the default 80 dp height. See issue report and illustration here [FCS #114](https://github.com/rydmike/flex_color_scheme/issues/114) as well as in Flutter SDK issue [#117420](https://github.com/flutter/flutter/issues/117420). The issue was caused by a regression in Flutter 3.7. It did not exist in Flutter 3.3 and earlier. It is also fixed in the current master channel via [PR 117473](https://github.com/flutter/flutter/pull/117473).
 
-
 ### NavigationBar ink ripple does not follow M3 spec
 <Success>Fixed in Flutter 3.7.</Success>
 <Error>Applies to Flutter 3.3 and earlier.</Error>
 The M3 `NavigationBar` has a Material-2 styled ink effects also when opting in on Material-3. This is not according to Material design specification. See issues [#113870](https://github.com/flutter/flutter/issues/113870) and [#114618](https://github.com/flutter/flutter/issues/114618) for more information. This issue was fixed via [PR #115499](https://github.com/flutter/flutter/pull/115499).
-
 
 ### Typography switching causes a crash
 <Success>Fixed in Flutter 3.7.</Success>
@@ -388,7 +351,6 @@ The above workaround was needed because the Playground app has toggles that swit
 <Error>Applies to Flutter 3.3.0 to 3.3.10.</Error>
 Regression: `AppBarTheme` properties `iconTheme` and `actionsIconTheme` are ignored when `useMaterial3` is true. This was not seen in Flutter stable 3.0.5, but is now in 3.3.0. See issue[#107305](https://github.com/flutter/flutter/issues/107305), that was fixed via [PR #108332](https://github.com/flutter/flutter/pull/108332) in master. The fix did not land in Flutter 3.3.0, as mentioned in issue [#110878](https://github.com/flutter/flutter/issues/110878) it regressed into stable 3.3 release, even though it was fixed in master 28 days before stable 3.3 release.
 
-
 ### Elevation issues when opting in on M3
 <Success>Fixed in Flutter 3.7.</Success>
 <Error>Applies to Flutter 3.3 and earlier.</Error>
@@ -406,7 +368,6 @@ This [PR #110624](https://github.com/flutter/flutter/pull/110624) addresses the 
 <Success>Fixed in Flutter 3.7.</Success>
 <Error>Applies to Flutter 3.3 and earlier.</Error>
 The `Chip` theme in Flutter 3.3 does not M3 style the plain vanilla `Chip`. A proposal to fix this can be tracked via issue [#109470](https://github.com/flutter/flutter/issues/109470). This issue has been fixed in the master channel via [PR #111597](https://github.com/flutter/flutter/pull/111597), but it never landed in the 3.3 stable releases.
-
 
 ### System Navigation Bar issue on A11 (Android)
 <Success>Fixed in Flutter 3.7.</Success>
