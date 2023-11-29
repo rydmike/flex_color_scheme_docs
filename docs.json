@@ -60,7 +60,7 @@
                 ["FAQ", "/faq"]
             ]
         ],
-        ["Known Issues",
+        ["Theming Issues",
             [
                 ["Overview", "/known_issues"],
                 ["No fix", "/known_issues_no_fix"],
