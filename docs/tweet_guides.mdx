@@ -1,0 +1,53 @@
+# Playground Guides
+
+There are many useful Themes Playground guides released as thread posts on X/Twitter. You may find them helpful and easy to absorb.
+
+## ColorScheme Guide
+_April 24, 2022_
+
+Slightly after the version 5 release, a tweet slide deck with 15 slides was released. It is an extensive guide to how the new Material-3 ColorScheme and color system work in Material-3 and Flutter.
+
+<Tweet id="1518201439780282370" cards/>
+
+## A Theme Story
+_May 17, 2023_
+
+This tweet thread story was released after version 7.1. and uses short screen recordings for a fictive theming use-case story. It demonstrates advanced features in the current version of **FlexColorScheme** and **Themes Playground**. It shows how to use custom brand colors, with a seed generation algorithm that gives brighter generated colors than the default M3 algorithm. The example locks down the brand colors to the fixed given brand colors. It uses the brand colors as seeds for all other supporting colors, except for critical ColorScheme colors. They use the exact given brand color values.
+
+It also demonstrates how to use the in version 7.0 introduced platform adaptive theming properties. They are used in this example to create a theme that automatically looks less Material-3 opinionated and more platform-agnostic on other platforms than Android, while still using Material-3 on Android, where it is desired in this example. All this styling is done on theme level. The design changes are automatic depending on what platform the app is built for and run on.
+
+The impact of the adaptive theme changes can be simulated in Themes Playground by faking the used platform. The adaptive theme responses can then be observed in the mock apps in the built-in **Theme Simulator**.
+
+<Tweet id="1658657667622248449" cards />
+
+## Platform-Agnostic Theme 
+_June 26, 2023_
+
+This tweet thread uses screenshots to demonstrate how to make a platform-agnostic Material-3 based theme. Widget color mapping and border radius are customized to make a custom style suitable on Android, iOS and desktop as well web. This serves as an example of how to make custom branded theme using Material-3 design in Flutter by simple visual styling adjustments with the **Themes Playground**, to give us the theme definition to copy and use in **FlexColorScheme** in our Flutter app. 
+
+This example uses a blue color seed generated `ColorScheme`, where the resulting scheme only uses different blue tones. The scheme is generated from a single seed color that is also used as the main "brand" color in light theme mode. This is also the only defined color to make this expressive blue theme, using multiple matching shades of blue in light and dark mode. 
+
+<Tweet id="1672764806544146435" cards />
+
+## Theming Challenge
+_Nov 11, 2023_
+
+In this tweet thread we study how and what parts of the design in https://ui.shadcn.com/themes can be made with **Themes Playground**. What more can be done by using APIs in **FlexColorScheme** not exposed in the **Playground**. Where you can go even further by modifying the produced `ThemeData` using `.copyWith`, is also discussed.
+
+<Tweet id="1723423568107630868" cards />
+
+<Info>The Material widgets in Flutter are primarily designed to implement the Material components and currently focus on Material-3 design. The older Material-2 design will eventually be deprecated and removed from Flutter.</Info> 
+
+The Flutter implementation of Material components and their theming, allows you to customize the component styles a lot, but not everything is easy to do and it cannot be used to make any arbitrary design. The starting point of the design is also Material-3 or Material-2, depending on used mode in Flutter. In both cases, the styles are quite opinionated, Material-3 even more so. To make something very different, you have to change a lot of theming properties from their default behavior. FlexColorScheme makes this much easier and comes with a number of color designs that you can use as inspiration or base for your custom designs.
+
+## Greyscale Prototype
+_Jan 15, 2024_
+
+For prototyping apps without color influences, you can try a greyscale theme. It works well with **Material3** in FlutterDev and can look really cool. You can also make Flutter M3 apps look flatter and more platform agnostic. Meanwhile you can focus on features and content instead of spend time thinking about colors. 
+
+<Tweet id="1746917704240374060" cards />
+
+Later when you have your dope greyscale app's layouts and features nailed, you can for inspiration try it with all the different **FlexColorScheme** built-in colors as your app theme. This can help you find your look or just add the agreed brand colors to primary, secondary and tertiary colors.
+
+<Tweet id="1746921575461380441" cards />
+

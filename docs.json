@@ -22,7 +22,6 @@
         ["Welcome",
             [
                 ["About","/"],
-                ["History in tweets", "/tweets"],
                 ["All themes", "/all_themes"],
                 ["Showcases", "/showcases"],
                 ["Sponsors", "/sponsors"]
@@ -32,8 +31,14 @@
             [
                 ["Installing and using", "/installing"],
                 ["Examples", "/examples"],
-                ["Themes Playground", "/playground"],
                 ["Copy Playground","/copy_playground"]
+            ]
+        ],
+        ["Themes Playground",
+            [
+                ["Playground", "/playground"],
+                ["Guides", "/tweet_guides"],
+                ["History","/playground_history"]
             ]
         ],
         ["Tutorial",
@@ -56,13 +61,12 @@
             [
                 ["Flutter Theming", "/theming_guide"],
                 ["Theme and Scheme", "/theme_scheme"],
-                ["Roads to ThemeData", "/theming_roads"],
-                ["FAQ", "/faq"]
+                ["Roads to ThemeData", "/theming_roads"]
             ]
         ],
         ["Issues",
             [
-                ["Flutter issues", "/known_issues"],
+                ["Known issues", "/known_issues"],
                 ["No fix", "/known_issues_no_fix"],
                 ["Fixed in master", "/known_issues_master_fix"],
                 ["Fixed in stable", "/known_issues_stable_fix"]
@@ -72,9 +76,10 @@
             [
                 ["What's new?", "/whats_new"],
                 ["Migration guide","/migrating"],
+                ["History in tweets", "/tweet_versions"],
                 ["Changelog","/changelog"],
+                ["FAQ", "/faq"],
                 ["License","/license"],
-                ["Known issues", "/known_issues"],
                 ["Future features", "/future_features"],
                 ["Scheme reference", "/scheme_reference"]
             ]
