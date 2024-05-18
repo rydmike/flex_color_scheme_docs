@@ -1,8 +1,16 @@
 # Welcome to FlexColorScheme
 
+<Error>Flutter 3.22 contains major breaking style and color mapping changes via its new ColorScheme. FlexColorScheme 7.3.1 and earlier versions are only designed to work with Flutter 3.19 and earlier.
+
+An updated version of FlexColorScheme (8.0.0) is in progress. Changes in Flutter 3.22 are much more significant than what appears on the surface. It will take some time before a fully compatible version is ready for release.
+
+FlexColorScheme 7.3.1 and earlier versions may result in unexpected surface colors if used with Flutter 3.22. This also applies to if you use very customized ThemeData without even using FlexColorScheme.
+
+Please be patient while we work on the updated and compatible version.</Error>
+
 [<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/flutter-favorite-logo.png?" alt="flutter favorite logo" width="170"/>](https://docs.flutter.dev/development/packages-and-plugins/favorites)
 
-Use **FlexColorScheme** to make beautiful Flutter Material Design themes. Apply optional surface blends and use Material-3 color system seeded color schemes, with more customization features than Flutter offers. The returned themes are standard `ThemeData` objects, but **very** sophisticated ones. Choose from numerous pre-made designs or make your own. You can also use component sub theming, that is quick to configure.
+Use **FlexColorScheme** to make beautiful Flutter Material Design themes. Apply optional surface blends and use Material-3 color system seeded color schemes, with more customization features than Flutter offers. The returned themes are standard `ThemeData` objects, but **very** sophisticated ones. Choose from many pre-made designs or make your own. You can also use component theming, that is quick to configure.
 
 FlexColorScheme is at its core an advanced `ThemeData` factory. It makes customization of `ThemeData` simpler. It does not expose everything you can do with `ThemeData` via its own APIs. Its focus is on things that are complex and tedious to do with `ThemeData`. You can further tune the produced `ThemeData` by using `copyWith` and `ThemeData`'s own APIs.
 
@@ -32,9 +40,9 @@ When you theme a Flutter application correctly, all built-in widgets use the col
   </tr>
 </table>
 
-You can opt in on using opinionated component sub-themes. By doing so, you can, for example, adjust the border radius on all UI widgets with a single property value. Flutter's Material UI widgets now default to the Material-3 design when you use vanilla ThemeData.
+You can opt in on using opinionated component themes. By doing so, you can, for example, adjust the border radius on all UI widgets with a single property value. Flutter's Material UI widgets now default to the Material-3 design when you use vanilla ThemeData.
 
-When you opt in on using the component sub-themes, border radius on widgets defaults to the Material-3 rounded corner design regardless of if you use M2 or M3 mode. In M3 design the radius varies by widget type, as specified by the [Material 3 guide](https://m3.material.io/), in M2 it was 4dp on most widgets. One could say that opting in on using FlexColorScheme component sub-themes in Material-2 mode, is a way of getting a Material-2 design of Material-3. You can keep the M3 defaults or set the shared global widget radius to a value you prefer. You can also easily set the themed border radius per widget, and override the Material-3 default or the global radius value you defined.
+When you opt in on using the component themes, border radius on widgets defaults to the Material-3 rounded corner design regardless of if you use M2 or M3 mode. In M3 design the radius varies by widget type, as specified by the [Material 3 guide](https://m3.material.io/), in M2 it was 4 dp on most widgets. One could say that opting in on using FlexColorScheme component themes in Material-2 mode, is a way of getting a Material-2 design of Material-3. You can keep the M3 defaults or set the shared global widget radius to a value you prefer. You can also easily set the themed border radius per widget, and override the Material-3 default or the global radius value you defined.
 
 ### Material-3 Mode
 
@@ -42,7 +50,7 @@ You can also opt in on using Material-3 design. The Material-3 mode component su
 
 In Flutter 3.7 and later, using Material-3 design is ready for production use. Some minor issues still exist, please refer to the FlexColorScheme docs [known issues](https://docs.flexcolorscheme.com/known_issues) chapter for more information on status of known **theming** issues in Flutter.
 
-In Flutter 3.16 and later, Material-3 is the default mode when using its various `ThemeData()` factories. **FlexColorScheme** still defaults to using Material-2 mode, but you can opt in on using Material-3 mode by setting `useMaterial3: true`, when you create your `FlexColorScheme`. The **Themes Playground** uses Material-3 mode by default, by setting `useMaterial3: true` in the generated code. Next major version (version 8) of FlexColorScheme API will default to Material-3 mode as well. This will be a breaking change.
+In Flutter 3.16 and later, Material-3 is the default mode when using its various `ThemeData()` factories. **FlexColorScheme** still defaults to using Material-2 mode, but you can opt in on using Material-3 mode by setting `useMaterial3: true`, when you create your `FlexColorScheme`. The **Themes Playground** uses Material-3 mode by default, by setting `useMaterial3: true` in the generated code. The next major version (version 8) of FlexColorScheme API will default to Material-3 mode as well. This will be a breaking change.
 
 <table>
   <tr>
@@ -66,6 +74,6 @@ In Material-3 mode theming you can disable its surface elevation tint and even b
   </tr>
 </table>
 
-With **FlexColorScheme** component themes, you use simple flat property values. No need for verbose Flutter SDK component sub-themes, with `ShapeBorder` definitions on multiple widget themes to change their border radius. The component theming provides a large number of easy-to-configure options via simple flat properties. In many cases you can avoid the both complicated and confusing `MaterialState` theming properties.
+With **FlexColorScheme** component themes, you use simple flat property values. No need for verbose Flutter SDK component themes, with `ShapeBorder` definitions on multiple widget themes to change their border radius. The component theming provides a large number of easy-to-configure options via simple flat properties. In many cases you can avoid the both complicated and confusing `MaterialState` theming properties.
 
 
