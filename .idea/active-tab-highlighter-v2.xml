@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ActiveTabHighlighterConfigurationV2">
+    <option name="enabled" value="true" />
+    <option name="acrossThemes" value="true" />
+    <option name="backgroundEnabled" value="true" />
+    <option name="background" value="#AD2E9C" />
+    <option name="backgroundDark" value="#AD2E9C" />
+    <option name="migration" value="v2" />
+  </component>
+</project>
