@@ -17,6 +17,13 @@
         "apiKey": "3833d611da1ccda24eed033f4670fc0a",
         "indexName": "flexcolorscheme"
       },
+    "theme": {
+        "defaultTheme": "light",
+        "primaryLight": "0000BA",
+        "primaryDark": "BFC2FF",
+        "backgroundLight": "F9F9FD",
+        "backgroundDark": "1B1B20"
+    },
     "noindex": "false",
     "sidebar": [
         ["Welcome",
