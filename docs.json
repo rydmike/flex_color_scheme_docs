@@ -10,7 +10,6 @@
         { "title": "GitHub source", "icon": "github", "link": "https://github.com/rydmike/flex_color_scheme" }
     ],
     "socialPreview": "/images/fcs_v5_site_rounded.png",
-    "theme": "#0x29B6F6",
     "zoomImages": "true",
     "docsearch": {
         "appId": "S07ZRASQDD",
@@ -19,10 +18,10 @@
       },
     "theme": {
         "defaultTheme": "light",
-        "primaryLight": "0000BA",
-        "primaryDark": "BFC2FF",
-        "backgroundLight": "F9F9FD",
-        "backgroundDark": "1B1B20"
+        "primaryLight": "#0000BA",
+        "primaryDark": "#BFC2FF",
+        "backgroundLight": "#F9F9FD",
+        "backgroundDark": "#1B1B20"
     },
     "noindex": "false",
     "sidebar": [
