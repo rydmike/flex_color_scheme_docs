@@ -16,8 +16,6 @@
         "indexName": "flexcolorscheme"
       },
     "theme": {
-        "theme": "light",
-        "primary": "#0000BA",
         "primaryLight": "#0000BA",
         "primaryDark": "#BFC2FF",
         "backgroundLight": "#F9F9FD",
