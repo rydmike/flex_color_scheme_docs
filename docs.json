@@ -19,7 +19,7 @@
         "defaultTheme": "light",
         "primaryLight": "#0000BA",
         "primaryDark": "#BFC2FF",
-        "backgroundLight": "#F9F9FD",
+        "backgroundLight": "#F9F9FC",
         "backgroundDark": "#1B1B20"
     },
     "noindex": "false",
