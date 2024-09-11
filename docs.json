@@ -1,93 +1,217 @@
 {
     "name": "FlexColorScheme",
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logoDark": "/images/logo.png",
-    "twitter": "rydmike",
-    "anchors": [
-        { "title": "Package pub.dev", "icon": "cube", "link": "https://pub.dev/packages/flex_color_scheme" },
-        { "title": "Themes Playground", "icon": "palette", "link": "https://rydmike.com/flexcolorscheme/themesplayground-latest" },
-        { "title": "GitHub source", "icon": "github", "link": "https://github.com/rydmike/flex_color_scheme" }
-    ],
     "socialPreview": "/images/fcs_v5_site_rounded.png",
-    "docsearch": {
-        "appId": "S07ZRASQDD",
-        "apiKey": "3833d611da1ccda24eed033f4670fc0a",
-        "indexName": "flexcolorscheme"
-      },
+    "logo": {
+        "light": "/images/logo.png",
+        "dark": "/images/logo.png"
+    },
+    "anchors": [
+        {
+            "title": "Package pub.dev",
+            "icon": "cube",
+            "link": "https://pub.dev/packages/flex_color_scheme"
+        },
+        {
+            "title": "Themes Playground",
+            "icon": "palette",
+            "link": "https://rydmike.com/flexcolorscheme/themesplayground-latest"
+        },
+        {
+            "title": "GitHub source",
+            "icon": "github",
+            "link": "https://github.com/rydmike/flex_color_scheme"
+        }
+    ],
+    "search": {
+        "docsearch": {
+            "appId": "S07ZRASQDD",
+            "apiKey": "3833d611da1ccda24eed033f4670fc0a",
+            "indexName": "flexcolorscheme"
+        }
+    },
     "theme": {
         "defaultTheme": "light",
         "primaryLight": "#0000BA",
         "primaryDark": "#BFC2FF",
-        "backgroundLight": "#F9F9FC",
+        "backgroundLight": "#F9F9FD",
         "backgroundDark": "#1B1B20"
     },
-    "noindex": "false",
+    "social": {
+        "x": "rydmike"
+    },
     "sidebar": [
-        ["Welcome",
-            [
-                ["About","/"],
-                ["All themes", "/all_themes"],
-                ["Showcases", "/showcases"],
-                ["Sponsors", "/sponsors"]
+        {
+            "group": "Welcomne",
+            "pages": [
+                {
+                    "title": "About",
+                    "href": "/"
+                },
+                {
+                    "title": "All Themes",
+                    "href": "/all_themes"
+                },
+                {
+                    "title": "Showcases",
+                    "href": "/showcases"
+                },
+                {
+                    "title": "Sponsors",
+                    "href": "/sponsors"
+                }
             ]
-        ],
-        ["Getting Started",
-            [
-                ["Installing and using", "/installing"],
-                ["Examples", "/examples"],
-                ["Copy Playground","/copy_playground"]
+        },
+        {
+            "group": "Getting Started",
+            "pages": [
+                {
+                    "title": "Installing and using",
+                    "href": "/installing"
+                },
+                {
+                    "title": "Examples",
+                    "href": "/examples"
+                },
+                {
+                    "title": "Copy Playground",
+                    "href": "/copy_playground"
+                }
             ]
-        ],
-        ["Themes Playground",
-            [
-                ["Playground", "/playground"],
-                ["Guides", "/tweet_guides"],
-                ["History","/playground_history"]
+        },
+        {
+            "group": "Themes Playground",
+            "pages": [
+                {
+                    "title": "Playground",
+                    "href": "/playground"
+                },
+                {
+                    "title": "Guides",
+                    "href": "/tweet_guides"
+                },
+                {
+                    "title": "History",
+                    "href": "/playground_history"
+                }
             ]
-        ],
-        ["Tutorial",
-           [
-                ["1. Basic Theme","/tutorial1"],
-                ["2. Custom Theme","/tutorial2"],
-                ["3. Four Themes","/tutorial3"],
-                ["4. All Themes","/tutorial4"],
-                ["5. Playground","/tutorial5"]
-           ]
-        ],
-        ["API",
-            [
-                ["Guide", "/api_guide"],
-                ["Deep dives", "/deep_dives"],
-                ["Core defaults", "/core_defaults"]
+        },
+        {
+            "group": "Tutorial",
+            "pages": [
+                {
+                    "title": "1. Basic Theme",
+                    "href": "/tutorial1"
+                },
+                {
+                    "title": "2. Custom Theme",
+                    "href": "/tutorial2"
+                },
+                {
+                    "title": "3. Four Themes",
+                    "href": "/tutorial3"
+                },
+                {
+                    "title": "4. All Themes",
+                    "href": "/tutorial4"
+                },
+                {
+                    "title": "5. Playground",
+                    "href": "/tutorial5"
+                }
             ]
-        ],
-        ["Theming Guide",
-            [
-                ["Flutter Theming", "/theming_guide"],
-                ["Theme and Scheme", "/theme_scheme"],
-                ["Roads to ThemeData", "/theming_roads"]
+        },
+        {
+            "group": "API",
+            "pages": [
+                {
+                    "title": "Guide",
+                    "href": "/api_guide"
+                },
+                {
+                    "title": "Deep dives",
+                    "href": "/deep_dives"
+                },
+                {
+                    "title": "Core defaults",
+                    "href": "/core_defaults"
+                }
             ]
-        ],
-        ["Issues",
-            [
-                ["Known issues", "/known_issues"],
-                ["No fix", "/known_issues_no_fix"],
-                ["Fixed in master", "/known_issues_master_fix"],
-                ["Fixed in stable", "/known_issues_stable_fix"]
+        },
+        {
+            "group": "Theming Guide",
+            "pages": [
+                {
+                    "title": "Flutter Theming",
+                    "href": "/theming_guide"
+                },
+                {
+                    "title": "Theme and Scheme",
+                    "href": "/theme_scheme"
+                },
+                {
+                    "title": "Roads to ThemeData",
+                    "href": "/theming_roads"
+                }
             ]
-        ],
-        ["Appendix",
-            [
-                ["What's new?", "/whats_new"],
-                ["Migration guide","/migrating"],
-                ["History in tweets", "/tweet_versions"],
-                ["Changelog","/changelog"],
-                ["FAQ", "/faq"],
-                ["License","/license"],
-                ["Future features", "/future_features"],
-                ["Scheme reference", "/scheme_reference"]
+        },
+        {
+            "group": "Issues",
+            "pages": [
+                {
+                    "title": "Known issues",
+                    "href": "/known_issues"
+                },
+                {
+                    "title": "No fix",
+                    "href": "/known_issues_no_fix"
+                },
+                {
+                    "title": "Fixed in master",
+                    "href": "/known_issues_master_fix"
+                },
+                {
+                    "title": "Fixed in stable",
+                    "href": "/known_issues_stable_fix"
+                }
             ]
-        ]
+        },
+        {
+            "group": "Appendix",
+            "pages": [
+                {
+                    "title": "What's new?",
+                    "href": "/whats_new"
+                },
+                {
+                    "title": "Migration guide",
+                    "href": "/migrating"
+                },
+                {
+                    "title": "History in tweets",
+                    "href": "/tweet_versions"
+                },
+                {
+                    "title": "Changelog",
+                    "href": "/changelog"
+                },
+                {
+                    "title": "FAQ",
+                    "href": "/faq"
+                },
+                {
+                    "title": "License",
+                    "href": "/license"
+                },
+                {
+                    "title": "Future features",
+                    "href": "/future_features"
+                },
+                {
+                    "title": "Scheme reference",
+                    "href": "/scheme_reference"
+                }
+            ]
+        }
     ]
 }
