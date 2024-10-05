@@ -6,12 +6,11 @@
         "light": "/images/logo.png",
         "dark": "/images/logo.png"
     },
-    "anchor": [
+    "anchors": [
         {
             "title": "Package pub.dev",
             "icon": "cube",
-            "link": "https://pub.dev/packages/flex_color_scheme",
-            "tab": ""
+            "link": "https://pub.dev/packages/flex_color_scheme"
         },
         {
             "title": "Themes Playground",
@@ -44,7 +43,7 @@
     },
     "sidebar": [
         {
-            "group": "Welcome!",
+            "group": "Welcome!!",
             "pages": [
                 {
                     "title": "About",
