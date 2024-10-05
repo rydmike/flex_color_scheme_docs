@@ -23,6 +23,10 @@
             "link": "https://github.com/rydmike/flex_color_scheme"
         }
     ],
+    "social": {
+        "x": "@rydmike",
+        "github": "@rydmike"
+    },
     "search": {
         "docsearch": {
             "appId": "S07ZRASQDD",
@@ -36,9 +40,6 @@
         "primaryDark": "#BFC2FF",
         "backgroundLight": "#F9F9FD",
         "backgroundDark": "#1B1B20"
-    },
-    "social": {
-        "x": "rydmike"
     },
     "sidebar": [
         {
