@@ -6,7 +6,7 @@
         "light": "/images/logo.png",
         "dark": "/images/logo.png"
     },
-    "anchors": [
+    "anchor": [
         {
             "title": "Package pub.dev",
             "icon": "cube",
@@ -44,7 +44,7 @@
     },
     "sidebar": [
         {
-            "group": "Welcomet",
+            "group": "Welcome!",
             "pages": [
                 {
                     "title": "About",
