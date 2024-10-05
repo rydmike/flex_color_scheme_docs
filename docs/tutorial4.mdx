@@ -23,7 +23,7 @@ We again use the `ThemeController`, which glues our theme settings to Flutter Wi
 
 In this example we use the `ThemeServiceHive` option. The examples are all built using the same "example" app. If we use SharedPreferences in more than one of them, they would all use the same storage container and share the settings when you build them locally. By using Hive for most examples, we can change the storage container's name, for each example. You can swap in the SharedPreferences based one here as well to try it.
 
-The `Hive` package is faster and accomplishes the same thing `SharedPreferences`. It also has other features you might find useful, even for simple local key-value pair storage. We use both SharedPreferences and Hive in these examples for demonstration and educational purposes.
+The `Hive` package is faster and does the same thing as `SharedPreferences`. It also has other features you might find useful, even for simple local key-value pair storage. We use both SharedPreferences and Hive in these examples for demonstration and educational purposes. For the past year Hive has not had any maintenance updates, but it is still a very popular package and still works well, at least in example 4 and even example 5, the Themes Playground app.
 
 ```dart
 // The ThemeServiceHive constructor requires a box name, the others do not.
