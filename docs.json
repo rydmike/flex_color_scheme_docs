@@ -10,7 +10,8 @@
         {
             "title": "Package pub.dev",
             "icon": "cube",
-            "link": "https://pub.dev/packages/flex_color_scheme"
+            "link": "https://pub.dev/packages/flex_color_scheme",
+            "tab": ""
         },
         {
             "title": "Themes Playground",
