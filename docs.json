@@ -10,17 +10,17 @@
         {
             "title": "Package pub.dev",
             "icon": "cube",
-            "link": "https://pub.dev/packages/flex_color_scheme"
+            "href": "https://pub.dev/packages/flex_color_scheme"
         },
         {
             "title": "Themes Playground",
             "icon": "palette",
-            "link": "https://rydmike.com/flexcolorscheme/themesplayground-latest"
+            "href": "https://rydmike.com/flexcolorscheme/themesplayground-latest"
         },
         {
             "title": "GitHub source",
             "icon": "github",
-            "link": "https://github.com/rydmike/flex_color_scheme"
+            "href": "https://github.com/rydmike/flex_color_scheme"
         }
     ],
     "social": {
