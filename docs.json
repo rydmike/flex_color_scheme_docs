@@ -21,6 +21,11 @@
             "title": "GitHub source",
             "icon": "github",
             "href": "https://github.com/rydmike/flex_color_scheme"
+        },
+        {
+            "title": "X/Twitter @rydmike",
+            "icon": "twitter",
+            "href": "https://x.com/rydmike"
         }
     ],
     "social": {
