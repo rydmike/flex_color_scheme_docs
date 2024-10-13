@@ -8,7 +8,8 @@ This chapter contains guides for the minimum required changes to move from a low
 The most critical changes to migrate from FlexColorScheme V7 to V8 are listed below. For a full list of all breaking changes, see **PACKAGE CHANGES** and the **BREAKING CHANGES** part in the [pub.dev CHANGELOG](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.1/changelog).
 
 * The flag `useMaterial3` now defaults to `true` in `FlexColorScheme` and `FlexThemeData` constructors. Set it to `false` to explicitly use Material-2 theming. It defaulted to true before. Material-2 is still fully supported in FCS v8 and Flutter v3.24, but will eventually be deprecated in Flutter, when that happens, it will also happen in FCS.
-  >With the **Themes Playground** app, you can use a pre-configured Material-3 based theme that looks very similar to legacy Material-2 design. This will continue to be available also after Material-2 is deprecated in Flutter.
+
+<Info>With the **Themes Playground** app, you can use a pre-configured Material-3 based theme that looks very similar to legacy Material-2 design. This will continue to be available also after Material-2 is deprecated in Flutter.</Info>
 
 * The `FlexSubThemesData` properties `interactionEffects`, `tintedDisabledControls`, `defaultUseM2StyleDividerInM3` and `blendOnColors` now all default to `false`. In previous versions they defaulted to `true`. If you before had not explicitly turned these properties `false`, they were all `true` by default. To get the same result as before in FCS V8, you now have to set these properties to `true`. This change was made to have fewer opinionated defaults in FCS to align it more with Flutter SDK default styles.
 
