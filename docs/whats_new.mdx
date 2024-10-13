@@ -2,6 +2,28 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
+## Version 8.0.0-dev.1 (Beta)
+
+**October 14, 2024**
+
+Version 8.0.0 makes **FlexColorScheme** fully aligned with Flutter's **MAJOR BREAKING** Material-3 theming changes introduced in Flutter version 3.22. Due to Flutter 3.22 breaking many past Material styles, introducing new colors to `ColorScheme` and deprecating three colors, FlexColorScheme had to undergo major revision and also break many of its past styles and some older APIs.
+
+Most APIs are still there and work as before, but a few produce results that differ slightly from past ones, just like Flutter 3.22 also does over previous versions. Generally, the upgrade should be smooth, but you may need to review the produced theme result to see that you don't get any changes that don't fit with your design goals. Some past defaults have changed in FCS V8, but previous values are still available. You will need to enable them explicitly to get the same results as before. The purpose of these default value changes is to make FCS have less opinionated defaults, and be more aligned with Flutter's Material-3 design defaults. The **Themes Playground** app will still have some of its own opinionated defaults, done via default settings values the app uses in its default configuration, but the package Material-3 default starting points, are now much more aligned with Flutter's Material-3 defaults.
+
+To migrate to the new version at least check out the summary in the [**Migration Guide**](/migrating). For a detailed log of all changes please see [CHANGELOG on pub.dev](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.1/changelog) on pub.
+
+### BACKGROUND
+
+Flutter 3.22 introduced a large number of breaking changes to the `ColorScheme` and default color mappings that Flutter's Material components use. In total, the Flutter 3.22.0 release adjusted 249 of its own internal tests to accommodate for new Material-3 spec changes, that all broke past Flutter Material-3 component styles. For a reference to the broken and updated tests, see [this issue comment](https://github.com/flutter/flutter/issues/130135#issuecomment-2308522312).
+
+FlexColorScheme V8 now allows you to use the new colors introduced in Flutter 3.22. As before, with FCS you can get fully defined hand-tuned `ColorScheme`s without using Material-3 design's Material Color Utilities (MCU) based seed-generated ColorSchemes. You may prefer to use seed generated ColorSchemes with Material-3, but it is nice to know you do not have to.
+
+To the seed generated `ColorScheme`s, FCS adds support for all the Flutter `DynamicSchemeVariant` seed generated variants. It also improves them by allowing you to use separate seed colors for each palette. With Flutter's `ColorScheme.fromSeed`, you can only seed with one color, the primary color. The resulting `ColorScheme` always uses computed values for **secondary** and **tertiary** palettes, plus a hard coded fixed color for the **error** palette seeding. **Surfaces** colors are always tied to primary color as well and include a hint of primary color. With FCS, you do not have these limitations, you can seed with separate colors for each palette with even with Flutter's own dynamic scheme variants. This was always possible with FlexColorScheme and its FlexSeedScheme (FSS) based FlexTones, seed generated scheme variants. FCS now brings this feature to Flutter's own dynamic scheme variants as well.
+
+As before, FCS also has its own even configurable `FlexTones` way of making seed generated ColorSchemes. Typically, you use predefined `FlexTones`, but you can also create your own `FlexTones` configurations. With it, you can define the chroma goals for each palette and define which tone is mapped to what `ColorScheme` color. An internal example of using them is the implementation of `FlexTones` modifiers.
+
+FlexColorScheme V8 adds three new `FlexTones` modifiers. The most useful one is called `monochromeSurfaces()`. This tone modifier makes the surface shades of any used `FlexTones` configuration use monochrome greyscale shades for the surface and surface variant palettes. It thus gives us greyscale colors for **ALL** surfaces, instead of primary-tinted ones. It can be applied to any `FlexTones` seed generated scheme variant. The other new modifiers are `expressiveOnContainer()` and `higherContrastFixed()`. Check the API docs for more details.
+
 ## Version 7.3
 
 **August 16, 2023**
