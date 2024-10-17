@@ -18,6 +18,30 @@ The **FlexColorScheme** package, then when given an API configuration produced b
 
 The **Themes Playground** app is primarily intended to be used by developers using the **FlexColorScheme** package. It can of course also be used to demonstrate a large number of **Material** theming features available in Flutter.
 
+### Available Themes Playground Builds
+
+There are **Theme Playground** versions corresponding to the last versions of major release of the **FlexColorScheme** package available. For Version 7 there are also the different minor releases.
+
+You should use the same major version of **Themes Playground** as the `flex_color_scheme` package you are suing. On version 7 you can match the minor version too.
+
+| Name      | Version      | Link                                                        |
+|-----------|--------------|-------------------------------------------------------------| 
+| V8 beta   | V8.0.0-dev.1 | https://rydmike.com/flexcolorscheme/themesplayground-dev    | 
+| V7 latest | V7.3.1       | https://rydmike.com/flexcolorscheme/themesplayground-latest |
+| V7.2      | V7.2.0       | https://rydmike.com/flexcolorscheme/themesplayground-v7-2   |
+| V7.1      | V7.1.2       | https://rydmike.com/flexcolorscheme/themesplayground-v7-1   |
+| V7.0      | V7.0.5       | https://rydmike.com/flexcolorscheme/themesplayground-v7     |
+| V6        | V6.1.1       | https://rydmike.com/flexcolorscheme/themesplayground-v6     |
+| V5        | V5.1.0       | https://rydmike.com/flexcolorscheme/themesplayground-v5     |
+| V4        | V4.2.0       | https://rydmike.com/flexcolorschemeV4Tut5                   |
+
+
+
+<Info>If you use a higher version of a WEB build and try to load a lower version again with the same browser, it will most likely fail and not load. This happens because older and newer builds run on same domain and share the same browser local storage file. This allows newer versions to load data configured in older version. However, older versions may not understand some data stored and inserted by the newer versions and they will fail. You can get the web build for an older version to start again by clearing stored browser data: "Settings" -> "Delete browsing data..." -> "Cookies and other site data". You do of course loose any config you had used then. This issue could be fixed, but would require updating rebuilding the old builds and there are currently no plans to do so. The issue will, however, be addressed in newer versions going forward. <Info>  
+
+You can also build the **Themes Playground** app locally from the package repo examples if you want to. MacOS  builds works well, but Windows builds have not been tested in a while. The Themes Playground is example5 in the GitHub repo.
+
+
 ## Quick Guides
 
 The Themes Playground app has a lot of in-application expandable documentation and information. Wherever you see an info icon (i), you can tap on it to expand it and read more about the feature.
