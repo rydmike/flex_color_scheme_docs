@@ -2,15 +2,26 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.1/changelog).
 
-## Version 8.0.0-dev.1 (Beta)
+## Version 8.0.0-dev.2 (Beta)
 
-**October 14, 2024**
+**October 26, 2024**
 
 Version 8.0.0 makes **FlexColorScheme** fully aligned with Flutter's **MAJOR BREAKING** Material-3 theming changes introduced in Flutter version 3.22. Due to Flutter 3.22 breaking many past Material styles, introducing new colors to `ColorScheme` and deprecating three colors, FlexColorScheme had to undergo major revision and also break many of its past styles and some older APIs.
 
 Most APIs are still there and work as before, but a few produce results that differ slightly from past ones, just like Flutter 3.22 also does over previous versions. Generally, the upgrade should be smooth, but you may need to review the produced theme result to see that you don't get any changes that don't fit with your design goals. Some past defaults have changed in FCS V8, but previous values are still available. You will need to enable them explicitly to get the same results as before. The purpose of these default value changes is to make FCS have less opinionated defaults, and be more aligned with Flutter's Material-3 design defaults. The **Themes Playground** app will still have some of its own opinionated defaults, done via default settings values the app uses in its default configuration, but the package Material-3 default starting points, are now much more aligned with Flutter's Material-3 defaults.
 
-To migrate to the new version at least check out the summary in the [**Migration Guide**](/migrating). For a detailed log of all changes please see [CHANGELOG on pub.dev](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.1/changelog) on pub.
+To migrate to the new version, see the summary in the [**Migration Guide**](/migrating). For a detailed log of all changes, please see [CHANGELOG on pub.dev](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.2/changelog) on pub.
+
+Compared to `8.0.0-dev.1` the `8.0.0-dev.2` package release contains a few minor bug fixes discovered during QA testing and test updates for the package.
+
+The **Themes Playground** app got two **major** new features in `8.0.0-dev.2`. 
+ 1. It can now export a Playground configuration to a JSON file. You can later import this JSON file to restore the Playground to the same state as when you exported it. This **Playground** feature was a nice contribution by GitHub user [@akiller](https://github.com/akiller) in [!PR 257](https://github.com/rydmike/flex_color_scheme/pull/257), thank you! This contributed feature got enhanced with more error handling and a slightly refined UI to make it production ready. It can now be tried for the first time in the 8.0.0-dev.2 release and build.
+ 2. You can also convert an exported JSON settings configuration to a shareable link. This link can be shared with others. When they open it, the **Themes Playground** will reconfigure itself to the state it had when the shared settings were exported and converted to a link. 
+
+### Can I use this V8.0.0-dev.2 release now?
+
+Yes you can. There are no planned API changes to the package before the 8.0.0 stable release. Quality assurance testing is far along, and the package has now passed all critical tests. Some minor test updates remain. Stable version 8.0.0 will be released without 100% test coverage. It will be around 95% at its first stable release and more tests will be added in fix releases to bring coverage back to 100%. The documentation site will also be gradually updated and finalized after the 8.0.0 stable release.
+
 
 ### BACKGROUND
 
@@ -23,6 +34,8 @@ To the seed generated `ColorScheme`s, FCS adds support for all the Flutter `Dyna
 As before, FCS also has its own even configurable `FlexTones` way of making seed generated ColorSchemes. Typically, you use predefined `FlexTones`, but you can also create your own `FlexTones` configurations. With it, you can define the chroma goals for each palette and define which tone is mapped to what `ColorScheme` color. An internal example of using them is the implementation of `FlexTones` modifiers.
 
 FlexColorScheme V8 adds three new `FlexTones` modifiers. The most useful one is called `monochromeSurfaces()`. This tone modifier makes the surface shades of any used `FlexTones` configuration use monochrome greyscale shades for the surface and surface variant palettes. It thus gives us greyscale colors for **ALL** surfaces, instead of primary-tinted ones. It can be applied to any `FlexTones` seed generated scheme variant. The other new modifiers are `expressiveOnContainer()` and `higherContrastFixed()`. Check the API docs for more details.
+
+
 
 ## Version 7.3
 
