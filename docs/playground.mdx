@@ -24,24 +24,23 @@ There are **Theme Playground** version builds corresponding to the last major re
 
 You should use the same major version of **Themes Playground** as the `flex_color_scheme` package you are using. With version 7, you should prefer to match the minor version too.
 
-| Name      | Version       | Link                                                        |
-|-----------|---------------|-------------------------------------------------------------| 
-| V8 beta   | V8.0.0-dev.2  | https://rydmike.com/flexcolorscheme/themesplayground-dev    | 
-| V7 latest | V7.3.1        | https://rydmike.com/flexcolorscheme/themesplayground-latest |
-| V7.2      | V7.2.0        | https://rydmike.com/flexcolorscheme/themesplayground-v7-2   |
-| V7.1      | V7.1.2        | https://rydmike.com/flexcolorscheme/themesplayground-v7-1   |
-| V7.0      | V7.0.5        | https://rydmike.com/flexcolorscheme/themesplayground-v7     |
-| V6        | V6.1.1        | https://rydmike.com/flexcolorscheme/themesplayground-v6     |
-| V5        | V5.1.0        | https://rydmike.com/flexcolorscheme/themesplayground-v5     |
-| V4        | V4.2.0        | https://rydmike.com/flexcolorschemeV4Tut5                   |
+| Name  | Version | Link                                                        |
+|-------|---------|-------------------------------------------------------------| 
+| V8.0  | V8.0.0  | https://rydmike.com/flexcolorscheme/themesplayground-latest | 
+| V7.3  | V7.3.1  | https://rydmike.com/flexcolorscheme/themesplayground-v7-3   |
+| V7.2  | V7.2.0  | https://rydmike.com/flexcolorscheme/themesplayground-v7-2   |
+| V7.1  | V7.1.2  | https://rydmike.com/flexcolorscheme/themesplayground-v7-1   |
+| V7.0  | V7.0.5  | https://rydmike.com/flexcolorscheme/themesplayground-v7     |
+| V6    | V6.1.1  | https://rydmike.com/flexcolorscheme/themesplayground-v6     |
+| V5    | V5.1.0  | https://rydmike.com/flexcolorscheme/themesplayground-v5     |
+| V4    | V4.2.0  | https://rydmike.com/flexcolorschemeV4Tut5                   |
 
 
-> **NOTE!**  
-> If you use a higher version of a WEB build and try to load a lower version again with the same browser, it will most likely fail and not load. This happens because older and newer builds run on the same domain and share the same browser local storage file. This allows newer versions to load data configured in older versions. However, older versions may not understand some data stored and inserted by the newer versions and they will fail. You can get the web build for an older version to start again by clearing stored browser data:  
+>**NOTE!**  
+>If you use a higher version of a WEB build and try to load a lower version again with the same browser, it will most likely fail and not load. This happens because older and newer builds run on the same domain and share the same browser local storage file. This allows newer versions to load data configured in older versions. However, older versions may not understand some data stored and inserted by the newer versions and they will fail. You can get the web build for an older version to start again by clearing stored browser data:  
 >"Settings" → "Delete browsing data..." → "Cookies and other site data".  
-> You do of course lose any config you had used then. This issue could be fixed, but would require updating rebuilding the old builds and there are currently no plans to do so.  
-> Version 8.0.0-dev.2 and later uses a new local storage name to avoid this issue, so it will not conflict with V7 and older versions. There are few storage settings in V8 that are backwards compatible anyway.
->
+>You do of course lose any config you had used then. This issue could be fixed, but would require updating rebuilding the old builds and there are currently no plans to do so.  
+>Version 8.0.0 and later uses a new local storage name to avoid this issue, so it will not conflict with V7 and older versions. There are few storage settings in V8 that are backwards compatible anyway.
 
 You can also build Windows, macOS or Linux desktop versions of the **Themes Playground**, it is highly recommended, as it runs much smoother and nicer than the WEB build. The **Themes Playground** app is bundled with the package GitHub repository as **Example 5**. If you need a Themes Playground companion build for a specific older FlexColorScheme version, you can download a ZIP bundle from the GitHub repo for any past [release here](https://github.com/rydmike/flex_color_scheme/releases).
 
@@ -61,7 +60,7 @@ The Themes Playground application offers several different layouts, some automat
 2. Two topics single page view (small tablet)
 3. Two topics side-by-side with colors at the top (desktop, large tablet)
 4. Two topics side-by-side with colors on the side (desktop, large tablet)
-5. Masonry style grid view, with collapsible theme topic panels
+
 
 The views 1 to 4 are all part of the page view layout mode. This mode switches layout automatically depending on screen media size. It switches between layouts 1, 2 and 3 or 4. The choice between 3 and 4 is a manual user preference toggle in the side command bar. There is also a large and compact interface mode, making theme topic panel spacing as well as theme topic and color selection buttons smaller or larger. 
 
@@ -157,20 +156,6 @@ This view shows up at desktop sizes or large tablets in landscape mode. The main
 
 
 In all views, the side command menu can also be toggled. On larger media it toggles between a full-sized side command menu or side rail. On smaller media it toggles between side rail and hidden in a side drawer.
-
-
-### 5) Masonry Grid
-
-The masonry-based large grid view is best experienced at as high resolution as possible, preferably even pixel native 4k. On the web, a full 4k render with all panels open is not so super smooth, on desktop builds it typically works well.
-
-With the masonry grid, you can open and close multiple panels, including the code view, and change settings across multiple panels and see the impact on all of them. Sometimes having the right combination of panels with different topics open at the same time is useful in order to see and understand the impact of different theme settings.
-
-<Image zoom src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/fcs-v5-pg-02-masonryview-2.gif?raw=true"
-caption="View 5) Masonry grid view with collapsible topic panels, responsiveness demo."
-alt="masonry view demo" />
-
-
-Be aware that the masonry grid layout will change column placement based on how the view itself optimizes the layout to fit in minimal space. The order of theme topic item may therefore seem to switch as you open and close panels, or if a panel changes size a lot when you enable/disable features in it.
 
 ## Theme Topics
 
