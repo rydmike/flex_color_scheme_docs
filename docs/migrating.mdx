@@ -3,9 +3,9 @@
 This chapter contains guides for the minimum required changes to move from a lower major version to the next higher major one.
 
 
-## Migrating to version 8.0.0-dev.1
+## Migrating to version 8.0.0
 
-The most critical changes to migrate from FlexColorScheme V7 to V8 are listed below. For a full list of all breaking changes, see **PACKAGE CHANGES** and the **BREAKING CHANGES** part in the [pub.dev CHANGELOG](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.1/changelog).
+The most critical changes to migrate from FlexColorScheme V7 to V8 are listed below. For a full list of all breaking changes, see **PACKAGE CHANGES** and the **BREAKING CHANGES** part in the [pub.dev CHANGELOG](https://pub.dev/packages/flex_color_scheme/versions/8.0.0/changelog).
 
 * The flag `useMaterial3` now defaults to `true` in `FlexColorScheme` and `FlexThemeData` constructors. Set it to `false` to explicitly use Material-2 theming. It defaulted to true before. Material-2 is still fully supported in FCS v8 and Flutter v3.24, but will eventually be deprecated in Flutter, when that happens, it will also happen in FCS.
 
@@ -19,7 +19,7 @@ The most critical changes to migrate from FlexColorScheme V7 to V8 are listed be
     * **NOTE:** You may want to check your surface mode and blends to see that they still look as you want them to, as they may have changed slightly depending on your configuration. We have tried to keep required changes subtle, you may not notice any difference, but it is good to check. These changes we forced by Flutter 3.22.0 deprecation of `ColorScheme` colors `background`, `onBackground` and `surfaceVariant`.
 
 
-This major release has many breaking changes forced via breaking changes in Flutter 3.22.0. Due to this, the release also uses this opportunity to clean up APIs with opinionated defaults, like the ones mentioned above. There are additional smaller and more subtle changes in defaults values, that align FCS to use the same color defaults from the new `ColorScheme` colors, that Flutter started using in version 3.22.0 as well. You can find all the details below in the **BREAKING CHANGES** part in the [pub.dev CHANGELOG](https://pub.dev/packages/flex_color_scheme/versions/8.0.0-dev.1/changelog).
+This major release has many breaking changes forced via breaking changes in Flutter 3.22.0. Due to this, the release also uses this opportunity to clean up APIs with opinionated defaults, like the ones mentioned above. There are additional smaller and more subtle changes in defaults values, that align FCS to use the same color defaults from the new `ColorScheme` colors, that Flutter started using in version 3.22.0 as well. You can find all the details below in the **BREAKING CHANGES** part in the [pub.dev CHANGELOG](https://pub.dev/packages/flex_color_scheme/versions/8.0.0/changelog).
 
 
 
