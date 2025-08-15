@@ -7,6 +7,39 @@ The status of fixes to known issues is typically reviewed when a new stable rele
 This list is included to show what older versions of Flutter the theming fixes do not apply to.
 Prefer using the latest stable version of Flutter to benefit from all fixes listed below.
 
+## Flutter 3.27 and later breaks past styling and theming of icon color on buttons with icons
+<Success>Fixed in Flutter 3.32.</Success>
+<Error>Applies to Flutter stable 3.27 and 3.29.</Error>
+
+When you theme or style a `FilledButton.icon`, `ElevatedButton.icon`, `OutlinedButton.icon`, `TextButton.icon` or a `SegmentedButton` with icons, and give them a foreground color, the text color and the used icon color should both use the specified foreground color. This was the case in all versions prior to Flutter 3.27.0. In Flutter 3.27.0 and 3.29 the styling and theming is broken and the icon color keep default colors.
+
+For more information, see issue [#162839](https://github.com/flutter/flutter/issues/162839). This issue was fixed in [PR 162880](https://github.com/flutter/flutter/pull/162880) and landed in Flutter stable 3.29.
+
+## Cannot theme progress indicators, many properties missing
+<Success>Fixed in Flutter 3.29.</Success>
+<Error>Applies to Flutter stable 3.27 and earlier.</Error>
+The `ProgressIndicatorThemeData` is missing many key properties from `LinearProgressIndicator` and `CircularProgressIndicator` making it impossible to theme their styles. For more information, see issue [#131690](https://github.com/flutter/flutter/issues/131690). This issue was fixed in [PR 158104](https://github.com/flutter/flutter/pull/158104) and landed in Flutter stable 3.29.
+
+## SegmentedButton OverlayColor MaterialState incorrectly set
+<Success>Fixed in Flutter 3.27.</Success>
+<Error>Applies to Flutter 3.24 and earlier.</Error>
+The SegmentedButton sets its `MaterialState` incorrectly for `overlayColor` in its used `ButtonStyleButton` segments. See issue [123308](https://github.com/flutter/flutter/issues/123308). Reported as probably fixed by [PR](https://github.com/flutter/flutter/pull/159072), which landed in Flutter 3.27.
+
+## DropdownMenu themed focused item broken
+<Success>Fixed in Flutter 3.27.</Success>
+<Error>Applies to Flutter 3.13 and earlier.</Error>
+The style indication of the found and focused/selected item in a `DropdownMenu` does not use `MenuButtonThemeData`. Its simulation of the focused state omits the theme. This makes it impossible to provide a consistent style for the focused/selected item when using a custom theme in a `DropdownMenu`. We have to use the default style for the entire menu, or accept a deviant and out-of-style looking focused/selected item. For more information, see issue [#123736](https://github.com/flutter/flutter/issues/123736). This issue was fixed in [PR 153159](https://github.com/flutter/flutter/pull/153159) and landed in Flutter stable 3.27.
+
+## SegmentedButton height does not match Material3 spec and cannot be changed
+<Success>Fixed in Flutter 3.22.</Success>
+<Error>Applies to Flutter 3.19 and earlier.</Error>
+The Material-3 specification gives a height of 40 dp for Segmented buttons and a recommended `TapTargetSize` of 48 dp. This cannot be achieved in Flutter since the `minimumSize` style-property does not affect the widget. The correct minimumSize was actually set as default value in [PR #120095](https://github.com/flutter/flutter/pull/120095), but is not honored, see issue [#121493](https://github.com/flutter/flutter/issues/121493). This was fixed in [PR ](https://github.com/flutter/flutter/pull/142243) that landed in Flutter stable 3.22, maybe already in 3.19.
+
+## Chips, passed in iconTheme is not applied
+<Success>Fixed in Flutter 3.19.</Success>
+<Error>Applies to Flutter 3.16 and earlier.</Error>
+When passing in `iconTheme` to `Chip`, `ActionChip`, `ChoiceChip`, `FilterChip` or `InputChip`, it is not applied. See issue [#111828](https://github.com/flutter/flutter/issues/111828). Was fixed via [#PR 135751](https://github.com/flutter/flutter/pull/135751), that landed in Flutter 3.19.
+
 ## TextStyles in Menus do not follow Material-3 spec
 <Success>Fixed in Flutter 3.16.</Success>
 <Error>Applies to Flutter stable 3.13 and earlier.</Error>

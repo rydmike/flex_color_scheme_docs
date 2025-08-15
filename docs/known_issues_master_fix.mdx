@@ -6,7 +6,12 @@ The status of fixes to known issues is typically reviewed when a new stable rele
 
 Some fixes may also be in the latest beta channel, but have not yet landed in any stable version of Flutter. If the mentioned fix is available in the latest beta, it will typically also land in the next stable version of Flutter when a new stable version is released. Typically, don't expect to see fixes below arriving as hotfixes to the main stable channel. On rare occasions, there may be a WIP fix that is not yet merged into the Flutter master channel.
 
-## Chips, passed in iconTheme is not applied
-<Error>Applies to Flutter 3.16 and earlier.</Error>
-When passing in `iconTheme` to `Chip`, `ActionChip`, `ChoiceChip`, `FilterChip` or `InputChip`, it is not applied.
-See issue [#111828](https://github.com/flutter/flutter/issues/111828). Has a fix in master via [#PR 135751](https://github.com/flutter/flutter/pull/135751), but has not landed in Flutter 3.16.
+## Menu width of DropdownMenu does not match the width of the input field.
+<Error>Applies to Flutter 3.32.0 up to at least 3.35.1.</Error>
+<Info>Has a theme default **fix** in FlexColorScheme 8.3.0 and later.</Info>
+
+The width of the DropdownMenu no longer by default matches the width of the dropdown input field. This is
+a regression bug in Flutter SDK that was introduced in version 3.32.0.
+See issue [#111828](https://github.com/flutter/flutter/issues/170970). Has a fix in master via [#PR 135751](https://github.com/flutter/flutter/pull/135751), but it has not landed in Flutter 3.35 stable.
+
+FlexColorScheme version 8.3.0 includes a built-in workaround for this issue that will be used until the FIX PR is merged into the stable channel.
