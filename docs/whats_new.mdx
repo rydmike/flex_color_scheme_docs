@@ -2,6 +2,33 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
+## Version 8.4.0
+
+**November 30, 2025**
+
+### Package
+
+**NEW**
+* Added boolean `sliderYear2023` to `FlexSubThemesData` to be able to select between older M3 and newer current M3 slider styles. Defaults to older style as before to not break styles. Set `sliderYear2023` to value false, to use the current newer M3 style.
+* Added `progressIndicatorTheme` to `FlexSubThemes` to be able to theme `CircularProgressIndicator` and `LinearProgressIndicator` components, with many new properties.
+* The `FlexSubThemes.cardTheme` got new theming features.
+
+**CHANGE**
+* The enum `FlexSliderIndicatorType` got a new value `rounded`, to support selecting the newer M3 indicator style also in M2 and older M3 mode for Slider and RangeSlider.
+
+### Themes Playground
+
+**NEW**
+* The **Slider** panel got a new switch control to select between older M3 and newer current M3 slider styles. It uses the new `FlexSubThemesData.sliderYear2023` property to do so.
+
+* Split the **Tooltip** and **Progress Indicator** panel into two separate panels.
+* The new **Progress Indicator** panel got theming controls for all supported new `FlexSubThemesData` progress indicator properties listed above.
+* The **Card** panel got theming controls for `FlexSubThemesData` card properties `cardBackgroundSchemeColor`, `cardBorderSchemeColor`, `cardBorderWidth` and `cardElevation`.
+
+**CHANGE**
+* Visual improvements to the color picker dialog in the Themes Playground.
+
+For a detailed log of all changes, please see [changelog on pub.dev](https://pub.dev/packages/flex_color_scheme/changelog) on pub.
 
 ## Version 8.3.0
 
