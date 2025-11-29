@@ -12,6 +12,9 @@ The most useful and popular feature of the **Themes Playground** is that it can 
 
 The latest stable version of **Themes Playground** can be used as a [web app here](https://rydmike.com/flexcolorscheme/themesplayground-latest).
 
+
+<Info>There is also an experimental version of the **Themes Playground** that uses a WASM GC build to run with WASM in the browser. It is available for the latest version of **FlexColorScheme**, you can find it here [WASM Playground](https://playground.flexcolorscheme.com/). This build may run smoother than the above JS build in Chromium-based browsers on desktops and Android. If your browser does not support WASM GC, it will automatically fall back to the JS build.</Info>
+
 The **Themes Playground** is a "what you see, is what you get" visual configuration tool for the **FlexColorScheme** package API. As you interactively modify the theme, that the Playground app itself uses and shows, it also generates the **FlexColorScheme** package API configuration needed to reproduce the same theme in a Flutter application.
 
 The **FlexColorScheme** package, then when given an API configuration produced by, and copy-pasted from the **Themes Playground**, produces Flutter `ThemeData` object used as a theme in a `MaterialApp`. FlexColorScheme works as fancy `ThemeData` factory, with an often much shorter API for the features it supports.  
