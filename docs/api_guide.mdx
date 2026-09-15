@@ -22,7 +22,10 @@ There are separate APIs for creating the light theme mode, and dark theme mode `
 Using this API is very familiar, it looks a lot like `ThemeData.light` and `dark`, but with Flex prepended. They, of course, have a lot of additional properties, but the basic usage is simple.
 
 ```dart
-  class MyApp extends StatelessWidget {
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:material_ui/material_ui.dart';
+
+class MyApp extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
     return MaterialApp(

@@ -2,6 +2,33 @@
 
 This chapter features recent news and information about updates in **FlexColorScheme**. For a more detailed list of all changes, please refer to the package [changelog](https://pub.dev/packages/flex_color_scheme/changelog).
 
+## Version 9.0.0
+
+**September 15, 2026**
+
+This version requires Flutter 3.47.0 or higher and Dart 3.13.0. Flutter treats a required SDK bump as a **major** release because the Material and Cupertino UI libraries left the SDK.
+
+### Package
+
+Version 9.0 is a maintenance release with no new FlexColorScheme theming features, intended as an easy upgrade from 8.4. It adds full support for the standalone `material_ui` and `cupertino_ui` packages at `^1.0.0` (any 1.x below 2.0.0). It does not use APIs added after 1.0.0 of those packages; later FlexColorScheme releases will raise that floor when they adopt new features from them.
+
+Seeded **light** themes now default `FlexKeyColors.useExpressiveOnContainerColors` to `true` when undefined, matching Flutter 3.47 `ColorScheme.fromSeed`. That changes `onPrimaryContainer`, `onSecondaryContainer`, `onTertiaryContainer` and `onErrorContainer` in light mode. Opt out with `useExpressiveOnContainerColors: false` to keep the older higher-contrast tone 10 light on-container colors.
+
+Removed no-op leftovers that had no function in 8.4:
+
+* Use `surface` / `onSurface` instead of `background` / `onBackground` on FlexColorScheme types. `surfaceVariant` was also removed from `FlexSchemeSurfaceColors`.
+* Removed `FlexSubThemesData` flags `useTextTheme`, `useFlutterDefaults`, and `blendTextTheme`. Use `useMaterial3Typography` instead of `useTextTheme`.
+* Removed the `FlexSubThemes.bottomNavigationBar` pass-through alias. Use `FlexSubThemes.bottomNavigationBarTheme`.
+* Removed `FlexColorScheme.createPrimarySwatch`. Use `ColorTools.createPrimarySwatch` in package `flex_color_picker`.
+
+### Themes Playground
+
+Generated theme setup now imports `package:material_ui/material_ui.dart` and `package:cupertino_ui/cupertino_ui.dart`. The latest live Playground is the WASM GC build at [https://playground.flexcolorscheme.com/](https://playground.flexcolorscheme.com/). GitHub Pages hosts the versioned JS build at `themesplayground-v9-0`. The `-latest` path is no longer used for new deploys.
+
+The **Expressive containers** switch now defaults ON, matching FCS 9.0. Generated theme code omits `useExpressiveOnContainerColors` when on and emits `useExpressiveOnContainerColors: false` when off.
+
+For a detailed log of all changes, please see [changelog on pub.dev](https://pub.dev/packages/flex_color_scheme/changelog) on pub.
+
 ## Version 8.4.0
 
 **November 30, 2025**

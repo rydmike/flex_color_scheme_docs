@@ -18,7 +18,7 @@ We then turn ON FlexColorscheme and modify some settings, like border radius on 
 
 When we are done configuring our scheme, we **COPY** the generated setup code, and **PASTE** it into the **Copy Playground** app into the `MaterialApp` widget, making sure to comment or delete any existing `theme` and `darkTheme` definitions.
 
-If you are doing this in your own app, you will need to first add the `flex_color_scheme` package to your application and import it. In the **Copy Playground** template this is already done. Even the Google fonts package is imported, so we can easily also use the same **NotoSans** font that the **Themes Playground** app uses. This is done in this demo just to create and exact match of the result on the mobile device.
+If you are doing this in your own app, you will need to first add the `flex_color_scheme` package to your application and import it, plus `package:material_ui/material_ui.dart` (and `package:cupertino_ui/cupertino_ui.dart` if you use Cupertino widgets). Generated Playground setup now uses those UI package imports. In the **Copy Playground** template this is already done. Even the Google fonts package is imported, so we can easily also use the same **NotoSans** font that the **Themes Playground** app uses. This is done in this demo just to create and exact match of the result on the mobile device.
 
 When we hot-reload the **Copy Playground** app, we can see how it changes to use the theme we just configured in the **Themes Playground**. It is almost magical. In the Playground, we can use the Widget Showcase to compare the colors and UI widget styles in the Themes Playground and in the Copy Playground. We can see and verify that they are the same.
 

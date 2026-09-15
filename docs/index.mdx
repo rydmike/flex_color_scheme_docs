@@ -1,6 +1,6 @@
 # Welcome to FlexColorScheme
 
-<Info>**FlexColorScheme** package 8.4.0 has been published. This is a minor update with some new theming feature for **Slider**, **ProgressIndicator** and **Card**. The update requires Flutter 3.38 or later. For more information, see the [What's new](/whats_new) chapter and the [Migration guide](/migrating) summary, or read the full detailed [changelog](https://pub.dev/packages/flex_color_scheme/changelog) on pub. This documentation site has not yet been fully updated to cover all the new features in version 8, but package API docs are upp to date, as is the [Playground](https://rydmike.com/flexcolorscheme/themesplayground-latest/). When documentation updates are complete this release note will be updated to reflect this.</Info>
+<Info>**FlexColorScheme** package 9.0.0 has been published. It requires Flutter 3.47 or later and adds full support for the standalone [`material_ui`](https://pub.dev/packages/material_ui) and [`cupertino_ui`](https://pub.dev/packages/cupertino_ui) packages (`^1.0.0`, any 1.x). This is a maintenance release with no new FlexColorScheme theming features, intended as an easy upgrade from 8.4. For more information, see the [What's new](/whats_new) chapter and the [Migration guide](/migrating) summary, or read the full detailed [changelog](https://pub.dev/packages/flex_color_scheme/changelog) on pub. Package API docs and the [Playground](https://playground.flexcolorscheme.com/) are up to date. This documentation site has not yet been fully rewritten for version 9; a larger docs update will follow.</Info>
 
 [<img src="https://raw.githubusercontent.com/rydmike/flex_color_scheme_docs/master/docs/images/flutter-favorite-logo.png?" alt="flutter favorite logo" width="170"/>](https://docs.flutter.dev/development/packages-and-plugins/favorites)
 
@@ -40,11 +40,9 @@ When you opt in on using the component themes, border radius on widgets defaults
 
 ### Material-3 Mode
 
-You can also opt in on using Material-3 design. The Material-3 mode component sub-theming is far less opinionated than it is in Material-2 mode, using mostly Material-3 defaults. It offers many quick settings that you can use to customize Material-3's quite opinionated default style, to fit your custom design goals.
+Material-3 is the default since FlexColorScheme v8, matching Flutter's `ThemeData`. Set `useMaterial3: false` only if you still need Material-2. The Material-3 mode component sub-theming is far less opinionated than it is in Material-2 mode, using mostly Material-3 defaults. It offers many quick settings that you can use to customize Material-3's quite opinionated default style, to fit your custom design goals.
 
 In Flutter 3.7 and later, using Material-3 design is ready for production use. Some minor issues still exist, please refer to the FlexColorScheme docs [known issues](https://docs.flexcolorscheme.com/known_issues) chapter for more information on status of known **theming** issues in Flutter.
-
-In Flutter 3.16 and later, Material-3 is the default mode when using its various `ThemeData()` factories. **FlexColorScheme** still defaults to using Material-2 mode, but you can opt in on using Material-3 mode by setting `useMaterial3: true`, when you create your `FlexColorScheme`. The **Themes Playground** uses Material-3 mode by default, by setting `useMaterial3: true` in the generated code. The next major version (version 8) of FlexColorScheme API will default to Material-3 mode as well. This will be a breaking change.
 
 <table>
   <tr>

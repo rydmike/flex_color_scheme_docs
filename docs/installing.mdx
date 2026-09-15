@@ -1,13 +1,14 @@
 # Installing and Using
 
-The Flutter **FlexColorScheme** package is published in [pub.dev](https://pub.dev/packages/flex_color_scheme) and has its open source code in the GitHub [flex_color_scheme](https://github.com/rydmike/flex_color_scheme) repository. To use it in your **Flutter** project, add the `flex_color_scheme` package to `pubspec.yaml`:
+The Flutter **FlexColorScheme** package is published in [pub.dev](https://pub.dev/packages/flex_color_scheme) and has its open source code in the GitHub [flex_color_scheme](https://github.com/rydmike/flex_color_scheme) repository. Version 9.x requires Flutter **3.47** or later. To use it in your **Flutter** project, add the `flex_color_scheme` package to `pubspec.yaml`:
 
 `dart pub add flex_color_scheme` or `flutter pub add flex_color_scheme`
 
-Import the package to use it:
+Import the package and Material UI to use it:
 
 ```dart
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:material_ui/material_ui.dart';
 ```
 
 You can now start using **FlexColorScheme** based color schemes and theming in your application. A quick way to do so is to try one of the **52** built-in themes. They have enum values that you can use to select which one to use as the theme of your application.
@@ -16,7 +17,7 @@ The package **default example** offers a heavily commented code guide on how to 
 
 ## FlexColorScheme Counter App
 
-Let's first setup FlexColorScheme in the default Flutter counter app. Create a new Flutter project, giving you the default counter app. Add the FlexColorScheme import, after that we change one line of code, and add two lines to enable it in the default counter app.
+Let's first setup FlexColorScheme in the default Flutter counter app. Create a new Flutter project, giving you the default counter app. Add the FlexColorScheme and `material_ui` imports, after that we change one line of code, and add two lines to enable it in the default counter app.
 
 Here we use the **Oh Mandy red** color scheme, it is represented by `enum` value `FlexScheme.mandyRed`. Set the `MaterialApp.themeMode` to `ThemeMode.system` so that the device can control if the app uses its light or dark theme mode. You can then toggle the application's theme mode by changing system theme mode on the used device.
 
@@ -27,6 +28,9 @@ For both `FlexThemeData` dark and light we set the `scheme` property to `FlexSch
 The three line modified `MaterialApp`, of the Flutter default counter app becomes:
 
 ```dart
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:material_ui/material_ui.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
